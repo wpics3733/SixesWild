@@ -8,7 +8,7 @@
 -- Player can only link the numbers vertically or horizontally
 -- If the number was 6 already, this square is blocked
 
-- Tasks
+**Tasks**
 -- Main Game UML:  Jesse
 -- Level Builder UML:  Dean
 -- Mock Up GUI:  Harry
