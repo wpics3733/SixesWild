@@ -37,13 +37,11 @@ public class SixesGridController implements MouseInputListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.printf("Mouse pressed, creating a new Move\n");
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		System.out.printf("Mouse released, move is finished\n");
 		// TODO Auto-generated method stub
 
 	}
