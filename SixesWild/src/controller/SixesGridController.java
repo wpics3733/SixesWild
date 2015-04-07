@@ -37,23 +37,22 @@ public class SixesGridController implements MouseInputListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		pressed = true;
-		TileView tv = (TileView)sgv.getComponentAt(e.getX(), e.getY());
-		tv.setBackground(Color.RED);
-		sgv.repaint();
-		// TODO Auto-generated method stub
+		System.out.printf("Mouse pressed, creating a new Move\n");
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		pressed = false;
+		System.out.printf("Mouse released, move is finished\n");
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		TileView tv = (TileView)sgv.getComponentAt(e.getX(), e.getY());
+		tv.setBackground(Color.RED);
+		sgv.repaint();
 
 		// TODO Auto-generated method stub
 
@@ -61,11 +60,6 @@ public class SixesGridController implements MouseInputListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		System.out.println("Mouse moved");
-		
-
-		// TODO Auto-generated method stub
-
 	}
 
 }

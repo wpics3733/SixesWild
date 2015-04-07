@@ -17,6 +17,7 @@ public class TileView extends JPanel {
 		
 		this.num = new JLabel( Integer.toString(tc.getTile().getNum()));
 
+		this.num.getFont().deriveFont(20);
 		
 		this.add(num);
 		this.tc = tc;

@@ -26,5 +26,6 @@ public class SixesGridView extends JPanel {
 		
 		this.sgm = sgm;
 		this.addMouseListener(new SixesGridController(this, sgm));
+		this.addMouseMotionListener(new SixesGridController(this, sgm));
 	}
 }
