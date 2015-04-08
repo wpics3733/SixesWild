@@ -5,8 +5,8 @@ public class Main {
 	
 	public static void main( String args[]) {
 		
-		SixesGridModel m = new SixesGridModel(9,9);
-		SixesWild a = new SixesWild( m );
+		Board b = new Board(9,9);
+		LevelView a = new LevelView( b );
 		a.frame.setVisible(true);		
 		
 	}

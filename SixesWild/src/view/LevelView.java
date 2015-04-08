@@ -4,7 +4,7 @@ import javax.swing.*;
 import model.*;
 import java.awt.*;
 
-public class LevelView {
+public class LevelView extends JPanel {
 
 		static final long serialVersionUID = 1;
 

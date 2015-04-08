@@ -7,13 +7,13 @@ import view.*;
 import java.awt.*;
 
 public class MakeMove implements MouseInputListener {
+	UserMove um;
 	BoardView bv;
-	Board b;
 	boolean pressed;
 	
-	public MakeMove(BoardView bv, Board b) {
-		this.bv = bv;
-		this.b = b; 	
+	public MakeMove(UserMove um, BoardView bv) {
+		this.um = um;
+		this.bv = bv;	
 		pressed = false;
 	}
 
@@ -42,6 +42,13 @@ public class MakeMove implements MouseInputListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		for(TileContainer tc: um) {
+			tc.setMarked(false);
+
+		}
+		bv.repaint();
+		um = new UserMove();
+		
 		// TODO Auto-generated method stub
 
 	}
@@ -49,8 +56,11 @@ public class MakeMove implements MouseInputListener {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		TileView tv = (TileView)bv.getComponentAt(e.getX(), e.getY());
-		tv.setBackground(Color.RED);
-		bv.repaint();
+		if(um.addTile( tv.getTile() )) {
+			tv.getTile().setMarked(true);
+			bv.repaint();
+		}
+
 
 		// TODO Auto-generated method stub
 

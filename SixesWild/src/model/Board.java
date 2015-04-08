@@ -12,7 +12,7 @@ public class Board {
 		for( int i = 0; i < h; i++) {
 			for( int j = 0; j < w; j++) {
 				
-				tiles[i][j] = new TileContainer(new Tile(0));
+				tiles[i][j] = new TileContainer(new Tile(1, 1));
 			}
 		}
 	}

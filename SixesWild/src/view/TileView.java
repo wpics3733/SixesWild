@@ -22,5 +22,18 @@ public class TileView extends JPanel {
 		this.add(num);
 		this.tc = tc;
 	}
+	
+	public TileContainer getTile() {
+		return this.tc;
+	}
+	
+	public void paintComponent(Graphics g) {
+		if(tc.getMarked()) {
+			this.setBackground(Color.RED);
+		} else {
+			this.setBackground(Color.GREEN);
+		}
+		super.paintComponent(g);
+	}
 
 }
