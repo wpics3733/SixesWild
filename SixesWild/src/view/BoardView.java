@@ -25,8 +25,5 @@ public class BoardView extends JPanel {
 		}
 		
 		this.b = b;
-		MakeMove mm = new MakeMove(new UserMove(), this);
-		this.addMouseListener(mm);
-		this.addMouseMotionListener(mm);
 	}
 }

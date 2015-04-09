@@ -1,14 +1,15 @@
 package model;
 
 public class TileContainer {
-	Tile contained;
+	Tile t;
 	boolean marked;
-	public TileContainer(Tile contained) {
-		this.contained = contained;
+	
+	public TileContainer(Tile t) {
+		this.t = t;
 	}
 	
 	public Tile getTile() {
-		return contained;
+		return t;
 	}
 	
 	public boolean getMarked() {
@@ -17,6 +18,10 @@ public class TileContainer {
 	
 	public void setMarked(boolean marked) {
 		this.marked = marked;
+	}
+	
+	public void setTile(Tile t) {
+		this.t = t;
 	}
 
 

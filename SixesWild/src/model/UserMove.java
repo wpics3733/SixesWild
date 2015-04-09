@@ -11,7 +11,8 @@ public class UserMove implements Iterable<TileContainer> {
 	
 	public UserMove() {
 		sum = 0;
-		multiplier = 0;
+		multiplier = 1;
+		numTiles = 0;
 		tiles = new ArrayList<TileContainer>();
 	}
 	
@@ -33,7 +34,7 @@ public class UserMove implements Iterable<TileContainer> {
 	
 	public int getScore() {
 		if (sum == 6) {
-			return numTiles * multiplier;
+			return 10*numTiles * multiplier;
 		} else {
 			return 0;
 		}		
@@ -42,6 +43,27 @@ public class UserMove implements Iterable<TileContainer> {
 	@Override
 	public Iterator<TileContainer> iterator() {
 		return tiles.iterator();
+	}
+	
+	public boolean isValid() {
+		return sum == 6;
+	}
+
+	public void clearTiles() {
+
+		for(TileContainer tc: tiles) {
+			tc.setMarked(false);
+			if(isValid()) {
+				int tileNum = (int)(Math.random() * 6);
+				tc.setTile(new Tile(tileNum, 1));
+				tc.setMarked(false);
+			}
+		}
+		this.tiles = new ArrayList<TileContainer>();
+
+		this.sum = 0;
+		this.numTiles = 0;
+		this.multiplier = 1;
 	}
 
 

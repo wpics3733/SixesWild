@@ -8,12 +8,12 @@ import java.awt.*;
 
 public class MakeMove implements MouseInputListener {
 	UserMove um;
-	BoardView bv;
+	LevelView lv;
 	boolean pressed;
 	
-	public MakeMove(UserMove um, BoardView bv) {
+	public MakeMove(UserMove um, LevelView lv) {
 		this.um = um;
-		this.bv = bv;	
+		this.lv = lv;	
 		pressed = false;
 	}
 
@@ -42,23 +42,25 @@ public class MakeMove implements MouseInputListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		for(TileContainer tc: um) {
-			tc.setMarked(false);
 
+		if( um.isValid()) {
+			Level l = lv.getLevel();
+			l.setScore(um.getScore() + l.getScore());
 		}
-		bv.repaint();
-		um = new UserMove();
-		
+		um.clearTiles();
+		lv.repaint();
+
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		BoardView bv = lv.getBoard();
 		TileView tv = (TileView)bv.getComponentAt(e.getX(), e.getY());
 		if(um.addTile( tv.getTile() )) {
 			tv.getTile().setMarked(true);
-			bv.repaint();
+			lv.repaint();
 		}
 
 

@@ -28,6 +28,7 @@ public class TileView extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
+		this.num.setText(Integer.toString(tc.getTile().getNum()));
 		if(tc.getMarked()) {
 			this.setBackground(Color.RED);
 		} else {

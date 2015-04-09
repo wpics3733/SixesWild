@@ -1,11 +1,43 @@
 package view;
 
 
+import java.awt.BorderLayout;
+
 import javax.swing.*;
+
+import model.Level;
 
 
 public class Application {
-	LevelView level;
-	JLabel score;
+	LevelView lv;
+	Level l;
+	JFrame frame;
+	
+	static final long serialVersionUID = 1;
 
+	JPanel contentPane;
+	
+	public Application(Level l) {
+		super();
+		this.l = l;
+		this.lv = new LevelView(l);
+		this.frame = new JFrame();
+		this.contentPane = new JPanel();
+
+		initialize();
+	}
+	
+	void initialize() {
+		frame.setTitle("Ready?");
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setBounds(100, 100, 450, 100);
+		frame.setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout());
+		contentPane.add(lv);
+	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 }
+
