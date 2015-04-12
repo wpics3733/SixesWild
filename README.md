@@ -9,9 +9,9 @@
 - If the number was 6 already, this square is blocked
 
 **Tasks**
-- Main Game UML:  Jesse
-- Level Builder UML:  Dean
-- Mock Up GUI:  Harry
-- Level Builder Use Cases:  Justin
-- Use Case Quality Assurance:  Dabai
-- Manager/Coordinater:  Tom
+- Kiourtsis, Dean: Level Builder UML
+- Zhang, Dabai:Quality Assurance
+- Earisman, Jesse Kyle: Game UML
+- Charron, Justin Scott: Level Builder Use Cases
+- Finelli: Project Manager
+- Liu, Yang: Mock up
