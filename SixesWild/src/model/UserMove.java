@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class UserMove implements Iterable<TileContainer> {
+public class UserMove implements IMove, Iterable<TileContainer> {
 	ArrayList<TileContainer> tiles;
 	int sum;
 	int multiplier;
@@ -16,6 +16,7 @@ public class UserMove implements Iterable<TileContainer> {
 		tiles = new ArrayList<TileContainer>();
 	}
 	
+	@Override
 	public boolean addTile(TileContainer tc) {
 		if(tiles.contains(tc)) {
 			return false;
@@ -28,10 +29,7 @@ public class UserMove implements Iterable<TileContainer> {
 		}
 	}
 	
-	public int getSum() {
-		return sum;
-	}
-	
+	@Override
 	public int getScore() {
 		if (sum == 6) {
 			return 10*numTiles * multiplier;
@@ -45,16 +43,18 @@ public class UserMove implements Iterable<TileContainer> {
 		return tiles.iterator();
 	}
 	
+	@Override
 	public boolean isValid() {
 		return sum == 6;
 	}
 
-	public void clearTiles() {
+	@Override
+	public void pushMove(Level l) {
 
 		for(TileContainer tc: tiles) {
 			tc.setMarked(false);
 			if(isValid()) {
-				int tileNum = (int)(Math.random() * 6);
+				int tileNum = (int)(Math.random() * 6) + 1;
 				tc.setTile(new Tile(tileNum, 1));
 				tc.setMarked(false);
 			}

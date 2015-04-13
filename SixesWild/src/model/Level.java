@@ -1,15 +1,23 @@
 package model;
 
+import model.UserMove;
+
 public class Level {
 	int score;
 	Board b;
+	IMove activeMove;
 	
 	public Level() {
-		this.b = new Board(9,9);
+		this(9,9);
+	}
+	
+	public Level(int h, int w) {
+		this(new Board(9,9));
 	}
 	
 	public Level(Board b) {
 		this.b = b;
+		this.activeMove = null;
 	}
 	
 	public Board getBoard() {
@@ -22,6 +30,17 @@ public class Level {
 	
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	public void addMoveTile(TileContainer tc) {
+		if(this.activeMove == null) {
+			activeMove = new UserMove();
+			activeMove.addTile(tc);
+		}
+	}
+	
+	public void finishMove() {
+		this.score += activeMove.getScore();
 	}
 
 }

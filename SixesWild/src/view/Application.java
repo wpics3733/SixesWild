@@ -30,7 +30,7 @@ public class Application {
 	void initialize() {
 		frame.setTitle("Ready?");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setBounds(100, 100, 450, 100);
+	    frame.setBounds(0, 0, 800, 600);
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(lv);
