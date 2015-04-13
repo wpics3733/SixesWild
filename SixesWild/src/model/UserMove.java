@@ -54,7 +54,7 @@ public class UserMove implements Iterable<TileContainer> {
 		for(TileContainer tc: tiles) {
 			tc.setMarked(false);
 			if(isValid()) {
-				int tileNum = (int)(Math.random() * 6);
+				int tileNum = (int)(Math.random() * 5) + 1;
 				tc.setTile(new Tile(tileNum, 1));
 				tc.setMarked(false);
 			}
