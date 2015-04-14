@@ -12,7 +12,7 @@ public class Level {
 	}
 	
 	public Level(int h, int w) {
-		this(new Board(9,9));
+		this(new Board(w, h));
 	}
 	
 	public Level(Board b) {

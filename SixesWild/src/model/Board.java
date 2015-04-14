@@ -5,12 +5,13 @@ public class Board {
 	int h;
 	int w;
 	
-	public Board(int h, int w) {
-		this.tiles = new TileContainer[h][w];
+	public Board(int w, int h) {
+		
 		this.h = h;
 		this.w = w;
-		for( int i = 0; i < h; i++) {
-			for( int j = 0; j < w; j++) {
+		tiles = new TileContainer[w][h];
+		for( int i = 0; i < w; i++) {
+			for( int j = 0; j < h; j++) {
 				int tileNum = (int)(Math.random() * 6) + 1;
 				
 				tiles[i][j] = new TileContainer(new Tile(tileNum, 1));
