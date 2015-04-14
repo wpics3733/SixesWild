@@ -65,6 +65,4 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		this.numTiles = 0;
 		this.multiplier = 1;
 	}
-
-
 }
