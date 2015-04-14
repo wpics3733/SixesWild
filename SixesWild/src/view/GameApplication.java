@@ -8,7 +8,7 @@ import javax.swing.*;
 import model.Level;
 
 
-public class Application {
+public class GameApplication {
 	LevelView lv;
 	Level l;
 	JFrame frame;
@@ -17,7 +17,7 @@ public class Application {
 
 	JPanel contentPane;
 	
-	public Application(Level l) {
+	public GameApplication(Level l) {
 		super();
 		this.l = l;
 		this.lv = new LevelView(l);
