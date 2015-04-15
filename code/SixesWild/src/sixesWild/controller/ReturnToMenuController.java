@@ -3,25 +3,22 @@ package sixesWild.controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import sixesWild.model.Level;
 import sixesWild.view.Application;
-import sixesWild.view.LevelView;
+import sixesWild.view.PastLevelPanel;
 
-public class PlayPastLevelController implements MouseListener {
-	Application parent;
-	Level toPlay;
+public class ReturnToMenuController implements MouseListener {
 	
-	public PlayPastLevelController(Application parent, Level toPlay) {
+	private Application parent;
+	
+	public ReturnToMenuController(Application parent) {
 		this.parent = parent;
-		this.toPlay = toPlay;
-		
 		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		LevelView lv = new LevelView(toPlay, parent);
-		parent.changeView(lv);
+		parent.changeView(new PastLevelPanel(parent));
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -48,6 +45,5 @@ public class PlayPastLevelController implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
 
 }

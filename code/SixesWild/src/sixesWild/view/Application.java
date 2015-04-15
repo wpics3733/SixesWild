@@ -1,27 +1,40 @@
 package sixesWild.view;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
-import javax.swing.UIManager;
+import javax.swing.JPanel;
 
 public class Application extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Container pane;
+
+	private JPanel current_view;
+
 	public Application() {
 		super("SixWild");
 		
-		FlowLayout mainLayout = new FlowLayout();
-		mainLayout.setHgap(0);
-		mainLayout.setVgap(0);
-		Container pane = this.getContentPane();
+		pane = this.getContentPane();
 		
-		pane.setPreferredSize(new Dimension(1024, 768));
-		pane.setLayout(mainLayout);
-		pane.add(new PastLevelPanel());
+		current_view = new PastLevelPanel(this);
+		
+		this.setPreferredSize(new Dimension(1024, 768));
+		this.changeView(current_view);
 		
 		this.pack();
 		this.setResizable(false);
+	}
+	
+	public void changeView( JPanel p ) {
+		pane.remove(current_view);
+		this.current_view = p;
+		pane.add(current_view);
+		pane.validate();
+		pane.repaint();
 	}
 }

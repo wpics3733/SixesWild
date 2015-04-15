@@ -13,12 +13,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import sixesWild.controller.PlayPastLevelController;
+import sixesWild.model.Level;
+
 public class PastLevelPanel extends JPanel{
+	Level selected_level;
 	
-	public PastLevelPanel() {
+	public PastLevelPanel(Application parent) {
+		super(new BorderLayout(0,0));
+		selected_level = new Level(9,9);
 		
 //		Main panel
-		super(new BorderLayout(0,0));
 		this.setBackground(new Color(249,246,242));
 		this.setPreferredSize(new Dimension(1024, 768));
 		
@@ -29,22 +34,22 @@ public class PastLevelPanel extends JPanel{
 		
 		JLabel titleLabel = new JLabel("Levels");
 		titleLabel.setForeground(Color.WHITE);
-		titleLabel.setFont(new Font("AvenirNext,", Font.PLAIN, 24));
+		titleLabel.setFont(new Font("AvenyyirNext,", Font.PLAIN, 24));
 		
-		menuBar.add(new JButton("←"));
+		menuBar.add(new JButton("���"));
 		menuBar.add(titleLabel);
 		
 //		Main content
 		JPanel mainContent = new JPanel(new BorderLayout());
 		
 //		Last page button
-		JButton lastPageButton = new JButton("←");
+		JButton lastPageButton = new JButton("���");
 		lastPageButton.setPreferredSize(new Dimension(80, 80));
 		JPanel lastPagePanel = new JPanel(new FlowLayout());
 		lastPagePanel.add(lastPageButton);
 		
 //		Next page button
-		JButton nextPageButton = new JButton("➝");
+		JButton nextPageButton = new JButton("���");
 		nextPageButton.setPreferredSize(new Dimension(80, 80));
 		JPanel nextPagePanel = new JPanel(new FlowLayout());
 		nextPagePanel.add(nextPageButton);
@@ -60,6 +65,7 @@ public class PastLevelPanel extends JPanel{
 		levelOneButton.setPreferredSize(new Dimension(80, 80));
 		levelOneButton.setBackground(Color.BLACK);
 		levelGrid.add(levelOneButton);
+		levelOneButton.addMouseListener(new PlayPastLevelController(parent, selected_level));
 		
 		for(int i=0; i<15; i++) {
 			JButton levelButton = new JButton("Locked");
