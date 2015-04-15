@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -28,15 +29,13 @@ public class MainMenuView extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.CENTER)
-				.addGroup(Alignment.CENTER, groupLayout.createSequentialGroup()
-					.addContainerGap(0, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
-						.addComponent(titleText)
-						.addComponent(creditsButton)
-						.addComponent(achievementsButton)
-						.addComponent(levelsButton)
-						.addComponent(continueButton))
-					.addGap(179))
+				.addGap(200)
+				.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
+					.addComponent(titleText)
+					.addComponent(creditsButton)
+					.addComponent(achievementsButton)
+					.addComponent(levelsButton)
+					.addComponent(continueButton))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.CENTER)

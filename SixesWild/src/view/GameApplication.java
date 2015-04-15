@@ -9,6 +9,7 @@ import model.Level;
 
 
 public class GameApplication {
+	MainMenuView mv;
 	LevelView lv;
 	Level l;
 	JFrame frame;
@@ -20,6 +21,7 @@ public class GameApplication {
 	public GameApplication(Level l) {
 		super();
 		this.l = l;
+		this.mv = new MainMenuView();
 		this.lv = new LevelView(l);
 		this.frame = new JFrame();
 		this.contentPane = new JPanel();
@@ -33,7 +35,7 @@ public class GameApplication {
 	    frame.setBounds(0, 0, 800, 600);
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout());
-		contentPane.add(lv);
+		contentPane.add(mv);
 	}
 	
 	public JFrame getFrame() {
