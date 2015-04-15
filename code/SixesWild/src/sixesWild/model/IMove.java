@@ -1,5 +1,13 @@
 package sixesWild.model;
 
-public class IMove {
+public interface IMove {
+	
+	public boolean addTile(TileContainer tc);
+	
+	public int getScore();
+	
+	public void pushMove(Level l);
+	
+	public boolean isValid();
 
 }

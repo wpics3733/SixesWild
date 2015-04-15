@@ -1,11 +1,11 @@
-package view;
+package sixesWild.view;
 
 
 import java.awt.BorderLayout;
 
 import javax.swing.*;
 
-import model.Level;
+import sixesWild.model.Level;
 
 
 public class GameApplication {

@@ -1,12 +1,12 @@
-package view;
+package sixesWild.view;
 import javax.swing.*;
 import javax.swing.GroupLayout.ParallelGroup;
 import javax.swing.GroupLayout.SequentialGroup;
 
 import java.awt.*;
 
-import model.*;
-import controller.*;
+import sixesWild.model.*;
+import sixesWild.controller.*;
 
 public class BoardView extends JPanel {
 	static final long serialVersionUID = 1;

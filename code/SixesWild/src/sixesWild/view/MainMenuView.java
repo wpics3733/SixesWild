@@ -1,4 +1,4 @@
-package view;
+package sixesWild.view;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;

@@ -1,5 +1,6 @@
-import model.*;
-import view.*;
+package sixesWild;
+import sixesWild.model.*;
+import sixesWild.view.*;
 
 public class GameMain {
 	

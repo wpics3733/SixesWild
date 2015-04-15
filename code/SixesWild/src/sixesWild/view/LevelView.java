@@ -1,5 +1,5 @@
 
-package view;
+package sixesWild.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import model.Level;
+import sixesWild.model.Level;
 
 public class LevelView extends JPanel {
 

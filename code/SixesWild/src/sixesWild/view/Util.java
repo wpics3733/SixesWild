@@ -1,4 +1,4 @@
-package view;
+package sixesWild.view;
 import java.awt.Font;
 
 import javax.swing.JLabel;

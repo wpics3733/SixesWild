@@ -1,4 +1,4 @@
-package view;
+package sixesWild.view;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

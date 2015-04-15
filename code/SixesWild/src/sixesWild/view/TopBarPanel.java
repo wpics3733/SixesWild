@@ -1,6 +1,6 @@
-package view;
+package sixesWild.view;
 
-import model.Level;
+import sixesWild.model.Level;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;

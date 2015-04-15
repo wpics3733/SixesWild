@@ -1,9 +1,9 @@
-package view;
+package sixesWild.view;
 import java.awt.*;
 
 import javax.swing.*;
 
-import model.*;
+import sixesWild.model.*;
 
 public class TilePanel extends JPanel {
 	static final long serialVersionUID = 1;
