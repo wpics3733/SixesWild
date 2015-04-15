@@ -17,11 +17,11 @@ public class Application extends JFrame{
 	private JPanel current_view;
 
 	public Application() {
-		super("SixWild");
-		
+		super("SixesWild");
 		pane = this.getContentPane();
 		
-		current_view = new PastLevelPanel(this);
+		
+		current_view = new SplashPanel(this);
 		
 		this.setPreferredSize(new Dimension(1024, 768));
 		this.changeView(current_view);
