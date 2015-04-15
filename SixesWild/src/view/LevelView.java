@@ -33,20 +33,20 @@ public class LevelView extends JPanel {
 		this.westPanel = new GameWestPanel();
 		JPanel eastPanel = new JPanel();
 
-		GroupLayout test = new GroupLayout(eastPanel);
-		test.setAutoCreateContainerGaps(true);
+		GroupLayout eastLayout = new GroupLayout(eastPanel);
+		eastLayout.setAutoCreateContainerGaps(true);
 		
-		test.setHorizontalGroup(
-				test.createParallelGroup(Alignment.LEADING)
-				.addGroup(test.createSequentialGroup()
+		eastLayout.setHorizontalGroup(
+				eastLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(eastLayout.createSequentialGroup()
 						.addComponent(sideWord, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
 				);
-		test.setVerticalGroup(
-				test.createParallelGroup(Alignment.LEADING)
-				.addGroup(test.createSequentialGroup()
+		eastLayout.setVerticalGroup(
+				eastLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(eastLayout.createSequentialGroup()
 						.addComponent(sideWord, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
 				);
-		eastPanel.setLayout(test);
+		eastPanel.setLayout(eastLayout);
 		sideWord.setFont(new Font("Sans", Font.BOLD, 26));
 
 		this.setLayout(new BorderLayout());

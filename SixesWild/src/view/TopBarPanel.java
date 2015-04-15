@@ -15,15 +15,17 @@ public class TopBarPanel extends JPanel {
 	private JButton quit;
 	private JButton rearrange;
 	private JLabel score;
+	private JLabel timeLeft;
 	
 	public TopBarPanel(Level l) {
 		
 		clear = new JButton("Clear");
 		swap = new JButton("Swap");
 		rearrange = new JButton("Rearrange");
+		timeLeft = new JLabel("Moves Left: 99");
 		
 		quit = new JButton("Quit");
-		score = new JLabel("Score: " + 20);
+		score = new JLabel("Score: " + 999);
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setAutoCreateContainerGaps(true);
@@ -33,7 +35,9 @@ public class TopBarPanel extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(quit)
 							.addComponent(score)
-							.addPreferredGap(ComponentPlacement.RELATED, 1444, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
+							.addComponent(timeLeft)
+							.addPreferredGap(ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
 							.addComponent(rearrange)
 							.addComponent(swap)
 							.addComponent(clear))
@@ -46,6 +50,7 @@ public class TopBarPanel extends JPanel {
 						.addComponent(swap)
 						.addComponent(score)
 						.addComponent(clear)
+						.addComponent(timeLeft)
 						.addComponent(quit)))
 		);
 		setLayout(groupLayout);
