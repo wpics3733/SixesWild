@@ -6,7 +6,7 @@ import javax.swing.GroupLayout.SequentialGroup;
 import java.awt.*;
 
 import model.*;
-//import controller.*;
+import controller.*;
 
 public class BoardView extends JPanel {
 	static final long serialVersionUID = 1;

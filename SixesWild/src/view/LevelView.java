@@ -1,22 +1,19 @@
 
 package view;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import model.Level;
 
 public class LevelView extends JPanel {
 
 	static final long serialVersionUID = 1;
+	private Application parent;
+
 	Level l;
 	BoardView bv;
 	TopBarPanel tbp;
@@ -24,11 +21,12 @@ public class LevelView extends JPanel {
 	JLabel sideWord;
 	GameWestPanel westPanel;
 
-	public LevelView(Level l) {
+	public LevelView(Level l, Application parent) {
 		super();
+		this.parent = parent;
 		this.l = l;
 		this.bv = new BoardView(l.getBoard());
-		this.tbp = new TopBarPanel(l);
+		this.tbp = new TopBarPanel(l, parent);
 		this.sideWord = new JLabel("<html><center>S<br>i<br>x<br>e<br>s<br> <br>W<br>i<br>l<br>d<br><center></html>");
 		this.westPanel = new GameWestPanel();
 		JPanel eastPanel = new JPanel();
