@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Font;
+
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -22,6 +24,7 @@ public class MainMenuView extends JPanel {
 		super();
 		
 		this.titleText = new JLabel("Sixes Wild", SwingConstants.CENTER);
+		titleText.setFont(new Font("Sans", Font.PLAIN, 20));
 		this.continueButton = new JButton("Continue");
 		this.levelsButton = new JButton("View Past Levels");
 		this.achievementsButton = new JButton("Achievements");
@@ -30,17 +33,18 @@ public class MainMenuView extends JPanel {
 		this.levelsButton.addMouseListener(new PastLevelViewController(a));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setAutoCreateGaps(true);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, groupLayout.createSequentialGroup()
 					.addContainerGap(0, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
 						.addComponent(titleText)
-						//.addComponent(creditsButton)
-						//.addComponent(achievementsButton)
+						.addComponent(creditsButton)
+						.addComponent(achievementsButton)
 						.addComponent(levelsButton)
-						//.addComponent(continueButton))
-					.addGap(179)))
+						.addComponent(continueButton))
+					.addContainerGap(0, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.CENTER)
@@ -48,10 +52,10 @@ public class MainMenuView extends JPanel {
 					.addGap(50)
 					.addComponent(titleText)
 					.addGap(50)
-					//.addComponent(continueButton)
+					.addComponent(continueButton)
 					.addComponent(levelsButton)
-					//.addComponent(achievementsButton)
-					//.addComponent(creditsButton)
+					.addComponent(achievementsButton)
+					.addComponent(creditsButton)
 					.addContainerGap(50, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
