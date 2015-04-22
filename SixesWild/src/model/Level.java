@@ -4,6 +4,7 @@ import model.UserMove;
 
 public class Level {
 	int score;
+	int tileRatios[];
 	Board b;
 	IMove activeMove;
 	int movesRemaining;
