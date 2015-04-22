@@ -1,63 +1,36 @@
 package view;
-import java.awt.*;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 
-import model.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import model.TileContainer;
 
 public class TilePanel extends JPanel {
-	static final long serialVersionUID = 1;
 	JLabel num;
-	TileContainer tc;
-	JPanel inner;
+	TileContainer tile;
 	
 	public TilePanel(TileContainer tc) {
-		super();
-		
-		this.num = new JLabel( Integer.toString(tc.getTile().getNum()));
-		
-		num.setFont(new Font("AvenyyirNext", Font.PLAIN, 26));
-		num.setForeground(Color.BLACK);
-		
-		this.inner = new JPanel();
-		GroupLayout gl_layout = new GroupLayout(this);
-		gl_layout.setAutoCreateContainerGaps(true);
-		gl_layout.setHorizontalGroup(
-				gl_layout.createSequentialGroup()
-				.addGap(5)
-				.addComponent(inner)
-				.addGap(5));
-		gl_layout.setVerticalGroup(
-				gl_layout.createSequentialGroup()
-				.addGap(5)
-				.addComponent(inner)
-				.addGap(5));
-		this.setLayout(gl_layout);
-		this.add(inner, BorderLayout.CENTER);
-		
-		inner.setBackground(new Color(112,147, 113));
-		this.setBackground(Color.BLACK);
+		this.tile = tc;
+		this.num = new JLabel();
+		this.add(num, BorderLayout.CENTER);
+		this.setBackground(new Color(112,147,113));
 		num.setForeground(Color.WHITE);
-		inner.add(num);
-
-		this.tc = tc;
+		num.setFont(new Font("Sans", Font.PLAIN, 30));
 	}
 	
 	public TileContainer getTile() {
-		return this.tc;
+		return this.tile;
 	}
 	
-	/*
+	@Override
 	public void paintComponent(Graphics g) {
-		this.num.setText(Integer.toString(tc.getTile().getNum()));
-		if(tc.getMarked()) {
-
-			this.setBackground(Color.RED);
-		} else {
-			this.setBackground(new Color(112,147,113));
-		}
 		super.paintComponent(g);
+		num.setText(Integer.toString(tile.getTile().getNum()));
 	}
-	*/
 
 }

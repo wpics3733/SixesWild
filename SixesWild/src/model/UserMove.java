@@ -66,6 +66,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	public void pushMove(Level l) {
 		System.out.println("Pushing a user move to the level");
 		for(TileContainer tc: tiles) {
+			tc.clearTile();
 			System.out.printf("%d, %d\n", tc.getX(), tc.getY());
 		}
 		if(this.isValid()) {

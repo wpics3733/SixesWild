@@ -3,28 +3,22 @@ package model;
 public class TileContainer {
 	Tile t;
 	int x,y;
-	boolean marked;
+	boolean empty;
 	
 	public TileContainer(Tile t, int x, int y) {
 		this.t = t;
 		this.x = x;
 		this.y = y;
+		this.empty = false;
 	}
 	
 	public Tile getTile() {
 		return t;
 	}
 	
-	public boolean getMarked() {
-		return marked;
-	}
-	
-	public void setMarked(boolean marked) {
-		this.marked = marked;
-	}
-	
 	public void setTile(Tile t) {
 		this.t = t;
+		this.empty = false;
 	}
 	
 	public int getX() {
@@ -46,8 +40,15 @@ public class TileContainer {
 			}
 		}
 		return false;
-		
 	}
-
+	
+	public void clearTile() {
+		this.empty = true;
+	}
+	
+	public boolean empty() {
+		return empty;
+	}
+	
 
 }

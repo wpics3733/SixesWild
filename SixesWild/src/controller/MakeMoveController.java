@@ -62,6 +62,7 @@ public class MakeMoveController implements MouseInputListener {
 		if( move != null) {
 			if(move.isValid()) {
 				move.pushMove(l);
+				l.getBoard().settleTiles();
 				lv.repaint();
 			}
 			l.setActiveMove(null);

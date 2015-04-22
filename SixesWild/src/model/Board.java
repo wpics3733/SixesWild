@@ -39,7 +39,6 @@ public class Board {
 	
 	public Tile getRandomTile() {
 		int rand = (int)(Math.random() * tile_ratio_sum) + 1;
-		System.out.println("rand is " + rand);
 		for(int i = 0; i < 6; i++) {
 			if(rand <= tile_ratios[i]) {
 				return new Tile(i + 1, 1);
@@ -47,5 +46,37 @@ public class Board {
 			rand -= tile_ratios[i];
 		}
 		return new Tile(-1, 1);
+	}
+	
+	public void settleTiles() {
+		for(int i = 0; i < w; i++) {
+			settleCol(i);
+		}
+		
+	}
+	
+	private void settleCol(int which_col) {
+		TileContainer[] col = tiles[which_col];
+		for(int i = h - 1; i >= 0; i--) {
+			if(col[i].empty) {
+				dropTile(which_col, i, i-1);
+			}
+		}
+	}
+	
+	private void dropTile(int col, int drop_dest, int drop_source) {
+		if(drop_source < 0) {
+			tiles[col][drop_dest].setTile(this.getRandomTile());
+			return;
+		}
+		
+		if(tiles[col][drop_source].empty() == false) {
+			tiles[col][drop_dest].setTile(tiles[col][drop_source].getTile());
+			tiles[col][drop_source].clearTile();
+			return;
+		}
+		
+		dropTile(col, drop_dest, drop_source - 1);
+		
 	}
 }

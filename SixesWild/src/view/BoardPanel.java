@@ -41,7 +41,7 @@ public class BoardPanel extends JPanel {
 			for(int j = 0; j < h; j++) {
 				new_row.addComponent(tiles[i][j], 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
 			}
-			g_h.addGroup(new_row);
+			g_v.addGroup(new_row);
 		}
 
 		for(int j = 0; j < h; j++) {
@@ -49,7 +49,7 @@ public class BoardPanel extends JPanel {
 			for(int i = 0; i < w; i++) {
 				new_col.addComponent(tiles[i][j], 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
 			}
-			g_v.addGroup(new_col);
+			g_h.addGroup(new_col);
 		}
 		
 		layout.setHorizontalGroup(g_h);
