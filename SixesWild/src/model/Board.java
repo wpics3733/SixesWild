@@ -14,7 +14,7 @@ public class Board {
 			for( int j = 0; j < h; j++) {
 				int tileNum = (int)(Math.random() * 6) + 1;
 				
-				tiles[i][j] = new TileContainer(new Tile(tileNum, 1));
+				tiles[i][j] = new TileContainer(new Tile(tileNum, 1), i, j);
 			}
 		}
 	}

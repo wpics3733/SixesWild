@@ -7,6 +7,8 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
+
+import controller.MakeMoveController;
 import model.Level;
 
 public class LevelView extends JPanel {
@@ -15,7 +17,7 @@ public class LevelView extends JPanel {
 	private Application parent;
 
 	Level l;
-	BoardView bv;
+	BoardPanel bv;
 	TopBarPanel tbp;
 	JPanel eastPanel;
 	JLabel sideWord;
@@ -25,7 +27,10 @@ public class LevelView extends JPanel {
 		super();
 		this.parent = parent;
 		this.l = l;
-		this.bv = new BoardView(l.getBoard());
+		this.bv = new BoardPanel(this);
+		MakeMoveController controller = new MakeMoveController(l, this);
+		bv.addMouseListener(controller);
+		bv.addMouseMotionListener(controller);
 		this.tbp = new TopBarPanel(l, parent);
 		this.sideWord = new JLabel("<html><center>S<br>i<br>x<br>e<br>s<br> <br>W<br>i<br>l<br>d<br><center></html>");
 		this.westPanel = new GameWestPanel();
@@ -45,7 +50,7 @@ public class LevelView extends JPanel {
 						.addComponent(sideWord, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
 				);
 		eastPanel.setLayout(eastLayout);
-		sideWord.setFont(new Font("Sans", Font.BOLD, 26));
+		sideWord.setFont(new Font("Sans", Font.BOLD, 30));
 
 		this.setLayout(new BorderLayout());
 		this.add(bv, BorderLayout.CENTER);
@@ -59,8 +64,8 @@ public class LevelView extends JPanel {
 		return l;
 	}
 
-	public BoardView getBoard() {
+	public BoardPanel getBoard() {
 		return bv;
 	}
-
+	
 }

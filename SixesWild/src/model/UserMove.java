@@ -8,27 +8,41 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	int sum;
 	int multiplier;
 	int numTiles;
-	
+
 	public UserMove() {
 		sum = 0;
 		multiplier = 1;
 		numTiles = 0;
 		tiles = new ArrayList<TileContainer>();
 	}
-	
+
 	@Override
 	public boolean addTile(TileContainer tc) {
 		if(tiles.contains(tc)) {
 			return false;
-		} else {
-			tiles.add(tc);
-			sum += tc.getTile().getNum();
-			multiplier *= tc.getTile().getMultiplier();
-			numTiles++;
+		}
+		if(tiles.isEmpty()) {
+			addAcceptedTile(tc);
 			return true;
 		}
+
+		for(TileContainer i: tiles) {
+			if(i.isAdjacentTo(tc)) {
+				addAcceptedTile(tc);
+				return true;
+			}
+		}
+		return false;
 	}
-	
+
+	private void addAcceptedTile(TileContainer tc) {
+		tiles.add(tc);
+		sum += tc.getTile().getNum();
+		multiplier *= tc.getTile().getMultiplier();
+		numTiles++;
+
+	}
+
 	@Override
 	public int getScore() {
 		if (sum == 6) {
@@ -42,7 +56,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	public Iterator<TileContainer> iterator() {
 		return tiles.iterator();
 	}
-	
+
 	@Override
 	public boolean isValid() {
 		return sum == 6;
@@ -50,19 +64,13 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 
 	@Override
 	public void pushMove(Level l) {
-
+		System.out.println("Pushing a user move to the level");
 		for(TileContainer tc: tiles) {
-			tc.setMarked(false);
-			if(isValid()) {
-				int tileNum = (int)(Math.random() * 6) + 1;
-				tc.setTile(new Tile(tileNum, 1));
-				tc.setMarked(false);
-			}
+			System.out.printf("%d, %d\n", tc.getX(), tc.getY());
 		}
-		this.tiles = new ArrayList<TileContainer>();
-
-		this.sum = 0;
-		this.numTiles = 0;
-		this.multiplier = 1;
+		if(this.isValid()) {
+			l.setScore(l.getScore() + this.getScore());
+			l.subtractMove();
+		}
 	}
 }

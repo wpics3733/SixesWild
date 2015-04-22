@@ -6,6 +6,7 @@ public class Level {
 	int score;
 	Board b;
 	IMove activeMove;
+	int movesRemaining;
 	
 	public Level() {
 		this(9,9);
@@ -18,6 +19,7 @@ public class Level {
 	public Level(Board b) {
 		this.b = b;
 		this.activeMove = null;
+		this.movesRemaining = 99;
 	}
 	
 	public Board getBoard() {
@@ -32,15 +34,23 @@ public class Level {
 		this.score = score;
 	}
 	
-	public void addMoveTile(TileContainer tc) {
-		if(this.activeMove == null) {
-			activeMove = new UserMove();
-			activeMove.addTile(tc);
-		}
-	}
-	
 	public void finishMove() {
 		this.score += activeMove.getScore();
 	}
-
+	
+	public IMove getActiveMove() {
+		return this.activeMove;
+	}
+	
+	public void setActiveMove(IMove move) {
+		this.activeMove = move;
+	}
+	
+	public int getMovesRemaining() {
+		return movesRemaining;
+	}
+	
+	public void subtractMove() {
+		this.movesRemaining--;
+	}
 }

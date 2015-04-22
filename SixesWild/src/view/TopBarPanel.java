@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import controller.ReturnToMenuController;
 import model.Level;
@@ -11,9 +12,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.Font;
 
 public class TopBarPanel extends JPanel {
+	
+	Level l;
+	Application parent;
 	
 	private JButton clear;
 	private JButton swap;
@@ -23,6 +28,9 @@ public class TopBarPanel extends JPanel {
 	private JLabel timeLeft;
 	
 	public TopBarPanel(Level l, Application parent) {
+		
+		this.l = l;
+		this.parent = parent;
 		
 		clear = new JButton("Clear");
 		swap = new JButton("Swap");
@@ -66,5 +74,12 @@ public class TopBarPanel extends JPanel {
 		setLayout(groupLayout);
 		setBackground(new Color(112,147,113));
 
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		timeLeft.setText("Moves Left: " + l.getMovesRemaining());
+		score.setText("Score: " + l.getScore());
 	}
 }
