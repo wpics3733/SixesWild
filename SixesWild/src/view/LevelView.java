@@ -8,7 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 
-import controller.MakeMoveController;
+import controller.MakeClearMoveController;
+import controller.MakeSwapMoveController;
+import controller.MakeUserMoveController;
 import model.Level;
 
 public class LevelView extends JPanel {
@@ -17,7 +19,7 @@ public class LevelView extends JPanel {
 	private Application parent;
 
 	Level l;
-	BoardPanel bv;
+	BoardPanel bp;
 	TopBarPanel tbp;
 	JPanel eastPanel;
 	JLabel sideWord;
@@ -27,10 +29,8 @@ public class LevelView extends JPanel {
 		super();
 		this.parent = parent;
 		this.l = l;
-		this.bv = new BoardPanel(this);
-		MakeMoveController controller = new MakeMoveController(l, this);
-		bv.addMouseListener(controller);
-		bv.addMouseMotionListener(controller);
+		this.bp = new BoardPanel(this);
+		bp.addMouseListener(new MakeClearMoveController(l, this));
 		this.tbp = new TopBarPanel(l, parent);
 		this.sideWord = new JLabel("<html><center>S<br>i<br>x<br>e<br>s<br> <br>W<br>i<br>l<br>d<br><center></html>");
 		this.westPanel = new GameWestPanel();
@@ -53,7 +53,7 @@ public class LevelView extends JPanel {
 		sideWord.setFont(new Font("Sans", Font.BOLD, 30));
 
 		this.setLayout(new BorderLayout());
-		this.add(bv, BorderLayout.CENTER);
+		this.add(bp, BorderLayout.CENTER);
 		this.add(tbp, BorderLayout.NORTH);
 		this.add(eastPanel, BorderLayout.EAST);
 		this.add(westPanel, BorderLayout.WEST);
@@ -65,7 +65,7 @@ public class LevelView extends JPanel {
 	}
 
 	public BoardPanel getBoard() {
-		return bv;
+		return bp;
 	}
 	
 }

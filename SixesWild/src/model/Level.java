@@ -1,13 +1,16 @@
 package model;
 
-import model.UserMove;
-
 public class Level {
 	int score;
 	int tileRatios[];
+	int specials[];
 	Board b;
 	IMove activeMove;
 	int movesRemaining;
+	
+	public static final int REARRANGE = 0;
+	public static final int SWAP = 1;
+	public static final int CLEAR = 2;
 	
 	public Level() {
 		this(9,9);
@@ -21,6 +24,10 @@ public class Level {
 		this.b = b;
 		this.activeMove = null;
 		this.movesRemaining = 99;
+		this.specials = new int[3];
+		this.specials[REARRANGE] = 5;
+		this.specials[SWAP] = 5;
+		this.specials[CLEAR] = 5;
 	}
 	
 	public Board getBoard() {
@@ -53,5 +60,18 @@ public class Level {
 	
 	public void subtractMove() {
 		this.movesRemaining--;
+	}
+	
+	public void useSpecial(int type) {
+
+	}
+
+	public boolean hasSpecial(int type) {
+		if( type < 0 || type > 2) {
+			return false;
+		}
+		
+		return specials[type] > 0;
+		
 	}
 }
