@@ -82,4 +82,14 @@ public class TopBarPanel extends JPanel {
 		timeLeft.setText("Moves Left: " + l.getMovesRemaining());
 		score.setText("Score: " + l.getScore());
 	}
+	
+	public JButton getRearrangeButton() {
+		return rearrange;
+	}
+	public JButton getSwapButton() {
+		return swap;
+	}
+	public JButton getClearButton() {
+		return clear;
+	}
 }

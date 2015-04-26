@@ -16,8 +16,14 @@ public class RearrangeMove implements IMove {
 
 	@Override
 	public void pushMove(Level l) {
-		// TODO Auto-generated method stub
-		
+		Board b = l.getBoard();
+		TileContainer[][] tiles = b.getTiles();
+		for(int i = 0; i < b.getW(); i++) {
+			for(int j = 0; j < b.getH(); j++) {
+				tiles[i][j].setTile(b.getRandomTile());
+			}
+		}
+		l.useSpecial(Level.REARRANGE);
 	}
 
 	@Override

@@ -59,7 +59,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 
 	@Override
 	public boolean isValid() {
-		return sum == 6;
+		return sum == 6 && numTiles > 1;
 	}
 
 	@Override
