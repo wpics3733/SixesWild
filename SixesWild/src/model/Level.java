@@ -42,18 +42,6 @@ public class Level {
 		this.score = score;
 	}
 	
-	public void finishMove() {
-		this.score += activeMove.getScore();
-	}
-	
-	public IMove getActiveMove() {
-		return this.activeMove;
-	}
-	
-	public void setActiveMove(IMove move) {
-		this.activeMove = move;
-	}
-	
 	public int getMovesRemaining() {
 		return movesRemaining;
 	}
@@ -62,8 +50,14 @@ public class Level {
 		this.movesRemaining--;
 	}
 	
+	/**
+	 * By using a special move, the number of that special that you are allowed to used
+	 * is decremented, call this method after applying a special move to do that decrement
+	 * 
+	 * @param type the type of special used, either Level.SWAP, Level.REARRANGE, or Level.CLEAR
+	 */
 	public void useSpecial(int type) {
-
+		if(hasSpecial(type)) specials[type]--;
 	}
 
 	public boolean hasSpecial(int type) {

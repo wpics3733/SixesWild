@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import controller.PastLevelViewController;
+import controller.QuitController;
 
 public class MainMenuView extends JPanel {
 	
@@ -19,6 +20,7 @@ public class MainMenuView extends JPanel {
 	JButton levelsButton;
 	JButton achievementsButton;
 	JButton creditsButton;
+	JButton quit;
 	
 	public MainMenuView(Application a) {
 		super();
@@ -29,8 +31,10 @@ public class MainMenuView extends JPanel {
 		this.levelsButton = new JButton("View Past Levels");
 		this.achievementsButton = new JButton("Achievements");
 		this.creditsButton = new JButton("Credits");
+		this.quit = new JButton("Quit");
 		
 		this.levelsButton.addMouseListener(new PastLevelViewController(a));
+		this.quit.addMouseListener(new QuitController(a));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setAutoCreateGaps(true);
@@ -40,10 +44,11 @@ public class MainMenuView extends JPanel {
 					.addContainerGap(0, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
 						.addComponent(titleText)
+						.addComponent(continueButton)
 						.addComponent(creditsButton)
 						.addComponent(achievementsButton)
 						.addComponent(levelsButton)
-						.addComponent(continueButton))
+						.addComponent(quit))
 					.addContainerGap(0, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -56,6 +61,7 @@ public class MainMenuView extends JPanel {
 					.addComponent(levelsButton)
 					.addComponent(achievementsButton)
 					.addComponent(creditsButton)
+					.addComponent(quit)
 					.addContainerGap(50, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
