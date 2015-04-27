@@ -30,9 +30,9 @@ public class Level {
 		this.specials[SWAP] = 5;
 		this.specials[CLEAR] = 5;
 		this.milestones = new int[3];
-		milestones[0] = 10;
-		milestones[1] = 50;
-		milestones[2] = 150;
+		milestones[0] = 100;
+		milestones[1] = 200;
+		milestones[2] = 300;
 	}
 	
 	public Board getBoard() {
