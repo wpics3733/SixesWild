@@ -19,8 +19,9 @@ public class InitiateSwapMoveController implements MouseInputListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		lv.changeController((MouseInputListener)new MakeSwapMoveController(l, lv));
-		
+		if(l.hasSpecial(Level.SWAP)) {
+			lv.changeController((MouseInputListener)new MakeSwapMoveController(l, lv));
+		}
 	}
 
 	@Override

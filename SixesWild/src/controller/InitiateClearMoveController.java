@@ -19,7 +19,9 @@ public class InitiateClearMoveController implements MouseInputListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(l.hasSpecial(Level.CLEAR)) {
 		lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
+		}
 		
 	}
 

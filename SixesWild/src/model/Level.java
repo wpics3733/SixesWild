@@ -4,6 +4,7 @@ public class Level {
 	int score;
 	int tileRatios[];
 	int specials[];
+	int milestones[];
 	Board b;
 	IMove activeMove;
 	int movesRemaining;
@@ -28,6 +29,10 @@ public class Level {
 		this.specials[REARRANGE] = 5;
 		this.specials[SWAP] = 5;
 		this.specials[CLEAR] = 5;
+		this.milestones = new int[3];
+		milestones[0] = 100;
+		milestones[1] = 200;
+		milestones[2] = 300;
 	}
 	
 	public Board getBoard() {
@@ -64,8 +69,17 @@ public class Level {
 		if( type < 0 || type > 2) {
 			return false;
 		}
-		
 		return specials[type] > 0;
-		
+	}
+	
+	public int getNumSpecial(int type) {
+		if(!hasSpecial(type)) {
+			return 0;
+		}
+	return specials[type];
+	}
+	
+	public int[] getMilestones() {
+		return this.milestones;
 	}
 }

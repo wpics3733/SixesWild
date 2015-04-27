@@ -18,6 +18,7 @@ public class ClearMove implements IMove {
 	@Override
 	public void pushMove(Level l) {
 		tile.clearTile();
+		l.useSpecial(Level.CLEAR);
 		l.getBoard().settleTiles();
 		
 	}
