@@ -18,10 +18,12 @@ public class RearrangeBoardController implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(l.hasSpecial(Level.REARRANGE)) {
 		RearrangeMove move = new RearrangeMove();
 		move.pushMove(l);
 		l.subtractMove(); 
 		lv.repaint();
+		}
 		
 	}
 

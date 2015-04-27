@@ -39,7 +39,7 @@ public class LevelView extends JPanel {
 		bp.addMouseMotionListener(controller);
 		this.tbp = new TopBarPanel(l, parent);
 		this.sideWord = new JLabel("<html><center>S<br>i<br>x<br>e<br>s<br> <br>W<br>i<br>l<br>d<br><center></html>");
-		this.westPanel = new GameWestPanel();
+		this.westPanel = new GameWestPanel(l);
 		JPanel eastPanel = new JPanel();
 		
 		this.tbp.getRearrangeButton().addMouseListener(new RearrangeBoardController(l, this));
