@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class SwapMove implements IMove {
 	TileContainer tc_1, tc_2;
 
@@ -23,12 +25,6 @@ public class SwapMove implements IMove {
 	}
 
 	@Override
-	public int getScore() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void pushMove(Level l) {
 		Tile swap = tc_1.getTile();
 		tc_1.setTile(tc_2.getTile());
@@ -46,6 +42,14 @@ public class SwapMove implements IMove {
 	public boolean isValid() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public ArrayList<TileContainer> getTiles() {
+		ArrayList<TileContainer> toRet = new ArrayList<TileContainer>();
+		toRet.add(tc_1);
+		toRet.add(tc_2);
+		return toRet;
 	}
 
 }

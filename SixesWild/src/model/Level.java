@@ -1,7 +1,7 @@
 package model;
 
 
-public class Level {
+public abstract class Level {
 	int score;
 	int tileRatios[];
 	int specials[];
@@ -96,4 +96,19 @@ public class Level {
 	public int[] getMilestones() {
 		return this.milestones;
 	}
+	
+		
+	public void react(IMove move) {
+		if(this.isFinished()) {
+			if(this.getScore() >= this.getMilestones()[0]) {
+				System.out.println("Passed the level, your data should be saved to disk now");
+				return;
+			} else {
+				System.out.println("Level has finished, but you did not achieve one star, try again");
+				return;
+			}
+		}
+	}
+	public abstract boolean isFinished();
+	public abstract String typeString();
 }

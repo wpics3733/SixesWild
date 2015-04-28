@@ -44,8 +44,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 
 	}
 
-	@Override
-	public int getScore() {
+	private int getScore() {
 		if (sum == 6) {
 			return 10*numTiles * multiplier;
 		} else {
@@ -79,5 +78,10 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 			tc.setUsed(false);
 			tc.clearTile();
 		}
+	}
+
+	@Override
+	public ArrayList<TileContainer> getTiles() {
+		return tiles;
 	}
 }
