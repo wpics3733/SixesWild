@@ -1,5 +1,6 @@
 package model;
 
+
 public class Level {
 	int score;
 	int tileRatios[];
@@ -33,6 +34,18 @@ public class Level {
 		milestones[0] = 100;
 		milestones[1] = 200;
 		milestones[2] = 300;
+	}
+	
+	public Level(LevelState l){
+		this(new Board(l.getWidth(), l.getHeight()));
+		this.movesRemaining = l.getMoveLimit();
+		this.specials = l.getSpecialMoves();
+		this.milestones = l.getStarScores();
+		for(int row = 0; row < 9; row++){
+			for(int col = 0; col < 9; col++){
+				this.b.getTiles()[col][row].getTile().setNum(l.getBoardVals()[row][col]);
+			}
+		}
 	}
 	
 	public Board getBoard() {
