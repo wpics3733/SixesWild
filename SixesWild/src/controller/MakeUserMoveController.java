@@ -47,10 +47,7 @@ public class MakeUserMoveController implements MouseInputListener {
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		um = new UserMove();
-		Component c = bp.getComponentAt(arg0.getPoint());
-		if(c instanceof TilePanel) {
-			um.addTile( ((TilePanel)c).getTile() );
-		} 
+		this.mouseDragged(arg0);
 	}
 
 	@Override
@@ -61,26 +58,29 @@ public class MakeUserMoveController implements MouseInputListener {
 		if(um.isValid()) {
 			um.pushMove(l);
 			l.getBoard().settleTiles();
-			lv.repaint();
 		}
+		um.finishMove();
+			lv.repaint();
 		this.um = null;
 	}
 
-@Override
-public void mouseDragged(MouseEvent arg0) {
-	if(this.um == null) {
-		return;
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		if(this.um == null) {
+			return;
+		}
+		Component c = bp.getComponentAt(arg0.getPoint());
+		if(c instanceof TilePanel) {
+			if(um.addTile( ((TilePanel)c).getTile() )) {
+				((TilePanel)c).repaint();
+			}
+		} 
+		// TODO Auto-generated method stub
+
 	}
-	Component c = bp.getComponentAt(arg0.getPoint());
-	if(c instanceof TilePanel) {
-		um.addTile( ((TilePanel)c).getTile() );
-	} 
-	// TODO Auto-generated method stub
 
-}
-
-@Override
-public void mouseMoved(MouseEvent arg0) {
-}
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+	}
 
 }

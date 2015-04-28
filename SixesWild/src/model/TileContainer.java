@@ -4,6 +4,8 @@ public class TileContainer {
 	Tile t;
 	int x,y;
 	boolean empty;
+	boolean used;
+	boolean marked;
 	
 	public TileContainer(Tile t, int x, int y) {
 		this.t = t;
@@ -50,5 +52,10 @@ public class TileContainer {
 		return empty;
 	}
 	
-
+	public void setUsed(boolean used) {
+		this.used = used;
+	}
+	public boolean used() {
+		return used;
+	}
 }

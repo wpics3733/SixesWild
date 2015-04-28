@@ -36,6 +36,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	}
 
 	private void addAcceptedTile(TileContainer tc) {
+		tc.setUsed(true);
 		tiles.add(tc);
 		sum += tc.getTile().getNum();
 		multiplier *= tc.getTile().getMultiplier();
@@ -67,11 +68,16 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		System.out.println("Pushing a user move to the level");
 		for(TileContainer tc: tiles) {
 			tc.clearTile();
-			System.out.printf("%d, %d\n", tc.getX(), tc.getY());
 		}
 		if(this.isValid()) {
 			l.setScore(l.getScore() + this.getScore());
 			l.subtractMove();
+		}
+	}
+	public void finishMove() {
+		for(TileContainer tc: tiles) {
+			tc.setUsed(false);
+			tc.clearTile();
 		}
 	}
 }

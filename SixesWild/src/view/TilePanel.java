@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import model.TileContainer;
 
 public class TilePanel extends JPanel {
+	private static final long serialVersionUID = 1L;
 	JLabel num;
 	TileContainer tile;
 	
@@ -31,6 +32,12 @@ public class TilePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		num.setText(Integer.toString(tile.getTile().getNum()));
+		System.out.println("Repainting tile, used is " + tile.used());
+		if(tile.used()) {
+			this.setBackground(Color.YELLOW);
+		} else {
+			this.setBackground(new Color(112,147,113));
+		}
 	}
 
 }
