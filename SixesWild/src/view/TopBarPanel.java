@@ -15,15 +15,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
 
-/**
- * This panel sits on top of the level, showing number of moves left (or time, etc)
- * It also contains the buttons to initiate special moves, as well as displaying the score
- * @author jesse
- *
- */
 public class TopBarPanel extends JPanel {
 	
-	private static final long serialVersionUID = 1L;
 	Level l;
 	Application parent;
 	

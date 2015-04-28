@@ -189,7 +189,6 @@ public class LevelState {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
 	public boolean isUnlocked() {
 		return isUnlocked;
 	}

@@ -38,7 +38,7 @@ public class Level {
 		this.milestones = new int[3];
 		milestones[0] = 100;
 		milestones[1] = 200;
-		milestones[2] = 900;
+		milestones[2] = 300;
 	}
 	
 	public Level(LevelState l){

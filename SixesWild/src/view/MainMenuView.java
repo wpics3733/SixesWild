@@ -7,9 +7,12 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controller.PastLevelViewController;
+import controller.ShowCreditController;
 import controller.QuitController;
 
 public class MainMenuView extends JPanel {
@@ -34,6 +37,7 @@ public class MainMenuView extends JPanel {
 		this.quit = new JButton("Quit");
 		
 		this.levelsButton.addMouseListener(new PastLevelViewController(a));
+		this.creditsButton.addMouseListener(new ShowCreditController(a));
 		this.quit.addMouseListener(new QuitController(a));
 		
 		GroupLayout groupLayout = new GroupLayout(this);

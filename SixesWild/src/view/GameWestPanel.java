@@ -14,25 +14,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import model.Level;
 
-/**
- * This panel contains the progress bar showing what star values have been achieved
- * it also contains the restart level button
- * 
- * @author jesse
- *
- */
 public class GameWestPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	
-	/*
-	 * The way I have done the progress bar is by concatting 3 seperate bars
-	 * m0 is the score needed to get to 1 star ~ height of bar 1
-	 * m1 is the score needed to get from 1 star -> 1 stars ~ height of bar 2
-	 * etc
-	 */
 	JPanel star1, star2, star3;
 	JProgressBar bar1, bar2, bar3;
+	//Milestones: three stars is m0 + m1 + m2
 	int m0, m1, m2;
 	JButton restart;
 	

@@ -15,14 +15,6 @@ import controller.MakeUserMoveController;
 import controller.RearrangeBoardController;
 import model.Level;
 
-/**
- * The view associated with playing a level.
- * it directly contains the board view
- * it indirectly contains the progress bar, special moves buttons, moves left indicator, etc
- * This is intended to be a top level JPanel, it should be the only thing in a frame
- * @author jesse
- *
- */
 public class LevelView extends JPanel {
 
 	static final long serialVersionUID = 1;
@@ -78,14 +70,6 @@ public class LevelView extends JPanel {
 
 	}
 	
-	/**
-	 * Change the move controller associated with the board.
-	 * The default is a MakeUserMoveController, which handles standard swipe moves
-	 * However, if it is desired to use a special move, the special move controller
-	 * can call this method to instead bind a MakeSpecialMoveController to the board
-	 * 
-	 * @param controller the new controller to bind to the board
-	 */
 	public void changeController(MouseInputListener controller) {
 		this.bp.removeMouseListener(this.controller);
 		this.bp.removeMouseMotionListener(this.controller);
@@ -94,19 +78,12 @@ public class LevelView extends JPanel {
 		this.bp.addMouseMotionListener(controller);
 	}
 
-	/**
-	 * Returns the level that this LevelView represents
-	 * @return
-	 */
 	public Level getLevel() {
 		return l;
 	}
 
-	/**
-	 * Returns the BoardPanel contained in this view.
-	 * @return
-	 */
 	public BoardPanel getBoard() {
 		return bp;
 	}
+	
 }
