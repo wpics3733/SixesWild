@@ -10,4 +10,16 @@ public class Tile {
 	public Tile() {
 		// TODO
 	}
+
+	public Tile(int mark, int value, int multiplier, boolean isBlocked) {
+		super();
+		this.mark = mark;
+		this.value = value;
+		this.multiplier = multiplier;
+		this.isBlocked = isBlocked;
+		if(value < 1){
+			this.valueIsSet = false;
+		}
+	}
+	
 }

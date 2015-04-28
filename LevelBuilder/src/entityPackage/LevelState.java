@@ -30,6 +30,29 @@ public class LevelState {
 	protected boolean isUnlocked;
 	protected int highScore;
 	
+	public LevelState(String levelName, int[][] boardVals, int[][] marks,
+			int[][] multipliers, boolean[][] blockedTiles, int width,
+			int height, String levelType, int[] starScores, int[] specialMoves,
+			int timeLimit, int moveLimit, int[] multiplierProbabilities,
+			int[] tileProbabilities, boolean isUnlocked, int highScore) {
+		this.levelName = levelName;
+		this.boardVals = boardVals;
+		this.marks = marks;
+		this.multipliers = multipliers;
+		this.blockedTiles = blockedTiles;
+		this.width = width;
+		this.height = height;
+		this.levelType = levelType;
+		this.starScores = starScores;
+		this.specialMoves = specialMoves;
+		this.timeLimit = timeLimit;
+		this.moveLimit = moveLimit;
+		this.multiplierProbabilities = multiplierProbabilities;
+		this.tileProbabilities = tileProbabilities;
+		this.isUnlocked = isUnlocked;
+		this.highScore = highScore;
+	}
+
 	public LevelState() {
 		levelName = "defaultLevel";
 		
@@ -51,6 +74,10 @@ public class LevelState {
 		
 		isUnlocked = false;
 		highScore = 0;
+	}
+	
+	public LevelState(String fileName) {
+		this.loadState(fileName);
 	}
 
 	public String getLevelName() {

@@ -10,8 +10,10 @@ public class LevelItem {
 	}
 	
 	public LevelModel loadLevel() {
-		// TODO
-		return null; // placeholder
+		LevelModel l;
+		LevelState state = new LevelState(fileName);
+		l = new LevelModel(state);
+		return l;
 	}
 
 }
