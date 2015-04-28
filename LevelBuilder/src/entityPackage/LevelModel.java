@@ -29,9 +29,9 @@ public class LevelModel {
 		this.levelName = l.getLevelName();
 		
 		this.board = new Tile[9][9];
-		for(int row = 0; row < 9; row++){
-			for(int col = 0; col < 9; col++){
-				this.board[row][col] = new Tile(l.getMarks()[row][col], l.getBoardVals()[row][col], l.getMultipliers()[row][col], l.getBlockedTiles()[row][col]);
+		for(int col = 0; col < 9; col++){
+			for(int row = 0; row < 9; row++){
+				this.board[col][row] = new Tile(l.getMarks()[col][row], l.getBoardVals()[col][row], l.getMultipliers()[col][row], l.getBlockedTiles()[col][row]);
 			}
 		}
 	}
@@ -41,12 +41,12 @@ public class LevelModel {
 		int boardMarks[][] = new int[9][9];
 		int multipliers[][] = new int[9][9];
 		boolean blockedTiles[][] = new boolean[9][9];
-		for(int row = 0; row < 9; row++){
-			for(int col = 0; col < 9; col++){
-				boardNumbers[row][col] = board[row][col].value;
-				boardMarks[row][col] = board[row][col].mark;
-				multipliers[row][col] = board[row][col].multiplier;
-				blockedTiles[row][col] = board[row][col].isBlocked;
+		for(int col = 0; col < 9; col++){
+			for(int row = 0; row < 9; row++){
+				boardNumbers[col][row] = board[col][row].value;
+				boardMarks[col][row] = board[col][row].mark;
+				multipliers[col][row] = board[col][row].multiplier;
+				blockedTiles[col][row] = board[col][row].isBlocked;
 			}
 		}
 		LevelState l = new LevelState(levelName, boardNumbers, boardMarks, multipliers, blockedTiles, 9, 9, mode, starMilestones, specialMovesAllowed, timeAllowed, movesAllowed, multiplierProbabilities, tileProbabilities, true, 0);

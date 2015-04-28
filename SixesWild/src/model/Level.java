@@ -18,7 +18,7 @@ public class Level {
 		this(9,9);
 	}
 	
-	public Level(int h, int w) {
+	public Level(int w, int h) {
 		this(new Board(w, h));
 	}
 	
@@ -33,7 +33,7 @@ public class Level {
 		this.milestones = new int[3];
 		milestones[0] = 100;
 		milestones[1] = 200;
-		milestones[2] = 300;
+		milestones[2] = 900;
 	}
 	
 	public Level(LevelState l){
@@ -41,9 +41,9 @@ public class Level {
 		this.movesRemaining = l.getMoveLimit();
 		this.specials = l.getSpecialMoves();
 		this.milestones = l.getStarScores();
-		for(int row = 0; row < 9; row++){
-			for(int col = 0; col < 9; col++){
-				this.b.getTiles()[col][row].getTile().setNum(l.getBoardVals()[row][col]);
+		for(int w = 0; w < b.getW(); w++){
+			for(int h = 0; h < b.getH(); h++){
+				this.b.getTiles()[w][h].getTile().setNum(l.getBoardVals()[w][h]);
 			}
 		}
 	}
