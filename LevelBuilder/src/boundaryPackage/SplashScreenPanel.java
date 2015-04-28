@@ -9,7 +9,12 @@ import javax.swing.JPanel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JLabel;
+
+import controllerPackage.QuitButtonController;
+import controllerPackage.SplashScreenPanelController;
+import entityPackage.LevelModel;
 
 class SplashScreenPanel extends JPanel {
 
@@ -18,17 +23,14 @@ class SplashScreenPanel extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 	}
+	LevelModel model;
 	
-	public SplashScreenPanel(LevelBuilderApplication parent) {
+	public SplashScreenPanel(LevelBuilderApplication parent, LevelModel model) {
+		this.model = model;
 		
 		ImageIcon myIcon = new ImageIcon(this.getClass().getResource("/Images/SplashScreen.png"));
-		
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				parentApplication.setCurrentView(new MenuPanel(((SplashScreenPanel)arg0.getSource()).getParentApplication()), (JPanel) arg0.getSource());
-			}
-		});
+
+		this.addMouseListener(new SplashScreenPanelController(model, parent));
 		parentApplication = parent;
 		setBackground(Color.WHITE);
 		

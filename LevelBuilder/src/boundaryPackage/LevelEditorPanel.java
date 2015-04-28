@@ -14,6 +14,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+
+import controllerPackage.QuitButtonController;
+import entityPackage.LevelModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -23,19 +27,25 @@ public class LevelEditorPanel extends JPanel {
 	 * Create the panel.
 	 */
 	private LevelBuilderApplication parentApplication;
+	LevelModel model;
 	
 	public LevelBuilderApplication getParentApplication() {
 		return parentApplication;
 	}
 
-	public LevelEditorPanel(LevelBuilderApplication parent) {
-		parentApplication = parent;
+	public LevelEditorPanel(LevelBuilderApplication parent, LevelModel model) {
+		this.parentApplication = parent;
+		this.model = model;
 		
 		setBackground(Color.LIGHT_GRAY);
 		
-		this.setPreferredSize(new Dimension(1024, 768));
+		// Being more explicit in setting the size, by using setSize().
+		// If you use setPreferredSize(), then you must setBounds() and call pack() in the LevelBuilderApplication 
+		//this.setPreferredSize(new Dimension(1024, 768));
+		this.setSize(1024, 768);
+
 		
-		JPanel panel = new BoardPanel();
+		JPanel panel = new BoardPanel(model);
 		panel.setPreferredSize(new Dimension(630,630));
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -45,12 +55,18 @@ public class LevelEditorPanel extends JPanel {
 		panel_1.setBackground(Color.WHITE);
 		//JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
 		JButton btnQuit = new JButton("Quit");
+		
+		btnQuit.addMouseListener(new QuitButtonController(model, parent));
+		
+		/*
+		 * REMOVING OLD BUTTON MECHANISM
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LevelEditorPanel panel = (LevelEditorPanel) (((JButton) (e.getSource())).getParent());
-				parentApplication.setCurrentView(new MenuPanel(panel.getParentApplication()), panel);
+				parentApplication.setCurrentView(new MenuPanel(panel.getParentApplication(), model), panel);
 			}
 		});
+		*/
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -94,4 +110,6 @@ public class LevelEditorPanel extends JPanel {
 		super.paintComponent(g);
 		
 	}
+	
+	
 }
