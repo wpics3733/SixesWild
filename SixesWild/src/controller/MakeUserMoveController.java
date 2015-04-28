@@ -40,7 +40,6 @@ public class MakeUserMoveController implements MouseInputListener {
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		this.um = null;
-		l.setActiveMove(null);
 		// TODO Auto-generated method stub
 
 	}
@@ -48,7 +47,6 @@ public class MakeUserMoveController implements MouseInputListener {
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		um = new UserMove();
-		l.setActiveMove(um);
 		Component c = bp.getComponentAt(arg0.getPoint());
 		if(c instanceof TilePanel) {
 			um.addTile( ((TilePanel)c).getTile() );
@@ -65,7 +63,6 @@ public class MakeUserMoveController implements MouseInputListener {
 			l.getBoard().settleTiles();
 			lv.repaint();
 		}
-		l.setActiveMove(null);
 		this.um = null;
 	}
 

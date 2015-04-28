@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import javax.swing.event.MouseInputListener;
 
 import view.BoardPanel;
 import view.LevelView;
@@ -10,7 +10,7 @@ import view.TilePanel;
 import model.Level;
 import model.SwapMove;
 
-public class MakeSwapMoveController implements MouseListener {
+public class MakeSwapMoveController implements MouseInputListener {
 	Level l;
 	LevelView lv;
 	BoardPanel bp;
@@ -35,8 +35,7 @@ public class MakeSwapMoveController implements MouseListener {
 			if(tiles_selected == 2) {
 				move.pushMove(l);
 				lv.repaint();
-				this.move = new SwapMove();
-				tiles_selected = 0;
+				this.lv.changeController((MouseInputListener)new MakeUserMoveController(l, lv));
 			}
 		} 
 	}
@@ -61,6 +60,18 @@ public class MakeSwapMoveController implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

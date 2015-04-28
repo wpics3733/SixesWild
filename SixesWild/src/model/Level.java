@@ -1,9 +1,11 @@
 package model;
 
+
 public class Level {
 	int score;
 	int tileRatios[];
 	int specials[];
+	int milestones[];
 	Board b;
 	IMove activeMove;
 	int movesRemaining;
@@ -28,6 +30,22 @@ public class Level {
 		this.specials[REARRANGE] = 5;
 		this.specials[SWAP] = 5;
 		this.specials[CLEAR] = 5;
+		this.milestones = new int[3];
+		milestones[0] = 100;
+		milestones[1] = 200;
+		milestones[2] = 300;
+	}
+	
+	public Level(LevelState l){
+		this(new Board(l.getWidth(), l.getHeight()));
+		this.movesRemaining = l.getMoveLimit();
+		this.specials = l.getSpecialMoves();
+		this.milestones = l.getStarScores();
+		for(int row = 0; row < 9; row++){
+			for(int col = 0; col < 9; col++){
+				this.b.getTiles()[col][row].getTile().setNum(l.getBoardVals()[row][col]);
+			}
+		}
 	}
 	
 	public Board getBoard() {
@@ -42,18 +60,6 @@ public class Level {
 		this.score = score;
 	}
 	
-	public void finishMove() {
-		this.score += activeMove.getScore();
-	}
-	
-	public IMove getActiveMove() {
-		return this.activeMove;
-	}
-	
-	public void setActiveMove(IMove move) {
-		this.activeMove = move;
-	}
-	
 	public int getMovesRemaining() {
 		return movesRemaining;
 	}
@@ -62,16 +68,31 @@ public class Level {
 		this.movesRemaining--;
 	}
 	
+	/**
+	 * By using a special move, the number of that special that you are allowed to used
+	 * is decremented, call this method after applying a special move to do that decrement
+	 * 
+	 * @param type the type of special used, either Level.SWAP, Level.REARRANGE, or Level.CLEAR
+	 */
 	public void useSpecial(int type) {
-
+		if(hasSpecial(type)) specials[type]--;
 	}
 
 	public boolean hasSpecial(int type) {
 		if( type < 0 || type > 2) {
 			return false;
 		}
-		
 		return specials[type] > 0;
-		
+	}
+	
+	public int getNumSpecial(int type) {
+		if(!hasSpecial(type)) {
+			return 0;
+		}
+	return specials[type];
+	}
+	
+	public int[] getMilestones() {
+		return this.milestones;
 	}
 }

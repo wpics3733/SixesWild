@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.event.MouseInputListener;
+
 import view.BoardPanel;
 import view.LevelView;
 import view.TilePanel;
@@ -11,7 +13,7 @@ import model.ClearMove;
 import model.Level;
 import model.SwapMove;
 
-public class MakeClearMoveController implements MouseListener {
+public class MakeClearMoveController implements MouseInputListener {
 	Level l;
 	LevelView lv;
 	BoardPanel bp;
@@ -36,8 +38,7 @@ public class MakeClearMoveController implements MouseListener {
 			if(tiles_selected == 1) {
 				move.pushMove(l);
 				lv.repaint();
-				this.move = new ClearMove();
-				tiles_selected = 0;
+				lv.changeController((MouseInputListener)(new MakeUserMoveController(l, lv)));
 			}
 		} 
 	}
@@ -62,6 +63,18 @@ public class MakeClearMoveController implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

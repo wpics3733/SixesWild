@@ -1,4 +1,5 @@
 package entityPackage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,6 +27,32 @@ public class LevelState {
 	protected int multiplierProbabilities[];
 	protected int tileProbabilities[];
 	
+	protected boolean isUnlocked;
+	protected int highScore;
+	
+	public LevelState(String levelName, int[][] boardVals, int[][] marks,
+			int[][] multipliers, boolean[][] blockedTiles, int width,
+			int height, String levelType, int[] starScores, int[] specialMoves,
+			int timeLimit, int moveLimit, int[] multiplierProbabilities,
+			int[] tileProbabilities, boolean isUnlocked, int highScore) {
+		this.levelName = levelName;
+		this.boardVals = boardVals;
+		this.marks = marks;
+		this.multipliers = multipliers;
+		this.blockedTiles = blockedTiles;
+		this.width = width;
+		this.height = height;
+		this.levelType = levelType;
+		this.starScores = starScores;
+		this.specialMoves = specialMoves;
+		this.timeLimit = timeLimit;
+		this.moveLimit = moveLimit;
+		this.multiplierProbabilities = multiplierProbabilities;
+		this.tileProbabilities = tileProbabilities;
+		this.isUnlocked = isUnlocked;
+		this.highScore = highScore;
+	}
+
 	public LevelState() {
 		levelName = "defaultLevel";
 		
@@ -44,6 +71,13 @@ public class LevelState {
 		
 		multiplierProbabilities = new int[3];
 		tileProbabilities = new int[6];
+		
+		isUnlocked = false;
+		highScore = 0;
+	}
+	
+	public LevelState(String fileName) {
+		this.loadState(fileName);
 	}
 
 	public String getLevelName() {
@@ -158,16 +192,38 @@ public class LevelState {
 		this.height = height;
 	}
 	
-	
+	public boolean isUnlocked() {
+		return isUnlocked;
+	}
+
+	public void setUnlocked(boolean unlocked) {
+		this.isUnlocked = unlocked;
+	}
+
+	public int getHighScore() {
+		return highScore;
+	}
+
+	public void setHighScore(int highScore) {
+		this.highScore = highScore;
+	}
 	
 	
 	
 	public void saveState(){
+		File f;
 		FileOutputStream saveFile;
 		ObjectOutputStream save;
 		try{// Catch errors in I/O if necessary.
 			// Open a file to write to, named SavedObj.sav.
-			saveFile=new FileOutputStream(levelName.concat(".sav"));
+			
+			f = new File(levelName.concat(".sav"));
+			if(!f.exists()){
+				f.createNewFile();
+			}
+			
+			//saveFile=new FileOutputStream(levelName.concat(".sav"));
+			saveFile=new FileOutputStream(f);
 			
 			// Create an ObjectOutputStream to put objects into save file.
 			save = new ObjectOutputStream(saveFile);
@@ -189,6 +245,8 @@ public class LevelState {
 			save.writeObject(this.moveLimit);
 			save.writeObject(this.multiplierProbabilities);
 			save.writeObject(this.tileProbabilities);
+			save.writeObject(this.isUnlocked);
+			save.writeObject(this.highScore);
 			
 			// Close the file.
 			save.close(); // This also closes saveFile.
@@ -232,6 +290,8 @@ public class LevelState {
 			this.moveLimit = (int) save.readObject();
 			this.multiplierProbabilities = (int[]) save.readObject();
 			this.tileProbabilities = (int[]) save.readObject();
+			this.isUnlocked = (boolean) save.readObject();
+			this.highScore = (int) save.readObject();
 
 			// Close the file.
 			save.close(); // This also closes saveFile.

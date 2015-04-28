@@ -7,10 +7,12 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.event.MouseInputListener;
 
-import controller.MakeClearMoveController;
-import controller.MakeSwapMoveController;
+import controller.InitiateClearMoveController;
+import controller.InitiateSwapMoveController;
 import controller.MakeUserMoveController;
+import controller.RearrangeBoardController;
 import model.Level;
 
 public class LevelView extends JPanel {
@@ -24,17 +26,25 @@ public class LevelView extends JPanel {
 	JPanel eastPanel;
 	JLabel sideWord;
 	GameWestPanel westPanel;
+	
+	MouseInputListener controller;
 
 	public LevelView(Level l, Application parent) {
 		super();
 		this.parent = parent;
 		this.l = l;
 		this.bp = new BoardPanel(this);
-		bp.addMouseListener(new MakeClearMoveController(l, this));
+		this.controller = new MakeUserMoveController(l, this);
+		bp.addMouseListener(controller);
+		bp.addMouseMotionListener(controller);
 		this.tbp = new TopBarPanel(l, parent);
 		this.sideWord = new JLabel("<html><center>S<br>i<br>x<br>e<br>s<br> <br>W<br>i<br>l<br>d<br><center></html>");
-		this.westPanel = new GameWestPanel();
+		this.westPanel = new GameWestPanel(l);
 		JPanel eastPanel = new JPanel();
+		
+		this.tbp.getRearrangeButton().addMouseListener(new RearrangeBoardController(l, this));
+		this.tbp.getSwapButton().addMouseListener(new InitiateSwapMoveController(l, this));
+		this.tbp.getClearButton().addMouseListener(new InitiateClearMoveController(l, this));
 
 		GroupLayout eastLayout = new GroupLayout(eastPanel);
 		eastLayout.setAutoCreateContainerGaps(true);
@@ -58,6 +68,14 @@ public class LevelView extends JPanel {
 		this.add(eastPanel, BorderLayout.EAST);
 		this.add(westPanel, BorderLayout.WEST);
 
+	}
+	
+	public void changeController(MouseInputListener controller) {
+		this.bp.removeMouseListener(this.controller);
+		this.bp.removeMouseMotionListener(this.controller);
+		this.controller = controller;
+		this.bp.addMouseListener(controller);
+		this.bp.addMouseMotionListener(controller);
 	}
 
 	public Level getLevel() {
