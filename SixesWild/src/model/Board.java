@@ -7,8 +7,27 @@ public class Board {
 	int tile_ratios[];
 	int tile_ratio_sum;
 	
+	public Board(LevelState l) {
+		this(l.getWidth(), l.getHeight());
+		this.tile_ratios = l.getTileProbabilities();
+		this.tile_ratio_sum = 0;
+		for(int i = 0; i < 6; i++) {
+			tile_ratio_sum += tile_ratios[i];
+		}
+		for(int i = 0; i < w; i++){
+			for(int j = 0; j < h; j++){
+				int tileNum = l.getBoardVals()[w][h];
+				// TileNum of 0 means that the tile was not set explicitly, lets generate one randomly
+				if(tileNum == 0) {
+					tiles[i][j].setTile(this.getRandomTile());
+				} else {
+					tiles[i][j].setTile(new Tile(tileNum, 1));
+				}
+			}
+		}
+	}
+	
 	public Board(int w, int h) {
-		
 		this.h = h;
 		this.w = w;
 		tile_ratios = new int[6];
@@ -17,12 +36,6 @@ public class Board {
 			tile_ratio_sum += tile_ratios[i];
 		}
 		tiles = new TileContainer[w][h];
-		for( int i = 0; i < w; i++) {
-			for( int j = 0; j < h; j++) {
-				
-				tiles[i][j] = new TileContainer(this.getRandomTile(), i, j);
-			}
-		}
 	}
 	
 	public int getH() {

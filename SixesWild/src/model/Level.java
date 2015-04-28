@@ -42,16 +42,11 @@ public class Level {
 	}
 	
 	public Level(LevelState l){
-		this(new Board(l.getWidth(), l.getHeight()));
+		this.b = new Board(l);
 		this.movesRemaining = l.getMoveLimit();
 		this.specials = l.getSpecialMoves();
 		this.milestones = l.getStarScores();
 		this.tileRatios = l.getTileProbabilities();
-		for(int w = 0; w < b.getW(); w++){
-			for(int h = 0; h < b.getH(); h++){
-				this.b.getTiles()[w][h].getTile().setNum(l.getBoardVals()[w][h]);
-			}
-		}
 	}
 	
 	public Board getBoard() {

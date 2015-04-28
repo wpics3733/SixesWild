@@ -12,16 +12,16 @@ import javax.swing.border.EmptyBorder;
 //import com.jgoodies.forms.layout.ColumnSpec;
 //import com.jgoodies.forms.layout.RowSpec;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 
 //test
 //import com.jgoodies.forms.layout.FormSpecs;
 
 public class LevelBuilderApplication extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel currentView;
+
 	/**
 	 * Launch the application.
 	 */
