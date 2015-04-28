@@ -22,6 +22,11 @@ public class Level {
 		this(new Board(w, h));
 	}
 	
+	/**
+	 * Construct a Level based on a given board, this should be depracated in the future
+	 * in favor of Level(LevelState)
+	 * @param b
+	 */
 	public Level(Board b) {
 		this.b = b;
 		this.activeMove = null;
@@ -41,6 +46,7 @@ public class Level {
 		this.movesRemaining = l.getMoveLimit();
 		this.specials = l.getSpecialMoves();
 		this.milestones = l.getStarScores();
+		this.tileRatios = l.getTileProbabilities();
 		for(int w = 0; w < b.getW(); w++){
 			for(int h = 0; h < b.getH(); h++){
 				this.b.getTiles()[w][h].getTile().setNum(l.getBoardVals()[w][h]);
