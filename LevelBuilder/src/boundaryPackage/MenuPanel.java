@@ -1,6 +1,8 @@
 package boundaryPackage;
 import javax.swing.*;
 
+import controllerPackage.NewLevelButtonController;
+import entityPackage.LevelModel;
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.LevelEditorPanel;
 
@@ -24,6 +26,7 @@ public class MenuPanel extends JPanel {
 	JButton nextButton;
 	JButton newLevelButton;
 	private LevelBuilderApplication parentApplication;
+	LevelModel model;
 	
 	//LevelItems levelItems				don't need for GUI demo?
 	//JButton quitButton				don't need?  can just exit app via "X" (upper right corner)
@@ -34,7 +37,8 @@ public class MenuPanel extends JPanel {
 	}
 
 
-	public MenuPanel(LevelBuilderApplication parent) { // The constructor should also take in a "LevelItems" object as an argument, but omitted for GUI demo
+	// TODO WARNING model should not be final!!!!!
+	public MenuPanel(LevelBuilderApplication parent, final LevelModel model) { // The constructor should also take in a "LevelModel" object as an argument, but omitted for GUI demo
 		// menuFrame - This is only here so that I could run the MenuPanel on its own.
 		// It should really go into the LevelEditorApplicationPanel class (see the UML diagram).
 		/*
@@ -44,11 +48,12 @@ public class MenuPanel extends JPanel {
 		menuFrame.getContentPane().setLayout(null);
 		*/
 		
+		
 		parentApplication = parent;
+		this.model = model;
 
 		 
 		// menuPanel
-		JPanel menuPanel = new JPanel();
 		this.setSize(1024, 768);
 		this.setBounds(10, 11, 988, 483);
 		//menuFrame.getContentPane().add(menuPanel);
@@ -78,13 +83,6 @@ public class MenuPanel extends JPanel {
 		 
 		// newLevelButton
 		newLevelButton = new JButton("+ New Level");
-		newLevelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//parentApplication.setCurrentView(new LevelEditorPanel(((MenuPanel)arg0.getSource()).getParentApplication()), (JPanel) (((JButton)arg0.getSource()).getParent()));
-				MenuPanel panel = (MenuPanel) (((JButton) (arg0.getSource())).getParent());
-				parentApplication.setCurrentView(new LevelEditorPanel(panel.getParentApplication()), panel);
-			}
-		});
 		newLevelButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		newLevelButton.setBounds(841, 11, 137, 37);
 		
@@ -92,7 +90,8 @@ public class MenuPanel extends JPanel {
 		
 		this.repaint();
 
-
+		newLevelButton.addMouseListener(new NewLevelButtonController(parent, model));
+		
 		// Set frame visible
 		//menuFrame.setVisible(true);
 	}
