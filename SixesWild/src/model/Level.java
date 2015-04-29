@@ -1,7 +1,7 @@
 package model;
 
 
-public class Level {
+public abstract class Level {
 	int score;
 	int tileRatios[];
 	int specials[];
@@ -9,6 +9,7 @@ public class Level {
 	Board b;
 	IMove activeMove;
 	int movesRemaining;
+	boolean finished;
 	
 	public static final int REARRANGE = 0;
 	public static final int SWAP = 1;
@@ -18,14 +19,19 @@ public class Level {
 		this(9,9);
 	}
 	
-	public Level(int h, int w) {
+	public Level(int w, int h) {
 		this(new Board(w, h));
 	}
 	
+	/**
+	 * Construct a Level based on a given board, this should be depracated in the future
+	 * in favor of Level(LevelState)
+	 * @param b
+	 */
 	public Level(Board b) {
 		this.b = b;
 		this.activeMove = null;
-		this.movesRemaining = 99;
+		this.movesRemaining = 10;
 		this.specials = new int[3];
 		this.specials[REARRANGE] = 5;
 		this.specials[SWAP] = 5;
@@ -37,15 +43,12 @@ public class Level {
 	}
 	
 	public Level(LevelState l){
-		this(new Board(l.getWidth(), l.getHeight()));
+		this.b = new Board(l);
 		this.movesRemaining = l.getMoveLimit();
 		this.specials = l.getSpecialMoves();
 		this.milestones = l.getStarScores();
-		for(int row = 0; row < 9; row++){
-			for(int col = 0; col < 9; col++){
-				this.b.getTiles()[col][row].getTile().setNum(l.getBoardVals()[row][col]);
-			}
-		}
+		this.tileRatios = l.getTileProbabilities();
+		this.finished = false;
 	}
 	
 	public Board getBoard() {
@@ -95,4 +98,14 @@ public class Level {
 	public int[] getMilestones() {
 		return this.milestones;
 	}
+	
+		
+	// This is where we put level specific reactions to moves
+	// For example, an elimination move marks all of the tiles used
+	public void react(IMove move) {
+	}
+
+	public abstract boolean isFinished();
+	public abstract boolean hasPassed();
+	public abstract String typeString();
 }

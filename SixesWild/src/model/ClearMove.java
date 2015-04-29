@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class ClearMove implements IMove {
 	TileContainer tile;
 
@@ -10,16 +12,11 @@ public class ClearMove implements IMove {
 	}
 
 	@Override
-	public int getScore() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void pushMove(Level l) {
 		tile.clearTile();
 		l.useSpecial(Level.CLEAR);
 		l.getBoard().settleTiles();
+		l.react(this);
 		
 	}
 
@@ -27,6 +24,13 @@ public class ClearMove implements IMove {
 	public boolean isValid() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public ArrayList<TileContainer> getTiles() {
+		ArrayList<TileContainer> toRet = new ArrayList<TileContainer>();
+		toRet.add(tile);
+		return toRet;
 	}
 
 }

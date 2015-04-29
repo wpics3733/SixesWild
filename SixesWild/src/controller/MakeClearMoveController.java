@@ -34,12 +34,13 @@ public class MakeClearMoveController implements MouseInputListener {
 		Component c = bp.getComponentAt(arg0.getPoint());
 		if(c instanceof TilePanel) {
 			move.addTile( ((TilePanel)c).getTile() );
-			tiles_selected++;
-			if(tiles_selected == 1) {
-				move.pushMove(l);
-				lv.repaint();
-				lv.changeController((MouseInputListener)(new MakeUserMoveController(l, lv)));
+			move.pushMove(l);
+			if(l.isFinished()) {
+				lv.endLevel();
+				return;
 			}
+			lv.repaint();
+			lv.changeController((MouseInputListener)(new MakeUserMoveController(l, lv)));
 		} 
 	}
 

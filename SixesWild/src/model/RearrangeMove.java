@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class RearrangeMove implements IMove {
 
 	@Override
@@ -9,18 +11,15 @@ public class RearrangeMove implements IMove {
 	}
 
 	@Override
-	public int getScore() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void pushMove(Level l) {
+		l.subtractMove();
 		Board b = l.getBoard();
 		TileContainer[][] tiles = b.getTiles();
 		for(int i = 0; i < b.getW(); i++) {
 			for(int j = 0; j < b.getH(); j++) {
-				tiles[i][j].setTile(b.getRandomTile());
+				if(tiles[i][j].getTile().getNum() != 6) {
+					tiles[i][j].setTile(b.getRandomTile());
+				}
 			}
 		}
 		l.useSpecial(Level.REARRANGE);
@@ -30,6 +29,10 @@ public class RearrangeMove implements IMove {
 	public boolean isValid() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public ArrayList<TileContainer> getTiles() {
+		return null;
 	}
 
 }

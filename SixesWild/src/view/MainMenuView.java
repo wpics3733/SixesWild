@@ -2,19 +2,18 @@ package view;
 
 import java.awt.Font;
 
+import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controller.PastLevelViewController;
-<<<<<<< HEAD
 import controller.ShowCreditController;
-=======
 import controller.QuitController;
->>>>>>> 455c91f597192aec66f05d5fba430f91bfc73da2
 
 public class MainMenuView extends JPanel {
 	
@@ -38,11 +37,8 @@ public class MainMenuView extends JPanel {
 		this.quit = new JButton("Quit");
 		
 		this.levelsButton.addMouseListener(new PastLevelViewController(a));
-<<<<<<< HEAD
 		this.creditsButton.addMouseListener(new ShowCreditController(a));
-=======
 		this.quit.addMouseListener(new QuitController(a));
->>>>>>> 455c91f597192aec66f05d5fba430f91bfc73da2
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setAutoCreateGaps(true);

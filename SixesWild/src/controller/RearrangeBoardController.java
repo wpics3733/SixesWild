@@ -21,7 +21,10 @@ public class RearrangeBoardController implements MouseListener {
 		if(l.hasSpecial(Level.REARRANGE)) {
 		RearrangeMove move = new RearrangeMove();
 		move.pushMove(l);
-		l.subtractMove(); 
+		if(l.isFinished()) {
+			lv.endLevel();
+			return;
+		}
 		lv.repaint();
 		}
 		

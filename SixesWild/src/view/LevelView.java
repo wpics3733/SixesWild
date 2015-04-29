@@ -86,4 +86,20 @@ public class LevelView extends JPanel {
 		return bp;
 	}
 	
+	/**
+	 * if the level is finished, this will check if the user has passed the level.
+	 * If they have, it will save their score to disk
+	 * No matter what, it will then return them to the main menu
+	 */
+	public void endLevel() {
+		if(l.hasPassed()) {
+			//Should replace this with a popup menu with retry or back to main menu
+			System.out.println("You have passed the level, congratulations");
+			//Save level to disk
+		} else {
+			System.out.println("You have finished the level, but not passed, try again");
+		}
+		this.parent.changeView(new MainMenuView(parent));
+	}
+	
 }

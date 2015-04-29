@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,14 +16,20 @@ import javax.swing.border.EmptyBorder;
 
 import controller.PlayPastLevelController;
 import controller.ReturnToMenuController;
+import model.EliminationLevel;
 import model.Level;
+import model.PuzzleLevel;
 
 public class PastLevelPanel extends JPanel{
-	Level selected_level;
+	ArrayList<Level> levels;
+	Level selectedLevel;
 	
 	public PastLevelPanel(Application parent) {
 		super(new BorderLayout(0,0));
-		selected_level = new Level(9,9);
+		this.levels = new ArrayList<Level>();
+		// This is where we should load up all of the levels from disk
+		levels.add(new PuzzleLevel());
+		levels.add(new EliminationLevel());
 		
 //		Main panel
 		this.setBackground(new Color(249,246,242));
@@ -62,21 +69,23 @@ public class PastLevelPanel extends JPanel{
 		mainContent.add(nextPagePanel, BorderLayout.EAST);
 		
 //		Level button grid
-		JPanel levelGrid = new JPanel(new GridLayout(3,5,5,5));
+		JPanel levelGrid = new JPanel(new GridLayout(4,4,4,4));
 		
-		JButton levelOneButton = new JButton("1");
-		levelOneButton.setPreferredSize(new Dimension(80, 80));
-		levelOneButton.setBackground(Color.BLACK);
-		levelGrid.add(levelOneButton);
-		levelOneButton.addMouseListener(new PlayPastLevelController(parent, selected_level));
-		
-		for(int i=0; i<15; i++) {
+		int i;
+		for(i = 0; i < levels.size(); i++) {
+			JButton levelButton = new JButton("<html><center>Level " + i + "<br>" + levels.get(i).typeString() + "</center></html>");
+			//levelButton.setPreferredSize(new Dimension(80, 80));
+			levelButton.setBackground(Color.YELLOW);
+			levelButton.addMouseListener(new PlayPastLevelController(parent, levels.get(i)));
+			levelGrid.add(levelButton);
+		}
+		for( i = i; i < 16; i++) {
 			JButton levelButton = new JButton("Locked");
-			levelButton.setPreferredSize(new Dimension(80, 80));
+			levelButton.setPreferredSize(new Dimension(180, 120));
 			levelButton.setEnabled(false);
 			levelGrid.add(levelButton);
 		}
-		
+
 		JPanel gridContainer = new JPanel(new FlowLayout());
 		gridContainer.add(levelGrid);
 		

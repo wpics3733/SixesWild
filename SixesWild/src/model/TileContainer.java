@@ -4,6 +4,8 @@ public class TileContainer {
 	Tile t;
 	int x,y;
 	boolean empty;
+	boolean used;
+	boolean marked;
 	
 	public TileContainer(Tile t, int x, int y) {
 		this.t = t;
@@ -17,6 +19,9 @@ public class TileContainer {
 	}
 	
 	public void setTile(Tile t) {
+		if( t == null) {
+			throw new NullPointerException("error at TileContainer.setTile");
+		}
 		this.t = t;
 		this.empty = false;
 	}
@@ -47,8 +52,21 @@ public class TileContainer {
 	}
 	
 	public boolean empty() {
-		return empty;
+		return this.empty;
 	}
 	
-
+	public void setUsed(boolean used) {
+		this.used = used;
+	}
+	public boolean used() {
+		return used;
+	}
+	
+	public void setMarked(boolean marked) {
+		this.marked = marked;
+	}
+	
+	public boolean getMarked() {
+		return marked;
+	}
 }

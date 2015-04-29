@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
+import entityPackage.LevelModel;
+
 //test
 //import com.jgoodies.forms.layout.FormSpecs;
 
@@ -22,6 +24,8 @@ public class LevelBuilderApplication extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel currentView;
+	LevelModel model;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -50,10 +54,14 @@ public class LevelBuilderApplication extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		currentView = new SplashScreenPanel(this);
+		
+		// Initialize model
+		this.model = new LevelModel();
+		
+		setCurrentView(new SplashScreenPanel(this, model));
 		//currentView = new MenuPanel(this);
 		currentView.setBounds(0, 0, 1024, 768);
-		contentPane.add(currentView);
+		this.add(currentView);
 		
 		
 		this.pack();
@@ -66,5 +74,16 @@ public class LevelBuilderApplication extends JFrame {
 		this.getContentPane().add(newPanel);
 		this.pack();
 		this.repaint();
+	}
+	
+	public void setCurrentView(JPanel newPanel) {
+		this.getContentPane().removeAll();
+		//newPanel.setBounds(0, 0, 1025, 769);			// not needed if all panel sizes are explicitly set
+		currentView = newPanel;
+		this.getContentPane().add(currentView);
+		this.validate();
+		//this.pack();									// not needed if all panel sizes are explicitly set
+		this.repaint();
+		
 	}
 }
