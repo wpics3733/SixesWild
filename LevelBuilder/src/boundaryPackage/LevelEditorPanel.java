@@ -95,7 +95,7 @@ public class LevelEditorPanel extends JPanel {
 					.addGap(41))
 		);
 		
-		JPanel panel_2 = new PropertiesMenuPanel();
+		JPanel panel_2 = new PropertiesMenuPanel(model, parent);
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setPreferredSize(new Dimension(250,650));
 		scrollPane.setViewportView(panel_2);
