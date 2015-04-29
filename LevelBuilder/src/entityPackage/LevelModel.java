@@ -12,10 +12,26 @@ public class LevelModel {
 	String levelName;
 	int levelNumber;
 	ITileModifier selectedModifier;
+	Tile selectedTile;
 	
 	// constructor
 	public LevelModel() {
 		//TODO
+		
+		this.board = new Tile[9][9];
+		
+		System.out.println("LevelModel::Initializing the board with tiles");
+		System.out.print("LevelModel::");
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				this.board[j][i] = new Tile(j, i);
+				System.out.print("[" + j + ", " + i + "] ");
+			}
+		}
+		System.out.println();
+		
+		//this.selectedTile = new Tile();
+		this.selectedTile = null;
 		
 	}
 	
@@ -52,5 +68,12 @@ public class LevelModel {
 		LevelState l = new LevelState(levelName, boardNumbers, boardMarks, multipliers, blockedTiles, 9, 9, mode, starMilestones, specialMovesAllowed, timeAllowed, movesAllowed, multiplierProbabilities, tileProbabilities, true, 0);
 		l.saveState();
 	}
+	
+	public void setSelectedTile(int x, int y) {
+		this.selectedTile = board[x][y];
+	}
 
+	public Tile getSelectedTile() {
+		return this.selectedTile;
+	}
 }
