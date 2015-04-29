@@ -39,7 +39,7 @@ public class MakeUserMoveController implements MouseInputListener {
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		this.um = null;
+		this.mouseReleased(arg0);
 
 	}
 
@@ -52,7 +52,7 @@ public class MakeUserMoveController implements MouseInputListener {
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		if(this.um == null) {
-			throw new RuntimeException("MakeUserMoveController.um was null when mouseReleased was called");
+			return;
 		}
 		if(um.isValid()) {
 			um.pushMove(l);
