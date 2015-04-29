@@ -70,11 +70,11 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		l.react(this);
 		l.setScore(l.getScore() + this.getScore());
 	}
+
 	public void finishMove(Level l) {
 		l.subtractMove();
 		for(TileContainer tc: tiles) {
 			tc.setUsed(false);
-			tc.clearTile();
 		}
 	}
 

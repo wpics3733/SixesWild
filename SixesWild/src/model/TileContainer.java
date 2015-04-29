@@ -19,6 +19,9 @@ public class TileContainer {
 	}
 	
 	public void setTile(Tile t) {
+		if( t == null) {
+			throw new NullPointerException("error at TileContainer.setTile");
+		}
 		this.t = t;
 		this.empty = false;
 	}
@@ -49,7 +52,7 @@ public class TileContainer {
 	}
 	
 	public boolean empty() {
-		return empty;
+		return this.empty;
 	}
 	
 	public void setUsed(boolean used) {
