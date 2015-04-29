@@ -8,56 +8,68 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.JList;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+import controllerPackage.PropertiesMenuPanelController;
+import entityPackage.LevelModel;
 
 public class PropertiesMenuPanel extends JPanel {
 	private JLabel lblLevelType;
 	private JComboBox comboBox;
 	private JLabel lblOfSpecial;
-	private JLabel lblMove;
-	private JLabel lblMove_1;
-	private JLabel lblMove_2;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JLabel rearrangeSpecialLabel;
+	private JLabel swapSpecialLabel;
+	private JLabel clearSpeicalLabel;
+	private JTextField rearrangeSpecialTextField;
+	private JTextField swapSpecialTextField;
+	private JTextField clearSpecialTextField;
 	private JLabel lblTileAppearenceProbabilities;
 	private JLabel label;
-	private JTextField textField_3;
+	private JTextField tileProbabilityTextField1;
 	private JLabel label_1;
-	private JTextField textField_4;
+	private JTextField tileProbabilityTextField2;
 	private JLabel label_2;
-	private JTextField textField_5;
+	private JTextField tileProbabilityTextField3;
 	private JLabel label_3;
-	private JTextField textField_6;
+	private JTextField tileProbabilityTextField4;
 	private JLabel label_4;
-	private JTextField textField_7;
+	private JTextField tileProbabilityTextField5;
 	private JLabel label_5;
-	private JTextField textField_8;
+	private JTextField tileProbabilityTextField6;
 	private JLabel lblMultiplierAppearenceProbabilities;
 	private JLabel label_6;
-	private JTextField textField_9;
+	private JTextField multiplierProbability1;
 	private JLabel label_7;
-	private JTextField textField_10;
+	private JTextField multiplierProbability2;
 	private JLabel label_8;
-	private JTextField textField_11;
+	private JTextField multiplierProbability3;
 	private JLabel lblMoveLimit;
-	private JTextField textField_12;
+	private JTextField moveLimitTextField;
 	private JLabel lblTimeLimit;
-	private JTextField textField_13;
+	private JTextField timeLimitTextField;
 	private JLabel lblStarLevels;
 	private JLabel lblOneStar;
-	private JTextField textField_14;
+	private JTextField starLevelTextField1;
 	private JLabel lblTwoStars;
-	private JTextField textField_15;
+	private JTextField starLevelTextField2;
 	private JLabel lblThreeStars;
-	private JTextField textField_16;
+	private JTextField starLevelTextField3;
 
+	LevelBuilderApplication app;
+	LevelModel model;
+	
 	/**
 	 * Create the panel.
 	 */
-	public PropertiesMenuPanel() {
+	public PropertiesMenuPanel(LevelModel model, LevelBuilderApplication app) {
+		this.model = model;
+		this.app = app;
+		
 		
 		lblLevelType = new JLabel("Level Type");
 		lblLevelType.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -69,125 +81,129 @@ public class PropertiesMenuPanel extends JPanel {
 		lblOfSpecial = new JLabel("# of Special Moves");
 		lblOfSpecial.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		lblMove = new JLabel("Move 1:");
+		rearrangeSpecialLabel = new JLabel("Rearrange:");
 		
-		lblMove_1 = new JLabel("Move 2:");
+		swapSpecialLabel = new JLabel("Swap:");
 		
-		lblMove_2 = new JLabel("Move 3:");
+		clearSpeicalLabel = new JLabel("Clear:");
 		
-		textField = new JTextField();
-		textField.setText("1");
-		textField.setColumns(10);
+		rearrangeSpecialTextField = new JTextField();
+		rearrangeSpecialTextField.setText( ((Integer) model.getSpecialMovesAllowed()[0]).toString());
+		rearrangeSpecialTextField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("1");
-		textField_1.setColumns(10);
+		swapSpecialTextField = new JTextField();
+		swapSpecialTextField.setText(((Integer) model.getSpecialMovesAllowed()[1]).toString());
+		swapSpecialTextField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("1");
-		textField_2.setColumns(10);
+		clearSpecialTextField = new JTextField();
+		clearSpecialTextField.setText(((Integer) model.getSpecialMovesAllowed()[2]).toString());
+		clearSpecialTextField.setColumns(10);
 		
 		lblTileAppearenceProbabilities = new JLabel("Tile Appearence Probabilities");
 		lblTileAppearenceProbabilities.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		label = new JLabel("1:");
 		
-		textField_3 = new JTextField();
-		textField_3.setText("1");
-		textField_3.setColumns(10);
+		tileProbabilityTextField1 = new JTextField();
+		tileProbabilityTextField1.setText( ((Integer) model.getTileProbabilities()[0]).toString() );
+		tileProbabilityTextField1.setColumns(10);
 		
 		label_1 = new JLabel("2:");
 		
-		textField_4 = new JTextField();
-		textField_4.setText("1");
-		textField_4.setColumns(10);
+		tileProbabilityTextField2 = new JTextField();
+		tileProbabilityTextField2.setText( ((Integer) model.getTileProbabilities()[1]).toString() );
+		tileProbabilityTextField2.setColumns(10);
 		
 		label_2 = new JLabel("3:");
 		
-		textField_5 = new JTextField();
-		textField_5.setText("1");
-		textField_5.setColumns(10);
+		tileProbabilityTextField3 = new JTextField();
+		tileProbabilityTextField3.setText( ((Integer) model.getTileProbabilities()[2]).toString() );
+		tileProbabilityTextField3.setColumns(10);
 		
 		label_3 = new JLabel("4:");
 		
-		textField_6 = new JTextField();
-		textField_6.setText("1");
-		textField_6.setColumns(10);
+		tileProbabilityTextField4 = new JTextField();
+		tileProbabilityTextField4.setText( ((Integer) model.getTileProbabilities()[3]).toString() );
+		tileProbabilityTextField4.setColumns(10);
 		
 		label_4 = new JLabel("5:");
 		
-		textField_7 = new JTextField();
-		textField_7.setText("1");
-		textField_7.setColumns(10);
+		tileProbabilityTextField5 = new JTextField();
+		tileProbabilityTextField5.setText( ((Integer) model.getTileProbabilities()[4]).toString() );
+		tileProbabilityTextField5.setColumns(10);
 		
 		label_5 = new JLabel("6:");
 		
-		textField_8 = new JTextField();
-		textField_8.setText("0");
-		textField_8.setColumns(10);
+		tileProbabilityTextField6 = new JTextField();
+		tileProbabilityTextField6.setText( ((Integer) model.getTileProbabilities()[5]).toString() );
+		tileProbabilityTextField6.setColumns(10);
 		
 		lblMultiplierAppearenceProbabilities = new JLabel("Multiplier Probabilities");
 		lblMultiplierAppearenceProbabilities.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		label_6 = new JLabel("1:");
 		
-		textField_9 = new JTextField();
-		textField_9.setText("10");
-		textField_9.setColumns(10);
+		multiplierProbability1 = new JTextField();
+		multiplierProbability1.setText( ((Integer) model.getMultiplierProbabilities()[0]).toString() );
+		multiplierProbability1.setColumns(10);
 		
 		label_7 = new JLabel("2:");
 		
-		textField_10 = new JTextField();
-		textField_10.setText("3");
-		textField_10.setColumns(10);
+		multiplierProbability2 = new JTextField();
+		multiplierProbability2.setText( ((Integer) model.getMultiplierProbabilities()[1]).toString() );
+		multiplierProbability2.setColumns(10);
 		
 		label_8 = new JLabel("3:");
 		
-		textField_11 = new JTextField();
-		textField_11.setText("1");
-		textField_11.setColumns(10);
+		multiplierProbability3 = new JTextField();
+		multiplierProbability3.setText( ((Integer) model.getMultiplierProbabilities()[2]).toString() );
+		multiplierProbability3.setColumns(10);
 		
 		lblMoveLimit = new JLabel("Move Limit");
 		lblMoveLimit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		textField_12 = new JTextField();
-		textField_12.setText("100");
-		textField_12.setColumns(10);
+		moveLimitTextField = new JTextField();
+		moveLimitTextField.setText( ((Integer) model.getMovesAllowed()).toString() );
+		moveLimitTextField.setColumns(10);
 		
 		lblTimeLimit = new JLabel("Time Limit (seconds)");
 		lblTimeLimit.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		textField_13 = new JTextField();
-		textField_13.setText("100");
-		textField_13.setColumns(10);
+		timeLimitTextField = new JTextField();
+		timeLimitTextField.setText( ((Integer) model.getTimeAllowed()).toString() );
+		timeLimitTextField.setColumns(10);
 		
 		lblStarLevels = new JLabel("Star Levels (points)");
 		lblStarLevels.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		lblOneStar = new JLabel("One star:");
 		
-		textField_14 = new JTextField();
-		textField_14.setText("100");
-		textField_14.setColumns(10);
+		starLevelTextField1 = new JTextField();
+		starLevelTextField1.setText( ((Integer) model.getStarMilestones()[0]).toString() );
+		starLevelTextField1.setColumns(10);
 		
 		lblTwoStars = new JLabel("Two stars:");
 		
-		textField_15 = new JTextField();
-		textField_15.setText("200");
-		textField_15.setColumns(10);
+		starLevelTextField2 = new JTextField();
+		starLevelTextField2.setText( ((Integer) model.getStarMilestones()[1]).toString() );
+		starLevelTextField2.setColumns(10);
 		
 		lblThreeStars = new JLabel("Three stars:");
 		
-		textField_16 = new JTextField();
-		textField_16.setText("300");
-		textField_16.setColumns(10);
+		starLevelTextField3 = new JTextField();
+		starLevelTextField3.setText( ((Integer) model.getStarMilestones()[2]).toString() );
+		starLevelTextField3.setColumns(10);
+		
+		JButton btnApply = new JButton("Apply");
+		btnApply.addMouseListener(new PropertiesMenuPanelController(model, app, this));
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField_13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(timeLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblStarLevels, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
@@ -196,74 +212,77 @@ public class PropertiesMenuPanel extends JPanel {
 								.addComponent(lblThreeStars, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField_14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(starLevelTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(starLevelTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(starLevelTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(91))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblTileAppearenceProbabilities, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblTileAppearenceProbabilities, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_6, 0, 0, Short.MAX_VALUE))
+											.addComponent(tileProbabilityTextField4, 0, 0, Short.MAX_VALUE))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(label)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))
+											.addComponent(tileProbabilityTextField1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(label_1)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+											.addComponent(tileProbabilityTextField2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(label_4)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_7, 0, 0, Short.MAX_VALUE)))
+											.addComponent(tileProbabilityTextField5, 0, 0, Short.MAX_VALUE)))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(label_2)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+											.addComponent(tileProbabilityTextField3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(label_5)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(textField_8, 0, 0, Short.MAX_VALUE))))
-								.addComponent(lblOfSpecial, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblMultiplierAppearenceProbabilities, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblLevelType, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(tileProbabilityTextField6, 0, 0, Short.MAX_VALUE))))
+								.addComponent(lblOfSpecial, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+								.addComponent(lblMultiplierAppearenceProbabilities, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+								.addComponent(lblLevelType, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+									.addComponent(multiplierProbability1, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+									.addComponent(multiplierProbability2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textField_11, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblMoveLimit, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-								.addComponent(textField_12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblTimeLimit, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(multiplierProbability3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblMoveLimit, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+								.addComponent(moveLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblTimeLimit, GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(lblMove_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblMove_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblMove, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+										.addComponent(clearSpeicalLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(swapSpecialLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(rearrangeSpecialLabel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addComponent(clearSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(swapSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(rearrangeSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 									.addGap(67)))
-							.addGap(109))))
+							.addGap(109))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnApply)
+							.addContainerGap(351, Short.MAX_VALUE))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -276,72 +295,146 @@ public class PropertiesMenuPanel extends JPanel {
 					.addComponent(lblOfSpecial, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMove)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(rearrangeSpecialLabel)
+						.addComponent(rearrangeSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMove_1)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(swapSpecialLabel)
+						.addComponent(swapSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblMove_2)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(clearSpeicalLabel)
+						.addComponent(clearSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(lblTileAppearenceProbabilities, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tileProbabilityTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_1)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(tileProbabilityTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_2)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(tileProbabilityTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tileProbabilityTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(label_3)
 							.addComponent(label_4))
 						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(tileProbabilityTextField5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(label_5)
-							.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(tileProbabilityTextField6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addComponent(lblMultiplierAppearenceProbabilities, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_6)
-						.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(multiplierProbability1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_7)
-						.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(multiplierProbability2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_8)
-						.addComponent(textField_11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(multiplierProbability3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(lblMoveLimit, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(moveLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(lblTimeLimit, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(timeLimitTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(lblStarLevels, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblOneStar)
-						.addComponent(textField_14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(starLevelTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTwoStars)
-						.addComponent(textField_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(starLevelTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblThreeStars)
-						.addComponent(textField_16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(79, Short.MAX_VALUE))
+						.addComponent(starLevelTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(btnApply)
+					.addContainerGap(192, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
+	}
+
+	public JTextField getClearSpecialTextField() {
+		return clearSpecialTextField;
+	}
+
+	public void setClearSpecialTextField(JTextField clearSpecialTextField) {
+		this.clearSpecialTextField = clearSpecialTextField;
+	}
+
+	public JTextField getRearrangeSpecialTextField() {
+		return rearrangeSpecialTextField;
+	}
+
+	public JTextField getSwapSpecialTextField() {
+		return swapSpecialTextField;
+	}
+
+	public JTextField getTileProbabilityTextField1() {
+		return tileProbabilityTextField1;
+	}
+
+	public JTextField getTileProbabilityTextField2() {
+		return tileProbabilityTextField2;
+	}
+
+	public JTextField getTileProbabilityTextField3() {
+		return tileProbabilityTextField3;
+	}
+
+	public JTextField getTileProbabilityTextField4() {
+		return tileProbabilityTextField4;
+	}
+
+	public JTextField getTileProbabilityTextField5() {
+		return tileProbabilityTextField5;
+	}
+
+	public JTextField getTileProbabilityTextField6() {
+		return tileProbabilityTextField6;
+	}
+
+	public JTextField getMultiplierProbability1() {
+		return multiplierProbability1;
+	}
+
+	public JTextField getMultiplierProbability2() {
+		return multiplierProbability2;
+	}
+
+	public JTextField getMultiplierProbability3() {
+		return multiplierProbability3;
+	}
+
+	public JTextField getMoveLimitTextField() {
+		return moveLimitTextField;
+	}
+
+	public JTextField getTimeLimitTextField() {
+		return timeLimitTextField;
+	}
+
+	public JTextField getStarLevelTextField1() {
+		return starLevelTextField1;
+	}
+
+	public JTextField getStarLevelTextField2() {
+		return starLevelTextField2;
+	}
+
+	public JTextField getStarLevelTextField3() {
+		return starLevelTextField3;
 	}
 
 	public void PaintComponent(Graphics g){
