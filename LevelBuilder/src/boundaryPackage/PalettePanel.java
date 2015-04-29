@@ -13,13 +13,22 @@ import java.awt.Font;
 
 import javax.swing.Icon;
 
+import controllerPackage.TileModifierController;
+import entityPackage.LevelModel;
+import entityPackage.MultiplierModifier;
+import entityPackage.ValueModifier;
+
 public class PalettePanel extends JPanel {
 
+	LevelEditorPanel lep;
+	LevelModel lm;
+	
 	/**
 	 * Create the panel.
 	 */
-	public PalettePanel() {
-		
+	public PalettePanel(LevelEditorPanel lep, LevelModel lm) {
+		this.lep = lep;
+		this.lm = lm;
 		this.setBackground(Color.GRAY);
 		
 		JLabel lblNewLabel = new JLabel("Tile Modifiers");
@@ -46,6 +55,20 @@ public class PalettePanel extends JPanel {
 		JLabel label_BlockedTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BlockedTile.png")));
 		
 		JLabel label_MysteryTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png")));
+		
+		label_1Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(1),this));
+		label_2Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(2),this));
+		label_3Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(3),this));
+		label_4Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(4),this));
+		label_5Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(5),this));
+		label_6Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(6),this));
+		label_1Mult.addMouseListener(new TileModifierController(lm,new MultiplierModifier(1),this));
+		label_2Mult.addMouseListener(new TileModifierController(lm,new MultiplierModifier(2),this));
+		label_3Mult.addMouseListener(new TileModifierController(lm,new MultiplierModifier(3),this));
+		label_BlockedTile.addMouseListener(new TileModifierController(lm,new ValueModifier(-1),this));
+		label_MysteryTile.addMouseListener(new TileModifierController(lm, new ValueModifier(0),this));
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
