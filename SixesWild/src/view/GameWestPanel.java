@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import controller.RestartLevelController;
 import model.Level;
 
 public class GameWestPanel extends JPanel {
@@ -26,7 +27,7 @@ public class GameWestPanel extends JPanel {
 	
 	Level l;
 	
-	public GameWestPanel(Level l) {
+	public GameWestPanel(Level l, LevelView parent) {
 		this.l = l;
 
 		bar1 = new JProgressBar();
@@ -41,13 +42,23 @@ public class GameWestPanel extends JPanel {
 		m1 = l.getMilestones()[1] - m0;
 		m2 = l.getMilestones()[2] - m1 - m0;
 		int bar_height = m0 + m1 + m2;
+		if(bar_height == 0) {
+			m0 = 1;
+			m1 = 1;
+			m2 = 1;
+			bar_height = 3;
+		}
 		
 		bar1.setPreferredSize(new Dimension(15, m0 * total_height / bar_height)); 
 		bar2.setPreferredSize(new Dimension(15, m1 * total_height / bar_height)); 
 		bar3.setPreferredSize(new Dimension(15, m2 * total_height / bar_height)); 
+		
+		
 
 		
 		restart = new JButton("<html><center>Restart<br>Level<center></html>");
+		restart.addMouseListener(new RestartLevelController(l, parent));
+		restart.addMouseMotionListener(new RestartLevelController(l, parent));
 
 		bar1.setOrientation(SwingConstants.VERTICAL);
 		bar2.setOrientation(SwingConstants.VERTICAL);
