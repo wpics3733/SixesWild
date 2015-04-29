@@ -51,7 +51,7 @@ public class LevelEditorPanel extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		JPanel panel_1 = new PalettePanel();
+		JPanel panel_1 = new PalettePanel(this, model);
 		panel_1.setBackground(Color.WHITE);
 		//JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
 		JButton btnQuit = new JButton("Quit");
