@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controller.AchievementPanelController;
 import controller.PastLevelViewController;
 import controller.ShowCreditController;
 import controller.QuitController;
@@ -37,6 +38,7 @@ public class MainMenuView extends JPanel {
 		this.quit = new JButton("Quit");
 		
 		this.levelsButton.addMouseListener(new PastLevelViewController(a));
+		this.achievementsButton.addMouseListener(new AchievementPanelController(a));
 		this.creditsButton.addMouseListener(new ShowCreditController(a));
 		this.quit.addMouseListener(new QuitController(a));
 		

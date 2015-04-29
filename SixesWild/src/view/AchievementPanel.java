@@ -1,11 +1,19 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import java.util.Set;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import achievement.Achievement;
+import achievement.LoadedAchievement;
 import controller.ReturnToMenuController;
 
 /**
@@ -18,6 +26,8 @@ public class AchievementPanel extends JPanel {
 
 	public AchievementPanel(Application parent) {
 		super(new BorderLayout(0, 0));
+		this.setBackground(new Color(249,246,242));
+		this.setPreferredSize(new Dimension(1024, 768));
 		
 		// Panel for the left side
 		JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT,23,12));
@@ -26,11 +36,36 @@ public class AchievementPanel extends JPanel {
 		left.add(back);
 		
 		// Grid for the achievements
-		JPanel grid = new JPanel(new GridLayout(3,5,5,5));
+		JPanel grid = new JPanel(new GridLayout(5,5,5,5));
 		
-		// do things with the grid
+		LoadedAchievement la = new LoadedAchievement();
 		
-		this.add(left,BorderLayout.NORTH);
-		this.add(grid, BorderLayout.CENTER);
+		Set<Achievement> list = Achievement.getList();
+		for (Achievement a: list) {
+			JLabel label = new JLabel(a.getName());
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setPreferredSize(new Dimension(80, 80));
+			label.setOpaque(true);
+			// Unlocked achievements will be lighter
+			if (a.isUnlocked()) { label.setBackground(Color.LIGHT_GRAY); }
+			else { label.setBackground(new Color(110, 110, 110));; }
+			grid.add(label);
+		}
+		
+		// Just for testing
+		for (int i=1; i<25; i++) {
+			JLabel label2 = new JLabel("test" + i);
+			label2.setHorizontalAlignment(SwingConstants.CENTER);
+			label2.setPreferredSize(new Dimension(80, 80));
+			label2.setOpaque(true);
+			label2.setBackground(new Color(110, 110, 110));
+			grid.add(label2);
+		}
+		
+		JPanel gridContainer = new JPanel(new FlowLayout());
+		gridContainer.add(grid);
+		
+		this.add(left,BorderLayout.WEST);
+		this.add(gridContainer, BorderLayout.CENTER);
 	}
 }

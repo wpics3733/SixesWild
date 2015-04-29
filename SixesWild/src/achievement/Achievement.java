@@ -12,26 +12,27 @@ import java.util.Set;
 public abstract class Achievement {
 	
 	// Whether this achievement has been completed already
-	private boolean unlocked = false;
+	boolean unlocked = false;
 	
 	// A secret achievement will not show up in the achievements menu
-	private boolean secret = false;
+	boolean secret = false;
 	
 	// The name of the acheivement
-	private String name;
+	String name;
 	
 	// A short description of the achievement
-	private String description;
+	String description;
 	
 	// An array of all the created achievements thus far
-	private Set<Achievement> list = new HashSet<Achievement>();
+	private static Set<Achievement> list = new HashSet<Achievement>();
 	
-	private Set<Achievement> secretList = new HashSet<Achievement>();
+	private static Set<Achievement> secretList = new HashSet<Achievement>();
 	
 	// We want to keep every new Achievement in the list
-	protected Achievement() {
-		if(this.secret) { secretList.add(this); }
-		else { list.add(this); }
+	
+	public static void addToSet(Achievement a) {
+		if(a.secret) { secretList.add(a); }
+		else { list.add(a); }
 	}
 	
 	/**
@@ -46,5 +47,25 @@ public abstract class Achievement {
 	 */
 	public String getDescription() { return this.description; }
 	
-	public boolean unlocked() { return this.unlocked == true; }
+	/**
+	 * Return whether this achievement has been unlocked
+	 * @return
+	 */
+	public boolean isUnlocked() { return this.unlocked; }
+	
+	/**
+	 * Return an iterable of the list of achievements
+	 * @return
+	 */
+	public static Set<Achievement> getList() {
+		return new HashSet<Achievement>(list);
+	}
+	
+	/**
+	 * Return an iterable of the secret list
+	 * @return
+	 */
+	public static Iterable<Achievement> getSecretList() {
+		return new HashSet<Achievement>(secretList);
+	}
 }

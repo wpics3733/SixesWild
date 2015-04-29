@@ -1,5 +1,8 @@
 package achievement;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import model.Level;
 
 /**
@@ -8,10 +11,28 @@ import model.Level;
  *
  */
 public abstract class IOnLevelAchievement extends Achievement {
-	/** 
-	 * Contructor for subclasses.
+	
+	// A list of all the on level achievments for validation
+	private static Set<IOnLevelAchievement> list = new HashSet<IOnLevelAchievement>();
+	
+	// Add the achievment to this list and to the list of all achievments
+	public static void addToSet(IOnLevelAchievement a) {
+		list.add(a);
+		Achievement.addToSet(a);
+	}
+	
+	/**
+	 * Checks all on move achievements that have not yet been unlocked
+	 * to see if this move unlocked it
+	 * @param move
 	 */
-	protected IOnLevelAchievement() { super(); }
+	public void checkAllAchievements(Level level) {
+		for (IOnLevelAchievement a : list) {
+			if (!a.isUnlocked()) {
+				if (a.unlocked(level)) { a.unlocked = true; }
+			}
+		}
+	}
 	
 	/**
 	 * Each Achievement knows whether or not is has been satisfied.
