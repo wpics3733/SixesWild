@@ -33,19 +33,25 @@ public class LevelView extends JPanel {
 		super();
 		this.parent = parent;
 		this.l = l;
+		this.setLayout(new BorderLayout());
+
 		this.bp = new BoardPanel(this);
-		this.controller = new MakeUserMoveController(l, this);
-		bp.addMouseListener(controller);
-		bp.addMouseMotionListener(controller);
-		this.tbp = new TopBarPanel(l, parent);
+		this.add(bp, BorderLayout.CENTER);
+
 		this.sideWord = new JLabel("<html><center>S<br>i<br>x<br>e<br>s<br> <br>W<br>i<br>l<br>d<br><center></html>");
-		this.westPanel = new GameWestPanel(l);
-		JPanel eastPanel = new JPanel();
-		
+		sideWord.setFont(new Font("Sans", Font.BOLD, 30));
+		this.add(sideWord, BorderLayout.EAST);
+
+		this.westPanel = new GameWestPanel(l, this);
+		this.add(westPanel, BorderLayout.WEST);
+
+		this.tbp = new TopBarPanel(l, parent);
 		this.tbp.getRearrangeButton().addMouseListener(new RearrangeBoardController(l, this));
 		this.tbp.getSwapButton().addMouseListener(new InitiateSwapMoveController(l, this));
 		this.tbp.getClearButton().addMouseListener(new InitiateClearMoveController(l, this));
+		this.add(tbp, BorderLayout.NORTH);
 
+		this.eastPanel = new JPanel();
 		GroupLayout eastLayout = new GroupLayout(eastPanel);
 		eastLayout.setAutoCreateContainerGaps(true);
 		
@@ -60,19 +66,17 @@ public class LevelView extends JPanel {
 						.addComponent(sideWord, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE, Short.MAX_VALUE))
 				);
 		eastPanel.setLayout(eastLayout);
-		sideWord.setFont(new Font("Sans", Font.BOLD, 30));
-
-		this.setLayout(new BorderLayout());
-		this.add(bp, BorderLayout.CENTER);
-		this.add(tbp, BorderLayout.NORTH);
 		this.add(eastPanel, BorderLayout.EAST);
-		this.add(westPanel, BorderLayout.WEST);
+
+		this.changeController(new MakeUserMoveController(l, this));
 
 	}
 	
 	public void changeController(MouseInputListener controller) {
-		this.bp.removeMouseListener(this.controller);
-		this.bp.removeMouseMotionListener(this.controller);
+		if(controller != null) {
+			this.bp.removeMouseListener(this.controller);
+			this.bp.removeMouseMotionListener(this.controller);
+		}
 		this.controller = controller;
 		this.bp.addMouseListener(controller);
 		this.bp.addMouseMotionListener(controller);
@@ -100,6 +104,12 @@ public class LevelView extends JPanel {
 			System.out.println("You have finished the level, but not passed, try again");
 		}
 		this.parent.changeView(new MainMenuView(parent));
+	}
+
+	public void restart() {
+		l.restart();
+		this.parent.changeView(new LevelView(l, parent));
+
 	}
 	
 }

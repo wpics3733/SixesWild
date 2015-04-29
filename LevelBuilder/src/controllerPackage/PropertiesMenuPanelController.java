@@ -26,14 +26,12 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	@Override
 	public void mousePressed(MouseEvent me) {
 		
-		/*
+		
 		// Validate the user input first, and return if something is invalid
 		if (!validate()) {
 			return;
 		}
-		*/
-		validate();
-		
+				
 		model.setMovesAllowed(Integer.parseInt(panel.getMoveLimitTextField().getText()));
 		
 		model.setMultiplierProbabilities(
@@ -76,9 +74,20 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	}
 	
 	private boolean validateStarMilestones() {
-		int starLevel1 = Integer.parseInt(panel.getStarLevelTextField1().getText());
-		int starLevel2 = Integer.parseInt(panel.getStarLevelTextField2().getText());
-		int starLevel3 = Integer.parseInt(panel.getStarLevelTextField3().getText());
+		// Initialize the integers to anything so that Eclipse does not complain
+		int starLevel1 = 0, starLevel2 = 0, starLevel3 = 0;
+		
+		try {
+			starLevel1 = Integer.parseInt(panel.getStarLevelTextField1().getText()); 
+			starLevel2 = Integer.parseInt(panel.getStarLevelTextField2().getText());
+			starLevel3 = Integer.parseInt(panel.getStarLevelTextField3().getText()); }
+		
+		catch(NumberFormatException e) { 
+			System.err.println("Invalid input. Please input an integer value.");
+			return false;
+			
+		}
+		
 		
 		if ( !(starLevel3 > starLevel2 && starLevel2 > starLevel1) ) {
 			System.err.println("Star milestone requirements must be increasing.");

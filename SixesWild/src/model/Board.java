@@ -16,10 +16,16 @@ public class Board {
 		for(int i = 0; i < 6; i++) {
 			tile_ratio_sum += tile_ratios[i];
 		}
+		if( tile_ratio_sum == 0) {
+			for(int i = 0; i < 6; i++) {
+				tile_ratios[i] = 1;
+			}
+			tile_ratio_sum = 6;
+		}
 		tiles = new TileContainer[w][h];
 		for(int i = 0; i < w; i++){
 			for(int j = 0; j < h; j++){
-				int tileNum = l.getBoardVals()[w][h];
+				int tileNum = l.getBoardVals()[i][j];
 				// TileNum of 0 means that the tile was not set explicitly, lets generate one randomly
 				if(tileNum == 0) {
 					tiles[i][j] = new TileContainer(getRandomTile(), i, j);
