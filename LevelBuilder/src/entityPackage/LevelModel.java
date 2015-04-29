@@ -21,7 +21,7 @@ public class LevelModel {
 		this.board = new Tile[9][9];
 		
 		System.out.println("LevelModel::Initializing the board with tiles");
-		System.out.print("LevelModel::");
+		System.out.print("LevelModel::The following tiles have been generated: ");
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				this.board[j][i] = new Tile(j, i);
@@ -30,11 +30,49 @@ public class LevelModel {
 		}
 		System.out.println();
 		
-		//this.selectedTile = new Tile();
+		// Initially, there is no selected tile
 		this.selectedTile = null;
+		
+		// Initialize array sizes for constructor
+		this.starMilestones = new int[3];
+		this.specialMovesAllowed = new int[3];
+		this.multiplierProbabilities = new int[3];
+		this.tileProbabilities = new int[6];
+		
+		
+		// Set default values for attributes
+		
+		// starMileStones
+		this.starMilestones[0] = 100;
+		this.starMilestones[1] = 200;
+		this.starMilestones[2] = 300;
+		
+		// specialMovesAllowed
+		for (int i = 0; i < specialMovesAllowed.length; i++) {
+			this.specialMovesAllowed[i] = 1;
+		}
+		
+		// multiplierProbabilities
+		this.multiplierProbabilities[0] = 70;
+		this.multiplierProbabilities[1] = 20;
+		this.multiplierProbabilities[2] = 10;
+		
+		// tileProbabilities
+		for (int i = 0; i < this.tileProbabilities.length; i++) {
+			tileProbabilities[i] = 15;
+		}
+		tileProbabilities[0] = 25;
+		
+		// movesAllowed
+		this.movesAllowed = 100;
+		
+		// timeAllowed
+		this.timeAllowed = 100;
 		
 	}
 	
+	
+
 	public LevelModel(LevelState l) {
 		this.mode = l.getLevelType();
 		this.movesAllowed = l.getMoveLimit();
@@ -76,4 +114,71 @@ public class LevelModel {
 	public Tile getSelectedTile() {
 		return this.selectedTile;
 	}
+	
+	
+	
+	// Getters for the model's attributes	
+	public int[] getStarMilestones() {
+		return starMilestones;
+	}
+
+	public int getMovesAllowed() {
+		return movesAllowed;
+	}
+
+	public int[] getSpecialMovesAllowed() {
+		return specialMovesAllowed;
+	}
+
+	public int getTimeAllowed() {
+		return timeAllowed;
+	}
+
+	public int[] getMultiplierProbabilities() {
+		return multiplierProbabilities;
+	}
+
+	public int[] getTileProbabilities() {
+		return tileProbabilities;
+	}
+
+
+
+	// Setters for the model's attributes
+	public void setStarMilestones(int one, int two, int three) {
+		this.starMilestones[0] = one;
+		this.starMilestones[1] = two;
+		this.starMilestones[2] = three;
+	}
+
+	public void setMovesAllowed(int movesAllowed) {
+		this.movesAllowed = movesAllowed;
+	}
+
+	public void setSpecialMovesAllowed(int rearrange, int swap, int clear) {
+		this.specialMovesAllowed[0] = rearrange;
+		this.specialMovesAllowed[1] = swap;
+		this.specialMovesAllowed[2] = clear;
+	}
+
+	public void setTimeAllowed(int timeAllowed) {
+		this.timeAllowed = timeAllowed;
+	}
+
+	public void setMultiplierProbabilities(int one, int two, int three) {
+		this.multiplierProbabilities[0] = one;
+		this.multiplierProbabilities[1] = two;
+		this.multiplierProbabilities[2] = three;
+	}
+
+	public void setTileProbabilities(int one, int two, int three, int four, int five, int six) {
+		this.tileProbabilities[0] = one;
+		this.tileProbabilities[1] = two;
+		this.tileProbabilities[2] = three;
+		this.tileProbabilities[3] = four;
+		this.tileProbabilities[4] = five;
+		this.tileProbabilities[5] = six;
+
+	}
+
 }
