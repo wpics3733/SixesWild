@@ -20,6 +20,6 @@ public class TileModifierController extends MouseAdapter{
 	
 	@Override
 	public void mousePressed(MouseEvent me) {
-		
+		lm.setTileModifier(itm);
 	}
 }
