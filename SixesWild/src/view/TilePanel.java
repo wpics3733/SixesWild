@@ -31,6 +31,9 @@ public class TilePanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		if(this.tile.empty()) {
+			this.num.setText("");
+		}
 		num.setText(Integer.toString(tile.getTile().getNum()));
 		if(tile.used()) {
 			this.setBackground(Color.YELLOW);
