@@ -181,4 +181,9 @@ public class LevelModel {
 
 	}
 
+
+	public void setTileModifier(ITileModifier itm) {
+		this.selectedModifier = itm;
+	}
+
 }

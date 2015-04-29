@@ -12,6 +12,7 @@ public class TileContainer {
 		this.x = x;
 		this.y = y;
 		this.empty = false;
+		this.marked = false;
 	}
 	
 	public Tile getTile() {
