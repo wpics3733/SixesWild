@@ -39,7 +39,9 @@ public class SwapMove implements IMove {
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
+		if(tc_1 != null && tc_2 != null) {
+			return true;
+		}
 		return false;
 	}
 

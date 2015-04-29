@@ -83,15 +83,9 @@ public class Board {
 				dropTile(which_col, i, i-1);
 			}
 		}
-		for(int i = 0; i < h; i++) {
-			if(col[i].empty) {
-				System.out.println("Still an empty square at " + i + " after settling");
-			}
-		}
 	}
 	
 	private void dropTile(int col, int drop_dest, int drop_source) {
-		System.out.println("Dropping " + drop_source + " into " + drop_dest + " in column " + col);
 		if(drop_source < 0) {
 			tiles[col][drop_dest].setTile(this.getRandomTile());
 			return;

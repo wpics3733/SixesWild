@@ -30,18 +30,16 @@ public class MakeSwapMoveController implements MouseInputListener {
 	public void mouseClicked(MouseEvent arg0) {
 		Component c = bp.getComponentAt(arg0.getPoint());
 		if(c instanceof TilePanel) {
-			if(move.addTile( ((TilePanel)c).getTile() )) {
-				((TilePanel)c).repaint();
-				tiles_selected++;
-				if(tiles_selected == 2) {
-					move.pushMove(l);
-					if(l.isFinished()) {
-						this.lv.endLevel();
-					}
-					
-					lv.repaint();
-					this.lv.changeController((MouseInputListener)new MakeUserMoveController(l, lv));
+			move.addTile( ((TilePanel)c).getTile());
+			((TilePanel)c).repaint();
+			if(move.isValid()) {
+				move.pushMove(l);
+				if(l.isFinished()) {
+					this.lv.endLevel();
+					return;
 				}
+				lv.repaint();
+				lv.changeController((MouseInputListener)new MakeUserMoveController(l, lv));
 			}
 		} 
 	}
