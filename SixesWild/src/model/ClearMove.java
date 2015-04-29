@@ -16,6 +16,7 @@ public class ClearMove implements IMove {
 		tile.clearTile();
 		l.useSpecial(Level.CLEAR);
 		l.getBoard().settleTiles();
+		l.react(this);
 		
 	}
 

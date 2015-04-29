@@ -9,6 +9,7 @@ public abstract class Level {
 	Board b;
 	IMove activeMove;
 	int movesRemaining;
+	boolean finished;
 	
 	public static final int REARRANGE = 0;
 	public static final int SWAP = 1;
@@ -30,7 +31,7 @@ public abstract class Level {
 	public Level(Board b) {
 		this.b = b;
 		this.activeMove = null;
-		this.movesRemaining = 99;
+		this.movesRemaining = 10;
 		this.specials = new int[3];
 		this.specials[REARRANGE] = 5;
 		this.specials[SWAP] = 5;
@@ -47,6 +48,7 @@ public abstract class Level {
 		this.specials = l.getSpecialMoves();
 		this.milestones = l.getStarScores();
 		this.tileRatios = l.getTileProbabilities();
+		this.finished = false;
 	}
 	
 	public Board getBoard() {
@@ -98,17 +100,12 @@ public abstract class Level {
 	}
 	
 		
+	// This is where we put level specific reactions to moves
+	// For example, an elimination move marks all of the tiles used
 	public void react(IMove move) {
-		if(this.isFinished()) {
-			if(this.getScore() >= this.getMilestones()[0]) {
-				System.out.println("Passed the level, your data should be saved to disk now");
-				return;
-			} else {
-				System.out.println("Level has finished, but you did not achieve one star, try again");
-				return;
-			}
-		}
 	}
+
 	public abstract boolean isFinished();
+	public abstract boolean hasPassed();
 	public abstract String typeString();
 }

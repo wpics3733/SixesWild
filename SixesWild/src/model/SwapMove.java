@@ -32,8 +32,7 @@ public class SwapMove implements IMove {
 		l.useSpecial(Level.SWAP);
 		tc_1.setUsed(false);
 		tc_2.setUsed(false);
-		tc_1 = null;
-		tc_2 = null;
+		l.react(this);
 		// TODO Auto-generated method stub
 
 	}

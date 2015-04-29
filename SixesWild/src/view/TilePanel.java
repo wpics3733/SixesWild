@@ -34,6 +34,8 @@ public class TilePanel extends JPanel {
 		num.setText(Integer.toString(tile.getTile().getNum()));
 		if(tile.used()) {
 			this.setBackground(Color.YELLOW);
+		} else if (tile.getMarked()) {
+			this.setBackground(new Color(130, 170, 130));
 		} else {
 			this.setBackground(new Color(112,147,113));
 		}

@@ -58,4 +58,12 @@ public class TileContainer {
 	public boolean used() {
 		return used;
 	}
+	
+	public void setMarked(boolean marked) {
+		this.marked = marked;
+	}
+	
+	public boolean getMarked() {
+		return marked;
+	}
 }

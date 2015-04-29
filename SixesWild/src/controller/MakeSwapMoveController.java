@@ -35,6 +35,10 @@ public class MakeSwapMoveController implements MouseInputListener {
 				tiles_selected++;
 				if(tiles_selected == 2) {
 					move.pushMove(l);
+					if(l.isFinished()) {
+						this.lv.endLevel();
+					}
+					
 					lv.repaint();
 					this.lv.changeController((MouseInputListener)new MakeUserMoveController(l, lv));
 				}

@@ -16,4 +16,12 @@ public class PuzzleLevel extends Level {
 		return "Puzzle";
 	}
 
+	@Override
+	public boolean hasPassed() {
+		if(this.getScore() < this.getMilestones()[0]) {
+			return false;
+		}
+		return true;
+	}
+
 }

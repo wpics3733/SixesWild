@@ -40,7 +40,6 @@ public class MakeUserMoveController implements MouseInputListener {
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		this.um = null;
-		// TODO Auto-generated method stub
 
 	}
 
@@ -59,8 +58,12 @@ public class MakeUserMoveController implements MouseInputListener {
 			um.pushMove(l);
 			l.getBoard().settleTiles();
 		}
-		um.finishMove();
-			lv.repaint();
+		um.finishMove(l);
+		if(l.isFinished()) {
+			lv.endLevel();
+			return;
+		}
+		lv.repaint();
 		this.um = null;
 	}
 
@@ -75,8 +78,6 @@ public class MakeUserMoveController implements MouseInputListener {
 				((TilePanel)c).repaint();
 			}
 		} 
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

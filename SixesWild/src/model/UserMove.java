@@ -64,16 +64,14 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 
 	@Override
 	public void pushMove(Level l) {
-		System.out.println("Pushing a user move to the level");
 		for(TileContainer tc: tiles) {
 			tc.clearTile();
 		}
-		if(this.isValid()) {
-			l.setScore(l.getScore() + this.getScore());
-			l.subtractMove();
-		}
+		l.react(this);
+		l.setScore(l.getScore() + this.getScore());
 	}
-	public void finishMove() {
+	public void finishMove(Level l) {
+		l.subtractMove();
 		for(TileContainer tc: tiles) {
 			tc.setUsed(false);
 			tc.clearTile();
