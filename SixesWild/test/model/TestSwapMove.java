@@ -34,7 +34,7 @@ public class TestSwapMove extends TestCase {
 	}
 
 	public void test() {
-		TileContainer[][] tiles = b.getTiles();
+		TileContainer[][] tiles = b.getTileContainers();
 		SwapMove move = new SwapMove();
 		ArrayList<TileContainer> moveTiles = move.getTiles();
 		assertEquals(moveTiles.size(), 0);

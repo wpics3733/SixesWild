@@ -8,6 +8,9 @@ public class TileContainer {
 	boolean marked;
 	
 	public TileContainer(Tile t, int x, int y) {
+		if(t == null) {
+			throw new NullPointerException("TileContainer() received a null pointer");
+		}
 		this.t = t;
 		this.x = x;
 		this.y = y;

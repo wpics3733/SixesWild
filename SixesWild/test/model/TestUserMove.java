@@ -31,7 +31,7 @@ public class TestUserMove extends TestCase {
 	}
 	
 	public void test() {
-		TileContainer[][] tiles = b.getTiles();
+		TileContainer[][] tiles = b.getTileContainers();
 		UserMove move = new UserMove();
 		ArrayList<TileContainer> moveTiles = move.getTiles();
 		assertEquals(moveTiles.size(), 0);

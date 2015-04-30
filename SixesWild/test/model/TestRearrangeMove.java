@@ -30,7 +30,7 @@ public class TestRearrangeMove extends TestCase {
 	
 	public void test() {
 		RearrangeMove move = new RearrangeMove();
-		TileContainer[][] tiles = b.getTiles();
+		TileContainer[][] tiles = b.getTileContainers();
 		assertFalse(move.addTile(tiles[0][0]));
 		assertTrue(move.isValid());
 		assertNull(move.getTiles());

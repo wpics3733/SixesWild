@@ -28,7 +28,7 @@ public class BoardPanel extends JPanel {
 		int w = b.getW();
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
-				tiles[i][j] = new TilePanel(b.getTiles()[i][j]);
+				tiles[i][j] = new TilePanel(b.getTileContainers()[i][j]);
 			}
 		}
 				

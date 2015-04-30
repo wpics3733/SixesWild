@@ -34,7 +34,7 @@ public class TestClearMove extends TestCase {
 	}
 
 	public void test() {
-		TileContainer[][] tiles = b.getTiles();
+		TileContainer[][] tiles = b.getTileContainers();
 		ClearMove move = new ClearMove();
 		ArrayList<TileContainer> moveTiles = move.getTiles();
 		assertEquals(moveTiles.size(), 0);

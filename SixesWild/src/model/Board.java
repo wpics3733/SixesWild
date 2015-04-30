@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * The model that represents the board.
+ * Boards are a w*h grid of TileContainers
+ * Boards also keep track of the tile probabilies,
+ * and can generate a random tile given these probabilities
+ * @author jesse
+ *
+ */
 public class Board {
 	TileContainer tiles[][];
 	int h;
@@ -35,19 +43,33 @@ public class Board {
 			}
 		}
 	}
-	
+	/**
+	 * @return the height of the board
+	 */
 	public int getH() {
 		return h;
 	}
 	
+	/**
+	 * @return the width of the board
+	 */
 	public int getW() {
 		return w;
 	}
 	
-	public TileContainer[][] getTiles() {
+	/**
+	 * 
+	 * @return a two dimensional array of the TileContainers in the board
+	 */
+	public TileContainer[][] getTileContainers() {
 		return tiles;
 	}
 	
+	/**
+	 * Generates a random tile given the tile probabilities
+	 * this is used when a new tile falls from the top of the level
+	 * @return a new random tile
+	 */
 	public Tile getRandomTile() {
 		int rand = (int)(Math.random() * tile_ratio_sum) + 1;
 		for(int i = 0; i < 6; i++) {
@@ -59,6 +81,16 @@ public class Board {
 		return new Tile(-1, 1);
 	}
 	
+	/**
+	 * After a move, some tiles may have been used up
+	 * or cleared.
+	 * Calling this method lets gravity fill these empty
+	 * slots by dropping the higher tiles into them.
+	 * When a new tile is needed to fall from he top,
+	 * the board generates a new random tile to fill the slot
+	 * 
+	 * After this method is called, no TileContainer should be empty
+	 */
 	public void settleTiles() {
 		for(int i = 0; i < w; i++) {
 			settleCol(i);
@@ -88,6 +120,5 @@ public class Board {
 		}
 		
 		dropTile(col, drop_dest, drop_source - 1);
-		
 	}
 }
