@@ -27,8 +27,7 @@ public class RearrangeMove implements IMove {
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 	public ArrayList<TileContainer> getTiles() {

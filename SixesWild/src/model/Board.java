@@ -36,22 +36,6 @@ public class Board {
 		}
 	}
 	
-	public Board(int w, int h) {
-		this.h = h;
-		this.w = w;
-		tile_ratios = new int[6];
-		for( int i = 0; i < 6; i++) {
-			tile_ratios[i] = 1;
-			tile_ratio_sum += tile_ratios[i];
-		}
-		tiles = new TileContainer[w][h];
-		for(int i = 0; i < w; i++) {
-			for(int j = 0; j < h; j++) {
-				tiles[i][j] = new TileContainer(getRandomTile(), i, j);
-			}
-		}
-	}
-	
 	public int getH() {
 		return h;
 	}
