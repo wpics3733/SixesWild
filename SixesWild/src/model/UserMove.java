@@ -45,7 +45,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	}
 
 	private int getScore() {
-		if (sum == 6) {
+		if(this.isValid()) {
 			return 10*numTiles * multiplier;
 		} else {
 			return 0;
@@ -62,15 +62,27 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		return sum == 6 && numTiles > 1;
 	}
 
+	/**
+	 * When a valid move is done, this method is called
+	 * in order to push that move to the level
+	 */
 	@Override
 	public void pushMove(Level l) {
 		for(TileContainer tc: tiles) {
 			tc.clearTile();
 		}
+		l.getBoard().settleTiles();
 		l.react(this);
 		l.setScore(l.getScore() + this.getScore());
 	}
 
+	/**
+	 * After any move, valid or invalid,
+	 * this method should be called, to reset the markings
+	 * on the tiles, and apply any logic that takes
+	 * place after either a successful or failed move
+	 * eg. subtract a move
+	 */
 	public void finishMove(Level l) {
 		l.subtractMove();
 		for(TileContainer tc: tiles) {

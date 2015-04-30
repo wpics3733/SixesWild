@@ -1,6 +1,14 @@
 package model;
 
 public class EliminationLevel extends Level {
+	
+	public EliminationLevel(LevelState state) {
+		super(state);
+	}
+	
+	public EliminationLevel() {
+		super();
+	}
 
 	@Override
 	public boolean isFinished() {
