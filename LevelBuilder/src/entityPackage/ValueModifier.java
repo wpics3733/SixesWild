@@ -12,7 +12,7 @@ public class ValueModifier implements ITileModifier {
 	@Override
 	public void modifyTile(Tile tile) {
 		// TODO Auto-generated method stub
-		
+		tile.setValue(value);
 	}
 
 }

@@ -13,7 +13,7 @@ public class MarkModifier implements ITileModifier {
 	@Override
 	public void modifyTile(Tile tile) {
 		// TODO Auto-generated method stub
-		
+		tile.setMark(mark);
 	}
 	
 }

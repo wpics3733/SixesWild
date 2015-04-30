@@ -12,7 +12,7 @@ public class MultiplierModifier implements ITileModifier {
 	@Override
 	public void modifyTile(Tile tile) {
 		// TODO Auto-generated method stub
-		
+		tile.setMultiplier(multiplier);
 	}
 
 }

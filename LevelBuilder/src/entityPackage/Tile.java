@@ -21,6 +21,8 @@ public class Tile {
 	public Tile(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.value = 0;
+		this.valueIsSet = false;
 		// TODO
 	}
 
@@ -42,6 +44,34 @@ public class Tile {
 	
 	public int getY() {
 		return this.y;
+	}
+
+	public void setMark(int mark) {
+		this.mark = mark;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+		this.valueIsSet = true;
+		if(value == 0){
+			this.valueIsSet = false;
+		}
+		else if(value == -1){
+			this.isBlocked = true;
+		}
+	}
+
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
+		this.isBlocked = false;
+	}
+
+	public void setBlocked(boolean isBlocked) {
+		this.isBlocked = isBlocked;
+	}
+
+	public int getValue() {
+		return value;
 	}
 	
 }

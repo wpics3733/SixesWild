@@ -180,7 +180,14 @@ public class LevelModel {
 		this.tileProbabilities[5] = six;
 
 	}
-
+	
+	public void modifyTile(int col, int row){
+		if(this.selectedModifier == null){
+			return;
+		}
+		this.selectedModifier.modifyTile(board[col][row]);
+		System.out.println(board[col][row].value);
+	}
 
 	public void setTileModifier(ITileModifier itm) {
 		this.selectedModifier = itm;

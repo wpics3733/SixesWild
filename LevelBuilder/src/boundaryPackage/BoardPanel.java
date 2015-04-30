@@ -27,6 +27,7 @@ public class BoardPanel extends JPanel {
 	private JButton tileButtons[][];
 	LevelModel model;
 	JLabel tileLabels[][];
+	Icon tileIcons[];
 	
 	/**
 	 * Create the panel.
@@ -34,9 +35,20 @@ public class BoardPanel extends JPanel {
 	public BoardPanel(LevelModel model) {
 		this.model = model;
 		
+		tileIcons = new Icon[8];
+		tileIcons[0] = new ImageIcon(this.getClass().getResource("/Images/BlockedTile.png"));
+		tileIcons[1] = new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png"));
+		tileIcons[2] = new ImageIcon(this.getClass().getResource("/Images/Number1.png"));
+		tileIcons[3] = new ImageIcon(this.getClass().getResource("/Images/Number2.png"));
+		tileIcons[4] = new ImageIcon(this.getClass().getResource("/Images/Number3.png"));
+		tileIcons[5] = new ImageIcon(this.getClass().getResource("/Images/Number4.png"));
+		tileIcons[6] = new ImageIcon(this.getClass().getResource("/Images/Number5.png"));
+		tileIcons[7] = new ImageIcon(this.getClass().getResource("/Images/Number6.png"));
+		
+		
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(new GridLayout(9, 9, 0, 0));
-		ImageIcon myIcon = new ImageIcon(this.getClass().getResource("/Images/Number3.png"));
+		ImageIcon myIcon = new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png"));
 		//JButton btnNewButton_1 = new JButton("New button");
 		//btnNewButton_1.setIcon(myIcon);
 		//add(btnNewButton_1);
@@ -114,6 +126,7 @@ public class BoardPanel extends JPanel {
 			
 			// Add the border to the new selectedTile
 			tileLabels[x][y].setBorder(BorderFactory.createLineBorder(Color.yellow, 4));
+			tileLabels[x][y].setIcon(tileIcons[selectedTile.getValue()+1]);
 		}
 	}
 	
