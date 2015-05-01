@@ -4,7 +4,7 @@ import javax.swing.JDialog;
 
 import model.Level;
 import view.Application;
-import view.EndLevelPopup;
+import view.EndLevelPanel;
 import view.LevelView;
 
 public class EndLevelController {
@@ -21,8 +21,7 @@ public class EndLevelController {
 	}
 	
 	public void run() {
-		JDialog popup = new EndLevelPopup(l, lv, a);
-		popup.setVisible(true);
+		a.changeView(new EndLevelPanel(l, lv, a));
 		//Check score
 		//Generate a popup window, telling the user they have won or lost
 			//Ask them if they want to restart to try and do better, or quit to main menu

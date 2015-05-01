@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controller.ClosePopupController;
 import controller.RestartLevelController;
 import controller.ReturnToMenuController;
 
@@ -20,18 +19,16 @@ import javax.swing.GroupLayout.Alignment;
 
 import model.Level;
 
-public class EndLevelPopup extends JDialog {
+public class EndLevelPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+
 	JButton quit, restart;
 	JLabel winMessage;
 	JLabel score;
 
-	public EndLevelPopup(Level l, LevelView lv, Application parent) {
+	public EndLevelPanel(Level l, LevelView lv, Application parent) {
 		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		if(l.getScore() >= l.getMilestones()[0]) {
 			winMessage = new JLabel("You Win");
@@ -40,7 +37,14 @@ public class EndLevelPopup extends JDialog {
 		}
 		winMessage.setFont(new Font("Sans", Font.PLAIN, 20));
 		score = new JLabel("Score: " + l.getScore());
-		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
+
+		restart = new JButton("Restart");
+		restart.addMouseListener(new RestartLevelController(lv.getLevel(), lv));
+
+		quit = new JButton("Quit");
+		quit.addMouseListener(new ReturnToMenuController(parent));
+
+		GroupLayout gl_contentPanel = new GroupLayout(this);
 		gl_contentPanel.setAutoCreateContainerGaps(true);
 		gl_contentPanel.setAutoCreateGaps(true);
 
@@ -50,7 +54,9 @@ public class EndLevelPopup extends JDialog {
 					.addContainerGap(0, Short.MAX_VALUE)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.CENTER)
 						.addComponent(winMessage)
-						.addComponent(score))
+						.addComponent(score)
+						.addComponent(restart)
+						.addComponent(quit))
 					.addContainerGap(0, Short.MAX_VALUE))
 		);
 
@@ -58,26 +64,15 @@ public class EndLevelPopup extends JDialog {
 			gl_contentPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_contentPanel.createSequentialGroup()
 					.addComponent(winMessage)
-					.addComponent(score))
+					.addComponent(score)
+						.addComponent(restart)
+						.addComponent(quit))
 		);
-		contentPanel.setLayout(gl_contentPanel);
-		this.setModal(true);
+		this.setLayout(gl_contentPanel);
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		getContentPane().add(buttonPane, BorderLayout.SOUTH);
+		this.add(buttonPane, BorderLayout.SOUTH);
 
-		restart = new JButton("Restart");
-		restart.addMouseListener(new RestartLevelController(lv.getLevel(), lv));
-		restart.addMouseListener(new ClosePopupController(this));
-		buttonPane.add(restart);
-
-		quit = new JButton("Quit");
-		quit.addMouseListener(new ReturnToMenuController(parent));
-		quit.addMouseListener(new ClosePopupController(this));
-		buttonPane.add(quit);
-		String message = lv.getLevel().getScore() >= lv.getLevel().getMilestones()[0] ? "You win" : "You failed";
-		
-		String scoreString = "Score: " + lv.getLevel().getScore();
 	}
 
 }
