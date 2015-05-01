@@ -85,7 +85,7 @@ public class LevelView extends JPanel {
 	public Level getLevel() {
 		return l;
 	}
-
+	
 	public BoardPanel getBoard() {
 		return bp;
 	}
@@ -106,10 +106,8 @@ public class LevelView extends JPanel {
 		this.parent.changeView(new MainMenuView(parent));
 	}
 
-	public void restart() {
-		l.restart();
+	public void restart(Level l) {
 		this.parent.changeView(new LevelView(l, parent));
-
 	}
 	
 }
