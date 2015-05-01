@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.MouseInputListener;
 
+import controller.EndLevelController;
 import controller.InitiateClearMoveController;
 import controller.InitiateSwapMoveController;
 import controller.MakeUserMoveController;
@@ -96,14 +97,9 @@ public class LevelView extends JPanel {
 	 * No matter what, it will then return them to the main menu
 	 */
 	public void endLevel() {
-		if(l.hasPassed()) {
-			//Should replace this with a popup menu with retry or back to main menu
-			System.out.println("You have passed the level, congratulations");
-			//Save level to disk
-		} else {
-			System.out.println("You have finished the level, but not passed, try again");
-		}
-		this.parent.changeView(new MainMenuView(parent));
+		this.setEnabled(false);
+		EndLevelController end = new EndLevelController(l, this, parent);
+		end.run();
 	}
 
 	public void restart(Level l) {
