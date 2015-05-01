@@ -59,6 +59,7 @@ public class PropertiesMenuPanel extends JPanel {
 	private JTextField starLevelTextField2;
 	private JLabel lblThreeStars;
 	private JTextField starLevelTextField3;
+	private JButton btnApply;
 
 	LevelBuilderApplication app;
 	LevelModel model;
@@ -196,7 +197,7 @@ public class PropertiesMenuPanel extends JPanel {
 		starLevelTextField3.setText( ((Integer) model.getStarMilestones()[2]).toString() );
 		starLevelTextField3.setColumns(10);
 		
-		JButton btnApply = new JButton("Apply");
+		btnApply = new JButton("Apply");
 		btnApply.addMouseListener(new PropertiesMenuPanelController(model, app, this));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -437,6 +438,11 @@ public class PropertiesMenuPanel extends JPanel {
 
 	public JTextField getStarLevelTextField3() {
 		return starLevelTextField3;
+	}
+	
+	
+	public JButton getBtnApply() {
+		return btnApply;
 	}
 
 	public JComboBox getComboBox() {

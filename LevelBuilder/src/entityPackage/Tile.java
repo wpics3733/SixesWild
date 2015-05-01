@@ -16,7 +16,7 @@ public class Tile {
 	 * @param x the x coordinate of the tile
 	 * @param y the y coordinate of the tile
 	 * 
-	 * @author Tom Finelli
+	 * @author Tom
 	 */
 	public Tile(int x, int y) {
 		this.x = x;

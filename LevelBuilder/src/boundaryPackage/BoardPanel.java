@@ -97,7 +97,7 @@ public class BoardPanel extends JPanel {
 	 * Returns the x and y coordinates of the specified JLabel as a Point.
 	 * If the specified JLabel is not found in the tileLabels array, then it returns null.
 	 * 
-	 * @author Tom Finelli
+	 * @author Tom
 	 */
 	public Point contains(JLabel label) {
 		for (int i = 0; i < 9; i++) {

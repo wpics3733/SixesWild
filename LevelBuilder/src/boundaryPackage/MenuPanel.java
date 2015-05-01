@@ -91,9 +91,6 @@ public class MenuPanel extends JPanel {
 		this.repaint();
 
 		newLevelButton.addMouseListener(new NewLevelButtonController(parent, model));
-		
-		// Set frame visible
-		//menuFrame.setVisible(true);
 	}
 	
 	
@@ -108,14 +105,14 @@ public class MenuPanel extends JPanel {
 		super.paintComponent(g);
 		
 	}
-	
-	
-	
-	/*
-	public static void main(String[] args) {
-		new MenuPanel();
-		
-		  
+
+
+	public JButton getNewLevelButton() {
+		return newLevelButton;
 	}
-	*/
+	
+	
+	
+	
+	
 }

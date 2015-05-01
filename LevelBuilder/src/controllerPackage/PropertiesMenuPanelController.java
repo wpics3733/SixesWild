@@ -48,7 +48,7 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	/** 
 	 * Validates all of the user input for the PropertiesMenuPanel.
 	 * 
-	 * @author Tom Finelli
+	 * @author Tom
 	 * @return
 	 */
 	public boolean validate() {		
