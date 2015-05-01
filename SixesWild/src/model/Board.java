@@ -34,8 +34,11 @@ public class Board {
 		for(int i = 0; i < w; i++){
 			for(int j = 0; j < h; j++){
 				int tileNum = l.getBoardVals()[i][j];
+				// TileNum of -1 means that the tile is null
+				if(tileNum == -1) {
+					tiles[i][j] = new TileContainer(null, i, j);
 				// TileNum of 0 means that the tile was not set explicitly, lets generate one randomly
-				if(tileNum == 0) {
+				} else if(tileNum == 0) {
 					tiles[i][j] = new TileContainer(getRandomTile(), i, j);
 				} else {
 					tiles[i][j] = new TileContainer(new Tile(tileNum, 1), i, j);
@@ -112,8 +115,8 @@ public class Board {
 			tiles[col][drop_dest].setTile(this.getRandomTile());
 			return;
 		}
-		
-		if(tiles[col][drop_source].empty() == false) {
+		//If the tileContainer we are trying to drop from is not null and not empty, we can drop
+		if(tiles[col][drop_source].isNull() == false && tiles[col][drop_source].empty() == false) {
 			tiles[col][drop_dest].setTile(tiles[col][drop_source].getTile());
 			tiles[col][drop_source].clearTile();
 			return;

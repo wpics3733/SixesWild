@@ -6,10 +6,13 @@ public class TileContainer {
 	boolean empty;
 	boolean used;
 	boolean marked;
+	boolean isNull;
 	
 	public TileContainer(Tile t, int x, int y) {
 		if(t == null) {
-			throw new NullPointerException("TileContainer() received a null pointer");
+			this.isNull = true;
+		} else {
+			this.isNull = false;
 		}
 		this.t = t;
 		this.x = x;
@@ -72,5 +75,9 @@ public class TileContainer {
 	
 	public boolean getMarked() {
 		return marked;
+	}
+	
+	public boolean isNull() {
+		return this.isNull;
 	}
 }

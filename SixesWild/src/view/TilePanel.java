@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -26,6 +27,7 @@ public class TilePanel extends JPanel {
 		this.setBackground(new Color(112,147,113));
 		num.setForeground(Color.WHITE);
 		num.setFont(new Font("Sans", Font.PLAIN, 26));
+		this.setPreferredSize(new Dimension(100, 100));
 	}
 	
 	public TileContainer getTile() {
