@@ -35,7 +35,7 @@ public class TileController extends MouseAdapter {
 			System.out.println("Clicked on label: " + label.getName());
 			model.setSelectedTile(point.x, point.y);
 			model.modifyTile(point.x, point.y);
-			panel.redraw();
+			panel.repaint();
 		}
 		else {
 			System.out.println("NO IT DID NOT WORK.");

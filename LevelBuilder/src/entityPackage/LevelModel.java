@@ -42,6 +42,10 @@ public class LevelModel {
 		
 		// Set default values for attributes
 		
+		
+		// mode
+		this.mode = "Puzzle";
+		
 		// starMileStones
 		this.starMilestones[0] = 100;
 		this.starMilestones[1] = 200;
@@ -141,6 +145,10 @@ public class LevelModel {
 	public int[] getTileProbabilities() {
 		return tileProbabilities;
 	}
+	
+	public String getMode() {
+		return mode;
+	}
 
 
 
@@ -179,6 +187,10 @@ public class LevelModel {
 		this.tileProbabilities[4] = five;
 		this.tileProbabilities[5] = six;
 
+	}
+	
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 	
 	public void modifyTile(int col, int row){

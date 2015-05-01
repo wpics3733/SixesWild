@@ -1,30 +1,20 @@
 package boundaryPackage;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.JButton;
-
-import controllerPackage.QuitButtonController;
 import controllerPackage.TileController;
 import entityPackage.LevelModel;
 import entityPackage.Tile;
 
 public class BoardPanel extends JPanel {
-
-	// currently unused--the layout uses JLabels, not JButtons
-	private JButton tileButtons[][];
 	LevelModel model;
 	JLabel tileLabels[][];
 	Icon tileIcons[];
@@ -53,8 +43,6 @@ public class BoardPanel extends JPanel {
 		//btnNewButton_1.setIcon(myIcon);
 		//add(btnNewButton_1);
 		
-		// currently unused--the layout uses JLabels, not JButtons
-		tileButtons = new JButton[9][9];
 		tileLabels = new JLabel[9][9];
 		
 		for(int i = 0; i < 9; i++){
@@ -78,36 +66,10 @@ public class BoardPanel extends JPanel {
 
 	}
 
-	public void PaintComponent(Graphics g){
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-	}
-
-	/**
-	 * Returns the x and y coordinates of the specified JLabel as a Point.
-	 * If the specified JLabel is not found in the tileLabels array, then it returns null.
-	 * 
-	 * @author Tom Finelli
-	 */
-	public Point contains(JLabel label) {
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (tileLabels[i][j] == label) {
-					return new Point(i, j);
-				}
-					
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 *  Redraws the BoardPanel to reflect changes in the model.
-	 *  For now, it simply updates the border for the new selectedTile.
-	 * 
-	 * @author Tom Finelli
-	 */
-	public void redraw() {
+		
 		// Ensure the border is changed properly for the new selectedTile
 		Tile selectedTile = this.model.getSelectedTile();
 		
@@ -128,6 +90,25 @@ public class BoardPanel extends JPanel {
 			tileLabels[x][y].setBorder(BorderFactory.createLineBorder(Color.yellow, 4));
 			tileLabels[x][y].setIcon(tileIcons[selectedTile.getValue()+1]);
 		}
+		
+	}
+
+	/**
+	 * Returns the x and y coordinates of the specified JLabel as a Point.
+	 * If the specified JLabel is not found in the tileLabels array, then it returns null.
+	 * 
+	 * @author Tom Finelli
+	 */
+	public Point contains(JLabel label) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (tileLabels[i][j] == label) {
+					return new Point(i, j);
+				}
+					
+			}
+		}
+		return null;
 	}
 	
 	
