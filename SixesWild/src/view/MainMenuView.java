@@ -20,7 +20,6 @@ public class MainMenuView extends JPanel {
 	
 	static final long serialVersionUID = 1;
 	JLabel titleText;
-	JButton continueButton;
 	JButton levelsButton;
 	JButton achievementsButton;
 	JButton creditsButton;
@@ -31,8 +30,7 @@ public class MainMenuView extends JPanel {
 		
 		this.titleText = new JLabel("Sixes Wild", SwingConstants.CENTER);
 		titleText.setFont(new Font("Sans", Font.PLAIN, 20));
-		this.continueButton = new JButton("Continue");
-		this.levelsButton = new JButton("View Past Levels");
+		this.levelsButton = new JButton("Levels");
 		this.achievementsButton = new JButton("Achievements");
 		this.creditsButton = new JButton("Credits");
 		this.quit = new JButton("Quit");
@@ -50,7 +48,6 @@ public class MainMenuView extends JPanel {
 					.addContainerGap(0, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
 						.addComponent(titleText)
-						.addComponent(continueButton)
 						.addComponent(creditsButton)
 						.addComponent(achievementsButton)
 						.addComponent(levelsButton)
@@ -63,7 +60,6 @@ public class MainMenuView extends JPanel {
 					.addGap(50)
 					.addComponent(titleText)
 					.addGap(50)
-					.addComponent(continueButton)
 					.addComponent(levelsButton)
 					.addComponent(achievementsButton)
 					.addComponent(creditsButton)
