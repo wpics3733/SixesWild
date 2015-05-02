@@ -63,7 +63,6 @@ public class BoardPanel extends JPanel {
 				add(label_1Tile);
 				JLabel multiplierLabel = new JLabel();
 				multiplierLabel.setForeground(Color.DARK_GRAY);
-				System.out.println(multiplierLabel.getFont().toString());
 				//multiplierLabel.setFont(new Font(null, Font.BOLD, 11));
 				multiplierLabel.setBounds(label_1Tile.getX(), label_1Tile.getY(), 70, 70);
 				multiplierLabel.setHorizontalAlignment(SwingConstants.RIGHT);
