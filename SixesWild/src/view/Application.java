@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.AchievementFileController;
 import model.Achievement;
 
 public class Application extends JFrame{
@@ -33,7 +32,6 @@ public class Application extends JFrame{
 		// First we intstantiate all the achievements, then we load the save file.
 		// - justin
 		Achievement.initializeAll();
-		AchievementFileController.loadFile();
 	}
 	
 	public void changeView( JPanel p ) {

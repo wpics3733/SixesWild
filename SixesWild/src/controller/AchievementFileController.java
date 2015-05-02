@@ -39,7 +39,7 @@ public class AchievementFileController {
 		}
 	}
 	
-	public static void loadFile() {
+	public static void loadSave() {
 		try {
 			BufferedReader in = new BufferedReader(new FileReader("achievements.sav"));
 			
@@ -53,8 +53,7 @@ public class AchievementFileController {
 			
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// We're not worried about this
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
