@@ -17,7 +17,7 @@ public class SixTilesMoveAchievement extends OnMoveAchievement {
 	@Override
 	public boolean unlocked(UserMove move) {
 		int num = move.getTiles().size();
-		return num == 2;
+		return num == 6;
 	}
 
 }
