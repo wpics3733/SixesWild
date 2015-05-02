@@ -1,6 +1,6 @@
 package model;
 
-public class TileContainer {
+public class TileContainer  {
 	Tile t;
 	int x,y;
 	boolean empty;

@@ -59,6 +59,9 @@ public class LevelState {
 		width = 9;
 		height = 9;
 		boardVals = new int[width][height];
+		for(int i = 0; i < 9; i++) {
+			boardVals[i][8] = -1;
+		}
 		marks = new int[width][height];
 		multipliers = new int[width][height];
 		blockedTiles = new boolean[width][height];
