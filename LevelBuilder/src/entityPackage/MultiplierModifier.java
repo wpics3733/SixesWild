@@ -12,6 +12,7 @@ public class MultiplierModifier implements ITileModifier {
 	@Override
 	public void modifyTile(Tile tile) {
 		// TODO Auto-generated method stub
+		System.out.println("MultiplierModifier::Setting tile " + tile.getCoordinate() + " to multiplier " + multiplier + ".");
 		tile.setMultiplier(multiplier);
 	}
 

@@ -25,7 +25,7 @@ public class NewLevelButtonController extends MouseAdapter {
 	 */
 	@Override
 	public void mousePressed(MouseEvent me) {
-		System.out.println("MenuPanelController::Mouse click at: " + me.getX() + ", " + me.getY());
+		System.out.println("NewLevelButtonController::Mouse click at: " + me.getX() + ", " + me.getY());
 		
 		app.setCurrentView(new LevelEditorPanel(app, model));
 	}
