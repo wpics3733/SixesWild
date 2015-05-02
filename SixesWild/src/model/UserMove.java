@@ -44,7 +44,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 
 	}
 
-	private int getScore() {
+	public int getScore() {
 		if(this.isValid()) {
 			return 10*numTiles * multiplier;
 		} else {
@@ -74,6 +74,9 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		l.getBoard().settleTiles();
 		l.react(this);
 		l.setScore(l.getScore() + this.getScore());
+		
+		// check to see if this move has unlocked any achievements
+		OnMoveAchievement.checkAll(this);
 	}
 
 	/**

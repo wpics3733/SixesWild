@@ -2,6 +2,7 @@ package controller;
 
 import javax.swing.JDialog;
 
+import model.IOnLevelAchievement;
 import model.Level;
 import view.Application;
 import view.EndLevelPanel;
@@ -24,7 +25,9 @@ public class EndLevelController {
 		a.changeView(new EndLevelPanel(l, lv, a));
 		//Check score
 		//Generate a popup window, telling the user they have won or lost
-			//Ask them if they want to restart to try and do better, or quit to main menu
+		//Ask them if they want to restart to try and do better, or quit to main menu
+		
+		IOnLevelAchievement.checkAll(l);
 	}
 
 }
