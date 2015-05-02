@@ -217,7 +217,7 @@ public class LevelState {
 		try{// Catch errors in I/O if necessary.
 			// Open a file to write to, named SavedObj.sav.
 			
-			f = new File("../Levels/" + levelName.concat(".sav"));
+			f = new File("Levels/" + levelName.concat(".sav"));
 			if(!f.exists()){
 				f.createNewFile();
 			}
@@ -266,7 +266,7 @@ public class LevelState {
 		ObjectInputStream save;
 		try{
 			
-			f = new File("../Levels/" + levelName.concat(".sav"));
+			f = new File("Levels/" + levelName.concat(".sav"));
 			
 			
 			// Open file to read from, named SavedObj.sav.

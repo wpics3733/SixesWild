@@ -25,7 +25,7 @@ public class MenuPanel extends JPanel {
 	JButton previousButton;
 	JButton nextButton;
 	JButton newLevelButton;
-	private LevelBuilderApplication parentApplication;
+	protected LevelBuilderApplication parentApplication;
 	LevelModel model;
 	
 	//LevelItems levelItems				don't need for GUI demo?
@@ -88,6 +88,15 @@ public class MenuPanel extends JPanel {
 		
 		this.add(newLevelButton);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(284, 134, 382, 144);
+		add(scrollPane);
+		
+		JPanel levelsView = new LevelsPanel(this);
+		scrollPane.setViewportView(levelsView);
+		
 		this.repaint();
 
 		newLevelButton.addMouseListener(new NewLevelButtonController(parent, model));
@@ -108,14 +117,4 @@ public class MenuPanel extends JPanel {
 		super.paintComponent(g);
 		
 	}
-	
-	
-	
-	/*
-	public static void main(String[] args) {
-		new MenuPanel();
-		
-		  
-	}
-	*/
 }
