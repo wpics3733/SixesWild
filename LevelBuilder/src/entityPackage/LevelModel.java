@@ -150,6 +150,10 @@ public class LevelModel {
 		return mode;
 	}
 
+	public Tile[][] getBoard() {
+		return board;
+	}
+
 
 
 	// Setters for the model's attributes

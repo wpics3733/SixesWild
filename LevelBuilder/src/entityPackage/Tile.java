@@ -45,6 +45,10 @@ public class Tile {
 	public int getY() {
 		return this.y;
 	}
+	
+	public int getMultiplier() {
+		return this.multiplier;
+	}
 
 	public void setMark(int mark) {
 		this.mark = mark;
@@ -74,4 +78,7 @@ public class Tile {
 		return value;
 	}
 	
+	public String getCoordinate() {
+		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
+	}
 }
