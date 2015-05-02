@@ -1,4 +1,4 @@
-package achievement;
+package model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,17 +11,23 @@ import java.util.Set;
  */
 public abstract class Achievement {
 	
+	// This is an incrementing ID assigned to each achievement
+	public int ID;
+	
 	// Whether this achievement has been completed already
-	boolean unlocked = false;
+	protected boolean unlocked = false;
 	
 	// A secret achievement will not show up in the achievements menu
-	boolean secret = false;
+	protected boolean secret = false;
 	
 	// The name of the acheivement
-	String name;
+	protected String name;
 	
 	// A short description of the achievement
-	String description;
+	protected String description;
+	
+	// This is the next ID to be assigned to an achievement
+	private static int currentID = 0;
 	
 	// An array of all the created achievements thus far
 	private static Set<Achievement> list = new HashSet<Achievement>();
@@ -29,10 +35,10 @@ public abstract class Achievement {
 	private static Set<Achievement> secretList = new HashSet<Achievement>();
 	
 	// We want to keep every new Achievement in the list
-	
 	public static void addToSet(Achievement a) {
 		if(a.secret) { secretList.add(a); }
 		else { list.add(a); }
+		a.ID = currentID++;
 	}
 	
 	/**
@@ -42,20 +48,20 @@ public abstract class Achievement {
 	public String getName() { return this.name; }
 	
 	/**
-	 * Return a description of the Achievment.
+	 * Return a description of the Achievement.
 	 * @return String
 	 */
 	public String getDescription() { return this.description; }
 	
 	/**
 	 * Return whether this achievement has been unlocked
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isUnlocked() { return this.unlocked; }
 	
 	/**
 	 * Return an iterable of the list of achievements
-	 * @return
+	 * @return HashSet
 	 */
 	public static Set<Achievement> getList() {
 		return new HashSet<Achievement>(list);
@@ -63,9 +69,19 @@ public abstract class Achievement {
 	
 	/**
 	 * Return an iterable of the secret list
-	 * @return
+	 * @return HashSet
 	 */
-	public static Iterable<Achievement> getSecretList() {
+	public static Set<Achievement> getSecretList() {
 		return new HashSet<Achievement>(secretList);
+	}
+	
+	/**
+	 * Instantiate all the achievements then load the save file
+	 */
+	public static void initializeAll() {
+		LoadedAchievement la = new LoadedAchievement();
+		OverachieverMoveAchievement oa = new OverachieverMoveAchievement();
+		SixTilesMoveAchievement sta = new SixTilesMoveAchievement();
+		
 	}
 }

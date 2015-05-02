@@ -1,9 +1,7 @@
-package achievement;
+package model;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import model.IMove;
 
 /**
  * Acheivements that are calculated after each move is made.
@@ -16,7 +14,7 @@ public abstract class OnMoveAchievement extends Achievement {
 	private static Set<OnMoveAchievement> list = new HashSet<OnMoveAchievement>();
 	
 	// Add the achievement to this list and the list of all achievements
-	public static void addToSet(OnMoveAchievement a) {
+	protected static void addToSet(OnMoveAchievement a) {
 		list.add(a);
 		Achievement.addToSet(a);
 	}
@@ -26,7 +24,7 @@ public abstract class OnMoveAchievement extends Achievement {
 	 * to see if this move unlocked it
 	 * @param move
 	 */
-	public void checkAllAchievements(IMove move) {
+	public static void checkAll(UserMove move) {
 		for (OnMoveAchievement a : list) {
 			if (!a.isUnlocked()) {
 				if (a.unlocked(move)) { a.unlocked = true; }
@@ -41,5 +39,5 @@ public abstract class OnMoveAchievement extends Achievement {
 	 * @param move the move being checked
 	 * @return boolean
 	 */
-	public abstract boolean unlocked(IMove move);
+	public abstract boolean unlocked(UserMove move);
 }

@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import achievement.Achievement;
-import achievement.LoadedAchievement;
+import model.Achievement;
+import model.LoadedAchievement;
 import controller.ReturnToMenuController;
 
 /**
@@ -38,8 +38,6 @@ public class AchievementPanel extends JPanel {
 		// Grid for the achievements
 		JPanel grid = new JPanel(new GridLayout(5,5,5,5));
 		
-		LoadedAchievement la = new LoadedAchievement();
-		
 		Set<Achievement> list = Achievement.getList();
 		for (Achievement a: list) {
 			JLabel label = new JLabel(a.getName());
@@ -50,6 +48,19 @@ public class AchievementPanel extends JPanel {
 			if (a.isUnlocked()) { label.setBackground(Color.LIGHT_GRAY); }
 			else { label.setBackground(new Color(110, 110, 110));; }
 			grid.add(label);
+		}
+		
+		// For the secret achievements, they will only show up if they have been unlocked
+		Set<Achievement> secretList = Achievement.getSecretList();
+		for (Achievement a: secretList) {
+			if (a.isUnlocked()) {
+				JLabel label = new JLabel(a.getName());
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setPreferredSize(new Dimension(80, 80));
+				label.setOpaque(true);
+				label.setBackground(Color.LIGHT_GRAY);
+				grid.add(label);
+			}
 		}
 		
 		// Just for testing
