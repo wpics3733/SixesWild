@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class SwapMove implements IMove {
-	TileContainer tc_1, tc_2;
+	AbstractTileContainer tc_1, tc_2;
 
 	@Override
-	public boolean addTile(TileContainer tc) {
+	public boolean addTile(AbstractTileContainer tc) {
 		if(tc_1 == null) {
 			tc_1 = tc;
 			tc_1.setUsed(true);
@@ -26,15 +26,16 @@ public class SwapMove implements IMove {
 
 	@Override
 	public void pushMove(Level l) {
-		Tile swap = tc_1.getTile();
-		tc_1.setTile(tc_2.getTile());
-		tc_2.setTile(swap);
+		Tile swap_1 = tc_1.getTile();
+		Tile swap_2 = tc_2.getTile();
+		tc_1.clearTile();
+		tc_2.clearTile();
+		tc_1.addTile(swap_2);
+		tc_2.addTile(swap_1);
 		l.useSpecial(Level.SWAP);
 		tc_1.setUsed(false);
 		tc_2.setUsed(false);
 		l.react(this);
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -46,8 +47,8 @@ public class SwapMove implements IMove {
 	}
 
 	@Override
-	public ArrayList<TileContainer> getTiles() {
-		ArrayList<TileContainer> toRet = new ArrayList<TileContainer>();
+	public ArrayList<AbstractTileContainer> getTiles() {
+		ArrayList<AbstractTileContainer> toRet = new ArrayList<AbstractTileContainer>();
 		if(tc_1 != null) {
 			toRet.add(tc_1);
 		}

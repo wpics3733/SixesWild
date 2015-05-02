@@ -10,15 +10,16 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.AbstractTileContainer;
 import model.TileContainer;
 
 public class TilePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	JLabel num;
 	JLabel multiplier;
-	TileContainer tile;
+	AbstractTileContainer tile;
 	
-	public TilePanel(TileContainer tc) {
+	public TilePanel(AbstractTileContainer tc) {
 		this.tile = tc;
 		this.num = new JLabel();
 		this.multiplier = new JLabel();
@@ -30,7 +31,7 @@ public class TilePanel extends JPanel {
 		this.setPreferredSize(new Dimension(100, 100));
 	}
 	
-	public TileContainer getTile() {
+	public AbstractTileContainer getTile() {
 		return this.tile;
 	}
 	
@@ -39,12 +40,14 @@ public class TilePanel extends JPanel {
 		super.paintComponent(g);
 		if(this.tile.empty()) {
 			this.num.setText("");
+			multiplier.setText("");
+		} else {
+			num.setText(Integer.toString(tile.getTile().getNum()));
+			multiplier.setText("x" + Integer.toString(tile.getTile().getMultiplier()));
 		}
-		num.setText(Integer.toString(tile.getTile().getNum()));
-		multiplier.setText("x" + Integer.toString(tile.getTile().getMultiplier()));
 		if(tile.used()) {
 			this.setBackground(Color.YELLOW);
-		} else if (tile.getMarked()) {
+		} else if (tile.marked()) {
 			this.setBackground(new Color(130, 170, 130));
 		} else {
 			this.setBackground(new Color(112,147,113));

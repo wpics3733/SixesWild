@@ -15,33 +15,32 @@ public class EliminationLevel extends Level {
 
 	@Override
 	public boolean isFinished() {
-		if(this.movesRemaining <= 0) {
-			return true;
-		}
-		for(int i = 0; i < this.getBoard().getW(); i++) {
-			for(int j = 0; j < this.getBoard().getH(); j++) {
-				if(this.getBoard().getTileContainers()[i][j].getMarked() == false) {
-					return false;
-				}
-			}
-		}
-		return true;
+		return allTilesMarked() || movesRemaining <= 0;
 	}
 	
 	@Override
 	public boolean hasPassed() {
-		TileContainer[][] tiles = this.getBoard().getTileContainers();
+		return allTilesMarked() && oneStar();
+	}
+	
+	private boolean oneStar() {
+		if( this.getScore() < this.getMilestones()[0]) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean allTilesMarked() {
+		AbstractTileContainer[][] tiles = this.getBoard().getTileContainers();
 		for(int i = 0; i < this.getBoard().getW(); i++) {
 			for(int j = 0; j < this.getBoard().getH(); j++) {
-				if(tiles[i][j].isNull() == false && tiles[i][j].getMarked() == false) {
+				if(tiles[i][j].marked() == false) {
 					return false;
 				}
 			}
 		}
-		if(this.getScore() < this.getMilestones()[0]) {
-			return false;
-		}
 		return true;
+		
 	}
 	
 	@Override
@@ -50,8 +49,8 @@ public class EliminationLevel extends Level {
 			movesRemaining--;
 		}
 		if( move.isValid()) {
-			for(TileContainer tc: move.getTiles()) {
-				tc.setMarked(true);
+			for(AbstractTileContainer tc: move.getTiles()) {
+				tc.mark();
 			}
 		}
 		super.react(move);

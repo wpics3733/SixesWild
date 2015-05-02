@@ -26,13 +26,21 @@ public class BoardPanel extends JPanel {
 
 		int h = b.getH();
 		int w = b.getW();
-		TileContainer[][] containers = b.getTileContainers();
+		AbstractTileContainer[][] containers = b.getTileContainers();
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
-				if(containers[i][j].isNull()) {
+				if(containers[i][j] instanceof BucketTileContainer) {
+					
 					tiles[i][j] = new BucketTilePanel(containers[i][j]);
+				} else if (containers[i][j] instanceof NullTileContainer) {
+					tiles[i][j] = new NullTilePanel();
+					
 				} else {
+					
 					tiles[i][j] = new TilePanel(b.getTileContainers()[i][j]);
+				}
+				if(containers[i][j].isNull()) {
+				} else {
 				}
 			}
 		}

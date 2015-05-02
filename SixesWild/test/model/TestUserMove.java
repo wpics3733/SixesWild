@@ -31,9 +31,9 @@ public class TestUserMove extends TestCase {
 	}
 	
 	public void test() {
-		TileContainer[][] tiles = b.getTileContainers();
+		AbstractTileContainer[][] tiles = b.getTileContainers();
 		UserMove move = new UserMove();
-		ArrayList<TileContainer> moveTiles = move.getTiles();
+		ArrayList<AbstractTileContainer> moveTiles = move.getTiles();
 		assertEquals(moveTiles.size(), 0);
 		assertTrue(move.addTile(tiles[0][1]));
 		assertFalse(move.addTile(tiles[0][1]));
@@ -56,7 +56,7 @@ public class TestUserMove extends TestCase {
 		move.finishMove(l);
 		l.react(move);
 		assertFalse(tiles[0][1].used());
-		assertTrue(tiles[0][1].getMarked());
+		assertTrue(tiles[0][1].marked());
 		assertEquals(l.getScore(), 4 * 10);
 		assertEquals(tiles[0][2].getTile(), willDrop);
 	}
