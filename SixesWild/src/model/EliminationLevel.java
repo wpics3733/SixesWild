@@ -1,6 +1,14 @@
 package model;
 
 public class EliminationLevel extends Level {
+	
+	public EliminationLevel(LevelState state) {
+		super(state);
+	}
+	
+	public EliminationLevel() {
+		super();
+	}
 
 	@Override
 	public boolean isFinished() {
@@ -9,7 +17,7 @@ public class EliminationLevel extends Level {
 		}
 		for(int i = 0; i < this.getBoard().getW(); i++) {
 			for(int j = 0; j < this.getBoard().getH(); j++) {
-				if(this.getBoard().getTiles()[i][j].getMarked() == false) {
+				if(this.getBoard().getTileContainers()[i][j].getMarked() == false) {
 					return false;
 				}
 			}
@@ -21,7 +29,7 @@ public class EliminationLevel extends Level {
 	public boolean hasPassed() {
 		for(int i = 0; i < this.getBoard().getW(); i++) {
 			for(int j = 0; j < this.getBoard().getH(); j++) {
-				if(this.getBoard().getTiles()[i][j].getMarked() == false) {
+				if(this.getBoard().getTileContainers()[i][j].getMarked() == false) {
 					return false;
 				}
 			}

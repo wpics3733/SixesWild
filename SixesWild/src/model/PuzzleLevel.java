@@ -2,6 +2,14 @@ package model;
 
 public class PuzzleLevel extends Level {
 	
+	public PuzzleLevel(LevelState state) {
+		super(state);
+	}
+	
+	public PuzzleLevel() {
+		super();
+	}
+	
 	@Override
 	public boolean isFinished() {
 		return this.getMovesRemaining() == 0;

@@ -7,8 +7,11 @@ public class ClearMove implements IMove {
 
 	@Override
 	public boolean addTile(TileContainer tc) {
-		this.tile = tc;
-		return true;
+		if(tile == null) {
+			this.tile = tc;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -22,14 +25,18 @@ public class ClearMove implements IMove {
 
 	@Override
 	public boolean isValid() {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.tile == null) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public ArrayList<TileContainer> getTiles() {
 		ArrayList<TileContainer> toRet = new ArrayList<TileContainer>();
-		toRet.add(tile);
+		if(tile != null) {
+			toRet.add(tile);
+		}
 		return toRet;
 	}
 

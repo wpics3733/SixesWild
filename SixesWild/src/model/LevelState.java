@@ -64,10 +64,11 @@ public class LevelState {
 		blockedTiles = new boolean[width][height];
 		
 		levelType = "Puzzle";
-		starScores = new int[3];
+		int[] starScoreArray = {20, 30, 40};
+		starScores = starScoreArray;
 		specialMoves = new int[3];
 		timeLimit = 0;
-		moveLimit = 100;
+		moveLimit = 10;
 		
 		multiplierProbabilities = new int[3];
 		tileProbabilities = new int[6];

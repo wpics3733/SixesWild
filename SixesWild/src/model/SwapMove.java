@@ -48,8 +48,12 @@ public class SwapMove implements IMove {
 	@Override
 	public ArrayList<TileContainer> getTiles() {
 		ArrayList<TileContainer> toRet = new ArrayList<TileContainer>();
-		toRet.add(tc_1);
-		toRet.add(tc_2);
+		if(tc_1 != null) {
+			toRet.add(tc_1);
+		}
+		if(tc_2 != null) {
+			toRet.add(tc_2);
+		}
 		return toRet;
 	}
 

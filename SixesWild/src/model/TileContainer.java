@@ -6,8 +6,14 @@ public class TileContainer {
 	boolean empty;
 	boolean used;
 	boolean marked;
+	boolean isNull;
 	
 	public TileContainer(Tile t, int x, int y) {
+		if(t == null) {
+			this.isNull = true;
+		} else {
+			this.isNull = false;
+		}
 		this.t = t;
 		this.x = x;
 		this.y = y;
@@ -69,5 +75,9 @@ public class TileContainer {
 	
 	public boolean getMarked() {
 		return marked;
+	}
+	
+	public boolean isNull() {
+		return this.isNull;
 	}
 }

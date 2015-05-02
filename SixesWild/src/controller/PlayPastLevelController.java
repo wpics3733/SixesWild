@@ -14,8 +14,6 @@ public class PlayPastLevelController implements MouseListener {
 	public PlayPastLevelController(Application parent, Level toPlay) {
 		this.parent = parent;
 		this.toPlay = toPlay;
-		
-		
 	}
 
 	@Override

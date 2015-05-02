@@ -75,5 +75,9 @@ public class Tile {
 	public int getValue() {
 		return value;
 	}
+
+	public int getMultiplier() {
+		return multiplier;
+	}
 	
 }

@@ -1,33 +1,27 @@
 package boundaryPackage;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.SwingConstants;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.JButton;
-
-import controllerPackage.QuitButtonController;
 import controllerPackage.TileController;
 import entityPackage.LevelModel;
 import entityPackage.Tile;
 
 public class BoardPanel extends JPanel {
-
-	// currently unused--the layout uses JLabels, not JButtons
-	private JButton tileButtons[][];
 	LevelModel model;
 	JLabel tileLabels[][];
 	Icon tileIcons[];
+	JLabel multiplierLabels[][];
 	
 	/**
 	 * Create the panel.
@@ -53,14 +47,13 @@ public class BoardPanel extends JPanel {
 		//btnNewButton_1.setIcon(myIcon);
 		//add(btnNewButton_1);
 		
-		// currently unused--the layout uses JLabels, not JButtons
-		tileButtons = new JButton[9][9];
 		tileLabels = new JLabel[9][9];
+		multiplierLabels = new JLabel[9][9];
 		
 		for(int i = 0; i < 9; i++){
 			for(int j = 0; j < 9; j++){
 				JLabel label_1Tile = new JLabel(myIcon);
-				label_1Tile.setName( ((Integer) j).toString() + ", " + ((Integer) i).toString());
+				label_1Tile.setName( "(" + ((Integer) j).toString() + ", " + ((Integer) i).toString() + ")");
 				label_1Tile.addMouseListener(new TileController(model, this, label_1Tile));
 				tileLabels[i][j] = label_1Tile;
 				//label_1Tile.setBorder(BorderFactory.createLineBorder(Color.black));   // test the labels
@@ -68,7 +61,18 @@ public class BoardPanel extends JPanel {
 				//btnNewButton.setIcon(myIcon);
 				//add(btnNewButton);
 				add(label_1Tile);
+				JLabel multiplierLabel = new JLabel();
+				multiplierLabel.setForeground(Color.DARK_GRAY);
+				//multiplierLabel.setFont(new Font(null, Font.BOLD, 11));
+				multiplierLabel.setBounds(label_1Tile.getX(), label_1Tile.getY(), 70, 70);
+				multiplierLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+				multiplierLabel.setVerticalAlignment(SwingConstants.BOTTOM);
+			    multiplierLabel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+				//test.set
+				//test.set
+				label_1Tile.add(multiplierLabel);
 				//tileButtons[i][j] = btnNewButton;
+				multiplierLabels[i][j] = multiplierLabel;
 			}
 		}
 		
@@ -78,36 +82,10 @@ public class BoardPanel extends JPanel {
 
 	}
 
-	public void PaintComponent(Graphics g){
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-	}
-
-	/**
-	 * Returns the x and y coordinates of the specified JLabel as a Point.
-	 * If the specified JLabel is not found in the tileLabels array, then it returns null.
-	 * 
-	 * @author Tom Finelli
-	 */
-	public Point contains(JLabel label) {
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (tileLabels[i][j] == label) {
-					return new Point(i, j);
-				}
-					
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 *  Redraws the BoardPanel to reflect changes in the model.
-	 *  For now, it simply updates the border for the new selectedTile.
-	 * 
-	 * @author Tom Finelli
-	 */
-	public void redraw() {
+		
 		// Ensure the border is changed properly for the new selectedTile
 		Tile selectedTile = this.model.getSelectedTile();
 		
@@ -123,6 +101,7 @@ public class BoardPanel extends JPanel {
 			for (int i = 0; i < 9; i++) {
 				for (int j = 0; j< 9; j++) {
 					tileLabels[i][j].setBorder(null);
+					multiplierLabels[i][j].setText(((Integer) model.getBoard()[i][j].getMultiplier()).toString());
 				}
 			}
 			
@@ -132,8 +111,40 @@ public class BoardPanel extends JPanel {
 			int y = selectedTile.getY();
 			
 			// Add the border to the new selectedTile
-			tileLabels[x][y].setBorder(BorderFactory.createLineBorder(Color.yellow, 4));
+			tileLabels[x][y].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 4));
 		}
+		
+		
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				int currentMultiplier = model.getBoard()[i][j].getMultiplier();
+				if (currentMultiplier == 2 || currentMultiplier == 3) {
+					multiplierLabels[i][j].setText( "x" + ((Integer) currentMultiplier).toString() );
+				} else {
+					multiplierLabels[i][j].setText(null);
+				}
+			}
+		}
+		
+		
+	}
+
+	/**
+	 * Returns the x and y coordinates of the specified JLabel as a Point.
+	 * If the specified JLabel is not found in the tileLabels array, then it returns null.
+	 * 
+	 * @author Tom
+	 */
+	public Point contains(JLabel label) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (tileLabels[i][j] == label) {
+					return new Point(i, j);
+				}
+					
+			}
+		}
+		return null;
 	}
 	
 	

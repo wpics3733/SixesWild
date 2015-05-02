@@ -56,13 +56,13 @@ public class PastLevelPanel extends JPanel{
 		JButton lastPageButton = new JButton("<--");
 		lastPageButton.setPreferredSize(new Dimension(80, 80));
 		JPanel lastPagePanel = new JPanel(new FlowLayout());
-		lastPagePanel.add(lastPageButton);
+		//lastPagePanel.add(lastPageButton);
 		
 //		Next page button
 		JButton nextPageButton = new JButton("-->");
 		nextPageButton.setPreferredSize(new Dimension(80, 80));
 		JPanel nextPagePanel = new JPanel(new FlowLayout());
-		nextPagePanel.add(nextPageButton);
+		//nextPagePanel.add(nextPageButton);
 		
 //		Add button into panel
 		mainContent.add(lastPagePanel, BorderLayout.WEST);
@@ -97,26 +97,26 @@ public class PastLevelPanel extends JPanel{
 		introductionBar.setPreferredSize(new Dimension(1024, 155));
 		introductionBar.setBackground(new Color(90,127,92));
 		
-		JLabel levelNameLabel = new JLabel("Level 1");
+		JLabel levelNameLabel = new JLabel("<html><center>Sixes<br>Wild</center></html>");
 		levelNameLabel.setForeground(Color.WHITE);
-		levelNameLabel.setFont(new Font("AvenirNext,", Font.PLAIN, 36));
+		levelNameLabel.setFont(new Font("AvenirNext,", Font.PLAIN, 48));
 		
-		JLabel levelTypeLabel = new JLabel("Puzzle");
-		levelTypeLabel.setForeground(Color.WHITE);
-		levelTypeLabel.setFont(new Font("AvenirNext,", Font.PLAIN, 24));
 		
-		JPanel levelTypePanel= new JPanel();
-		levelTypePanel.setLayout(new BoxLayout(levelTypePanel, BoxLayout.Y_AXIS));
-		levelTypePanel.add(levelNameLabel);
-		levelTypePanel.add(levelTypeLabel);
-		levelTypePanel.setOpaque(false);
-		levelTypePanel.setBorder(new EmptyBorder(0, 36, 0, 24) );
+		levelNameLabel.setBorder(new EmptyBorder(0, 36, 0, 0) );
 		
-		introductionBar.add(levelTypePanel);
+		
+		introductionBar.add(levelNameLabel);
 		
 		
 		
-		JLabel levelRuleLabel = new JLabel("<html><ul><li>Each move removes squares from grid</li><li>Contents repopulated by shifting downward to fill in holes, with new squares appearing at top</ul></html>");
+		JLabel levelRuleLabel = new JLabel(
+				"<html><ul>" +
+				"<li>Puzzle: You have a given number of moves to achieve certain score</li>" +
+				"<li>Elimination: Use every square on the board to win</li>" +
+				"<li>Lightning: Get the highest score that you can in 60 seconds</li>" +
+				"<li>Release: Fill all of the buckets with 6's</li>" +
+				"</ul></html>");
+		
 		levelRuleLabel.setForeground(Color.WHITE);
 		levelRuleLabel.setFont(new Font("AvenirNext,", Font.PLAIN, 20));
 		
@@ -124,7 +124,7 @@ public class PastLevelPanel extends JPanel{
 		
 		
 		JButton startLevelButton = new JButton("Start level");
-		introductionBar.add(startLevelButton);
+		//introductionBar.add(startLevelButton);
 		
 		this.add(menuBar,BorderLayout.NORTH);
 		this.add(mainContent,BorderLayout.CENTER);
