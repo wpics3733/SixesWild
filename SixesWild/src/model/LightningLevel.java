@@ -2,14 +2,16 @@ package model;
 
 public class LightningLevel extends Level {
 	int timeRemaining;
+	LightningTimer timer;
 	
 	public LightningLevel() {
-		super();
-		timeRemaining = 60;
+		this(new LevelState());
+		this.timeRemaining = 10;
 	}
 	
 	public LightningLevel(LevelState state) {
 		super(state);
+		this.timer = new LightningTimer();
 		this.timeRemaining = state.getTimeLimit();
 	}
 
@@ -35,6 +37,16 @@ public class LightningLevel extends Level {
 	
 	public void setTimeRemaining(int time) {
 		this.timeRemaining = time;
+	}
+	
+	public void restart() {
+		super.restart();
+		this.timer = new LightningTimer();
+		this.timeRemaining = state.getTimeLimit();
+	}
+	
+	public LightningTimer getTimer() {
+		return timer;
 	}
 
 }

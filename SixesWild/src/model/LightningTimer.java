@@ -4,22 +4,18 @@ import java.util.Timer;
 
 public class LightningTimer {
 	
-	static Timer realTimer;
-	static LightningTimer instance;
+	Timer realTimer;
 	
-	
-	private LightningTimer() {}
-	
-	public static LightningTimer getInstance() {
-		if (instance == null) {
-			instance = new LightningTimer();
-			realTimer = new Timer();
-		}
-		return instance;
+	public LightningTimer() {
+		this.realTimer = new Timer();
 	}
 	
 	public Timer getTimer() {
 		return realTimer;
+	}
+	
+	public void cancel() {
+		realTimer.cancel();
 	}
 
 }

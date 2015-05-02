@@ -57,6 +57,7 @@ public class MakeUserMoveController implements MouseInputListener {
 		if(um.isValid()) {
 			um.pushMove(l);
 		}
+		l.react(um);
 		um.finishMove(l);
 		if(l.isFinished()) {
 			lv.endLevel();

@@ -4,6 +4,8 @@ import javax.swing.JDialog;
 
 import model.IOnLevelAchievement;
 import model.Level;
+import model.LightningLevel;
+import model.LightningTimer;
 import view.Application;
 import view.EndLevelPanel;
 import view.LevelView;
@@ -22,6 +24,9 @@ public class EndLevelController {
 	}
 	
 	public void run() {
+		if(l instanceof LightningLevel) {
+			((LightningLevel)l).getTimer().cancel();
+		}
 		a.changeView(new EndLevelPanel(l, lv, a));
 		//Check score
 		//Generate a popup window, telling the user they have won or lost
