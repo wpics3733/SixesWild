@@ -2,17 +2,21 @@ package model;
 
 public class PuzzleLevel extends Level {
 	
+	int movesRemaining;
+
 	public PuzzleLevel(LevelState state) {
 		super(state);
+		movesRemaining = state.getMoveLimit();
 	}
 	
 	public PuzzleLevel() {
 		super();
+		movesRemaining = 10;
 	}
 	
 	@Override
 	public boolean isFinished() {
-		return this.getMovesRemaining() == 0;
+		return this.movesRemaining == 0;
 	}
 
 	@Override
@@ -30,6 +34,15 @@ public class PuzzleLevel extends Level {
 			return false;
 		}
 		return true;
+
+	}
+
+	public int getMovesRemaining() {
+		return movesRemaining;
+	}
+	
+	public void setMovesRemaining(int moves) {
+		this.movesRemaining = moves;
 	}
 
 }

@@ -89,6 +89,13 @@ public class BoardPanel extends JPanel {
 		// Ensure the border is changed properly for the new selectedTile
 		Tile selectedTile = this.model.getSelectedTile();
 		
+		// Set all tiles to their respective images.
+		for (int x = 0; x < 9; x++) {
+			for (int y = 0; y < 9; y++) {
+				tileLabels[x][y].setIcon(tileIcons[model.getTile(x,y).getValue()+1]);
+			}
+		}
+		
 		// Clear the border for all tiles
 		if (selectedTile != null) {
 			for (int i = 0; i < 9; i++) {
@@ -105,7 +112,6 @@ public class BoardPanel extends JPanel {
 			
 			// Add the border to the new selectedTile
 			tileLabels[x][y].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 4));
-			tileLabels[x][y].setIcon(tileIcons[selectedTile.getValue()+1]);
 		}
 		
 		

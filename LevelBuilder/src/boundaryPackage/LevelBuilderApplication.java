@@ -67,14 +67,6 @@ public class LevelBuilderApplication extends JFrame {
 		this.pack();
 	}
 	
-	/**
-	 * Set the current view.
-	 * NOTE:  THIS METHOD IS DEPRECIATED.  USE THE METHOD BELOW.
-	 * @param newPanel
-	 * @param oldPanel
-	 * 
-	 * @author Dean
-	 */
 	public void setCurrentView(JPanel newPanel, JPanel oldPanel){
 		this.getContentPane().remove(oldPanel);
 		newPanel.setBounds(0, 0, 1024, 768);
@@ -99,15 +91,5 @@ public class LevelBuilderApplication extends JFrame {
 		//this.pack();									// not needed if all panel sizes are explicitly set
 		this.repaint();
 		
-	}
-	
-	/**
-	 * Returns the current view
-	 * @return the current panel
-	 * 
-	 * @author Tom
-	 */
-	public JPanel getCurrentView() {
-		return this.currentView;
 	}
 }

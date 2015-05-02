@@ -16,7 +16,7 @@ public class Tile {
 	 * @param x the x coordinate of the tile
 	 * @param y the y coordinate of the tile
 	 * 
-	 * @author Tom
+	 * @author Tom Finelli
 	 */
 	public Tile(int x, int y) {
 		this.x = x;
@@ -26,8 +26,10 @@ public class Tile {
 		// TODO
 	}
 
-	public Tile(int mark, int value, int multiplier, boolean isBlocked) {
+	public Tile(int col, int row, int mark, int value, int multiplier, boolean isBlocked) {
 		super();
+		this.x = col;
+		this.y = row;
 		this.mark = mark;
 		this.value = value;
 		this.multiplier = multiplier;
@@ -44,10 +46,6 @@ public class Tile {
 	
 	public int getY() {
 		return this.y;
-	}
-	
-	public int getMultiplier() {
-		return this.multiplier;
 	}
 
 	public void setMark(int mark) {
@@ -77,8 +75,9 @@ public class Tile {
 	public int getValue() {
 		return value;
 	}
-	
-	public String getCoordinate() {
-		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
+
+	public int getMultiplier() {
+		return multiplier;
 	}
+	
 }

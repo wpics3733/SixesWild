@@ -9,12 +9,6 @@ public class TestTileContainer extends TestCase {
 	}
 	
 	public void test() {
-		try {
-			new TileContainer(null, 0, 0);
-			fail("Should've caught a nullPointer exception");
-		} catch (NullPointerException ex) {
-			assertTrue(true);
-		}
 		Tile t = new Tile(2,2);
 		TileContainer testee = new TileContainer(t, 2, 2);
 		assertEquals(testee.getTile(), t);

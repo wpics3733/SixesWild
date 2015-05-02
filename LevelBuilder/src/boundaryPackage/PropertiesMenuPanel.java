@@ -59,7 +59,6 @@ public class PropertiesMenuPanel extends JPanel {
 	private JTextField starLevelTextField2;
 	private JLabel lblThreeStars;
 	private JTextField starLevelTextField3;
-	private JButton btnApply;
 
 	LevelBuilderApplication app;
 	LevelModel model;
@@ -72,14 +71,12 @@ public class PropertiesMenuPanel extends JPanel {
 		this.app = app;
 		
 		
-		lblLevelType = new JLabel();
-		lblLevelType.setText("Level Type");
+		lblLevelType = new JLabel("Level Type");
 		lblLevelType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		String[] levelTypes = {"Puzzle","Lightning","Six Drop", "Marked Tiles"}; 
 		
 		comboBox = new JComboBox(levelTypes);
-		comboBox.setSelectedItem(model.getMode());
 		
 		lblOfSpecial = new JLabel("# of Special Moves");
 		lblOfSpecial.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -197,7 +194,7 @@ public class PropertiesMenuPanel extends JPanel {
 		starLevelTextField3.setText( ((Integer) model.getStarMilestones()[2]).toString() );
 		starLevelTextField3.setColumns(10);
 		
-		btnApply = new JButton("Apply");
+		JButton btnApply = new JButton("Apply");
 		btnApply.addMouseListener(new PropertiesMenuPanelController(model, app, this));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
@@ -275,7 +272,7 @@ public class PropertiesMenuPanel extends JPanel {
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 										.addComponent(clearSpeicalLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(swapSpecialLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(rearrangeSpecialLabel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 70, Short.MAX_VALUE))
+										.addComponent(rearrangeSpecialLabel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(clearSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -438,15 +435,6 @@ public class PropertiesMenuPanel extends JPanel {
 
 	public JTextField getStarLevelTextField3() {
 		return starLevelTextField3;
-	}
-	
-	
-	public JButton getBtnApply() {
-		return btnApply;
-	}
-
-	public JComboBox getComboBox() {
-		return comboBox;
 	}
 
 	public void PaintComponent(Graphics g){

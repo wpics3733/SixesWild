@@ -16,6 +16,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 
 import controllerPackage.QuitButtonController;
+import controllerPackage.SaveLevelButtonController;
 import entityPackage.LevelModel;
 
 import java.awt.event.ActionListener;
@@ -70,6 +71,9 @@ public class LevelEditorPanel extends JPanel {
 			}
 		});
 		*/
+		
+		JButton btnNewButton = new JButton("Save Level");
+		btnNewButton.addActionListener(new SaveLevelButtonController(this, model));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -80,7 +84,10 @@ public class LevelEditorPanel extends JPanel {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 712, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton)
+							.addGap(18)
+							.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
 					.addGap(25))
 		);
 		groupLayout.setVerticalGroup(
@@ -92,7 +99,9 @@ public class LevelEditorPanel extends JPanel {
 					.addGap(16))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 653, GroupLayout.PREFERRED_SIZE)
 					.addGap(41))
@@ -128,8 +137,6 @@ public class LevelEditorPanel extends JPanel {
 	public PropertiesMenuPanel getPropertiesMenuPanel() {
 		return propertiesMenuPanel;
 	}
-	
-	
 	
 	
 	

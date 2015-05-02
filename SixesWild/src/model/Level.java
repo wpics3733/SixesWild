@@ -9,7 +9,6 @@ public abstract class Level {
 	Board b;
 	LevelState state;
 	IMove activeMove;
-	int movesRemaining;
 	boolean finished;
 	
 	public static final int REARRANGE = 0;
@@ -37,14 +36,6 @@ public abstract class Level {
 	
 	public void setScore(int score) {
 		this.score = score;
-	}
-	
-	public int getMovesRemaining() {
-		return movesRemaining;
-	}
-	
-	public void subtractMove() {
-		this.movesRemaining--;
 	}
 	
 	/**
@@ -88,7 +79,6 @@ public abstract class Level {
 	public void restart() {
 		this.score = 0;
 		this.b = new Board(state);
-		this.movesRemaining = state.getMoveLimit();
 		this.specials = state.getSpecialMoves();
 		this.milestones = state.getStarScores();
 		this.tileRatios = state.getTileProbabilities();
