@@ -5,15 +5,13 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-import model.TileContainer;
+import model.AbstractTileContainer;
 
 public class NullTilePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	TileContainer tile;
 	
-	public NullTilePanel(TileContainer tile) {
-		this.tile = tile;
+	public NullTilePanel() {
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setPreferredSize(new Dimension(100, 100));
 	}

@@ -8,9 +8,7 @@ import javax.swing.event.MouseInputListener;
 import view.BoardPanel;
 import view.LevelView;
 import view.TilePanel;
-import model.IMove;
 import model.Level;
-import model.TileContainer;
 import model.UserMove;
 
 public class MakeUserMoveController implements MouseInputListener {
