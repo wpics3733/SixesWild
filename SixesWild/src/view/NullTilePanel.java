@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 import model.AbstractTileContainer;
-import model.TileContainer;
 
 public class NullTilePanel extends JPanel {
 

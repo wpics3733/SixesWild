@@ -69,9 +69,6 @@ public class UserMove implements IMove, Iterable<AbstractTileContainer> {
 		}
 		l.getBoard().settleTiles();
 		l.setScore(l.getScore() + this.getScore());
-		
-		// check to see if this move has unlocked any achievements
-		OnMoveAchievement.checkAll(this);
 	}
 
 	/**
@@ -85,6 +82,9 @@ public class UserMove implements IMove, Iterable<AbstractTileContainer> {
 		for(AbstractTileContainer tc: tiles) {
 			tc.setUsed(false);
 		}
+		
+		// check to see if this move has unlocked any achievements
+		OnMoveAchievement.checkAll(this);
 	}
 
 	@Override

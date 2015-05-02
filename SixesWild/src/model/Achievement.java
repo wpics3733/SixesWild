@@ -3,6 +3,8 @@ package model;
 import java.util.HashSet;
 import java.util.Set;
 
+import controller.AchievementFileController;
+
 /**
  * System for achievements. Based loosely around the Move classes from SolitairePluginTutorial
  * in that each Achievement will know how to verify itself.
@@ -30,9 +32,9 @@ public abstract class Achievement {
 	private static int currentID = 0;
 	
 	// An array of all the created achievements thus far
-	private static Set<Achievement> list = new HashSet<Achievement>();
+	private static Set<Achievement> list;
 	
-	private static Set<Achievement> secretList = new HashSet<Achievement>();
+	private static Set<Achievement> secretList;
 	
 	// We want to keep every new Achievement in the list
 	public static void addToSet(Achievement a) {
@@ -98,9 +100,14 @@ public abstract class Achievement {
 	 * Instantiate all the achievements then load the save file
 	 */
 	public static void initializeAll() {
+		list = new HashSet<Achievement>();
+		secretList = new HashSet<Achievement>();
 		LoadedAchievement la = new LoadedAchievement();
 		OverachieverMoveAchievement oa = new OverachieverMoveAchievement();
 		SixTilesMoveAchievement sta = new SixTilesMoveAchievement();
-		
+		TwoBadMovesAchievement tbma = new TwoBadMovesAchievement();
+		BeatALevelAchievement bala = new BeatALevelAchievement();
+		ThreeStarsLevelAchievement tsla = new ThreeStarsLevelAchievement();
+		AchievementFileController.loadSave();
 	}
 }

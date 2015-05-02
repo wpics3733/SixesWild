@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.Achievement;
-import model.LoadedAchievement;
+import controller.ResetAchievementsController;
 import controller.ReturnToMenuController;
 
 /**
@@ -34,6 +34,12 @@ public class AchievementPanel extends JPanel {
 		JButton back= new JButton("Back");
 		back.addMouseListener(new ReturnToMenuController(parent));
 		left.add(back);
+		
+		// Panel for the right side
+		JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 23, 12));
+		JButton reset = new JButton("Reset Achievements");
+		reset.addMouseListener(new ResetAchievementsController(parent));
+		right.add(reset);
 		
 		// Grid for the achievements
 		JPanel grid = new JPanel(new GridLayout(5,5,5,5));
@@ -76,7 +82,8 @@ public class AchievementPanel extends JPanel {
 		JPanel gridContainer = new JPanel(new FlowLayout());
 		gridContainer.add(grid);
 		
-		this.add(left,BorderLayout.WEST);
+		this.add(left, BorderLayout.WEST);
 		this.add(gridContainer, BorderLayout.CENTER);
+		this.add(right, BorderLayout.EAST);
 	}
 }

@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.AbstractTileContainer;
-import model.TileContainer;
 
 public class BucketTilePanel extends JPanel {
 

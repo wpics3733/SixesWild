@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.AbstractTileContainer;
-import model.TileContainer;
 
 public class TilePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
