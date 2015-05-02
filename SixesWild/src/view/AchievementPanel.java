@@ -50,6 +50,7 @@ public class AchievementPanel extends JPanel {
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setPreferredSize(new Dimension(80, 80));
 			label.setOpaque(true);
+			label.setToolTipText(a.getDescription());
 			// Unlocked achievements will be lighter
 			if (a.isUnlocked()) { label.setBackground(Color.LIGHT_GRAY); }
 			else { label.setBackground(new Color(110, 110, 110));; }
@@ -65,6 +66,7 @@ public class AchievementPanel extends JPanel {
 				label.setPreferredSize(new Dimension(80, 80));
 				label.setOpaque(true);
 				label.setBackground(Color.LIGHT_GRAY);
+				label.setToolTipText(a.getDescription());
 				grid.add(label);
 			}
 		}
