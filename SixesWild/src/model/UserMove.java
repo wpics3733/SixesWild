@@ -72,7 +72,6 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 			tc.clearTile();
 		}
 		l.getBoard().settleTiles();
-		l.react(this);
 		l.setScore(l.getScore() + this.getScore());
 	}
 

@@ -46,13 +46,13 @@ public class EliminationLevel extends Level {
 	
 	@Override
 	public void react(IMove move) {
-		if(move instanceof UserMove) {
+		if(move instanceof UserMove || move instanceof RearrangeMove) {
 			movesRemaining--;
+		}
+		if( move.isValid()) {
 			for(TileContainer tc: move.getTiles()) {
 				tc.setMarked(true);
 			}
-		} else if (move instanceof RearrangeMove) {
-			movesRemaining--;
 		}
 		super.react(move);
 	}
@@ -68,6 +68,11 @@ public class EliminationLevel extends Level {
 	
 	public void setMovesRemaining(int moves) {
 		this.movesRemaining = moves;
+	}
+	
+	public void restart() {
+		super.restart();
+		this.movesRemaining = state.getMoveLimit();
 	}
 	
 

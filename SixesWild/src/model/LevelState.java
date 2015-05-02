@@ -67,7 +67,7 @@ public class LevelState {
 		int[] starScoreArray = {20, 30, 40};
 		starScores = starScoreArray;
 		specialMoves = new int[3];
-		timeLimit = 0;
+		timeLimit = 10;
 		moveLimit = 10;
 		
 		multiplierProbabilities = new int[3];

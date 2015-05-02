@@ -9,6 +9,8 @@ import controller.RearrangeBoardController;
 import controller.ReturnToMenuController;
 import model.Level;
 import model.LightningLevel;
+import model.LightningTimer;
+import model.LightningTimerTask;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -33,7 +35,13 @@ public class LightningTopBarPanel extends JPanel {
 	private JLabel score;
 	private JLabel timeLeft;
 	
+	private LightningTimer timer;
+	
 	public LightningTopBarPanel(LightningLevel l, LevelView lv, Application parent) {
+		
+		timer = l.getTimer();
+		LightningTimerTask task = new LightningTimerTask(l, lv);
+		timer.getTimer().schedule(task, 0, 1000);
 		
 		this.l = l;
 		this.lv = lv;

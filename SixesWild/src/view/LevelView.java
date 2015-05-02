@@ -36,6 +36,7 @@ public class LevelView extends JPanel {
 	private LevelView(Level l, Application parent) {
 		super();
 		this.l = l;
+		this.parent = parent;
 		this.setLayout(new BorderLayout());
 
 		this.bp = new BoardPanel(this);

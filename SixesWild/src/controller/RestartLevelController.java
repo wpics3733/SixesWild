@@ -19,7 +19,6 @@ public class RestartLevelController implements MouseInputListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Level l = lv.getLevel();
 		l.restart();
 		lv.restart(l);
 		lv.repaint();
