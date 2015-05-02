@@ -27,6 +27,10 @@ public class NewLevelButtonController extends MouseAdapter {
 	public void mousePressed(MouseEvent me) {
 		System.out.println("NewLevelButtonController::Mouse click at: " + me.getX() + ", " + me.getY());
 		
+		LevelModel newLevelModel = new LevelModel();
+		app.setModel(newLevelModel);
+		this.model = newLevelModel;
+		
 		app.setCurrentView(new LevelEditorPanel(app, model));
 	}
 

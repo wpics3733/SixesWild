@@ -76,6 +76,25 @@ public abstract class Achievement {
 	}
 	
 	/**
+	 * Finds the acheivement with the given ID and sets is to be unlocked
+	 */
+	public static void setUnlocked(int ID) {
+		for(Achievement a: list) {
+			if (a.ID == ID) {
+				a.unlocked = true;
+				return;
+			}
+		}
+		
+		for(Achievement a: secretList) {
+			if (a.ID == ID) {
+				a.unlocked = true;
+				return;
+			}
+		}
+	}
+	
+	/**
 	 * Instantiate all the achievements then load the save file
 	 */
 	public static void initializeAll() {
