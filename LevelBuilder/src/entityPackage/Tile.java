@@ -80,4 +80,8 @@ public class Tile {
 		return multiplier;
 	}
 	
+	public String getCoordinate() {
+		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
+	}
+	
 }
