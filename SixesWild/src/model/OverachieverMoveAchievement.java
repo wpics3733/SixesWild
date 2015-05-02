@@ -17,7 +17,7 @@ public class OverachieverMoveAchievement extends OnMoveAchievement {
 	
 	@Override
 	public boolean unlocked(UserMove move) {
-		return move.getScore() >= 43000;
+		return move.getScore() >= 40;
 	}
 
 }
