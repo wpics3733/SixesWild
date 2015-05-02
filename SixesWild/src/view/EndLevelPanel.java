@@ -24,19 +24,34 @@ public class EndLevelPanel extends JPanel {
 
 	JButton quit, restart;
 	JLabel winMessage;
-	JLabel score;
+	JLabel score_label;
+	StarPanel stars;
 
 	public EndLevelPanel(Level l, LevelView lv, Application parent) {
-		setBounds(100, 100, 450, 300);
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		if(l.getScore() >= l.getMilestones()[0]) {
+		if(l.hasPassed()) {
 			winMessage = new JLabel("You Win");
+
+			int score = l.getScore();
+			int m1 = l.getMilestones()[0];
+			int m2 = l.getMilestones()[1];
+			int m3 = l.getMilestones()[2];
+			if( score < m1) {
+				stars = new StarPanel(0, 100);
+			} else if (score < m2) {
+				stars = new StarPanel(1, 100);
+			} else if (score < m3) {
+				stars = new StarPanel(2, 100);
+			} else {
+				stars = new StarPanel(3, 100);
+			}
 		} else {
 			winMessage = new JLabel("You lose");
+			stars = new StarPanel(0, 100);
 		}
+
+
 		winMessage.setFont(new Font("Sans", Font.PLAIN, 20));
-		score = new JLabel("Score: " + l.getScore());
+		score_label = new JLabel("Score: " + l.getScore());
 
 		restart = new JButton("Restart");
 		restart.addMouseListener(new RestartLevelController(lv.getLevel(), lv));
@@ -49,25 +64,27 @@ public class EndLevelPanel extends JPanel {
 		gl_contentPanel.setAutoCreateGaps(true);
 
 		gl_contentPanel.setHorizontalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.CENTER)
+				gl_contentPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_contentPanel.createSequentialGroup()
-					.addContainerGap(0, Short.MAX_VALUE)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.CENTER)
-						.addComponent(winMessage)
-						.addComponent(score)
-						.addComponent(restart)
-						.addComponent(quit))
-					.addContainerGap(0, Short.MAX_VALUE))
-		);
+						.addContainerGap(0, Short.MAX_VALUE)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.CENTER)
+								.addComponent(winMessage)
+								.addComponent(score_label)
+								.addComponent(stars)
+								.addComponent(restart)
+								.addComponent(quit))
+								.addContainerGap(0, Short.MAX_VALUE))
+				);
 
 		gl_contentPanel.setVerticalGroup(
-			gl_contentPanel.createParallelGroup(Alignment.CENTER)
+				gl_contentPanel.createParallelGroup(Alignment.CENTER)
 				.addGroup(Alignment.CENTER, gl_contentPanel.createSequentialGroup()
-					.addComponent(winMessage)
-					.addComponent(score)
+						.addComponent(winMessage)
+						.addComponent(score_label)
+						.addComponent(stars)
 						.addComponent(restart)
 						.addComponent(quit))
-		);
+				);
 		this.setLayout(gl_contentPanel);
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

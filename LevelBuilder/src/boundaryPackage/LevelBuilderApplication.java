@@ -92,4 +92,15 @@ public class LevelBuilderApplication extends JFrame {
 		this.repaint();
 		
 	}
+	
+	/**
+	* Returns the current view
+	* @return the current panel
+	* 
+	* @author Tom
+	*/
+	public JPanel getCurrentView() {
+		return this.currentView;
+	}
+
 }
