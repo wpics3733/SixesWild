@@ -102,5 +102,9 @@ public class LevelBuilderApplication extends JFrame {
 	public JPanel getCurrentView() {
 		return this.currentView;
 	}
+	
+	public void setModel(LevelModel newModel) {
+		this.model = newModel;
+	}
 
 }
