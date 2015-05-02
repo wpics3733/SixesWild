@@ -18,6 +18,7 @@ import controller.PlayPastLevelController;
 import controller.ReturnToMenuController;
 import model.EliminationLevel;
 import model.Level;
+import model.LightningLevel;
 import model.PuzzleLevel;
 
 public class PastLevelPanel extends JPanel{
@@ -30,6 +31,7 @@ public class PastLevelPanel extends JPanel{
 		// This is where we should load up all of the levels from disk
 		levels.add(new PuzzleLevel());
 		levels.add(new EliminationLevel());
+		levels.add(new LightningLevel());
 		
 //		Main panel
 		this.setBackground(new Color(249,246,242));

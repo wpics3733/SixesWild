@@ -84,7 +84,6 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	 * eg. subtract a move
 	 */
 	public void finishMove(Level l) {
-		l.subtractMove();
 		for(TileContainer tc: tiles) {
 			tc.setUsed(false);
 		}

@@ -12,7 +12,6 @@ public class RearrangeMove implements IMove {
 
 	@Override
 	public void pushMove(Level l) {
-		l.subtractMove();
 		Board b = l.getBoard();
 		TileContainer[][] tiles = b.getTileContainers();
 		for(int i = 0; i < b.getW(); i++) {
@@ -22,6 +21,7 @@ public class RearrangeMove implements IMove {
 				}
 			}
 		}
+		l.react(this);
 		l.useSpecial(Level.REARRANGE);
 	}
 
