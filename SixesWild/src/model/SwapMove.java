@@ -7,6 +7,9 @@ public class SwapMove implements IMove {
 
 	@Override
 	public boolean addTile(AbstractTileContainer tc) {
+		if(tc.isNull() || tc.empty()) {
+			return false;
+		}
 		if(tc_1 == null) {
 			tc_1 = tc;
 			tc_1.setUsed(true);

@@ -102,7 +102,7 @@ public class LevelModel {
 		this.board = new Tile[9][9];
 		for(int row = 0; row < 9; row++){
 			for(int col = 0; col < 9; col++){
-				this.board[col][row] = new Tile(col, row, l.getMarks()[row][col], l.getBoardVals()[row][col], l.getMultipliers()[row][col], l.getBlockedTiles()[row][col]);
+				this.board[col][row] = new Tile(col, row, l.getMarks()[col][row], l.getBoardVals()[col][row], l.getMultipliers()[col][row], l.getBlockedTiles()[col][row]);
 			}
 		}
 	}

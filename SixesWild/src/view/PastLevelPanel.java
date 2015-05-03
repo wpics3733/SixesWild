@@ -30,11 +30,7 @@ public class PastLevelPanel extends JPanel{
 	public PastLevelPanel(Application parent) {
 		super(new BorderLayout(0,0));
 		this.levels = new ArrayList<Level>();
-		// This is where we should load up all of the levels from disk
-		levels.add(new PuzzleLevel());
-		levels.add(new EliminationLevel());
-		levels.add(new LightningLevel());
-		// Load levels from directory
+
 		try{
 			File dir = new File("../LevelBuilder/Levels");
 			File[] directoryListing = dir.listFiles();

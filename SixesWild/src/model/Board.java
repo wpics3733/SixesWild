@@ -117,7 +117,7 @@ public class Board {
 			return;
 		} 
 
-		AbstractTileContainer source = tiles[col][drop_dest];
+		AbstractTileContainer source = tiles[col][drop_source];
 		Tile dropped;
 		if(source.isNull()) {
 			return;
