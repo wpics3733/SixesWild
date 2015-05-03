@@ -5,6 +5,7 @@ package boundaryPackage;
 import javax.swing.JPanel;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -29,7 +30,7 @@ public class LevelsPanel extends JPanel {
 	 */
 	public LevelsPanel(MenuPanel parent) {
 		this.parent = parent;
-		setLayout(new GridLayout(1, 0, 0, 0));
+		setLayout(new GridLayout(4,4,10,10));
 		
 		try{
 			File dir = new File("Levels");

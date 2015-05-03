@@ -59,7 +59,6 @@ public class LevelEditorPanel extends JPanel {
 		palettePanel.setBackground(Color.WHITE);
 		//JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
 		JButton btnQuit = new JButton("Quit");
-		
 		btnQuit.addMouseListener(new QuitButtonController(model, parent));
 		
 		/*

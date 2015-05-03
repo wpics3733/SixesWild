@@ -34,6 +34,10 @@ public class Application extends JFrame{
 		Achievement.initializeAll();
 	}
 	
+	/**
+	 * Switches
+	 * @param p
+	 */
 	public void changeView( JPanel p ) {
 		pane.remove(current_view);
 		this.current_view = p;
