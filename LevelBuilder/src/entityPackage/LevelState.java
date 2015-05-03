@@ -8,6 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 
+/**
+ * @author Dean Kiourtsis
+ * Contains all level information
+ */
 public class LevelState {
 	protected String levelName;
 	
@@ -30,6 +34,25 @@ public class LevelState {
 	protected boolean isUnlocked;
 	protected int highScore;
 	
+	/**
+	 * Creates a LevelState object with the given parameters
+	 * @param levelName
+	 * @param boardVals
+	 * @param marks
+	 * @param multipliers
+	 * @param blockedTiles
+	 * @param width
+	 * @param height
+	 * @param levelType
+	 * @param starScores
+	 * @param specialMoves
+	 * @param timeLimit
+	 * @param moveLimit
+	 * @param multiplierProbabilities
+	 * @param tileProbabilities
+	 * @param isUnlocked
+	 * @param highScore
+	 */
 	public LevelState(String levelName, int[][] boardVals, int[][] marks,
 			int[][] multipliers, boolean[][] blockedTiles, int width,
 			int height, String levelType, int[] starScores, int[] specialMoves,
@@ -53,6 +76,9 @@ public class LevelState {
 		this.highScore = highScore;
 	}
 
+	/**
+	 * Creates a default LevelState object
+	 */
 	public LevelState() {
 		levelName = "defaultLevel";
 		
@@ -76,160 +102,292 @@ public class LevelState {
 		highScore = 0;
 	}
 	
+	/**
+	 * Creates a LevelState using the name of an existing LevelState save file
+	 * @param fileName
+	 */
 	public LevelState(String fileName) {
 		this.loadState(fileName);
 	}
 
+	/**
+	 * Returns the name of the level
+	 * @return
+	 */
 	public String getLevelName() {
 		return levelName;
 	}
 
+	/**
+	 * Sets the name of the level
+	 * @param levelName
+	 */
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
 	}
 
+	/**
+	 * Returns the level type
+	 * @return
+	 */
 	public String getLevelType() {
 		return levelType;
 	}
 
+	/**
+	 * Sets the level type
+	 * @param levelType
+	 */
 	public void setLevelType(String levelType) {
 		this.levelType = levelType;
 	}
 
+	/**
+	 * Returns the milestones for star scores
+	 * @return
+	 */
 	public int[] getStarScores() {
 		return starScores;
 	}
 
+	/**
+	 * Sets the milestones for the star scores
+	 * @param starScores
+	 */
 	public void setStarScores(int[] starScores) {
 		this.starScores = starScores;
 	}
 
+	/**
+	 * Returns the number of each special move
+	 * @return
+	 */
 	public int[] getSpecialMoves() {
 		return specialMoves;
 	}
 
+	/**
+	 * Sets the number of special moves
+	 * @param specialMoves
+	 */
 	public void setSpecialMoves(int[] specialMoves) {
 		this.specialMoves = specialMoves;
 	}
 
+	/**
+	 * Returns the level time limit
+	 * @return
+	 */
 	public int getTimeLimit() {
 		return timeLimit;
 	}
 
+	/**
+	 * Sets the level time limit.
+	 * @param timeLimit
+	 */
 	public void setTimeLimit(int timeLimit) {
 		this.timeLimit = timeLimit;
 	}
 
+	/**
+	 * Returns the level move limit
+	 * @return
+	 */
 	public int getMoveLimit() {
 		return moveLimit;
 	}
 
+	/**
+	 * Sets the level move limit
+	 * @param moveLimit
+	 */
 	public void setMoveLimit(int moveLimit) {
 		this.moveLimit = moveLimit;
 	}
 
+	/**
+	 * Returns the multiplier probablilities
+	 * @return
+	 */
 	public int[] getMultiplierProbabilities() {
 		return multiplierProbabilities;
 	}
 
+	/**
+	 * Sets the multiplier probabilities
+	 * @param multiplierProbabilities
+	 */
 	public void setMultiplierProbabilities(int[] multiplierProbabilities) {
 		this.multiplierProbabilities = multiplierProbabilities;
 	}
 
+	/**
+	 * Returns the tile probabilities
+	 * @return
+	 */
 	public int[] getTileProbabilities() {
 		return tileProbabilities;
 	}
 
+	/**
+	 * Sets the tile probabilities
+	 * @param tileProbabilities
+	 */
 	public void setTileProbabilities(int[] tileProbabilities) {
 		this.tileProbabilities = tileProbabilities;
 	}
 
+	/**
+	 * Returns the board values
+	 * @return
+	 */
 	public int[][] getBoardVals() {
 		return boardVals;
 	}
 
+	/**
+	 * Sets the board values
+	 * @param boardVals
+	 */
 	public void setBoardVals(int[][] boardVals) {
 		this.boardVals = boardVals;
 	}
 
+	/**
+	 * Returns the marks on the board
+	 * @return
+	 */
 	public int[][] getMarks() {
 		return marks;
 	}
 
+	/**
+	 * Sets the marks on the board
+	 * @param marks
+	 */
 	public void setMarks(int[][] marks) {
 		this.marks = marks;
 	}
 
+	/**
+	 * Returns the multipliers on the board
+	 * @return
+	 */
 	public int[][] getMultipliers() {
 		return multipliers;
 	}
 
+	/**
+	 * Sets the multipliers on the board
+	 * @param multipliers
+	 */
 	public void setMultipliers(int[][] multipliers) {
 		this.multipliers = multipliers;
 	}
 
+	/**
+	 * Returns the blocked board tiles
+	 * @return
+	 */
 	public boolean[][] getBlockedTiles() {
 		return blockedTiles;
 	}
 
+	/**
+	 * Sets the blocked board tiles.
+	 * @param blockedTiles
+	 */
 	public void setBlockedTiles(boolean[][] blockedTiles) {
 		this.blockedTiles = blockedTiles;
 	}
 
+	/**
+	 * Returns the board width
+	 * @return
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Sets the board width
+	 * @param width
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
+	/**
+	 * Returns the height of the board
+	 * @return
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Sets the height of the board
+	 * @param height
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
 	
+	/**
+	 * Returns the level's unlocked status
+	 * @return
+	 */
 	public boolean isUnlocked() {
 		return isUnlocked;
 	}
 
+	/**
+	 * Sets the level's unlocked status
+	 * @param unlocked
+	 */
 	public void setUnlocked(boolean unlocked) {
 		this.isUnlocked = unlocked;
 	}
 
+	/**
+	 * Returns the level's highscore
+	 * @return
+	 */
 	public int getHighScore() {
 		return highScore;
 	}
 
+	/**
+	 * Sets the level's highscore
+	 * @param highScore
+	 */
 	public void setHighScore(int highScore) {
 		this.highScore = highScore;
 	}
 	
 	
-	
+	/**
+	 * Saves the level to the level directory with the name [levelname].sav
+	 */
 	public void saveState(){
 		File f;
 		FileOutputStream saveFile;
 		ObjectOutputStream save;
 		try{// Catch errors in I/O if necessary.
-			// Open a file to write to, named SavedObj.sav.
 			
+			// Open a file to write to
 			f = new File("Levels/" + levelName.concat(".sav"));
 			if(!f.exists()){
 				f.createNewFile();
 			}
 			
-			//saveFile=new FileOutputStream(levelName.concat(".sav"));
 			saveFile=new FileOutputStream(f);
 			
 			// Create an ObjectOutputStream to put objects into save file.
 			save = new ObjectOutputStream(saveFile);
 			
 			// Now we do the save.
-			//save.writeObject(this);
 			
 			save.writeObject(this.levelName);
 			save.writeObject(this.boardVals);
@@ -257,8 +415,8 @@ public class LevelState {
 	}
 	
 	/**
+	 * Loads a LevelState object from [fileName].sav in the levels directory
 	 * @param fileName
-	 * Loads a LevelState object from fileName
 	 */
 	public void loadState(String fileName){
 		File f;
@@ -269,17 +427,13 @@ public class LevelState {
 			f = new File("Levels/" + levelName.concat(".sav"));
 			
 			
-			// Open file to read from, named SavedObj.sav.
+			// Open file to read from
 			saveFile = new FileInputStream(f);
 			
 			// Create an ObjectInputStream to get objects from save file.
 			save = new ObjectInputStream(saveFile);
 
 			// Now we do the restore.
-			// readObject() returns a generic Object, we cast those back
-			// into their original class type.
-			// For primitive types, use the corresponding reference class.
-			//LevelState tmp = (LevelState) save.readObject();
 			
 			this.levelName = (String) save.readObject();
 			this.boardVals = (int[][]) save.readObject();

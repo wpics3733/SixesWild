@@ -26,6 +26,15 @@ public class Tile {
 		// TODO
 	}
 
+	/**
+	 * Constructs a tile with the given values
+	 * @param col
+	 * @param row
+	 * @param mark
+	 * @param value
+	 * @param multiplier
+	 * @param isBlocked
+	 */
 	public Tile(int col, int row, int mark, int value, int multiplier, boolean isBlocked) {
 		super();
 		this.x = col;
@@ -40,21 +49,38 @@ public class Tile {
 	}
 	
 
+	/**
+	 * Returns a tile's x position
+	 * @return
+	 */
 	public int getX() {
 		return this.x;
 	}
 	
+	/**
+	 * Returns a tile's y position
+	 * @return
+	 */
 	public int getY() {
 		return this.y;
 	}
 
+	/**
+	 * Sets a tile's mark
+	 * @param mark
+	 */
 	public void setMark(int mark) {
 		this.mark = mark;
 	}
 
+	/**
+	 * Sets a tile's value
+	 * @param value
+	 */
 	public void setValue(int value) {
 		this.value = value;
 		this.valueIsSet = true;
+		this.isBlocked = false;
 		if(value == 0){
 			this.valueIsSet = false;
 		}
@@ -63,23 +89,43 @@ public class Tile {
 		}
 	}
 
+	/**
+	 * Set a tile's multiplier
+	 * @param multiplier
+	 */
 	public void setMultiplier(int multiplier) {
 		this.multiplier = multiplier;
 		this.isBlocked = false;
 	}
 
+	/**
+	 * Set a tile's blocked status
+	 * @param isBlocked
+	 */
 	public void setBlocked(boolean isBlocked) {
 		this.isBlocked = isBlocked;
 	}
 
+	/**
+	 * Returns a tile's value
+	 * @return
+	 */
 	public int getValue() {
 		return value;
 	}
 
+	/**
+	 * Returns a tile's multiplier
+	 * @return
+	 */
 	public int getMultiplier() {
 		return multiplier;
 	}
 	
+	/**
+	 * Return a tile's coordinates in the form "(y, x)"
+	 * @return
+	 */
 	public String getCoordinate() {
 		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
 	}

@@ -1,5 +1,9 @@
 package entityPackage;
 
+/**
+ * @author Dean Kiourtsis, Tom Finelli
+ *
+ */
 public class LevelModel {
 	Tile board[][];
 	String mode;
@@ -15,16 +19,17 @@ public class LevelModel {
 	Tile selectedTile;
 	
 	// constructor
+	/**
+	 * Constructs a default LevelModel
+	 */
 	public LevelModel() {
-		//TODO
-		
 		this.board = new Tile[9][9];
 		
 		System.out.println("LevelModel::Initializing the board with tiles");
 		System.out.print("LevelModel::The following tiles have been generated: ");
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				this.board[j][i] = new Tile(j, i);
+				this.board[j][i] = new Tile(j, i, 0, 0, 1, false);
 				System.out.print("[" + j + ", " + i + "] ");
 			}
 		}
@@ -80,6 +85,10 @@ public class LevelModel {
 	
 	
 
+	/**
+	 * Constructs a LevelModel using a LevelState object
+	 * @param l
+	 */
 	public LevelModel(LevelState l) {
 		this.mode = l.getLevelType();
 		this.movesAllowed = l.getMoveLimit();
@@ -98,6 +107,9 @@ public class LevelModel {
 		}
 	}
 	
+	/**
+	 * Saves the LevelModel to a file using a LevelState object
+	 */
 	public void saveLevel() {
 		int boardNumbers[][] = new int[9][9];
 		int boardMarks[][] = new int[9][9];
@@ -115,11 +127,21 @@ public class LevelModel {
 		l.saveState();
 	}
 	
+	/**
+	 * Sets a selected tile from the board.
+	 * Used to show which tile is being modified.
+	 * @param x
+	 * @param y
+	 */
 	public void setSelectedTile(int x, int y) {
 		this.selectedTile = board[x][y];
 		System.out.println(x + " " + y);
 	}
 
+	/**
+	 * Returns the currently selected tile
+	 * @return
+	 */
 	public Tile getSelectedTile() {
 		return this.selectedTile;
 	}
@@ -127,34 +149,69 @@ public class LevelModel {
 	
 	
 	// Getters for the model's attributes	
+	/**
+	 * Returns the point milestones for the stars
+	 * @return
+	 */
 	public int[] getStarMilestones() {
 		return starMilestones;
 	}
 
+	/**
+	 * Returns the number of moves allowed in the game
+	 * @return
+	 */
 	public int getMovesAllowed() {
 		return movesAllowed;
 	}
 
+	/**
+	 * Returns the number of special moves allowed in the game
+	 * @return
+	 */
 	public int[] getSpecialMovesAllowed() {
 		return specialMovesAllowed;
 	}
 
+	/**
+	 * Returns the amount of time allowed in the game.
+	 * Only affects lightning levels.
+	 * @return
+	 */
 	public int getTimeAllowed() {
 		return timeAllowed;
 	}
 
+	/**
+	 * Returns the probabilities of the X1, X2, and X3 multipliers.
+	 * This affects the appearance rate of multipliers in the game.
+	 * @return
+	 */
 	public int[] getMultiplierProbabilities() {
 		return multiplierProbabilities;
 	}
 
+	/**
+	 * Returns the probabilities of the tiles.
+	 * This affects the appearance rate of each tile in the game.
+	 * @return
+	 */
 	public int[] getTileProbabilities() {
 		return tileProbabilities;
 	}
 	
+	/**
+	 * Returns the game mode
+	 * @return
+	 */
 	public String getMode() {
 		return mode;
 	}
 
+	/**
+	 * Returns the tiles in the board
+	 * @return
+	 */
 	public Tile[][] getBoard() {
 		return board;
 	}
@@ -162,32 +219,68 @@ public class LevelModel {
 
 
 	// Setters for the model's attributes
+	/**
+	 * Sets the point requirements for each star
+	 * @param one
+	 * @param two
+	 * @param three
+	 */
 	public void setStarMilestones(int one, int two, int three) {
 		this.starMilestones[0] = one;
 		this.starMilestones[1] = two;
 		this.starMilestones[2] = three;
 	}
 
+	/**
+	 * Sets the allowed normal moves for a level
+	 * @param movesAllowed
+	 */
 	public void setMovesAllowed(int movesAllowed) {
 		this.movesAllowed = movesAllowed;
 	}
 
+	/**
+	 * Sets the number of allowed special moves for a level
+	 * @param rearrange
+	 * @param swap
+	 * @param clear
+	 */
 	public void setSpecialMovesAllowed(int rearrange, int swap, int clear) {
 		this.specialMovesAllowed[0] = rearrange;
 		this.specialMovesAllowed[1] = swap;
 		this.specialMovesAllowed[2] = clear;
 	}
 
+	/**
+	 * Sets the time limit for a level.
+	 * Only affects lightning levels.
+	 * @param timeAllowed
+	 */
 	public void setTimeAllowed(int timeAllowed) {
 		this.timeAllowed = timeAllowed;
 	}
 
+	/**
+	 * Sets the multiplier appearance rate for a level
+	 * @param one
+	 * @param two
+	 * @param three
+	 */
 	public void setMultiplierProbabilities(int one, int two, int three) {
 		this.multiplierProbabilities[0] = one;
 		this.multiplierProbabilities[1] = two;
 		this.multiplierProbabilities[2] = three;
 	}
 
+	/**
+	 * Sets the tile appearance rate for a level
+	 * @param one
+	 * @param two
+	 * @param three
+	 * @param four
+	 * @param five
+	 * @param six
+	 */
 	public void setTileProbabilities(int one, int two, int three, int four, int five, int six) {
 		this.tileProbabilities[0] = one;
 		this.tileProbabilities[1] = two;
@@ -198,10 +291,19 @@ public class LevelModel {
 
 	}
 	
+	/**
+	 * Sets the mode of a level
+	 * @param mode
+	 */
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
 	
+	/**
+	 * Uses the currently selected modifier to modify the tile at the given location
+	 * @param col
+	 * @param row
+	 */
 	public void modifyTile(int col, int row){
 		if(this.selectedModifier == null){
 			return;
@@ -209,11 +311,24 @@ public class LevelModel {
 		this.selectedModifier.modifyTile(board[col][row]);
 	}
 
+	/**
+	 * Sets the tile modifier so that tiles can be modified
+	 * @param itm
+	 */
 	public void setTileModifier(ITileModifier itm) {
 		this.selectedModifier = itm;
 	}
 	
+	/**
+	 * Returns a tile at the given location on the board
+	 * @param col
+	 * @param row
+	 * @return
+	 */
 	public Tile getTile(int col, int row){
+		if(col < 0 || col > board.length || row < 0 || row > board[0].length){ // Check bounds
+			return null;
+		}
 		return board[col][row];
 	}
 
