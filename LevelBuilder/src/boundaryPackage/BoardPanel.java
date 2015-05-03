@@ -29,15 +29,16 @@ public class BoardPanel extends JPanel {
 	public BoardPanel(LevelModel model) {
 		this.model = model;
 		
-		tileIcons = new Icon[8];
-		tileIcons[0] = new ImageIcon(this.getClass().getResource("/Images/BlockedTile.png"));
-		tileIcons[1] = new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png"));
-		tileIcons[2] = new ImageIcon(this.getClass().getResource("/Images/Number1.png"));
-		tileIcons[3] = new ImageIcon(this.getClass().getResource("/Images/Number2.png"));
-		tileIcons[4] = new ImageIcon(this.getClass().getResource("/Images/Number3.png"));
-		tileIcons[5] = new ImageIcon(this.getClass().getResource("/Images/Number4.png"));
-		tileIcons[6] = new ImageIcon(this.getClass().getResource("/Images/Number5.png"));
-		tileIcons[7] = new ImageIcon(this.getClass().getResource("/Images/Number6.png"));
+		tileIcons = new Icon[9];
+		tileIcons[0] = new ImageIcon(this.getClass().getResource("/Images/BucketTile.png"));
+		tileIcons[1] = new ImageIcon(this.getClass().getResource("/Images/BlockedTile.png"));
+		tileIcons[2] = new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png"));
+		tileIcons[3] = new ImageIcon(this.getClass().getResource("/Images/Number1.png"));
+		tileIcons[4] = new ImageIcon(this.getClass().getResource("/Images/Number2.png"));
+		tileIcons[5] = new ImageIcon(this.getClass().getResource("/Images/Number3.png"));
+		tileIcons[6] = new ImageIcon(this.getClass().getResource("/Images/Number4.png"));
+		tileIcons[7] = new ImageIcon(this.getClass().getResource("/Images/Number5.png"));
+		tileIcons[8] = new ImageIcon(this.getClass().getResource("/Images/Number6.png"));
 		
 		
 		setBackground(Color.LIGHT_GRAY);
@@ -92,7 +93,7 @@ public class BoardPanel extends JPanel {
 		// Set all tiles to their respective images.
 		for (int x = 0; x < 9; x++) {
 			for (int y = 0; y < 9; y++) {
-				tileLabels[x][y].setIcon(tileIcons[model.getTile(x,y).getValue()+1]);
+				tileLabels[x][y].setIcon(tileIcons[model.getTile(x,y).getValue()+2]);
 			}
 		}
 		
