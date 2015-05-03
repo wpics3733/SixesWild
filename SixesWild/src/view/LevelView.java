@@ -18,6 +18,7 @@ import model.EliminationLevel;
 import model.Level;
 import model.LightningLevel;
 import model.PuzzleLevel;
+import model.ReleaseLevel;
 
 public class LevelView extends JPanel {
 
@@ -87,6 +88,12 @@ public class LevelView extends JPanel {
 	public LevelView(LightningLevel l, Level next, Application parent) {
 		this((Level)l, next, parent);
 		this.topBar = new LightningTopBarPanel(l, this, parent);
+		this.add(topBar, BorderLayout.NORTH);
+	}
+	
+	public LevelView(ReleaseLevel l, Level next, Application parent) {
+		this((Level)l, next, parent);
+		this.topBar = new ReleaseTopBarPanel(l, this, parent);
 		this.add(topBar, BorderLayout.NORTH);
 	}
 	

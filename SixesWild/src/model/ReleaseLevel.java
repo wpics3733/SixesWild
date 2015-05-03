@@ -43,8 +43,22 @@ public class ReleaseLevel extends Level {
 
 	@Override
 	public String typeString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Release";
+	}
+	
+	public int getMovesRemaining() {
+		return this.movesRemaining;
+	}
+	
+	public void setMovesRemaining(int moves) {
+		this.movesRemaining = moves;
+	}
+	
+	@Override
+	public void react(IMove move) {
+		if(move instanceof UserMove || move instanceof RearrangeMove) {
+			this.movesRemaining--;
+		}
 	}
 
 }

@@ -46,4 +46,8 @@ public class Application extends JFrame{
 		pane.validate();
 		pane.repaint();
 	}
+	
+	public JPanel getCurrentView() {
+		return current_view;
+	}
 }
