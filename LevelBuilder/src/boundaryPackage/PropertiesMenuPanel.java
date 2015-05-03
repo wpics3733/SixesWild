@@ -20,7 +20,7 @@ import entityPackage.LevelModel;
 
 public class PropertiesMenuPanel extends JPanel {
 	private JLabel lblLevelType;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JLabel lblOfSpecial;
 	private JLabel rearrangeSpecialLabel;
 	private JLabel swapSpecialLabel;
@@ -59,6 +59,8 @@ public class PropertiesMenuPanel extends JPanel {
 	private JTextField starLevelTextField2;
 	private JLabel lblThreeStars;
 	private JTextField starLevelTextField3;
+	private JLabel levelNameLabel;
+	private JTextField levelNameText;
 	private JButton btnApply;
 
 	LevelBuilderApplication app;
@@ -198,6 +200,12 @@ public class PropertiesMenuPanel extends JPanel {
 		btnApply = new JButton("Apply");
 		btnApply.addMouseListener(new PropertiesMenuPanelController(model, app, this));
 		
+		levelNameLabel = new JLabel("Level Name:");
+		
+		levelNameText = new JTextField();
+		levelNameText.setText(model.getName());
+		levelNameText.setColumns(10);
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -273,17 +281,22 @@ public class PropertiesMenuPanel extends JPanel {
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
 										.addComponent(clearSpeicalLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(swapSpecialLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(rearrangeSpecialLabel, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 48, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(rearrangeSpecialLabel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGap(18)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(clearSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 										.addComponent(swapSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(rearrangeSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(67)))
+										.addComponent(rearrangeSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(clearSpecialTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGap(46)))
 							.addGap(109))
 						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(levelNameLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(levelNameText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(291, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnApply)
-							.addContainerGap(351, Short.MAX_VALUE))))
+							.addContainerGap(381, Short.MAX_VALUE))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -359,11 +372,19 @@ public class PropertiesMenuPanel extends JPanel {
 						.addComponent(lblThreeStars)
 						.addComponent(starLevelTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(levelNameLabel)
+						.addComponent(levelNameText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnApply)
-					.addContainerGap(192, Short.MAX_VALUE))
+					.addContainerGap(98, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
 
+	}
+	
+	public JComboBox<String> getComboBox(){
+		return comboBox;
 	}
 
 	public JTextField getClearSpecialTextField() {
@@ -436,6 +457,10 @@ public class PropertiesMenuPanel extends JPanel {
 
 	public JTextField getStarLevelTextField3() {
 		return starLevelTextField3;
+	}
+	
+	public JTextField getLevelNameTextField(){
+		return levelNameText;
 	}
 
 	public JButton getBtnApply() {

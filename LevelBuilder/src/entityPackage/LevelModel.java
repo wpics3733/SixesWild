@@ -1,5 +1,6 @@
 package entityPackage;
 
+
 /**
  * @author Dean Kiourtsis, Tom Finelli
  *
@@ -330,6 +331,27 @@ public class LevelModel {
 			return null;
 		}
 		return board[col][row];
+	}
+
+
+
+	/**
+	 * Sets the name of the level.
+	 * Mainly used in loading and saving levels.
+	 * @param name
+	 */
+	public void setName(String name) {
+		levelName = name;
+	}
+
+
+
+	/**
+	 * Returns the name of the level
+	 * @return
+	 */
+	public String getName() {
+		return levelName;
 	}
 
 }
