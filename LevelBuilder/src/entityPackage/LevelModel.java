@@ -42,6 +42,13 @@ public class LevelModel {
 		
 		// Set default values for attributes
 		
+		// default name
+		this.levelName = "default";
+		
+		
+		// mode
+		this.mode = "Puzzle";
+		
 		// starMileStones
 		this.starMilestones[0] = 100;
 		this.starMilestones[1] = 200;
@@ -81,11 +88,12 @@ public class LevelModel {
 		this.multiplierProbabilities = l.getMultiplierProbabilities();
 		this.tileProbabilities = l.getTileProbabilities();
 		this.levelName = l.getLevelName();
+		this.starMilestones = l.getStarScores();
 		
 		this.board = new Tile[9][9];
 		for(int row = 0; row < 9; row++){
 			for(int col = 0; col < 9; col++){
-				this.board[row][col] = new Tile(l.getMarks()[row][col], l.getBoardVals()[row][col], l.getMultipliers()[row][col], l.getBlockedTiles()[row][col]);
+				this.board[col][row] = new Tile(col, row, l.getMarks()[row][col], l.getBoardVals()[row][col], l.getMultipliers()[row][col], l.getBlockedTiles()[row][col]);
 			}
 		}
 	}
@@ -95,12 +103,12 @@ public class LevelModel {
 		int boardMarks[][] = new int[9][9];
 		int multipliers[][] = new int[9][9];
 		boolean blockedTiles[][] = new boolean[9][9];
-		for(int row = 0; row < 9; row++){
-			for(int col = 0; col < 9; col++){
-				boardNumbers[row][col] = board[row][col].value;
-				boardMarks[row][col] = board[row][col].mark;
-				multipliers[row][col] = board[row][col].multiplier;
-				blockedTiles[row][col] = board[row][col].isBlocked;
+		for(int col = 0; col < 9; col++){
+			for(int row = 0; row < 9; row++){
+				boardNumbers[col][row] = board[col][row].value;
+				boardMarks[col][row] = board[col][row].mark;
+				multipliers[col][row] = board[col][row].multiplier;
+				blockedTiles[col][row] = board[col][row].isBlocked;
 			}
 		}
 		LevelState l = new LevelState(levelName, boardNumbers, boardMarks, multipliers, blockedTiles, 9, 9, mode, starMilestones, specialMovesAllowed, timeAllowed, movesAllowed, multiplierProbabilities, tileProbabilities, true, 0);
@@ -109,6 +117,7 @@ public class LevelModel {
 	
 	public void setSelectedTile(int x, int y) {
 		this.selectedTile = board[x][y];
+		System.out.println(x + " " + y);
 	}
 
 	public Tile getSelectedTile() {
@@ -140,6 +149,14 @@ public class LevelModel {
 
 	public int[] getTileProbabilities() {
 		return tileProbabilities;
+	}
+	
+	public String getMode() {
+		return mode;
+	}
+
+	public Tile[][] getBoard() {
+		return board;
 	}
 
 
@@ -181,16 +198,23 @@ public class LevelModel {
 
 	}
 	
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+	
 	public void modifyTile(int col, int row){
 		if(this.selectedModifier == null){
 			return;
 		}
 		this.selectedModifier.modifyTile(board[col][row]);
-		System.out.println(board[col][row].value);
 	}
 
 	public void setTileModifier(ITileModifier itm) {
 		this.selectedModifier = itm;
+	}
+	
+	public Tile getTile(int col, int row){
+		return board[col][row];
 	}
 
 }

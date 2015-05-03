@@ -9,11 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.MouseInputListener;
 
+import controller.EndLevelController;
 import controller.InitiateClearMoveController;
 import controller.InitiateSwapMoveController;
 import controller.MakeUserMoveController;
 import controller.RearrangeBoardController;
+import model.EliminationLevel;
 import model.Level;
+import model.LightningLevel;
+import model.PuzzleLevel;
 
 public class LevelView extends JPanel {
 
@@ -22,17 +26,17 @@ public class LevelView extends JPanel {
 
 	Level l;
 	BoardPanel bp;
-	TopBarPanel tbp;
 	JPanel eastPanel;
 	JLabel sideWord;
 	GameWestPanel westPanel;
+	JPanel topBar;
 	
 	MouseInputListener controller;
-
-	public LevelView(Level l, Application parent) {
+	
+	private LevelView(Level l, Application parent) {
 		super();
-		this.parent = parent;
 		this.l = l;
+		this.parent = parent;
 		this.setLayout(new BorderLayout());
 
 		this.bp = new BoardPanel(this);
@@ -45,11 +49,6 @@ public class LevelView extends JPanel {
 		this.westPanel = new GameWestPanel(l, this);
 		this.add(westPanel, BorderLayout.WEST);
 
-		this.tbp = new TopBarPanel(l, parent);
-		this.tbp.getRearrangeButton().addMouseListener(new RearrangeBoardController(l, this));
-		this.tbp.getSwapButton().addMouseListener(new InitiateSwapMoveController(l, this));
-		this.tbp.getClearButton().addMouseListener(new InitiateClearMoveController(l, this));
-		this.add(tbp, BorderLayout.NORTH);
 
 		this.eastPanel = new JPanel();
 		GroupLayout eastLayout = new GroupLayout(eastPanel);
@@ -69,7 +68,25 @@ public class LevelView extends JPanel {
 		this.add(eastPanel, BorderLayout.EAST);
 
 		this.changeController(new MakeUserMoveController(l, this));
-
+		
+	}
+	
+	public LevelView(PuzzleLevel l, Application parent) {
+		this((Level)l, parent);
+		this.topBar = new PuzzleTopBarPanel(l, this, parent);
+		this.add(topBar, BorderLayout.NORTH);
+	}
+	
+	public LevelView(EliminationLevel l, Application parent) {
+		this((Level)l, parent);
+		this.topBar = new EliminationTopBarPanel(l, this, parent);
+		this.add(topBar, BorderLayout.NORTH);
+	}
+	
+	public LevelView(LightningLevel l, Application parent) {
+		this((Level)l, parent);
+		this.topBar = new LightningTopBarPanel(l, this, parent);
+		this.add(topBar, BorderLayout.NORTH);
 	}
 	
 	public void changeController(MouseInputListener controller) {
@@ -85,7 +102,7 @@ public class LevelView extends JPanel {
 	public Level getLevel() {
 		return l;
 	}
-
+	
 	public BoardPanel getBoard() {
 		return bp;
 	}
@@ -96,20 +113,20 @@ public class LevelView extends JPanel {
 	 * No matter what, it will then return them to the main menu
 	 */
 	public void endLevel() {
-		if(l.hasPassed()) {
-			//Should replace this with a popup menu with retry or back to main menu
-			System.out.println("You have passed the level, congratulations");
-			//Save level to disk
-		} else {
-			System.out.println("You have finished the level, but not passed, try again");
+		this.setEnabled(false);
+		EndLevelController end = new EndLevelController(l, this, parent);
+		end.run();
+	}
+
+	public void restart(Level l) {
+		if(l instanceof PuzzleLevel) {
+			this.parent.changeView(new LevelView((PuzzleLevel)l, parent));
 		}
-		this.parent.changeView(new MainMenuView(parent));
+		if(l instanceof EliminationLevel) {
+			this.parent.changeView(new LevelView((EliminationLevel)l, parent));
+		}
+		if(l instanceof LightningLevel) {
+			this.parent.changeView(new LevelView((LightningLevel)l, parent));
+		}
 	}
-
-	public void restart() {
-		l.restart();
-		this.parent.changeView(new LevelView(l, parent));
-
-	}
-	
 }

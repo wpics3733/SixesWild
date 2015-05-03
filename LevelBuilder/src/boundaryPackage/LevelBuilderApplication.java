@@ -76,6 +76,12 @@ public class LevelBuilderApplication extends JFrame {
 		this.repaint();
 	}
 	
+	/**
+	 * Set the current view
+	 * @param newPanel the panel which the view should be changed to
+	 * 
+	 * @author Tom
+	 */
 	public void setCurrentView(JPanel newPanel) {
 		this.getContentPane().removeAll();
 		//newPanel.setBounds(0, 0, 1025, 769);			// not needed if all panel sizes are explicitly set
@@ -86,4 +92,19 @@ public class LevelBuilderApplication extends JFrame {
 		this.repaint();
 		
 	}
+	
+	/**
+	* Returns the current view
+	* @return the current panel
+	* 
+	* @author Tom
+	*/
+	public JPanel getCurrentView() {
+		return this.currentView;
+	}
+	
+	public void setModel(LevelModel newModel) {
+		this.model = newModel;
+	}
+
 }

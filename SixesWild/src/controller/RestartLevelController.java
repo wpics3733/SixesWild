@@ -10,7 +10,7 @@ import model.Level;
 public class RestartLevelController implements MouseInputListener {
 	Level l;
 	LevelView lv;
-	
+
 	public RestartLevelController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
@@ -19,7 +19,8 @@ public class RestartLevelController implements MouseInputListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		lv.restart();
+		l.restart();
+		lv.restart(l);
 		lv.repaint();
 	}
 

@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class ClearMove implements IMove {
-	TileContainer tile;
+	AbstractTileContainer tile;
 
 	@Override
-	public boolean addTile(TileContainer tc) {
+	public boolean addTile(AbstractTileContainer tc) {
 		if(tile == null) {
 			this.tile = tc;
 			return true;
@@ -18,7 +18,6 @@ public class ClearMove implements IMove {
 	public void pushMove(Level l) {
 		tile.clearTile();
 		l.useSpecial(Level.CLEAR);
-		l.getBoard().settleTiles();
 		l.react(this);
 		
 	}
@@ -32,8 +31,8 @@ public class ClearMove implements IMove {
 	}
 
 	@Override
-	public ArrayList<TileContainer> getTiles() {
-		ArrayList<TileContainer> toRet = new ArrayList<TileContainer>();
+	public ArrayList<AbstractTileContainer> getTiles() {
+		ArrayList<AbstractTileContainer> toRet = new ArrayList<AbstractTileContainer>();
 		if(tile != null) {
 			toRet.add(tile);
 		}

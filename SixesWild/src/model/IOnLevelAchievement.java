@@ -1,9 +1,7 @@
-package achievement;
+package model;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import model.Level;
 
 /**
  * Acheivements that are calculated after the completion of a level.
@@ -26,7 +24,7 @@ public abstract class IOnLevelAchievement extends Achievement {
 	 * to see if this move unlocked it
 	 * @param move
 	 */
-	public void checkAllAchievements(Level level) {
+	public static void checkAll(Level level) {
 		for (IOnLevelAchievement a : list) {
 			if (!a.isUnlocked()) {
 				if (a.unlocked(level)) { a.unlocked = true; }

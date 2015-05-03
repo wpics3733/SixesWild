@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Achievement;
+
 public class Application extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
@@ -25,6 +27,11 @@ public class Application extends JFrame{
 		
 		this.pack();
 		this.setResizable(false);
+		
+		// I couldn't think of a better place for this, so here it is.
+		// First we intstantiate all the achievements, then we load the save file.
+		// - justin
+		Achievement.initializeAll();
 	}
 	
 	public void changeView( JPanel p ) {

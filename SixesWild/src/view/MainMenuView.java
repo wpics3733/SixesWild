@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JPanel;
@@ -20,7 +21,6 @@ public class MainMenuView extends JPanel {
 	
 	static final long serialVersionUID = 1;
 	JLabel titleText;
-	JButton continueButton;
 	JButton levelsButton;
 	JButton achievementsButton;
 	JButton creditsButton;
@@ -30,12 +30,13 @@ public class MainMenuView extends JPanel {
 		super();
 		
 		this.titleText = new JLabel("Sixes Wild", SwingConstants.CENTER);
-		titleText.setFont(new Font("Sans", Font.PLAIN, 20));
-		this.continueButton = new JButton("Continue");
-		this.levelsButton = new JButton("View Past Levels");
+		titleText.setFont(new Font("Sans", Font.PLAIN, 48));
+		this.levelsButton = new JButton("Levels");
 		this.achievementsButton = new JButton("Achievements");
 		this.creditsButton = new JButton("Credits");
 		this.quit = new JButton("Quit");
+		
+		this.levelsButton.setPreferredSize(new Dimension( 100, achievementsButton.getWidth()));
 		
 		this.levelsButton.addMouseListener(new PastLevelViewController(a));
 		this.achievementsButton.addMouseListener(new AchievementPanelController(a));
@@ -49,12 +50,11 @@ public class MainMenuView extends JPanel {
 				.addGroup(Alignment.CENTER, groupLayout.createSequentialGroup()
 					.addContainerGap(0, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.CENTER)
-						.addComponent(titleText)
-						.addComponent(continueButton)
-						.addComponent(creditsButton)
-						.addComponent(achievementsButton)
-						.addComponent(levelsButton)
-						.addComponent(quit))
+						.addComponent(titleText, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(creditsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(achievementsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(levelsButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(quit, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addContainerGap(0, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -63,7 +63,6 @@ public class MainMenuView extends JPanel {
 					.addGap(50)
 					.addComponent(titleText)
 					.addGap(50)
-					.addComponent(continueButton)
 					.addComponent(levelsButton)
 					.addComponent(achievementsButton)
 					.addComponent(creditsButton)

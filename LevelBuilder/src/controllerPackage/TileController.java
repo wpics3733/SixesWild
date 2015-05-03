@@ -22,23 +22,27 @@ public class TileController extends MouseAdapter {
 		this.label = label;
 		//this.app = app;
 	}
-	
 	/**
-	 * Whenever mouse is pressed (left button), set the current view to the MenuPanel.
-	 * This is a GUI controller.
-	 */
+	* Whenever mouse is pressed (left button) on a Tile (which is located on the BoardPanel),
+	* set the currently selected tile (via model.setSelectedTile() )
+	* and make any necessary modifications to the tile (via model.modifyTile() )
+	*/
 	@Override
 	public void mousePressed(MouseEvent me) {
 		Point point = panel.contains(label);
 		
 		if (point != null) {
-			System.out.println("Clicked on label: " + label.getName());
+			System.out.println("TileController::Clicked on label: " + label.getName());
 			model.setSelectedTile(point.x, point.y);
 			model.modifyTile(point.x, point.y);
-			panel.redraw();
+			/*
+			System.out.println("TileController::Tile (" + point.y + ", " + point.x + ") multiplier is currently set to: " +
+			model.getBoard()[point.x][point.y].getMultiplier());
+			*/
+			panel.repaint();
 		}
 		else {
-			System.out.println("NO IT DID NOT WORK.");
+			System.out.println("TileController::The JLabel which was clicked on could not be found within the BoardPanel.");
 		}
 		
 	}

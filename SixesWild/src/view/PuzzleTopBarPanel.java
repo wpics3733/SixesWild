@@ -3,8 +3,12 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import controller.InitiateClearMoveController;
+import controller.InitiateSwapMoveController;
+import controller.RearrangeBoardController;
 import controller.ReturnToMenuController;
 import model.Level;
+import model.PuzzleLevel;
 
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -15,9 +19,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
 
-public class TopBarPanel extends JPanel {
+public class PuzzleTopBarPanel extends JPanel {
 	
-	Level l;
+	private static final long serialVersionUID = 1L;
+	PuzzleLevel l;
+	LevelView lv;
 	Application parent;
 	
 	private JButton clear;
@@ -25,23 +31,26 @@ public class TopBarPanel extends JPanel {
 	private JButton quit;
 	private JButton rearrange;
 	private JLabel score;
-	private JLabel timeLeft;
+	private JLabel movesLeft;
 	
-	public TopBarPanel(Level l, Application parent) {
+	public PuzzleTopBarPanel(PuzzleLevel l, LevelView lv, Application parent) {
 		
 		this.l = l;
+		this.lv = lv;
 		this.parent = parent;
 		
 		clear = new JButton("Clear");
 		swap = new JButton("Swap");
 		rearrange = new JButton("Rearrange");
-		timeLeft = new JLabel("Moves Left: 99");
-		timeLeft.setFont(new Font("AvenyyirNext", Font.PLAIN, 20));
-		timeLeft.setForeground(Color.WHITE);
 		
 		quit = new JButton("Quit");
 		quit.addMouseListener(new ReturnToMenuController(parent));
-		score = new JLabel("Score: " + 999);
+		
+		movesLeft = new JLabel();
+		movesLeft.setFont(new Font("AvenyyirNext", Font.PLAIN, 20));
+		movesLeft.setForeground(Color.WHITE);
+		
+		score = new JLabel();
 		score.setFont(new Font("AvenyyirNext", Font.PLAIN, 20));
 		score.setForeground(Color.WHITE);
 		
@@ -54,7 +63,7 @@ public class TopBarPanel extends JPanel {
 							.addComponent(quit)
 							.addComponent(score)
 							.addPreferredGap(ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
-							.addComponent(timeLeft)
+							.addComponent(movesLeft)
 							.addPreferredGap(ComponentPlacement.RELATED, 0, Short.MAX_VALUE)
 							.addComponent(rearrange)
 							.addComponent(swap)
@@ -68,9 +77,14 @@ public class TopBarPanel extends JPanel {
 						.addComponent(swap)
 						.addComponent(score)
 						.addComponent(clear)
-						.addComponent(timeLeft)
+						.addComponent(movesLeft)
 						.addComponent(quit)))
 		);
+		
+		
+		this.rearrange.addMouseListener(new RearrangeBoardController(l, lv));
+		this.swap.addMouseListener(new InitiateSwapMoveController(l, lv));
+		this.clear.addMouseListener(new InitiateClearMoveController(l, lv));
 		setLayout(groupLayout);
 		setBackground(new Color(112,147,113));
 
@@ -92,20 +106,10 @@ public class TopBarPanel extends JPanel {
 		if(clearMoves <= 0) {
 			clear.setEnabled(false);
 		}
-		timeLeft.setText("Moves Left: " + l.getMovesRemaining());
+		movesLeft.setText("Moves Left: " + l.getMovesRemaining());
 		score.setText("Score: " + l.getScore());
 		swap.setText("Swap (" + swapMoves + ")");
 		rearrange.setText("Rearrange (" + rearrangeMoves + ")");
 		clear.setText("Clear (" + clearMoves + ")");
-	}
-	
-	public JButton getRearrangeButton() {
-		return rearrange;
-	}
-	public JButton getSwapButton() {
-		return swap;
-	}
-	public JButton getClearButton() {
-		return clear;
 	}
 }

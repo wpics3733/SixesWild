@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class UserMove implements IMove, Iterable<TileContainer> {
-	ArrayList<TileContainer> tiles;
+public class UserMove implements IMove, Iterable<AbstractTileContainer> {
+	ArrayList<AbstractTileContainer> tiles;
 	int sum;
 	int multiplier;
 	int numTiles;
@@ -13,11 +13,11 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		sum = 0;
 		multiplier = 1;
 		numTiles = 0;
-		tiles = new ArrayList<TileContainer>();
+		tiles = new ArrayList<AbstractTileContainer>();
 	}
 
 	@Override
-	public boolean addTile(TileContainer tc) {
+	public boolean addTile(AbstractTileContainer tc) {
 		if(tiles.contains(tc)) {
 			return false;
 		}
@@ -26,7 +26,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 			return true;
 		}
 
-		for(TileContainer i: tiles) {
+		for(AbstractTileContainer i: tiles) {
 			if(i.isAdjacentTo(tc)) {
 				addAcceptedTile(tc);
 				return true;
@@ -35,7 +35,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		return false;
 	}
 
-	private void addAcceptedTile(TileContainer tc) {
+	private void addAcceptedTile(AbstractTileContainer tc) {
 		tc.setUsed(true);
 		tiles.add(tc);
 		sum += tc.getTile().getNum();
@@ -44,7 +44,7 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 
 	}
 
-	private int getScore() {
+	public int getScore() {
 		if(this.isValid()) {
 			return 10*numTiles * multiplier;
 		} else {
@@ -52,10 +52,6 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 		}		
 	}
 
-	@Override
-	public Iterator<TileContainer> iterator() {
-		return tiles.iterator();
-	}
 
 	@Override
 	public boolean isValid() {
@@ -68,11 +64,10 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	 */
 	@Override
 	public void pushMove(Level l) {
-		for(TileContainer tc: tiles) {
+		for(AbstractTileContainer tc: tiles) {
 			tc.clearTile();
 		}
 		l.getBoard().settleTiles();
-		l.react(this);
 		l.setScore(l.getScore() + this.getScore());
 	}
 
@@ -84,14 +79,21 @@ public class UserMove implements IMove, Iterable<TileContainer> {
 	 * eg. subtract a move
 	 */
 	public void finishMove(Level l) {
-		l.subtractMove();
-		for(TileContainer tc: tiles) {
+		for(AbstractTileContainer tc: tiles) {
 			tc.setUsed(false);
 		}
+		
+		// check to see if this move has unlocked any achievements
+		OnMoveAchievement.checkAll(this);
 	}
 
 	@Override
-	public ArrayList<TileContainer> getTiles() {
+	public ArrayList<AbstractTileContainer> getTiles() {
 		return tiles;
+	}
+
+	@Override
+	public Iterator<AbstractTileContainer> iterator() {
+		return tiles.iterator();
 	}
 }

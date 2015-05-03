@@ -13,22 +13,35 @@ public class BoardPanel extends JPanel {
 	Board b;
 	Level l;
 	LevelView parent;
-	TilePanel tiles[][];
+	JPanel tiles[][];
 	
 	public BoardPanel(LevelView parent) {
 		super();
 		this.l = parent.getLevel();
 		this.b = l.getBoard();
-		this.tiles = new TilePanel[b.getW()][b.getH()];
+		this.tiles = new JPanel[b.getW()][b.getH()];
 		GroupLayout layout = new GroupLayout(this);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setAutoCreateGaps(true);
 
 		int h = b.getH();
 		int w = b.getW();
+		AbstractTileContainer[][] containers = b.getTileContainers();
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
-				tiles[i][j] = new TilePanel(b.getTiles()[i][j]);
+				if(containers[i][j] instanceof BucketTileContainer) {
+					
+					tiles[i][j] = new BucketTilePanel(containers[i][j]);
+				} else if (containers[i][j] instanceof NullTileContainer) {
+					tiles[i][j] = new NullTilePanel();
+					
+				} else {
+					
+					tiles[i][j] = new TilePanel(b.getTileContainers()[i][j]);
+				}
+				if(containers[i][j].isNull()) {
+				} else {
+				}
 			}
 		}
 				

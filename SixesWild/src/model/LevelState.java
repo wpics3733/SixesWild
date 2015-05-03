@@ -59,15 +59,19 @@ public class LevelState {
 		width = 9;
 		height = 9;
 		boardVals = new int[width][height];
+		for(int i = 0; i < 9; i++) {
+			boardVals[i][8] = -1;
+		}
 		marks = new int[width][height];
 		multipliers = new int[width][height];
 		blockedTiles = new boolean[width][height];
 		
 		levelType = "Puzzle";
-		starScores = new int[3];
+		int[] starScoreArray = {20, 30, 40};
+		starScores = starScoreArray;
 		specialMoves = new int[3];
-		timeLimit = 0;
-		moveLimit = 100;
+		timeLimit = 10;
+		moveLimit = 10;
 		
 		multiplierProbabilities = new int[3];
 		tileProbabilities = new int[6];

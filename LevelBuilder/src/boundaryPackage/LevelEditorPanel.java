@@ -16,6 +16,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 
 import controllerPackage.QuitButtonController;
+import controllerPackage.SaveLevelButtonController;
 import entityPackage.LevelModel;
 
 import java.awt.event.ActionListener;
@@ -28,6 +29,9 @@ public class LevelEditorPanel extends JPanel {
 	 */
 	private LevelBuilderApplication parentApplication;
 	LevelModel model;
+	BoardPanel boardPanel;
+	PalettePanel palettePanel;
+	PropertiesMenuPanel propertiesMenuPanel;
 	
 	public LevelBuilderApplication getParentApplication() {
 		return parentApplication;
@@ -45,14 +49,14 @@ public class LevelEditorPanel extends JPanel {
 		this.setSize(1024, 768);
 
 		
-		JPanel panel = new BoardPanel(model);
-		panel.setPreferredSize(new Dimension(630,630));
+		JPanel boardPanel = new BoardPanel(model);
+		boardPanel.setPreferredSize(new Dimension(630,630));
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		JPanel panel_1 = new PalettePanel(this, model);
-		panel_1.setBackground(Color.WHITE);
+		JPanel palettePanel = new PalettePanel(this, model);
+		palettePanel.setBackground(Color.WHITE);
 		//JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
 		JButton btnQuit = new JButton("Quit");
 		
@@ -67,17 +71,23 @@ public class LevelEditorPanel extends JPanel {
 			}
 		});
 		*/
+		
+		JButton btnNewButton = new JButton("Save Level");
+		btnNewButton.addActionListener(new SaveLevelButtonController(this, model));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+						.addComponent(palettePanel, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
 						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 712, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 712, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton)
+							.addGap(18)
+							.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
 					.addGap(25))
 		);
 		groupLayout.setVerticalGroup(
@@ -85,31 +95,49 @@ public class LevelEditorPanel extends JPanel {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 418, GroupLayout.PREFERRED_SIZE)
+					.addComponent(palettePanel, GroupLayout.PREFERRED_SIZE, 418, GroupLayout.PREFERRED_SIZE)
 					.addGap(16))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 653, GroupLayout.PREFERRED_SIZE)
+					.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 653, GroupLayout.PREFERRED_SIZE)
 					.addGap(41))
 		);
 		
-		JPanel panel_2 = new PropertiesMenuPanel(model, parent);
-		panel_2.setBackground(Color.WHITE);
-		panel_2.setPreferredSize(new Dimension(250,650));
-		scrollPane.setViewportView(panel_2);
+		JPanel propertiesMenuPanel = new PropertiesMenuPanel(model, parent);
+		propertiesMenuPanel.setBackground(Color.WHITE);
+		propertiesMenuPanel.setPreferredSize(new Dimension(250,650));
+		scrollPane.setViewportView(propertiesMenuPanel);
 		setLayout(groupLayout);
 		
-		panel.setVisible(true);
-		panel_1.setVisible(true);
-
+		boardPanel.setVisible(true);
+		palettePanel.setVisible(true);
+		
+		this.boardPanel = (BoardPanel) boardPanel;
+		this.palettePanel = (PalettePanel) palettePanel;
+		this.propertiesMenuPanel = (PropertiesMenuPanel) propertiesMenuPanel;
 	}
 
 	public void PaintComponent(Graphics g){
 		super.paintComponent(g);
 		
 	}
+
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
+	}
+
+	public PalettePanel getPalettePanel() {
+		return palettePanel;
+	}
+
+	public PropertiesMenuPanel getPropertiesMenuPanel() {
+		return propertiesMenuPanel;
+	}
+	
 	
 	
 }

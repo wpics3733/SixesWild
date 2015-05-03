@@ -26,8 +26,10 @@ public class Tile {
 		// TODO
 	}
 
-	public Tile(int mark, int value, int multiplier, boolean isBlocked) {
+	public Tile(int col, int row, int mark, int value, int multiplier, boolean isBlocked) {
 		super();
+		this.x = col;
+		this.y = row;
 		this.mark = mark;
 		this.value = value;
 		this.multiplier = multiplier;
@@ -72,6 +74,14 @@ public class Tile {
 
 	public int getValue() {
 		return value;
+	}
+
+	public int getMultiplier() {
+		return multiplier;
+	}
+	
+	public String getCoordinate() {
+		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
 	}
 	
 }

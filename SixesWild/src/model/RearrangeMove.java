@@ -5,23 +5,23 @@ import java.util.ArrayList;
 public class RearrangeMove implements IMove {
 
 	@Override
-	public boolean addTile(TileContainer tc) {
-		// TODO Auto-generated method stub
+	public boolean addTile(AbstractTileContainer tc) {
 		return false;
 	}
 
 	@Override
 	public void pushMove(Level l) {
-		l.subtractMove();
 		Board b = l.getBoard();
-		TileContainer[][] tiles = b.getTiles();
+		AbstractTileContainer[][] tiles = b.getTileContainers();
 		for(int i = 0; i < b.getW(); i++) {
 			for(int j = 0; j < b.getH(); j++) {
-				if(tiles[i][j].getTile().getNum() != 6) {
-					tiles[i][j].setTile(b.getRandomTile());
+				if(tiles[i][j] instanceof NumberTileContainer) {
+					tiles[i][j].clearTile();
+					tiles[i][j].addTile(l.getBoard().getRandomTile());
 				}
 			}
 		}
+		l.react(this);
 		l.useSpecial(Level.REARRANGE);
 	}
 
@@ -30,7 +30,7 @@ public class RearrangeMove implements IMove {
 		return true;
 	}
 	
-	public ArrayList<TileContainer> getTiles() {
+	public ArrayList<AbstractTileContainer> getTiles() {
 		return null;
 	}
 
