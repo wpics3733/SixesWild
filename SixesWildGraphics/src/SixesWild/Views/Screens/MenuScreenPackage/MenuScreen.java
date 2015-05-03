@@ -39,30 +39,33 @@ public class MenuScreen extends Screen {
     //    Bounds of buttons
     final int BUTTON_PADDING_LEFT = (Application.WINDOW_WIDTH - (int) BUTTON_SIZE.getWidth()) / 2;
 
+//    Padding top of the first button
+    final int BUTTON_GROUP_PADDING_TOP = 110;
+
     //    Vertical space between buttons
-    final int BUTTON_VERTICAL_SPACE = 6;
+    final int BUTTON_VERTICAL_SPACE = 14;
 
     final Rectangle CONTINUE_BUTTON_BOUNDS = new Rectangle(
             BUTTON_PADDING_LEFT,
-            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + 96,
+            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + BUTTON_GROUP_PADDING_TOP,
             (int) BUTTON_SIZE.getWidth(),
             (int) BUTTON_SIZE.getHeight()
     );
     final Rectangle LEVEL_BUTTON_BOUNDS = new Rectangle(
             BUTTON_PADDING_LEFT,
-            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + 96 + BUTTON_VERTICAL_SPACE + (int) BUTTON_SIZE.getHeight(),
+            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + BUTTON_GROUP_PADDING_TOP + BUTTON_VERTICAL_SPACE + (int) BUTTON_SIZE.getHeight(),
             (int) BUTTON_SIZE.getWidth(),
             (int) BUTTON_SIZE.getHeight()
     );
     final Rectangle BADGE_BUTTON_BOUNDS = new Rectangle(
             BUTTON_PADDING_LEFT,
-            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + 96 + (BUTTON_VERTICAL_SPACE + (int) BUTTON_SIZE.getHeight()) * 2,
+            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + BUTTON_GROUP_PADDING_TOP + (BUTTON_VERTICAL_SPACE + (int) BUTTON_SIZE.getHeight()) * 2,
             (int) BUTTON_SIZE.getWidth(),
             (int) BUTTON_SIZE.getHeight()
     );
     final Rectangle ABOUT_BUTTON_BOUNDS = new Rectangle(
             BUTTON_PADDING_LEFT,
-            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + 96 + (BUTTON_VERTICAL_SPACE + (int) BUTTON_SIZE.getHeight()) * 3,
+            STATUS_BAR_HEIGHT + (int) MenuScreenBanner.BANNER_SIZE.getHeight() + BUTTON_GROUP_PADDING_TOP + (BUTTON_VERTICAL_SPACE + (int) BUTTON_SIZE.getHeight()) * 3,
             (int) BUTTON_SIZE.getWidth(),
             (int) BUTTON_SIZE.getHeight()
     );

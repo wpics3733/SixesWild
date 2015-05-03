@@ -1,11 +1,11 @@
 package SixesWild.Views;
 
-import SixesWild.Views.Screens.*;
 import SixesWild.Views.Screens.AboutScreenPackage.AboutScreen;
 import SixesWild.Views.Screens.BadgeScreenPackage.BadgesScreen;
 import SixesWild.Views.Screens.GameScreenPackage.GameScreen;
 import SixesWild.Views.Screens.LevelScreenPackage.LevelsScreen;
 import SixesWild.Views.Screens.MenuScreenPackage.MenuScreen;
+import SixesWild.Views.Screens.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +40,6 @@ public class Application extends JFrame {
     //    Title of individual screens
     final String ABOUT_SCREEN_TITLE = "Developers";
     final String LEVELS_SCREEN_TITLE = "Levels";
-    final String MENU_SCREEN_TITLE = " - " + "Main Menu";
     final String BADGE_SCREEN_TITLE = "Achievement Badges";
     //    Default Screen paddings
     final int DEFAULT_SCREEN_PADDING_LEFT = 0;
@@ -89,7 +88,7 @@ public class Application extends JFrame {
 
     public MenuScreen getMenuScreen() {
         if (menuScreen == null) {
-            menuScreen = new MenuScreen(APPLICATION_TITLE + MENU_SCREEN_TITLE, this);
+            menuScreen = new MenuScreen(APPLICATION_TITLE, this);
         }
 
         return menuScreen;
