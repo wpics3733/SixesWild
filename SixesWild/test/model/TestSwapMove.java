@@ -14,7 +14,7 @@ public class TestSwapMove extends TestCase {
 		state = new LevelState();
 		int[][] vals = 
 			{
-				{1,2,1,4,5,6,1,2,3},
+				{1,2,1,4,5,6,1,2,-1},
 				{1,2,1,4,5,6,1,2,3},
 				{1,2,1,4,5,6,1,2,3},
 				{1,2,1,4,5,6,1,2,3},
@@ -39,6 +39,8 @@ public class TestSwapMove extends TestCase {
 		ArrayList<AbstractTileContainer> moveTiles = move.getTiles();
 		assertEquals(moveTiles.size(), 0);
 		assertFalse(move.isValid());
+		//Cannot add because the tile is null
+		assertFalse(move.addTile(tiles[0][8]));
 		assertTrue(move.addTile(tiles[1][1]));
 		assertTrue(tiles[1][1].used());
 		assertFalse(move.addTile(tiles[1][1]));
@@ -51,6 +53,12 @@ public class TestSwapMove extends TestCase {
 		assertTrue(moveTiles.contains(tiles[1][0]));
 		Tile swap_1 = tiles[1][1].getTile();
 		Tile swap_2 = tiles[1][0].getTile();
+		assertTrue(move.isValid());
+		try {
+			move.addTile(tiles[5][5]);
+			fail("Should've caught an exception");
+		} catch (RuntimeException e) {
+		}
 		move.pushMove(l);
 		l.react(move);
 		assertFalse(tiles[1][1].used());

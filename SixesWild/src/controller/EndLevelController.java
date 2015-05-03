@@ -10,23 +10,44 @@ import view.Application;
 import view.EndLevelPanel;
 import view.LevelView;
 
+/**
+ * When a level is done, this controller is run.
+ * If the user passed the level, it saves their high score and unlocks the
+ * next level
+ * 
+ * Then it shows them a screen asking if they want to retry, or quit to main menu
+ * @author jesse
+ *
+ */
 public class EndLevelController {
 	
 	Level l;
+	Level next;
 	LevelView lv;
 	Application a;
 	
 
-	public EndLevelController(Level l, LevelView lv, Application a) {
+	public EndLevelController(Level l, Level next, LevelView lv, Application a) {
 		this.l = l;
 		this.lv = lv;
 		this.a = a;
+		this.next = next;
 	}
 	
 	public void run() {
 		if(l instanceof LightningLevel) {
 			((LightningLevel)l).getTimer().cancel();
 		}
+		/*
+		if(l.hasPassed()) {
+			l.saveHighScore()
+			 if (next != null) {
+			 	unlock(next)
+			 }
+		}
+		 */
+		
+		
 		a.changeView(new EndLevelPanel(l, lv, a));
 		//Check score
 		//Generate a popup window, telling the user they have won or lost

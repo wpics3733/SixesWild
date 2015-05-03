@@ -14,7 +14,7 @@ public class TestUserMove extends TestCase {
 		state = new LevelState();
 		int[][] vals = 
 			{
-				{1,2,1,4,5,6,1,2,3},
+				{1,2,1,4,5,6,1,2,-1},
 				{1,2,1,4,5,6,1,2,3},
 				{1,2,1,4,5,6,1,2,3},
 				{1,2,1,4,5,6,1,2,3},
@@ -39,6 +39,7 @@ public class TestUserMove extends TestCase {
 		assertFalse(move.addTile(tiles[0][1]));
 		assertFalse(move.addTile(tiles[1][2]));
 		assertTrue(move.addTile(tiles[1][1]));
+		assertFalse(move.addTile(tiles[0][8]));
 		assertFalse(move.isValid());
 		assertTrue(move.addTile(tiles[1][2]));
 		assertTrue(move.addTile(tiles[0][2]));

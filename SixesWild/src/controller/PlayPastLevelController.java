@@ -12,22 +12,23 @@ import view.LevelView;
 
 public class PlayPastLevelController implements MouseListener {
 	Application parent;
-	Level toPlay;
+	Level toPlay, next;
 	
-	public PlayPastLevelController(Application parent, Level toPlay) {
+	public PlayPastLevelController(Application parent, Level toPlay, Level next) {
 		this.parent = parent;
 		this.toPlay = toPlay;
+		this.next = next;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		LevelView lv;
 		if(toPlay instanceof PuzzleLevel) {
-			lv = new LevelView((PuzzleLevel)toPlay, parent);
+			lv = new LevelView((PuzzleLevel)toPlay, next, parent);
 		} else if (toPlay instanceof EliminationLevel) {
-			lv = new LevelView((EliminationLevel)toPlay, parent);
+			lv = new LevelView((EliminationLevel)toPlay, next, parent);
 		} else {
-			lv = new LevelView((LightningLevel)toPlay, parent);
+			lv = new LevelView((LightningLevel)toPlay, next, parent);
 		}
 		parent.changeView(lv);
 		

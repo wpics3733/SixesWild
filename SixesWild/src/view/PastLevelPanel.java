@@ -41,7 +41,7 @@ public class PastLevelPanel extends JPanel{
 					tmp.loadState(child.getName());
 					//System.out.println(tmp.getLevelType());
 					//System.out.println(tmp.isUnlocked());
-					if(tmp.isUnlocked() && tmp.getLevelType() != null){
+					if(tmp.getLevelType() != null){
 						Level newLevel = null;
 						if(tmp.getLevelType().equals("Puzzle")){
 							newLevel = new PuzzleLevel(tmp);
@@ -86,35 +86,28 @@ public class PastLevelPanel extends JPanel{
 //		Main content
 		JPanel mainContent = new JPanel(new BorderLayout());
 		
-//		Last page button
-		JButton lastPageButton = new JButton("<--");
-		lastPageButton.setPreferredSize(new Dimension(80, 80));
-		JPanel lastPagePanel = new JPanel(new FlowLayout());
-		//lastPagePanel.add(lastPageButton);
-		
-//		Next page button
-		JButton nextPageButton = new JButton("-->");
-		nextPageButton.setPreferredSize(new Dimension(80, 80));
-		JPanel nextPagePanel = new JPanel(new FlowLayout());
-		//nextPagePanel.add(nextPageButton);
-		
-//		Add button into panel
-		mainContent.add(lastPagePanel, BorderLayout.WEST);
-		mainContent.add(nextPagePanel, BorderLayout.EAST);
 		
 //		Level button grid
 		JPanel levelGrid = new JPanel(new GridLayout(4,4,4,4));
 		
 		int i;
 		for(i = 0; i < levels.size(); i++) {
-			JButton levelButton = new JButton("<html><center>Level " + i + "<br>" + levels.get(i).typeString() + "</center></html>");
-			//levelButton.setPreferredSize(new Dimension(80, 80));
-			levelButton.setBackground(Color.YELLOW);
-			levelButton.addMouseListener(new PlayPastLevelController(parent, levels.get(i)));
+			JButton levelButton;
+			if(levels.get(i).getLevelState().isUnlocked()) {
+				levelButton = new JButton("<html><center>Level " + i + "<br>" + levels.get(i).typeString() + "</center></html>");
+				levelButton.setBackground(Color.YELLOW);
+				Level nextLevel = (i <= levels.size() - 1) ? null : levels.get(i+1);
+				levelButton.addMouseListener(new PlayPastLevelController(parent, levels.get(i), nextLevel));
+			} else {
+				levelButton = new JButton("Locked");
+				levelButton.setPreferredSize(new Dimension(180, 120));
+				levelButton.setEnabled(false);
+			}
 			levelGrid.add(levelButton);
 		}
+		
 		for( i = i; i < 16; i++) {
-			JButton levelButton = new JButton("Locked");
+			JButton levelButton = new JButton("");
 			levelButton.setPreferredSize(new Dimension(180, 120));
 			levelButton.setEnabled(false);
 			levelGrid.add(levelButton);

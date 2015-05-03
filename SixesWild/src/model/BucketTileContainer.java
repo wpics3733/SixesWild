@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * Buckets are only used in th "Release" level type.
+ * They start out empty and can only be filled by
+ * a 6 settling in. Once they are full, they act just like
+ * null tiles
+ * @author jesse
+ *
+ */
 public class BucketTileContainer extends AbstractTileContainer {
 	boolean empty;
 

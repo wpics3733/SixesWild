@@ -7,6 +7,9 @@ public class ClearMove implements IMove {
 
 	@Override
 	public boolean addTile(AbstractTileContainer tc) {
+		if(tc.empty() || tc.isNull()) {
+			return false;
+		}
 		if(tile == null) {
 			this.tile = tc;
 			return true;

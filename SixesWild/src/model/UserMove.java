@@ -21,7 +21,7 @@ public class UserMove implements IMove, Iterable<AbstractTileContainer> {
 		if(tiles.contains(tc)) {
 			return false;
 		}
-		if(tc.empty()) {
+		if(tc.empty() || tc.isNull()) {
 			return false;
 		}
 		if(tiles.isEmpty()) {

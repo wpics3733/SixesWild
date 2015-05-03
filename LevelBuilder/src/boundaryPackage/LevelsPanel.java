@@ -30,7 +30,7 @@ public class LevelsPanel extends JPanel {
 	 */
 	public LevelsPanel(MenuPanel parent) {
 		this.parent = parent;
-		setLayout(new GridLayout(4,4,10,10));
+		setLayout(new GridLayout(4,0,10,10));
 		
 		try{
 			File dir = new File("Levels");
