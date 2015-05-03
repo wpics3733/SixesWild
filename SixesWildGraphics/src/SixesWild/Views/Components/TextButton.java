@@ -13,6 +13,11 @@ import java.io.File;
  */
 public class TextButton extends StyledButton {
 
+    //    Background padding left
+    final int BACK_PADDING_LEFT = 0;
+    //    Background padding top
+    final int BACK_PADDING_TOP = 0;
+
     //    Text displayed on button
     String text;
 
@@ -26,7 +31,7 @@ public class TextButton extends StyledButton {
     Color disabledTextColor;
     //    Current text color
     Color currentTextColor;
-//    Current font of Text
+    //    Current font of Text
     String currentFont;
 
     //    Font size of text
@@ -35,7 +40,6 @@ public class TextButton extends StyledButton {
     public TextButton(
             String text,
             float fontSize,
-            Color textColor,
             Color normalTextColor,
             Color hoveredTextColor,
             Color activedTextColor,
@@ -124,9 +128,6 @@ public class TextButton extends StyledButton {
 
         int textPaddingTop = (containerHeight - visualBounds.y) / 2;
         int textPaddingLeft = (containerWidth - fontWidth) / 2;
-
-        graphics2D.setColor(this.getParent().getBackground());
-        graphics2D.fillRect(0, 0, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());
 
         graphics2D.setColor(currentTextColor);
         graphics2D.setFont(font);

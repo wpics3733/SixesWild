@@ -29,9 +29,9 @@ public class StatusBar extends JPanel {
     //    Title font size
     final float TITLE_FONT_SIZE = 20L;
     //    Title label size
-    final Dimension TITLE_LABEL_DIMENSION = new Dimension(160, 30);
+    final Dimension TITLE_LABEL_DIMENSION = new Dimension(210, 30);
     //    Title label bounds
-    final Rectangle TITLE_LABEL_BOUNDS = new Rectangle(20, 0, 160, 30);
+    final Rectangle TITLE_LABEL_BOUNDS = new Rectangle(20, 0, 210, 30);
     //    Title label alignment
     final boolean TITLE_LABEL_LEFT_ALIGN = true;
 

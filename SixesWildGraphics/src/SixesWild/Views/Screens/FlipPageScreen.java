@@ -1,7 +1,7 @@
 package SixesWild.Views.Screens;
 
 import SixesWild.Views.Application;
-import SixesWild.Views.FlipPagePanel;
+import SixesWild.Views.Components.FlipPagePanel;
 
 /**
  *

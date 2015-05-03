@@ -11,7 +11,7 @@ import java.awt.*;
 public class NavigableScreen extends Screen {
 
     //    Navigation bar height
-    final int NAV_BAR_HEIGHT = 58;
+    public static final int NAV_BAR_HEIGHT = 58;
     //    Navigation bar bounds
     final Rectangle NAV_BAR_BOUNDS = new Rectangle(0, 30, Application.WINDOW_WIDTH, NAV_BAR_HEIGHT);
 
@@ -24,5 +24,9 @@ public class NavigableScreen extends Screen {
         navigationBar.setBounds(NAV_BAR_BOUNDS);
 
         this.add(navigationBar);
+    }
+
+    public NavigationBar getNavigationBar() {
+        return navigationBar;
     }
 }

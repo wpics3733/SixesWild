@@ -50,4 +50,12 @@ public class Screen extends TransitableView {
 
         this.add(statusBar);
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Application getApp() {
+        return app;
+    }
 }
