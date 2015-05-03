@@ -418,7 +418,7 @@ public class LevelState {
 	 * Loads a LevelState object from [fileName].sav in the levels directory
 	 * @param fileName
 	 */
-	public void loadState(String fileName){
+	public void loadState(String fileName) {
 		File f;
 		FileInputStream saveFile;
 		ObjectInputStream save;

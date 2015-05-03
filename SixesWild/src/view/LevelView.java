@@ -18,13 +18,14 @@ import model.EliminationLevel;
 import model.Level;
 import model.LightningLevel;
 import model.PuzzleLevel;
+import model.ReleaseLevel;
 
 public class LevelView extends JPanel {
 
 	static final long serialVersionUID = 1;
 	private Application parent;
 
-	Level l;
+	Level l, next;
 	BoardPanel bp;
 	JPanel eastPanel;
 	JLabel sideWord;
@@ -33,9 +34,10 @@ public class LevelView extends JPanel {
 	
 	MouseInputListener controller;
 	
-	private LevelView(Level l, Application parent) {
+	private LevelView(Level l, Level next, Application parent) {
 		super();
 		this.l = l;
+		this.next = next;
 		this.parent = parent;
 		this.setLayout(new BorderLayout());
 
@@ -71,21 +73,27 @@ public class LevelView extends JPanel {
 		
 	}
 	
-	public LevelView(PuzzleLevel l, Application parent) {
-		this((Level)l, parent);
+	public LevelView(PuzzleLevel l, Level next, Application parent) {
+		this((Level)l, next, parent);
 		this.topBar = new PuzzleTopBarPanel(l, this, parent);
 		this.add(topBar, BorderLayout.NORTH);
 	}
 	
-	public LevelView(EliminationLevel l, Application parent) {
-		this((Level)l, parent);
+	public LevelView(EliminationLevel l, Level next, Application parent) {
+		this((Level)l, next, parent);
 		this.topBar = new EliminationTopBarPanel(l, this, parent);
 		this.add(topBar, BorderLayout.NORTH);
 	}
 	
-	public LevelView(LightningLevel l, Application parent) {
-		this((Level)l, parent);
+	public LevelView(LightningLevel l, Level next, Application parent) {
+		this((Level)l, next, parent);
 		this.topBar = new LightningTopBarPanel(l, this, parent);
+		this.add(topBar, BorderLayout.NORTH);
+	}
+	
+	public LevelView(ReleaseLevel l, Level next, Application parent) {
+		this((Level)l, next, parent);
+		this.topBar = new ReleaseTopBarPanel(l, this, parent);
 		this.add(topBar, BorderLayout.NORTH);
 	}
 	
@@ -114,19 +122,19 @@ public class LevelView extends JPanel {
 	 */
 	public void endLevel() {
 		this.setEnabled(false);
-		EndLevelController end = new EndLevelController(l, this, parent);
+		EndLevelController end = new EndLevelController(l, next, this, parent);
 		end.run();
 	}
 
 	public void restart(Level l) {
 		if(l instanceof PuzzleLevel) {
-			this.parent.changeView(new LevelView((PuzzleLevel)l, parent));
+			this.parent.changeView(new LevelView((PuzzleLevel)l, next, parent));
 		}
 		if(l instanceof EliminationLevel) {
-			this.parent.changeView(new LevelView((EliminationLevel)l, parent));
+			this.parent.changeView(new LevelView((EliminationLevel)l, next, parent));
 		}
 		if(l instanceof LightningLevel) {
-			this.parent.changeView(new LevelView((LightningLevel)l, parent));
+			this.parent.changeView(new LevelView((LightningLevel)l, next, parent));
 		}
 	}
 }

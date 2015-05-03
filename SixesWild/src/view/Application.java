@@ -34,11 +34,20 @@ public class Application extends JFrame{
 		Achievement.initializeAll();
 	}
 	
+	/**
+	 * Switches the current view of the Application frame.
+	 * Used when nagigating from Main Menu to a LevelView, or back, etc
+	 * @param p the new focus panel
+	 */
 	public void changeView( JPanel p ) {
 		pane.remove(current_view);
 		this.current_view = p;
 		pane.add(current_view);
 		pane.validate();
 		pane.repaint();
+	}
+	
+	public JPanel getCurrentView() {
+		return current_view;
 	}
 }

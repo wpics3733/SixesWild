@@ -21,6 +21,9 @@ public class UserMove implements IMove, Iterable<AbstractTileContainer> {
 		if(tiles.contains(tc)) {
 			return false;
 		}
+		if(tc.empty() || tc.isNull()) {
+			return false;
+		}
 		if(tiles.isEmpty()) {
 			addAcceptedTile(tc);
 			return true;
@@ -67,7 +70,6 @@ public class UserMove implements IMove, Iterable<AbstractTileContainer> {
 		for(AbstractTileContainer tc: tiles) {
 			tc.clearTile();
 		}
-		l.getBoard().settleTiles();
 		l.setScore(l.getScore() + this.getScore());
 	}
 

@@ -11,7 +11,7 @@ public class TestRearrangeMove extends TestCase {
 		state = new LevelState();
 		int[][] vals = 
 			{
-				{1,2,1,4,5,6,1,2,3},
+				{1,2,1,4,5,6,1,2,-1},
 				{1,2,1,4,5,6,1,2,3},
 				{1,2,1,4,5,6,1,2,3},
 				{1,2,1,4,5,6,1,2,3},
@@ -35,11 +35,13 @@ public class TestRearrangeMove extends TestCase {
 		assertTrue(move.isValid());
 		assertNull(move.getTiles());
 		Tile nonMovingSix = tiles[0][5].getTile();
+		AbstractTileContainer nonMovingNull = tiles[0][8];
 		move.pushMove(l);
 		l.react(move);
 
 		//6 Tiles never move when the board is rearranged
 		assertEquals(tiles[0][5].getTile(), nonMovingSix);
+		assertEquals(tiles[0][8], nonMovingNull);
 		
 		
 	}

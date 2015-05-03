@@ -50,8 +50,8 @@ public class BoardPanel extends JPanel {
 		tileLabels = new JLabel[9][9];
 		multiplierLabels = new JLabel[9][9];
 		
-		for(int i = 0; i < 9; i++){
-			for(int j = 0; j < 9; j++){
+		for(int j = 0; j < 9; j++){
+			for(int i = 0; i < 9; i++){
 				JLabel label_1Tile = new JLabel(myIcon);
 				label_1Tile.setName( "(" + ((Integer) j).toString() + ", " + ((Integer) i).toString() + ")");
 				label_1Tile.addMouseListener(new TileController(model, this, label_1Tile));

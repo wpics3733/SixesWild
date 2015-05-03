@@ -48,7 +48,7 @@ public class EliminationLevel extends Level {
 		if(move instanceof UserMove || move instanceof RearrangeMove) {
 			movesRemaining--;
 		}
-		if( move.isValid()) {
+		if( move instanceof UserMove && move.isValid()) {
 			for(AbstractTileContainer tc: move.getTiles()) {
 				tc.mark();
 			}
