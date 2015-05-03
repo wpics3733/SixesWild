@@ -8,14 +8,14 @@ public class LevelStateTests extends TestCase {
 		LevelState l = new LevelState();
 		LevelState m = new LevelState();
 		
-		l.setLevelType("Lightning");
-		assertTrue(l.getLevelType().equals("Lightning"));
+		l.setLevelType("Puzzle");
+		assertTrue(l.getLevelType().equals("Puzzle"));
 		
 		l.saveState();
 		
 		
 		m.loadState(l.levelName.concat(".sav"));
-		assertTrue(m.getLevelType().equals("Lightning"));
+		assertTrue(m.getLevelType().equals("Puzzle"));
 	}
 	
 	public void testLevel(){
@@ -39,5 +39,9 @@ public class LevelStateTests extends TestCase {
 		
 		LevelState l = new LevelState("testLevel", a, a, a, b, 9, 9, "Elimination", milestones, specMoves, 0, 100, multProb, tileProb, true, 0);
 		l.saveState();
+		assertTrue(l.getLevelType().equals("Elimination"));
+		//System.out.println(l.isUnlocked());
+		l.loadState("testLevel.sav");
+		//System.out.println(l.isUnlocked());
 	}
 }

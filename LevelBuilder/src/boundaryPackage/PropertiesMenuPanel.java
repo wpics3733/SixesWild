@@ -75,9 +75,9 @@ public class PropertiesMenuPanel extends JPanel {
 		lblLevelType = new JLabel("Level Type");
 		lblLevelType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		String[] levelTypes = {"Puzzle","Lightning","Six Drop", "Marked Tiles"}; 
+		String[] levelTypes = {"Puzzle","Lightning","Release", "Elimination"}; 
 		
-		comboBox = new JComboBox(levelTypes);
+		comboBox = new JComboBox<String>(levelTypes);
 		
 		lblOfSpecial = new JLabel("# of Special Moves");
 		lblOfSpecial.setFont(new Font("Tahoma", Font.PLAIN, 16));

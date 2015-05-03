@@ -424,7 +424,7 @@ public class LevelState {
 		ObjectInputStream save;
 		try{
 			
-			f = new File("Levels/" + levelName.concat(".sav"));
+			f = new File("Levels/" + fileName);
 			
 			
 			// Open file to read from
@@ -450,6 +450,7 @@ public class LevelState {
 			this.multiplierProbabilities = (int[]) save.readObject();
 			this.tileProbabilities = (int[]) save.readObject();
 			this.isUnlocked = (boolean) save.readObject();
+			System.out.println(isUnlocked+ " " + levelName);
 			this.highScore = (int) save.readObject();
 
 			// Close the file.
