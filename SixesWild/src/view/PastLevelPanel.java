@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -16,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.PlayPastLevelController;
 import controller.ReturnToMenuController;
+import model.LevelState;
 import model.EliminationLevel;
 import model.Level;
 import model.LightningLevel;
@@ -32,6 +34,40 @@ public class PastLevelPanel extends JPanel{
 		levels.add(new PuzzleLevel());
 		levels.add(new EliminationLevel());
 		levels.add(new LightningLevel());
+		// Load levels from directory
+		try{
+			File dir = new File("../LevelBuilder/Levels");
+			File[] directoryListing = dir.listFiles();
+			if(directoryListing != null){  // Use default level directory to create buttons
+				for(File child : directoryListing){
+					LevelState tmp = new LevelState();
+					//System.out.println(child.getName());
+					tmp.loadState(child.getName());
+					//System.out.println(tmp.getLevelType());
+					//System.out.println(tmp.isUnlocked());
+					if(tmp.isUnlocked() && tmp.getLevelType() != null){
+						Level newLevel = null;
+						if(tmp.getLevelType().equals("Puzzle")){
+							newLevel = new PuzzleLevel(tmp);
+						}
+						else if(tmp.getLevelType().equals("Lightning")){
+							newLevel = new LightningLevel(tmp);
+						}
+						//else if(tmp.getLevelType().equals("Elimination")){
+						else{
+							newLevel = new EliminationLevel(tmp);
+						}
+						//					else{
+						//						newLevel = new ReleaseLevel(tmp);
+						//					}
+						levels.add(newLevel);
+					}
+				}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
 //		Main panel
 		this.setBackground(new Color(249,246,242));
