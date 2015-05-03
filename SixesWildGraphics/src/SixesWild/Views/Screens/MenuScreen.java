@@ -1,38 +1,21 @@
 package SixesWild.Views.Screens;
 
+import SixesWild.Views.Application;
 import SixesWild.Views.Components.TextButton;
 import SixesWild.Views.TransitableView;
 
 /**
  *
  */
-public class MenuScreen extends TransitableView {
+public class MenuScreen extends Screen {
 
-    /**
-     *
-     */
-    String title;
-    /**
-     *
-     */
     TextButton continueButton;
-    /**
-     *
-     */
     TextButton levelsButton;
-    /**
-     *
-     */
     TextButton badgeButton;
-    /**
-     *
-     */
     TextButton aboutButton;
 
-    /**
-     *
-     */
-    public MenuScreen() {
+    public MenuScreen(String title, Application app) {
+        super(title,app);
     }
 
     /**

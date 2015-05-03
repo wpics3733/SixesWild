@@ -1,14 +1,37 @@
 package SixesWild.Views.Screens;
 
 import SixesWild.Views.Application;
+import SixesWild.Views.DeveloperIntroPicture;
+
+import java.awt.*;
 
 /**
  *
  */
 public class AboutScreen extends NavigableScreen {
 
-    public AboutScreen(String title, Application app) {
+    //    Developer introduction canvas dimension
+    final Dimension DEV_INTRO_CANVAS_SIZE = new Dimension(
+            Application.WINDOW_WIDTH,
+            Application.WINDOW_HEIGHT - NAV_BAR_HEIGHT - STATUS_BAR_HEIGHT
+    );
+    //    Developer introduction canvas bounds
+    final Rectangle DEV_INTRO_CANVAS_BOUNDS = new Rectangle(
+            0,
+            NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT,
+            Application.WINDOW_WIDTH,
+            Application.WINDOW_HEIGHT - NAV_BAR_HEIGHT - STATUS_BAR_HEIGHT
+    );
+
+    public AboutScreen(String title, Application app, String navTitle) {
         super(title, app);
-        this.repaint();
+
+        navigationBar.setNavTitle(navTitle);
+        DeveloperIntroPicture developerIntroPicture = new DeveloperIntroPicture();
+        developerIntroPicture.setPreferredSize(DEV_INTRO_CANVAS_SIZE);
+        developerIntroPicture.setBounds(DEV_INTRO_CANVAS_BOUNDS);
+
+        add(developerIntroPicture);
+
     }
 }

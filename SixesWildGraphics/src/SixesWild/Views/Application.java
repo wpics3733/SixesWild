@@ -29,40 +29,26 @@ public class Application extends JFrame {
     //    Application running state. 0 when execution when fine.
     public static final int EXECUTION_FINE = 0;
 
-//    Title of application
+    //    Title of application
     final String APPLICATION_TITLE = "SixesWild";
 
-//    Title of individual screens
-    final String ABOUT_SCREEN_TITLE = APPLICATION_TITLE + " - About";
+    //    Title of individual screens
+    final String ABOUT_SCREEN_TITLE = "Developers";
+    final String LEVELS_SCREEN_TITLE = "Levels";
+    final String MENU_SCREEN_TITLE = " - " + "Main Menu";
+    final String BADGE_SCREEN_TITLE = "Achievement Badges";
 
-
-    /**
-     *
-     */
-    JPanel titlePanel;
-    /**
-     *
-     */
+    //    Screens
     MenuScreen menuScreen;
-    /**
-     *
-     */
     GameScreen gameScreen;
-    /**
-     *
-     */
     BadgesScreen badgesScreen;
-    /**
-     *
-     */
     LevelsScreen levelsScreen;
-    /**
-     *
-     */
     AboutScreen aboutScreen;
-    /**
-     *
-     */
+
+    //    Current screen
+    Screen currentScreen;
+
+    //    Animation manager
     AnimationManager animationManager;
 
     /**
@@ -80,10 +66,61 @@ public class Application extends JFrame {
 
         this.setLayout(null);
 
-        AboutScreen aboutScreen = new AboutScreen(ABOUT_SCREEN_TITLE, this);
-
-        aboutScreen.setBounds(0, 0, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
+        getAboutScreen().setBounds(0, 0, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
 
         this.add(aboutScreen);
+    }
+
+    public void goToMainMenuScreen() {
+
+    }
+
+//    Getters
+
+    public MenuScreen getMenuScreen() {
+        if (menuScreen == null) {
+            menuScreen = new MenuScreen(APPLICATION_TITLE + MENU_SCREEN_TITLE, this);
+        }
+
+        return menuScreen;
+    }
+
+    public GameScreen getGameScreen() {
+        if (gameScreen == null) {
+            gameScreen = new GameScreen(APPLICATION_TITLE, this);
+        }
+
+        return gameScreen;
+    }
+
+    public BadgesScreen getBadgesScreen() {
+        if (badgesScreen == null) {
+            badgesScreen = new BadgesScreen(APPLICATION_TITLE, this, BADGE_SCREEN_TITLE);
+        }
+
+        return badgesScreen;
+    }
+
+    public LevelsScreen getLevelsScreen() {
+        if (levelsScreen == null) {
+            levelsScreen = new LevelsScreen(APPLICATION_TITLE, this, LEVELS_SCREEN_TITLE);
+        }
+
+        return levelsScreen;
+    }
+
+    public AboutScreen getAboutScreen() {
+        if (aboutScreen == null) {
+            aboutScreen = new AboutScreen(APPLICATION_TITLE, this, ABOUT_SCREEN_TITLE);
+        }
+        return aboutScreen;
+    }
+
+    public AnimationManager getAnimationManager() {
+        if (animationManager == null) {
+            animationManager = new AnimationManager();
+        }
+
+        return animationManager;
     }
 }

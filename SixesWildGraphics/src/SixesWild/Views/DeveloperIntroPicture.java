@@ -10,11 +10,11 @@ import java.io.File;
 /**
  * Created by harryliu on 5/2/15.
  */
-public class AboutScreenPicture extends Canvas {
+public class DeveloperIntroPicture extends Canvas {
 
     Image teamIntroductionImage;
 
-    public AboutScreenPicture(Image teamIntroductionImage) {
+    public DeveloperIntroPicture() {
         try {
             this.teamIntroductionImage = ImageIO.read(new File(System.getProperty(Application.ROOT_PATH) + ImageContract.TEAM_INTRODUCTION_IMAGE));
         } catch (Exception ex) {

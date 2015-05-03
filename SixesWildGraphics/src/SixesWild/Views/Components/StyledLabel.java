@@ -4,7 +4,6 @@ import SixesWild.Utilities;
 import SixesWild.Views.Application;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
@@ -15,6 +14,10 @@ import java.io.File;
  * Created by harryliu on 5/2/15.
  */
 public class StyledLabel extends JComponent {
+    //    Padding top
+    final int PADDING_TOP = 0;
+    //    Padding left
+    final int PADDING_LEFT = 0;
 
     //    Current font of text
     String currentFont;
@@ -31,16 +34,14 @@ public class StyledLabel extends JComponent {
     Image bufferImage;
     //    BufferGraphics
     Graphics2D graphics2D;
+    //    Left align
+    boolean isLeftAlign = false;
 
-    //    Padding top
-    final int PADDING_TOP = 0;
-    //    Padding left
-    final int PADDING_LEFT = 0;
-
-    public StyledLabel(String text, float fontSize, Color textColor) {
+    public StyledLabel(String text, float fontSize, Color textColor,boolean isLeftAlign) {
         this.text = text;
         this.fontSize = fontSize;
         this.textColor = textColor;
+        this.isLeftAlign = isLeftAlign;
 
         setRegularFont();
     }
@@ -93,7 +94,12 @@ public class StyledLabel extends JComponent {
         Rectangle visualBounds = glyphVector.getVisualBounds().getBounds();
 
         int textPaddingTop = (containerHeight - visualBounds.y) / 2;
-        int textPaddingLeft = (containerWidth - fontWidth) / 2;
+        int textPaddingLeft;
+        if (!isLeftAlign) {
+            textPaddingLeft = (containerWidth - fontWidth) / 2;
+        } else {
+            textPaddingLeft = 0;
+        }
 
         graphics2D.setColor(this.getParent().getBackground());
         graphics2D.fillRect(0, 0, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());

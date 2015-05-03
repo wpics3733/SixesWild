@@ -13,8 +13,8 @@ public class LevelsScreen extends FlipPageScreen {
      */
     LevelDetailPanel levelDetailPanel;
 
-    public LevelsScreen(String title, Application app) {
+    public LevelsScreen(String title, Application app, String navTitle) {
 
-        super(title, app);
+        super(title, app, navTitle);
     }
 }

@@ -32,6 +32,8 @@ public class StatusBar extends JPanel {
     final Dimension TITLE_LABEL_DIMENSION = new Dimension(160, 30);
     //    Title label bounds
     final Rectangle TITLE_LABEL_BOUNDS = new Rectangle(20, 0, 160, 30);
+    //    Title label alignment
+    final boolean TITLE_LABEL_LEFT_ALIGN = true;
 
     //    Status bar title
     String title;
@@ -50,7 +52,7 @@ public class StatusBar extends JPanel {
         this.setLayout(null);
 
 //        Title label settings
-        titleLabel = new StyledLabel(this.title, TITLE_FONT_SIZE, Color.WHITE);
+        titleLabel = new StyledLabel(this.title, TITLE_FONT_SIZE, Color.WHITE, TITLE_LABEL_LEFT_ALIGN);
         titleLabel.setPreferredSize(TITLE_LABEL_DIMENSION);
         titleLabel.setBounds(TITLE_LABEL_BOUNDS);
         titleLabel.setOpaque(false);

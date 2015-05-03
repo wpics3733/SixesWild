@@ -16,9 +16,10 @@ public class FlipPageScreen extends NavigableScreen {
     /**
      *
      */
-    public FlipPageScreen(String title, Application app) {
+    public FlipPageScreen(String title, Application app, String navTitle) {
 
         super(title, app);
+        navigationBar.setNavTitle(navTitle);
     }
 
 }

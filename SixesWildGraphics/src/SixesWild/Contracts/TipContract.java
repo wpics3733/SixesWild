@@ -7,5 +7,5 @@ public class TipContract {
 
     public static final String CLOSE_WINDOW_BUTTON_TIP= "Quit game";
 
-    public static final String BACK_TO_MAIN_MENU_BUTTON_TIP= "Quit game";
+    public static final String BACK_TO_MAIN_MENU_BUTTON_TIP= "Go back to menu";
 }
