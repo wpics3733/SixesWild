@@ -109,8 +109,9 @@ public class Tile {
 	 */
 	public void setMultiplier(int multiplier) {
 		if(this.value == Tile.BLOCKED_TILE || this.value == Tile.BUCKET_TILE){
-			this.multiplier = multiplier;
+			return;
 		}
+		this.multiplier = multiplier;
 	}
 
 	/**

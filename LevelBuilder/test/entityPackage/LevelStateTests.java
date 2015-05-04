@@ -39,6 +39,36 @@ public class LevelStateTests extends TestCase {
 		
 		LevelState l = new LevelState("testLevel", a, a, a, b, 9, 9, "Elimination", milestones, specMoves, 0, 100, multProb, tileProb, true, 0);
 		l.saveState();
+		l.setBlockedTiles(b);
+		l.setBoardVals(a);
+		l.setMultipliers(a);
+		l.setMarks(a);
+		l.setMultiplierProbabilities(multProb);
+		l.setStarScores(milestones);
+		l.setSpecialMoves(specMoves);
+		l.setTileProbabilities(tileProb);
+		l.setLevelName("testLevel");
+		l.setLevelType("Elimination");
+		l.setTimeLimit(0);
+		l.setMoveLimit(100);
+		l.setUnlocked(true);
+		l.setHighScore(0);
+		
+		
+		l.getBoardVals();
+		l.getMultipliers();
+		l.getMarks();
+		l.getMultiplierProbabilities();
+		l.getTileProbabilities();
+		l.getStarScores();
+		l.getLevelName();
+		l.getLevelType();
+		l.getTimeLimit();
+		l.getMoveLimit();
+		l.isUnlocked();
+		l.getHighScore();
+		
+		
 		assertTrue(l.getLevelType().equals("Elimination"));
 		//System.out.println(l.isUnlocked());
 		l.loadState("testLevel.sav");
