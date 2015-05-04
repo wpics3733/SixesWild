@@ -16,7 +16,7 @@ public class RearrangeMove implements IMove {
 		for(int i = 0; i < b.getW(); i++) {
 			for(int j = 0; j < b.getH(); j++) {
 				if(tiles[i][j] instanceof NumberTileContainer) {
-					if(tiles[i][j].empty() || tiles[i][j].getTile().getNum() != 6) {
+					if(tiles[i][j].empty() || tiles[i][j].getTile().getNum() == 6) {
 					} else {
 						tiles[i][j].clearTile();
 						tiles[i][j].addTile(l.getBoard().getRandomTile());
