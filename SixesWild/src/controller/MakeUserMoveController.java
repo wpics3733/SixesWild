@@ -38,16 +38,10 @@ public class MakeUserMoveController implements MouseInputListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
+	public void mouseClicked(MouseEvent arg0) {}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-
-	}
-
+	public void mouseEntered(MouseEvent arg0) {}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		this.mouseReleased(arg0);
@@ -92,7 +86,6 @@ public class MakeUserMoveController implements MouseInputListener {
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-	}
+	public void mouseMoved(MouseEvent arg0) {}
 
 }
