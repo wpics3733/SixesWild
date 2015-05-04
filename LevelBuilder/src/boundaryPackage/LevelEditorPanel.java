@@ -15,8 +15,11 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 
+import controllerPackage.DeleteLevelButtonController;
 import controllerPackage.QuitButtonController;
+import controllerPackage.RedoButtonController;
 import controllerPackage.SaveLevelButtonController;
+import controllerPackage.UndoButtonController;
 import entityPackage.LevelModel;
 
 import java.awt.event.ActionListener;
@@ -59,7 +62,6 @@ public class LevelEditorPanel extends JPanel {
 		palettePanel.setBackground(Color.WHITE);
 		//JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
 		JButton btnQuit = new JButton("Quit");
-		
 		btnQuit.addMouseListener(new QuitButtonController(model, parent));
 		
 		/*
@@ -72,8 +74,22 @@ public class LevelEditorPanel extends JPanel {
 		});
 		*/
 		
+		JButton btnDeleteLevel = new JButton("Delete Level");
+		btnDeleteLevel.addMouseListener(new DeleteLevelButtonController(model.getName(), model.isGeneratedByLevelModel(), parent));
+		if (!model.isGeneratedByLevelModel()) {
+			btnDeleteLevel.setEnabled(false);
+		}
+		
 		JButton btnNewButton = new JButton("Save Level");
 		btnNewButton.addActionListener(new SaveLevelButtonController(this, model));
+		
+		JButton btnRedo = new JButton("Redo");
+		btnRedo.addActionListener(new RedoButtonController(this, model));
+		
+		JButton btnUndo = new JButton("Undo");
+		btnUndo.addActionListener(new UndoButtonController(this, model));
+		
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -85,7 +101,13 @@ public class LevelEditorPanel extends JPanel {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 712, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnUndo)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnRedo)
+							.addGap(18)
 							.addComponent(btnNewButton)
+							.addGap(18)
+							.addComponent(btnDeleteLevel)
 							.addGap(18)
 							.addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
 					.addGap(25))
@@ -101,7 +123,10 @@ public class LevelEditorPanel extends JPanel {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnQuit, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnDeleteLevel, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnRedo)
+						.addComponent(btnUndo))
 					.addGap(18)
 					.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 653, GroupLayout.PREFERRED_SIZE)
 					.addGap(41))
@@ -121,7 +146,7 @@ public class LevelEditorPanel extends JPanel {
 		this.propertiesMenuPanel = (PropertiesMenuPanel) propertiesMenuPanel;
 	}
 
-	public void PaintComponent(Graphics g){
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
 	}

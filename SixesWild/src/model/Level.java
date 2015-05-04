@@ -70,6 +70,7 @@ public abstract class Level {
 	// This is where we put level specific reactions to moves
 	// For example, an elimination move marks all of the tiles used
 	public void react(IMove move) {
+		getBoard().settleTiles();
 	}
 	
 	public LevelState getLevelState() {

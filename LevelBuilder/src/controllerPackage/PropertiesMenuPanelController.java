@@ -58,7 +58,10 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 				Integer.parseInt(panel.getTileProbabilityTextField6().getText()));
 		
 		model.setTimeAllowed(Integer.parseInt(panel.getTimeLimitTextField().getText()));
-
+		
+		model.setMode((String) panel.getComboBox().getSelectedItem());
+		
+		model.setName(panel.getLevelNameTextField().getText());
 	}
 	
 	/** 

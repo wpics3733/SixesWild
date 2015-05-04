@@ -47,7 +47,8 @@ public class LevelBuilderApplication extends JFrame {
 	 */
 	public LevelBuilderApplication() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1034, 778);
+		setBounds(0, 0, 1024, 776);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setPreferredSize(new Dimension(1024,768));

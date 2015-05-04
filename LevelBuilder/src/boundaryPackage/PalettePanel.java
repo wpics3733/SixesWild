@@ -54,7 +54,9 @@ public class PalettePanel extends JPanel {
 		
 		JLabel label_BlockedTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BlockedTile.png")));
 		
-		JLabel label_MysteryTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png")));
+		JLabel label_RandomTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png")));
+		
+		JLabel label_BucketTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BucketTile.png")));
 		
 		label_1Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(1),this));
 		label_2Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(2),this));
@@ -66,8 +68,8 @@ public class PalettePanel extends JPanel {
 		label_2Mult.addMouseListener(new TileModifierController(lm,new MultiplierModifier(2),this));
 		label_3Mult.addMouseListener(new TileModifierController(lm,new MultiplierModifier(3),this));
 		label_BlockedTile.addMouseListener(new TileModifierController(lm,new ValueModifier(-1),this));
-		label_MysteryTile.addMouseListener(new TileModifierController(lm, new ValueModifier(0),this));
-		
+		label_RandomTile.addMouseListener(new TileModifierController(lm, new ValueModifier(0),this));
+		label_BucketTile.addMouseListener(new TileModifierController(lm,new ValueModifier(-2),this));
 		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -99,8 +101,10 @@ public class PalettePanel extends JPanel {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(label_BlockedTile)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(label_MysteryTile)))
-					.addContainerGap(18, Short.MAX_VALUE))
+							.addComponent(label_RandomTile)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(label_BucketTile)))
+					.addContainerGap(218, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -125,8 +129,9 @@ public class PalettePanel extends JPanel {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(label_BlockedTile)
-						.addComponent(label_MysteryTile))
-					.addGap(41))
+						.addComponent(label_RandomTile)
+						.addComponent(label_BucketTile))
+					.addGap(95))
 		);
 		setLayout(groupLayout);
 

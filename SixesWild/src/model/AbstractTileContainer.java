@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * The abstract representation of a TileContainer in the Board.
+ * Some tileContainers are null, some are buckets, but all have 
+ * an x and a y, can be adjacent to other tiles, and have knowledge
+ * of whether you can add things to them
+ * @author jesse
+ *
+ */
 public abstract class AbstractTileContainer {
 	int x,y;
 	boolean marked;

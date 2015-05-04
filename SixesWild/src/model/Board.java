@@ -35,13 +35,16 @@ public class Board {
 			for(int j = 0; j < h; j++){
 				int tileNum = l.getBoardVals()[i][j];
 				// TileNum of -1 means that the tile is null
-				if(tileNum == -1) {
+				if(tileNum == -2) {
+					tiles[i][j] = new BucketTileContainer(i,j);
+				} else if(tileNum == -1) {
 					tiles[i][j] = new NullTileContainer(i, j);
 					// TileNum of 0 means that the tile was not set explicitly, lets generate one randomly
 				} else if(tileNum == 0) {
 					tiles[i][j] = new NumberTileContainer(getRandomTile(), i, j);
 				} else {
-					tiles[i][j] = new NumberTileContainer(new Tile(tileNum, 1), i, j);
+					int multiplier = l.getMultipliers()[i][j];
+					tiles[i][j] = new NumberTileContainer(new Tile(tileNum, multiplier), i, j);
 				}
 			}
 		}
@@ -117,7 +120,7 @@ public class Board {
 			return;
 		} 
 
-		AbstractTileContainer source = tiles[col][drop_dest];
+		AbstractTileContainer source = tiles[col][drop_source];
 		Tile dropped;
 		if(source.isNull()) {
 			return;

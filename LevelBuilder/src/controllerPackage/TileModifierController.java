@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import boundaryPackage.PalettePanel;
 import entityPackage.ITileModifier;
 import entityPackage.LevelModel;
+import entityPackage.ModifyTileMove;
 
 public class TileModifierController extends MouseAdapter{
 	LevelModel lm;
@@ -21,5 +22,6 @@ public class TileModifierController extends MouseAdapter{
 	@Override
 	public void mousePressed(MouseEvent me) {
 		lm.setTileModifier(itm);
+		lm.setCurrentMove(new ModifyTileMove(lm, itm));
 	}
 }

@@ -1,12 +1,17 @@
 package boundaryPackage;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 import controllerPackage.NewLevelButtonController;
+import controllerPackage.QuitGameController;
 import entityPackage.LevelModel;
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.LevelEditorPanel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
@@ -25,6 +30,7 @@ public class MenuPanel extends JPanel {
 	JButton previousButton;
 	JButton nextButton;
 	JButton newLevelButton;
+	JButton quitButton;
 	protected LevelBuilderApplication parentApplication;
 	LevelModel model;
 	
@@ -55,51 +61,34 @@ public class MenuPanel extends JPanel {
 		 
 		// menuPanel
 		this.setSize(1024, 768);
-		this.setBounds(10, 11, 988, 483);
 		//menuFrame.getContentPane().add(menuPanel);
-		this.setLayout(null);
-		 
-		// lblNoBuiltLevels - Informs the user that no levels were found (on disk, etc.) so they can only create new levels
-		JLabel lblNoBuiltLevels = new JLabel("No built levels found.  Create a new level!");
-		lblNoBuiltLevels.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNoBuiltLevels.setBounds(284, 300, 382, 86);
-		this.add(lblNoBuiltLevels);
-		  
-		// previousButton
-		previousButton = new JButton("<");
-		previousButton.setEnabled(false);
-		previousButton.setToolTipText("Previous");
-		previousButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		previousButton.setBounds(38, 316, 75, 75);
-		this.add(previousButton);
-		  
-		// nextButton
-		nextButton = new JButton(">");
-		nextButton.setEnabled(false);
-		nextButton.setToolTipText("Next");
-		nextButton.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		nextButton.setBounds(875, 316, 75, 75);
-		this.add(nextButton);
+		this.setLayout(new BorderLayout());
+		
+		JPanel topButtonPanel = new JPanel();
+		topButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		 
 		// newLevelButton
 		newLevelButton = new JButton("+ New Level");
-		newLevelButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		newLevelButton.setBounds(841, 11, 137, 37);
+		newLevelButton.addMouseListener(new NewLevelButtonController(parent, model));
+		topButtonPanel.add(newLevelButton);
 		
-		this.add(newLevelButton);
+		quitButton = new JButton("Quit");
+		quitButton.addMouseListener(new QuitGameController(parent));
+		topButtonPanel.add(quitButton);
+
+		this.add(topButtonPanel, BorderLayout.NORTH);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(284, 134, 382, 144);
-		add(scrollPane);
+		scrollPane.setBorder(new EmptyBorder(100, 100, 100, 100));
+		add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel levelsView = new LevelsPanel(this);
 		scrollPane.setViewportView(levelsView);
 		
 		this.repaint();
 
-		newLevelButton.addMouseListener(new NewLevelButtonController(parent, model));
 	}
 	
 	

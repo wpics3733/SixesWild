@@ -1,6 +1,15 @@
 package entityPackage;
 
+/**
+ * @author Dean Kiourtsis, Tom Finelli
+ * Contains logic and information for board tiles.
+ */
 public class Tile {
+	
+	public static final int BUCKET_TILE = -2;
+	public static final int BLOCKED_TILE = -1;
+	public static final int RANDOM_TILE = 0;
+	
 	int x;
 	int y;
 	int mark;
@@ -81,21 +90,27 @@ public class Tile {
 		this.value = value;
 		this.valueIsSet = true;
 		this.isBlocked = false;
-		if(value == 0){
+		if(value == Tile.RANDOM_TILE){
 			this.valueIsSet = false;
 		}
-		else if(value == -1){
+		else if(value == Tile.BLOCKED_TILE){
 			this.isBlocked = true;
+			this.setMultiplier(1);
+		}
+		else if(value == Tile.BUCKET_TILE){
+			this.setMultiplier(1);
 		}
 	}
 
 	/**
-	 * Set a tile's multiplier
+	 * Set a tile's multiplier.
+	 * Only works if the tile can have a multiplier.
 	 * @param multiplier
 	 */
 	public void setMultiplier(int multiplier) {
-		this.multiplier = multiplier;
-		this.isBlocked = false;
+		if( !(this.value == Tile.BLOCKED_TILE || this.value == Tile.BUCKET_TILE) ){
+			this.multiplier = multiplier;
+		}
 	}
 
 	/**
@@ -128,6 +143,11 @@ public class Tile {
 	 */
 	public String getCoordinate() {
 		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
+	}
+
+	public Tile getCopy() {
+		Tile tmp = new Tile(this.x, this.y, this.mark, this.value, this.multiplier, isBlocked);
+		return tmp;
 	}
 	
 }

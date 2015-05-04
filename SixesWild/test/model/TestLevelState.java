@@ -1,8 +1,10 @@
-package entityPackage;
+package model;
+import java.io.FileNotFoundException;
+
 import junit.framework.TestCase;
 
 
-public class LevelStateTests extends TestCase {
+public class TestLevelState extends TestCase {
 	
 	public void testSimple(){
 		LevelState l = new LevelState();
@@ -38,40 +40,19 @@ public class LevelStateTests extends TestCase {
 		tileProb[0] = 1; tileProb[1] = 0; tileProb[2] = 0; tileProb[0] = 0; tileProb[1] = 0; tileProb[2] = 0;
 		
 		LevelState l = new LevelState("testLevel", a, a, a, b, 9, 9, "Elimination", milestones, specMoves, 0, 100, multProb, tileProb, true, 0);
+		assertEquals(l.getLevelName(), "testLevel");
+		l.setLevelName("testName");
+		assertEquals(l.getLevelName(), "testName");
+		assertEquals(l.getStarScores()[0], 100);
+		assertEquals(l.getSpecialMoves()[0], 10);
+		l.setTimeLimit(100);
+		assertEquals(l.getTimeLimit(), 100);
+		l.setMoveLimit(50);
+		assertEquals(l.getMoveLimit(), 50);
 		l.saveState();
-		l.setBlockedTiles(b);
-		l.setBoardVals(a);
-		l.setMultipliers(a);
-		l.setMarks(a);
-		l.setMultiplierProbabilities(multProb);
-		l.setStarScores(milestones);
-		l.setSpecialMoves(specMoves);
-		l.setTileProbabilities(tileProb);
-		l.setLevelName("testLevel");
-		l.setLevelType("Elimination");
-		l.setTimeLimit(0);
-		l.setMoveLimit(100);
-		l.setUnlocked(true);
-		l.setHighScore(0);
-		
-		
-		l.getBoardVals();
-		l.getMultipliers();
-		l.getMarks();
-		l.getMultiplierProbabilities();
-		l.getTileProbabilities();
-		l.getStarScores();
-		l.getLevelName();
-		l.getLevelType();
-		l.getTimeLimit();
-		l.getMoveLimit();
-		l.isUnlocked();
-		l.getHighScore();
-		
-		
 		assertTrue(l.getLevelType().equals("Elimination"));
 		//System.out.println(l.isUnlocked());
 		l.loadState("testLevel.sav");
-		//System.out.println(l.isUnlocked());
+		l.deleteState();
 	}
 }
