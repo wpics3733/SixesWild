@@ -32,7 +32,7 @@ public class InitiateClearMoveController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.CLEAR)) {
-			lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
+			lv.changeController(new MakeClearMoveController(l, lv));
 		}
 		
 	}

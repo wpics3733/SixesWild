@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,10 +18,18 @@ import view.LevelView;
  * @author jesse
  *
  */
-public class PlayPastLevelController implements MouseListener {
+public class PlayPastLevelController extends MouseAdapter {
 	Application parent;
 	Level toPlay, next;
 	
+	/**
+	 * Construct a new PlayPastLevelController in the given Application frame
+	 * topPlay is the Level that will start when the button is pressed
+	 * next is the Level that will be unlocked after toPlay is completed
+	 * @param parent	The top level application frame
+	 * @param toPlay	The level that will start
+	 * @param next		The level that should be unlocked if toPlay is passed (can be null if toPlay is the last level)
+	 */
 	public PlayPastLevelController(Application parent, Level toPlay, Level next) {
 		this.parent = parent;
 		this.toPlay = toPlay;
@@ -39,26 +48,7 @@ public class PlayPastLevelController implements MouseListener {
 		} else {
 			lv = new LevelView((LightningLevel)toPlay, next, parent);
 		}
-		if(parent == null) {
-			System.out.println("Parent was null");
-		}
-		if(lv == null) {
-			System.out.println("lv was null");
-		}
 		parent.changeView(lv);
 		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
-
 }

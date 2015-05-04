@@ -48,9 +48,6 @@ public class EndLevelController {
 	 * Then it unlocks the next level to play
 	 */
 	public void run() {
-		if(l instanceof LightningLevel) {
-			((LightningLevel)l).getTimer().cancel();
-		}
 		if(l.hasPassed()) {
 			LevelState state = l.getLevelState();
 			if(l.getScore() > state.getHighScore()) {

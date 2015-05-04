@@ -33,7 +33,7 @@ public class InitiateSwapMoveController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.SWAP)) {
-			lv.changeController((MouseInputListener)new MakeSwapMoveController(l, lv));
+			lv.changeController(new MakeSwapMoveController(l, lv));
 		}
 
 	}
