@@ -50,7 +50,6 @@ public class PastLevelPanel extends JPanel{
 			if(directoryListing != null){  // Use default level directory to create buttons
 				for(File child : directoryListing){
 					LevelState tmp = new LevelState();
-					//System.out.println(child.getName());
 					tmp.loadState(child.getName());
 					String levelType = tmp.getLevelType();
 					if(levelType != null){
