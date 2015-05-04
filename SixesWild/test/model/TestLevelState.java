@@ -51,8 +51,6 @@ public class TestLevelState extends TestCase {
 		assertEquals(l.getMoveLimit(), 50);
 		l.saveState();
 		assertTrue(l.getLevelType().equals("Elimination"));
-		//System.out.println(l.isUnlocked());
-		l.loadState("testLevel.sav");
 		l.deleteState();
 	}
 }
