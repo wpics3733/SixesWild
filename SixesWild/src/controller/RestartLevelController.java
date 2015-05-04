@@ -7,6 +7,15 @@ import javax.swing.event.MouseInputListener;
 import view.LevelView;
 import model.Level;
 
+/**
+ * This controller is bound to the "Restart" button in the LevelView
+ * When pressed, it restarts the level, and refreshes the gui.
+ * 
+ * Restarting the level refreshes the board to the original state, sets the score to 0
+ * resests the counters on all special moves, and unmarks all marked tiles
+ * @author jesse
+ *
+ */
 public class RestartLevelController implements MouseInputListener {
 	Level l;
 	LevelView lv;

@@ -24,6 +24,13 @@ import model.LightningLevel;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
 
+/**
+ * The panel that loads when the user clicks the "Levels" button in the main menu
+ * It shows all levels, locked or unlocked, each unlocked level is a button that
+ * takes you to that level when clicked
+ * @author jesse
+ *
+ */
 public class PastLevelPanel extends JPanel{
 	ArrayList<Level> levels;
 	Level selectedLevel;
@@ -93,11 +100,13 @@ public class PastLevelPanel extends JPanel{
 			if(levels.get(i).getLevelState().isUnlocked()) {
 				levelButton = new JButton("<html><center> " + levels.get(i).getLevelState().getLevelName() + "<br>" + levels.get(i).typeString() + "</center></html>");
 				levelButton.setBackground(Color.YELLOW);
-				Level nextLevel = (i <= levels.size() - 1) ? null : levels.get(i+1);
+				Level nextLevel = (i < levels.size() - 1) ? levels.get(i+1) : null;
 				levelButton.addMouseListener(new PlayPastLevelController(parent, levels.get(i), nextLevel));
+				levelButton.add(new JLabel(Integer.toString(i)));
 			} else {
 				levelButton = new JButton("Locked");
 				levelButton.setPreferredSize(new Dimension(180, 120));
+				levelButton.add(new JLabel(Integer.toString(i)));
 				levelButton.setEnabled(false);
 			}
 			levelGrid.add(levelButton);

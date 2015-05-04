@@ -54,7 +54,7 @@ public class EndLevelPanel extends JPanel {
 		score_label = new JLabel("Score: " + l.getScore());
 
 		restart = new JButton("Restart");
-		restart.addMouseListener(new RestartLevelController(lv.getLevel(), lv));
+		restart.addMouseListener(new RestartLevelController(l, lv));
 
 		quit = new JButton("Quit");
 		quit.addMouseListener(new ReturnToMenuController(parent));

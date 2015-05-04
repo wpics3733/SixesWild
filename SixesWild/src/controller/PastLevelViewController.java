@@ -6,6 +6,12 @@ import java.awt.event.MouseListener;
 import view.Application;
 import view.PastLevelPanel;
 
+/**
+ * This controller is bound to the "Levels" button in the main menu
+ * When pressed, it takes the user to a view where they can see all of their past levels
+ * @author jesse
+ *
+ */
 public class PastLevelViewController implements MouseListener {
 	private Application parent;
 	
