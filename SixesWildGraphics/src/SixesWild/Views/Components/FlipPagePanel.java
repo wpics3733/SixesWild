@@ -1,8 +1,8 @@
 package SixesWild.Views.Components;
 
 import SixesWild.Contracts.ImageContract;
-import SixesWild.Controllers.ViewLevelScreen.LastPageButtonController;
-import SixesWild.Controllers.ViewLevelScreen.NextPageButtonController;
+import SixesWild.Controllers.FlipScreen.LastPageButtonController;
+import SixesWild.Controllers.FlipScreen.NextPageButtonController;
 import SixesWild.Views.Application;
 import SixesWild.Views.Screens.FlipPageScreen;
 

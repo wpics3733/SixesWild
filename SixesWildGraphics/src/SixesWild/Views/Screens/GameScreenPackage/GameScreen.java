@@ -1,6 +1,6 @@
 package SixesWild.Views.Screens.GameScreenPackage;
 
-import SixesWild.Models.Level;
+import SixesWild.Models.Levels.Level;
 import SixesWild.Views.*;
 import SixesWild.Views.Components.ImageButton;
 import SixesWild.Views.Components.PopupBox;

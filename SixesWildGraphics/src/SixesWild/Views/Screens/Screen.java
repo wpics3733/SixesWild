@@ -1,6 +1,6 @@
 package SixesWild.Views.Screens;
 
-import SixesWild.Controllers.StatusBarController;
+import SixesWild.Controllers.StatusBar.StatusBarController;
 import SixesWild.Views.Application;
 import SixesWild.Views.Components.StatusBar;
 import SixesWild.Views.TransitableView;

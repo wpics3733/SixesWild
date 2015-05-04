@@ -2,8 +2,11 @@ package SixesWild.Views.Screens.LevelScreenPackage;
 
 import SixesWild.Contracts.ImageContract;
 import SixesWild.Controllers.ViewLevelScreen.LevelButtonController;
-import SixesWild.Models.Level;
-import SixesWild.Views.Components.*;
+import SixesWild.Models.Levels.Level;
+import SixesWild.Views.Components.ListPanel;
+import SixesWild.Views.Components.LockableButton;
+import SixesWild.Views.Components.LockableButtonView;
+import SixesWild.Views.Components.SmallStarsView;
 
 import java.awt.*;
 

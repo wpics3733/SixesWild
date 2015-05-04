@@ -1,6 +1,6 @@
 package SixesWild.Moves;
 
-import SixesWild.Models.Level;
+import SixesWild.Models.Levels.Level;
 
 /**
  *

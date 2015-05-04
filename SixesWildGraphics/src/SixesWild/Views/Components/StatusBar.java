@@ -2,7 +2,7 @@ package SixesWild.Views.Components;
 
 import SixesWild.Contracts.ImageContract;
 import SixesWild.Contracts.TipContract;
-import SixesWild.Controllers.CloseWindowButtonController;
+import SixesWild.Controllers.StatusBar.CloseWindowButtonController;
 import SixesWild.Views.Application;
 
 import javax.swing.*;

@@ -2,7 +2,7 @@ package SixesWild.Views.Components;
 
 import SixesWild.Contracts.ImageContract;
 import SixesWild.Contracts.TipContract;
-import SixesWild.Controllers.GoBackButtonController;
+import SixesWild.Controllers.NavigationBar.GoBackButtonController;
 import SixesWild.Views.Application;
 
 import javax.swing.*;

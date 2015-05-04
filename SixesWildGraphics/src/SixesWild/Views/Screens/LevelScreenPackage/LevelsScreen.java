@@ -1,6 +1,6 @@
 package SixesWild.Views.Screens.LevelScreenPackage;
 
-import SixesWild.Models.Level;
+import SixesWild.Models.Levels.Level;
 import SixesWild.Views.Application;
 import SixesWild.Views.Components.DetailPanel;
 import SixesWild.Views.Screens.FlipPageScreen;

@@ -1,5 +1,6 @@
 package SixesWild.Views;
 
+import SixesWild.Views.Animation.AnimationManager;
 import SixesWild.Views.Screens.AboutScreenPackage.AboutScreen;
 import SixesWild.Views.Screens.BadgeScreenPackage.BadgesScreen;
 import SixesWild.Views.Screens.GameScreenPackage.GameScreen;
@@ -81,12 +82,11 @@ public class Application extends JFrame {
     public void switchTo(Screen screen){
         if (currentScreen != null && screen != null) {
             currentScreen.setVisible(false);
-
-            repaint();
             screen.setVisible(true);
             currentScreen = screen;
 
             screen.repaint();
+            repaint();
         }
     }
 

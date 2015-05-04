@@ -1,7 +1,7 @@
 package SixesWild.Controllers.ViewLevelScreen;
 
-import SixesWild.Controllers.LockableButtonController;
-import SixesWild.Models.Level;
+import SixesWild.Controllers.FlipScreen.LockableButtonController;
+import SixesWild.Models.Levels.Level;
 import SixesWild.Views.Components.LockableButton;
 import SixesWild.Views.Screens.LevelScreenPackage.LevelDetailPanel;
 import SixesWild.Views.Screens.LevelScreenPackage.LevelListPanel;

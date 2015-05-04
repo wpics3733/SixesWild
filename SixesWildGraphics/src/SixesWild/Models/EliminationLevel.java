@@ -1,5 +1,7 @@
 package SixesWild.Models;
 
+import SixesWild.Models.Levels.Level;
+
 /**
  *
  */
