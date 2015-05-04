@@ -7,6 +7,12 @@ import javax.swing.event.MouseInputListener;
 import model.Level;
 import view.LevelView;
 
+/**
+ * This is the controller attached to the "Clear" button in the top bar
+ * When it is pressed, it attaches a clearMoveController to the game board
+ * @author jesse
+ *
+ */
 public class InitiateClearMoveController implements MouseInputListener {
 	
 	Level l;
@@ -20,7 +26,7 @@ public class InitiateClearMoveController implements MouseInputListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.CLEAR)) {
-		lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
+			lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
 		}
 		
 	}

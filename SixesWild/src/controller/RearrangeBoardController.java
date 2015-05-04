@@ -7,6 +7,12 @@ import view.LevelView;
 import model.Level;
 import model.RearrangeMove;
 
+/**
+ * The controller attached to the "Rearrange" button in the LevelView
+ * Pressing the button will replace all non-six
+ * @author jesse
+ *
+ */
 public class RearrangeBoardController implements MouseListener {
 	Level l;
 	LevelView lv;

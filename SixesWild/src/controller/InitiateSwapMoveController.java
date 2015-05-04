@@ -7,6 +7,13 @@ import javax.swing.event.MouseInputListener;
 import model.Level;
 import view.LevelView;
 
+/**
+ 
+ * This is the controller attached to the "Swap" button in the top bar
+ * When it is pressed, it attaches a SwapMoveController to the game board
+ * @author jesse
+ 
+ */
 public class InitiateSwapMoveController implements MouseInputListener {
 	
 	Level l;

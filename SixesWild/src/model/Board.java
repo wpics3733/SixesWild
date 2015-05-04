@@ -14,6 +14,8 @@ public class Board {
 	int w;
 	int tile_ratios[];
 	int tile_ratio_sum;
+	int multiplier_ratios[];
+	int multiplier_ratio_sum;
 
 	public Board(LevelState l) {
 		this.h = l.getHeight();
@@ -29,6 +31,17 @@ public class Board {
 				tile_ratios[i] = 1;
 			}
 			tile_ratio_sum = 6;
+		}
+		multiplier_ratios = new int[3];
+		multiplier_ratios = l.getMultiplierProbabilities();
+		for(int i = 0; i < 3; i++) {
+			multiplier_ratio_sum += multiplier_ratios[i];
+		}
+		if( multiplier_ratio_sum == 0) {
+			for(int i = 0; i < 3; i++) {
+				multiplier_ratios[i] = 1;
+			}
+			multiplier_ratio_sum = 3;
 		}
 		tiles = new AbstractTileContainer[w][h];
 		for(int i = 0; i < w; i++){
@@ -77,14 +90,30 @@ public class Board {
 	 * @return a new random tile
 	 */
 	public Tile getRandomTile() {
+		return new Tile(get_random_number(), get_random_multiplier());
+	}
+	
+	private int get_random_number() {
 		int rand = (int)(Math.random() * tile_ratio_sum) + 1;
 		for(int i = 0; i < 6; i++) {
 			if(rand <= tile_ratios[i]) {
-				return new Tile(i + 1, 1);
+				return i + 1;
 			}
 			rand -= tile_ratios[i];
 		}
-		return new Tile(-1, 1);
+		return -1;
+	}
+	
+	private int get_random_multiplier() {
+		int rand = (int)(Math.random() * multiplier_ratio_sum) + 1;
+		for(int i = 0; i < 3; i++) {
+			if(rand <= multiplier_ratios[i]) {
+				return i + 1;
+			}
+			rand -= multiplier_ratios[i];
+		}
+		return -1;
+		
 	}
 
 	/**

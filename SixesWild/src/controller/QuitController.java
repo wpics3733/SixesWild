@@ -6,6 +6,11 @@ import javax.swing.event.MouseInputListener;
 
 import view.Application;
 
+/**
+ * The controller to quit out of the application
+ * @author jesse
+ *
+ */
 public class QuitController implements MouseInputListener {
 	Application a;
 	

@@ -7,6 +7,12 @@ import view.Application;
 import view.MainMenuView;
 import view.PastLevelPanel;
 
+/**
+ * A very basic controller, when the game starts up, the game shows a splash screen
+ * This controller allows you to click the splash screen and be taken to the main menu
+ * @author jesse
+ *
+ */
 public class ExitSplashScreen implements MouseListener {
 	private Application a;
 	public ExitSplashScreen(Application a) {

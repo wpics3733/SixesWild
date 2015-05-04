@@ -13,6 +13,13 @@ import model.ClearMove;
 import model.Level;
 import model.SwapMove;
 
+/**
+ * This is the controller bound to the board during a clear move.
+ * Whenever a tile is clicked, it clears the number, settles the board,
+ * then switches the controller back to the standard usermove controller
+ * @author jesse
+ *
+ */
 public class MakeClearMoveController implements MouseInputListener {
 	Level l;
 	LevelView lv;

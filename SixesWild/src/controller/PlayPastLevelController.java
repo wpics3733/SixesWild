@@ -11,6 +11,12 @@ import model.ReleaseLevel;
 import view.Application;
 import view.LevelView;
 
+/**
+ * The controller attached to each Level button in the PastLevelsView
+ * clicking on the button takes you to a LevelView for that level
+ * @author jesse
+ *
+ */
 public class PlayPastLevelController implements MouseListener {
 	Application parent;
 	Level toPlay, next;
