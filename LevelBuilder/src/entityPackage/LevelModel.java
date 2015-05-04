@@ -152,8 +152,9 @@ public class LevelModel {
 		}
 		currentMove.setLocation(col, row);
 		currentMove.setPreviousTile(board[col][row].getCopy());
+		
 		while(moves.size() > movePointer+1){
-			moves.remove(movePointer);
+			moves.remove(movePointer+1);
 		}
 		moves.add(currentMove.getCopy());
 		doMove();
