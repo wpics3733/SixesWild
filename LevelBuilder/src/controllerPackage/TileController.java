@@ -34,7 +34,8 @@ public class TileController extends MouseAdapter {
 		if (point != null) {
 			System.out.println("TileController::Clicked on label: " + label.getName());
 			model.setSelectedTile(point.x, point.y);
-			model.modifyTile(point.x, point.y);
+			//model.modifyTile(point.x, point.y);
+			model.addMove(point.x, point.y);
 			/*
 			System.out.println("TileController::Tile (" + point.y + ", " + point.x + ") multiplier is currently set to: " +
 			model.getBoard()[point.x][point.y].getMultiplier());

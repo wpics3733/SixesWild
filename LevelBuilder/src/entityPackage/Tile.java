@@ -144,5 +144,10 @@ public class Tile {
 	public String getCoordinate() {
 		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
 	}
+
+	public Tile getCopy() {
+		Tile tmp = new Tile(this.x, this.y, this.mark, this.value, this.multiplier, isBlocked);
+		return tmp;
+	}
 	
 }

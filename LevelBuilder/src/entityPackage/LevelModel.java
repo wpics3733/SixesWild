@@ -1,5 +1,7 @@
 package entityPackage;
 
+import java.util.ArrayList;
+
 
 /**
  * @author Dean Kiourtsis, Tom Finelli
@@ -18,12 +20,17 @@ public class LevelModel {
 	int levelNumber;
 	ITileModifier selectedModifier;
 	Tile selectedTile;
+	ArrayList<ModifyTileMove> moves;
+	int movePointer;
+	ModifyTileMove currentMove;
 	
 	// constructor
 	/**
 	 * Constructs a default LevelModel
 	 */
 	public LevelModel() {
+		moves = new ArrayList<ModifyTileMove>();
+		movePointer = -1;
 		this.board = new Tile[9][9];
 		
 		System.out.println("LevelModel::Initializing the board with tiles");
@@ -91,6 +98,8 @@ public class LevelModel {
 	 * @param l
 	 */
 	public LevelModel(LevelState l) {
+		moves = new ArrayList<ModifyTileMove>();
+		movePointer = -1;
 		this.mode = l.getLevelType();
 		this.movesAllowed = l.getMoveLimit();
 		this.specialMovesAllowed = l.getSpecialMoves();
@@ -126,6 +135,51 @@ public class LevelModel {
 		}
 		LevelState l = new LevelState(levelName, boardNumbers, boardMarks, multipliers, blockedTiles, 9, 9, mode, starMilestones, specialMovesAllowed, timeAllowed, movesAllowed, multiplierProbabilities, tileProbabilities, true, 0);
 		l.saveState();
+	}
+	
+	/**
+	 * Adds a ModifyTileMove to the stack of moves, and then does the move.
+	 * Removes all moves after movePointer from moves array.
+	 * @param move
+	 */
+	public void addMove(int col, int row){
+		
+		if(col < 0 || col > board.length || row < 0 || row > board[0].length){ // Check bounds
+			return;
+		}
+		if(currentMove == null){
+			return;
+		}
+		currentMove.setLocation(col, row);
+		currentMove.setPreviousTile(board[col][row].getCopy());
+		
+		while(moves.size() > movePointer+1){
+			moves.remove(movePointer+1);
+		}
+		moves.add(currentMove.getCopy());
+		doMove();
+	}
+	
+	/**
+	 * Does the move at movePointer +1.
+	 * Does nothing if there are no more moves.
+	 */
+	public void doMove(){
+		if(moves.size() > movePointer+1){
+			movePointer++;
+			moves.get(movePointer).doMove(this);
+		}
+	}
+	
+	/**
+	 * Un-does the move at movePointer.
+	 * Does nothing if there are no more moves to undo.
+	 */
+	public void undoMove(){
+		if(movePointer>=0){
+			moves.get(movePointer).undoMove(this);
+			movePointer--;
+		}
 	}
 	
 	/**
@@ -239,6 +293,14 @@ public class LevelModel {
 	public void setMovesAllowed(int movesAllowed) {
 		this.movesAllowed = movesAllowed;
 	}
+	
+	/**
+	 * Returns the number of moves allowed in the game
+	 * @return
+	 */
+	public void setCurrentMove(ModifyTileMove move) {
+		this.currentMove = move;
+	}
 
 	/**
 	 * Sets the number of allowed special moves for a level
@@ -333,6 +395,18 @@ public class LevelModel {
 		return board[col][row];
 	}
 
+	/**
+	 * Sets the tile at the given location on the board
+	 * @param col
+	 * @param row
+	 * @return
+	 */
+	public void setTile(int col, int row, Tile t){
+		if(col < 0 || col > board.length || row < 0 || row > board[0].length){ // Check bounds
+			return;
+		}
+		board[col][row] = t;
+	}
 
 
 	/**
