@@ -19,7 +19,7 @@ public class Screen extends TransitableView {
     //    Status bar padding left
     final int PADDING_LEFT = 0;
 //    Screen background color
-    final Color SCREEN_BACK_COLOR = new Color(249, 246, 242);
+    public static final Color SCREEN_BACK_COLOR = new Color(249, 246, 242);
 
     //    Title of the screen
     String title;
@@ -30,6 +30,9 @@ public class Screen extends TransitableView {
         this.app = app;
 
         setPreferredSize(new Dimension(Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT));
+        setMinimumSize(new Dimension(Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT));
+        setMaximumSize(new Dimension(Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT));
+
         setBackground(SCREEN_BACK_COLOR);
 
         initialize();
@@ -41,6 +44,8 @@ public class Screen extends TransitableView {
 
         StatusBar statusBar = new StatusBar(title);
         statusBar.setPreferredSize(new Dimension(Application.WINDOW_WIDTH, STATUS_BAR_HEIGHT));
+        statusBar.setMinimumSize(new Dimension(Application.WINDOW_WIDTH, STATUS_BAR_HEIGHT));
+        statusBar.setMaximumSize(new Dimension(Application.WINDOW_WIDTH, STATUS_BAR_HEIGHT));
 
         statusBar.setBounds(PADDING_TOP, PADDING_LEFT, (int) getPreferredSize().getWidth(), STATUS_BAR_HEIGHT);
 

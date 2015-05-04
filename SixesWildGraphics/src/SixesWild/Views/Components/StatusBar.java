@@ -69,6 +69,9 @@ public class StatusBar extends JPanel {
                 BACK_COLOR);
 
         closeButton.setPreferredSize(CLOSE_WINDOW_BUTTON_DIMENSION);
+        closeButton.setMinimumSize(CLOSE_WINDOW_BUTTON_DIMENSION);
+        closeButton.setMaximumSize(CLOSE_WINDOW_BUTTON_DIMENSION);
+
         closeButton.setBounds(CLOSE_WINDOW_BUTTON_BOUNDS);
         closeButton.setToolTipText(TipContract.CLOSE_WINDOW_BUTTON_TIP);
 
@@ -82,5 +85,7 @@ public class StatusBar extends JPanel {
         add(titleLabel);
 
         add(closeButton);
+
+        closeButton.repaint();
     }
 }

@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 public class ButtonController extends MouseAdapter {
 
     //      Target button view
-    StyledButton button;
+    public StyledButton button;
 
     public ButtonController(StyledButton button) {
         this.button = button;

@@ -4,11 +4,12 @@ import SixesWild.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  *
  */
-public class StyledButton extends JComponent{
+public class StyledButton extends JComponent {
 
     //   Normal background color
     Color normalBackColor;
@@ -21,7 +22,7 @@ public class StyledButton extends JComponent{
     //  Status of button, true when active
     Color currentBackColor;
     //    BufferImage
-    Image bufferImage;
+    BufferedImage bufferImage;
     //    BufferGraphics
     Graphics2D graphics2D;
     //    Padding top
@@ -29,9 +30,13 @@ public class StyledButton extends JComponent{
     //    Padding left
     final int PADDING_LEFT = 0;
 
+    boolean activeState;
+
+    boolean disableState;
+
     /**
-     * @param normalBackColor  Normal background color
-     * @param hoveredBackColor   Mouse enter background color
+     * @param normalBackColor   Normal background color
+     * @param hoveredBackColor  Mouse enter background color
      * @param activedBackColor  Mouse pressed background color
      * @param disabledBackColor Disabled background color
      */
@@ -40,6 +45,8 @@ public class StyledButton extends JComponent{
         this.hoveredBackColor = hoveredBackColor;
         this.activedBackColor = activedBackColor;
         this.disabledBackColor = disabledBackColor;
+        this.activeState = false;
+        this.disableState = false;
 
         currentBackColor = normalBackColor;
     }
@@ -48,49 +55,75 @@ public class StyledButton extends JComponent{
      * @return
      */
     public void normal() {
-        currentBackColor = normalBackColor;
-        repaint();
+        if (!activeState && !disableState) {
+            currentBackColor = normalBackColor;
+            repaint();
+        }
     }
 
     /**
      * @return
      */
     public void actived() {
+        activeState = true;
+        disableState = false;
+
         currentBackColor = activedBackColor;
         repaint();
+    }
+
+    public void inactive() {
+        this.activeState = false;
+        normal();
     }
 
     /**
      * @return
      */
     public void disabled() {
-        currentBackColor = disabledBackColor;
-        repaint();
+        if (!activeState) {
+            disableState = true;
+            this.activeState = false;
+
+            currentBackColor = disabledBackColor;
+            repaint();
+        }
+    }
+
+    public void enabled() {
+        if (!activeState) {
+            disableState = false;
+            normal();
+            repaint();
+        }
     }
 
     /**
      * @return
      */
     public void hovered() {
-        currentBackColor = hoveredBackColor;
-        repaint();
-    }
-
-    void ensureImageAvailable() {
-        if (bufferImage == null) {
-            bufferImage = this.createImage((int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());
-
-            if(bufferImage!=null) {
-                graphics2D = (Graphics2D) bufferImage.getGraphics();
-            }
+        if (!activeState && !disableState) {
+            currentBackColor = hoveredBackColor;
+            repaint();
         }
     }
 
-    protected void redrawState() {
+    public void ensureImageAvailable() {
+        if (bufferImage == null) {
+
+            int width = (int) getMinimumSize().getWidth();
+            int height = (int) getMinimumSize().getHeight();
+
+            bufferImage = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+            graphics2D = (Graphics2D) bufferImage.getGraphics();
+        }
+    }
+
+    public void redrawState() {
         ensureImageAvailable();
 
         graphics2D.setColor(currentBackColor);
-        graphics2D.fillRect(PADDING_TOP, PADDING_LEFT, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());
+        graphics2D.fillRect(PADDING_TOP, PADDING_LEFT, (int) getMinimumSize().getWidth(), (int) getMinimumSize().getHeight());
     }
 
     @Override
@@ -99,14 +132,18 @@ public class StyledButton extends JComponent{
             return;
         }
 
-        redrawState();
         Utilities.setHighQuality(g);
 
-        g.drawImage(bufferImage, PADDING_TOP, PADDING_LEFT, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight(), this);
+        g.drawImage(bufferImage, PADDING_TOP, PADDING_LEFT, (int) getMinimumSize().getWidth(), (int) getMinimumSize().getHeight(), this);
     }
 
+    @Override
+    public void repaint() {
+        redrawState();
+        super.repaint();
+    }
 
-//    Getters and setters
+    //    Getters and setters
 
     public Color getNormalBackColor() {
         return normalBackColor;
@@ -140,5 +177,27 @@ public class StyledButton extends JComponent{
         this.disabledBackColor = disabledBackColor;
     }
 
+    public Graphics2D getGraphics2D() {
+        return graphics2D;
+    }
 
+    public Color getCurrentBackColor() {
+        return currentBackColor;
+    }
+
+    public void setCurrentBackColor(Color currentBackColor) {
+        this.currentBackColor = currentBackColor;
+    }
+
+    public boolean isActiveState() {
+        return activeState;
+    }
+
+    public void setActiveState(boolean activeState) {
+        this.activeState = activeState;
+    }
+
+    public boolean isDisableState() {
+        return disableState;
+    }
 }

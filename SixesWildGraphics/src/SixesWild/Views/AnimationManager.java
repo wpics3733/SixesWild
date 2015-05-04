@@ -3,47 +3,41 @@ package SixesWild.Views;
 import SixesWild.Models.TransitableValue;
 
 import java.util.Iterator;
-import java.util.TimerTask;
+import java.util.Timer;
 
-/**
- *
- */
-public class AnimationManager extends TimerTask {
 
-    /**
-     *
-     */
+public class AnimationManager {
+
+    //    2D animation frame rate, 25 frames per second
+    public static final long ANIMATION_FRAME_RATE = 40;
+
     TransitableValue[] transitions;
+    Timer timer;
+    AnimationTimerTask animationTimerTask;
 
-    /**
-     *
-     */
     public AnimationManager() {
+        timer = new Timer();
+        animationTimerTask = new AnimationTimerTask();
+
+//        timer.scheduleAtFixedRate(
+//                animationTimerTask,
+//
+//                );
     }
 
-    /**
-     * @param TransitableValue value
-     * @return
-     */
     public void add(TransitableValue value) {
-        // TODO implement here
-        return;
+
     }
 
-    /**
-     * @param TransitableValue value
-     * @return
-     */
+
     public void remove(TransitableValue value) {
-        // TODO implement here
-        return;
+
     }
 
     /**
      * @return
      */
     public Iterator<TransitableValue> iterator() {
-        // TODO implement here
         return null;
     }
 
@@ -51,8 +45,7 @@ public class AnimationManager extends TimerTask {
      * @return
      */
     public void run() {
-        // TODO implement here
-        return;
+
     }
 
 }

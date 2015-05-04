@@ -19,6 +19,6 @@ public class GoBackButtonController extends ButtonController{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        app.goToMainMenuScreen();
+        app.switchTo(app.getMenuScreen());
     }
 }

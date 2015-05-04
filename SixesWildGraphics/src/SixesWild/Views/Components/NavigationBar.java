@@ -30,9 +30,9 @@ public class NavigationBar extends JPanel {
     //    Navigation bar title label font size
     final float TITLE_FONT_SIZE = 30L;
     //    Title label bounds
-    final Rectangle NAV_LABEL_BOUNDS = new Rectangle(78, 0, 200, 58);
+    final Rectangle NAV_LABEL_BOUNDS = new Rectangle(78, 0, 280, 58);
     //    Back button dimension
-    final Dimension NAV_LABEL_SIZE = new Dimension(200, 58);
+    final Dimension NAV_LABEL_SIZE = new Dimension(280, 58);
     //    Navigation bar title label alignment
     final boolean NAV_LABEL_LEFT_ALIGN = true;
 
@@ -64,11 +64,16 @@ public class NavigationBar extends JPanel {
                 BUTTON_BACK_COLOR);
 
         backButton.setPreferredSize(BACK_BUTTON_SIZE);
+        backButton.setMaximumSize(BACK_BUTTON_SIZE);
+        backButton.setMinimumSize(BACK_BUTTON_SIZE);
+
         backButton.setBounds(BACK_BUTTON_BOUNDS);
         backButton.setToolTipText(TipContract.BACK_TO_MAIN_MENU_BUTTON_TIP);
         backButton.addMouseListener(new GoBackButtonController(backButton, app));
 
         add(backButton);
+
+        backButton.repaint();
 
     }
 
