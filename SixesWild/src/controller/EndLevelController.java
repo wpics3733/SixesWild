@@ -28,6 +28,13 @@ public class EndLevelController {
 	Application a;
 	
 
+	/**
+	 * Constructs a new EndLevelController
+	 * @param l	The level we are ending
+	 * @param next	the next level, if we pass l, next will be unlocked
+	 * @param lv	the levelView associated with l
+	 * @param a		the top level application. We need this to switch to the EndLevelPanel
+	 */
 	public EndLevelController(Level l, Level next, LevelView lv, Application a) {
 		this.l = l;
 		this.lv = lv;
@@ -35,6 +42,11 @@ public class EndLevelController {
 		this.next = next;
 	}
 	
+	/**
+	 * runs the Controller. This assumes l has just been completed
+	 * If we pass, it checks the high score with the one on record, overwriting if necessary
+	 * Then it unlocks the next level to play
+	 */
 	public void run() {
 		if(l instanceof LightningLevel) {
 			((LightningLevel)l).getTimer().cancel();
