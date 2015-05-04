@@ -22,6 +22,7 @@ import model.EliminationLevel;
 import model.Level;
 import model.LightningLevel;
 import model.PuzzleLevel;
+import model.ReleaseLevel;
 
 public class PastLevelPanel extends JPanel{
 	ArrayList<Level> levels;
@@ -39,16 +40,16 @@ public class PastLevelPanel extends JPanel{
 					LevelState tmp = new LevelState();
 					//System.out.println(child.getName());
 					tmp.loadState(child.getName());
-					if(tmp.getLevelType() != null){
+					String levelType = tmp.getLevelType();
+					if(levelType != null){
 						Level newLevel = null;
-						if(tmp.getLevelType().equals("Puzzle")){
+						if(levelType.equals("Puzzle")){
 							newLevel = new PuzzleLevel(tmp);
-						}
-						else if(tmp.getLevelType().equals("Lightning")){
+						} else if(levelType.equals("Lightning")) {
 							newLevel = new LightningLevel(tmp);
-						}
-						//else if(tmp.getLevelType().equals("Elimination")){
-						else{
+						} else if(levelType.equals("Release")) {
+							newLevel = new ReleaseLevel(tmp);
+						} else{
 							newLevel = new EliminationLevel(tmp);
 						}
 						levels.add(newLevel);
