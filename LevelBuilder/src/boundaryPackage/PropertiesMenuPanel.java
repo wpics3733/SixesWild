@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import controllerPackage.PropertiesMenuPanelController;
 import entityPackage.LevelModel;
 
-/** Create the properties mean panel for level builder
+/** Create the properties panel for the level builder
  * @author Dean & Dabai
  *
  */
