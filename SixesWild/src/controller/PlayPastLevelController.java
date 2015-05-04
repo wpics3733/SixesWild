@@ -7,6 +7,7 @@ import model.EliminationLevel;
 import model.Level;
 import model.LightningLevel;
 import model.PuzzleLevel;
+import model.ReleaseLevel;
 import view.Application;
 import view.LevelView;
 
@@ -27,6 +28,8 @@ public class PlayPastLevelController implements MouseListener {
 			lv = new LevelView((PuzzleLevel)toPlay, next, parent);
 		} else if (toPlay instanceof EliminationLevel) {
 			lv = new LevelView((EliminationLevel)toPlay, next, parent);
+		} else if (toPlay instanceof ReleaseLevel) {
+			lv = new LevelView((ReleaseLevel)toPlay, next, parent);
 		} else {
 			lv = new LevelView((LightningLevel)toPlay, next, parent);
 		}

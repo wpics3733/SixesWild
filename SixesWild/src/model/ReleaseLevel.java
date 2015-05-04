@@ -56,6 +56,7 @@ public class ReleaseLevel extends Level {
 	
 	@Override
 	public void react(IMove move) {
+		super.react(move);
 		if(move instanceof UserMove || move instanceof RearrangeMove) {
 			this.movesRemaining--;
 		}
