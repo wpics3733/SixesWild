@@ -129,12 +129,12 @@ public class LevelView extends JPanel {
 	public void restart(Level l) {
 		if(l instanceof PuzzleLevel) {
 			this.parent.changeView(new LevelView((PuzzleLevel)l, next, parent));
-		}
-		if(l instanceof EliminationLevel) {
+		} else if(l instanceof EliminationLevel) {
 			this.parent.changeView(new LevelView((EliminationLevel)l, next, parent));
-		}
-		if(l instanceof LightningLevel) {
+		} else if(l instanceof LightningLevel) {
 			this.parent.changeView(new LevelView((LightningLevel)l, next, parent));
+		} else if(l instanceof ReleaseLevel) {
+			this.parent.changeView(new LevelView((ReleaseLevel)l, next, parent));
 		}
 	}
 }

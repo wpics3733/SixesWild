@@ -7,6 +7,12 @@ import javax.swing.event.MouseInputListener;
 import model.Level;
 import view.LevelView;
 
+/**
+ * This is the controller attached to the "Clear" button in the top bar
+ * When it is pressed, it attaches a clearMoveController to the game board
+ * @author jesse
+ *
+ */
 public class InitiateClearMoveController implements MouseInputListener {
 	
 	Level l;
@@ -20,45 +26,27 @@ public class InitiateClearMoveController implements MouseInputListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.CLEAR)) {
-		lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
+			lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
 		}
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mousePressed(MouseEvent e) {}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseDragged(MouseEvent arg0) {}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseMoved(MouseEvent arg0) {}
 
 }
