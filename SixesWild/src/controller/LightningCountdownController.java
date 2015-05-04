@@ -4,6 +4,13 @@ import view.LevelView;
 import model.Level;
 import model.LightningLevel;
 
+/**
+ * In a lightning level, this controller is run by the timer each second
+ * It decrements the time remaining, and checks if you are out of time
+ * When you are out of time, it ends the level
+ * @author jesse
+ *
+ */
 public class LightningCountdownController {
 	LightningLevel l;
 	LevelView lv;

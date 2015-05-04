@@ -11,6 +11,19 @@ import view.TilePanel;
 import model.Level;
 import model.UserMove;
 
+/**
+ * User moves are the default type. Dragging across one or more tiles is a usermove
+ * When the sum of the dragged tiles is exactly six (excluding the case where only one 6 is selected)
+ * that constitutes a valid move.
+ * 
+ * Drag across multiple tiles, then release to complete the move.
+ * If the move is valid, it will add the score to the level
+ * 
+ * The score of a UserMove is 10 * the number of tiles * multiplier1 * multiplier2 * ...
+ * 
+ * @author jesse
+ *
+ */
 public class MakeUserMoveController implements MouseInputListener {
 	Level l;
 	LevelView lv;
@@ -25,16 +38,10 @@ public class MakeUserMoveController implements MouseInputListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
+	public void mouseClicked(MouseEvent arg0) {}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-
-	}
-
+	public void mouseEntered(MouseEvent arg0) {}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		this.mouseReleased(arg0);
@@ -79,7 +86,6 @@ public class MakeUserMoveController implements MouseInputListener {
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent arg0) {
-	}
+	public void mouseMoved(MouseEvent arg0) {}
 
 }

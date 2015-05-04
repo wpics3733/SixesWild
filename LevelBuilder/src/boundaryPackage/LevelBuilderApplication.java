@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 //import com.jgoodies.forms.layout.FormLayout;
@@ -46,7 +47,7 @@ public class LevelBuilderApplication extends JFrame {
 	 * Create the frame.
 	 */
 	public LevelBuilderApplication() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 776);
 		setResizable(false);
 		contentPane = new JPanel();

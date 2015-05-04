@@ -4,6 +4,7 @@ import javax.swing.JDialog;
 
 import model.IOnLevelAchievement;
 import model.Level;
+import model.LevelState;
 import model.LightningLevel;
 import model.LightningTimer;
 import view.Application;
@@ -27,6 +28,13 @@ public class EndLevelController {
 	Application a;
 	
 
+	/**
+	 * Constructs a new EndLevelController
+	 * @param l	The level we are ending
+	 * @param next	the next level, if we pass l, next will be unlocked
+	 * @param lv	the levelView associated with l
+	 * @param a		the top level application. We need this to switch to the EndLevelPanel
+	 */
 	public EndLevelController(Level l, Level next, LevelView lv, Application a) {
 		this.l = l;
 		this.lv = lv;
@@ -34,30 +42,33 @@ public class EndLevelController {
 		this.next = next;
 	}
 	
+	/**
+	 * runs the Controller. This assumes l has just been completed
+	 * If we pass, it checks the high score with the one on record, overwriting if necessary
+	 * Then it unlocks the next level to play
+	 */
 	public void run() {
 		if(l instanceof LightningLevel) {
 			((LightningLevel)l).getTimer().cancel();
 		}
-		/*
 		if(l.hasPassed()) {
-			l.saveHighScore()
-			 if (next != null) {
-			 	unlock(next)
-			 }
+			LevelState state = l.getLevelState();
+			if(l.getScore() > state.getHighScore()) {
+				state.setHighScore(l.getScore());
+				state.saveState();
+				System.out.println("High Score");
+			}
+			if (next != null) {
+				next.getLevelState().setUnlocked(true);
+				next.getLevelState().saveState();
+			} else {
+			}
 		}
-		 */
 		
-		
-		a.changeView(new EndLevelPanel(l, lv, a));
-		//Check score
-		//Generate a popup window, telling the user they have won or lost
-		//Ask them if they want to restart to try and do better, or quit to main menu
-		
-		
-		// After each level i finished, we check the achievements to see if any have been unlocked
-		// then we save the achievements to a file so that they can be loaded the next time we start the game
 		IOnLevelAchievement.checkAll(l);
 		AchievementFileController.saveFile();
+		
+		a.changeView(new EndLevelPanel(l, lv, a));
 	}
 
 }

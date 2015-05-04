@@ -24,7 +24,7 @@ public class ReleaseLevel extends Level {
 
 	@Override
 	public boolean hasPassed() {
-		return allBucketsFull();
+		return allBucketsFull() && getScore() > getMilestones()[0];
 	}
 	
 	private boolean allBucketsFull() {
@@ -56,9 +56,15 @@ public class ReleaseLevel extends Level {
 	
 	@Override
 	public void react(IMove move) {
+		super.react(move);
 		if(move instanceof UserMove || move instanceof RearrangeMove) {
 			this.movesRemaining--;
 		}
 	}
-
+	
+	public void restart() {
+		super.restart();
+		this.movesRemaining = state.getMoveLimit();
+		
+	}
 }

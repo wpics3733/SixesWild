@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
@@ -7,11 +8,23 @@ import javax.swing.event.MouseInputListener;
 import model.Level;
 import view.LevelView;
 
-public class InitiateSwapMoveController implements MouseInputListener {
-	
+/**
+
+ * This is the controller attached to the "Swap" button in the top bar
+ * When it is pressed, it attaches a SwapMoveController to the game board
+ * @author jesse
+
+ */
+public class InitiateSwapMoveController extends MouseAdapter {
+
 	Level l;
 	LevelView lv;
-	
+
+	/**
+	 * Make a new InitiateSwapMoveController
+	 * @param l		the level we are playing
+	 * @param lv	the levelView associated with l
+	 */
 	public InitiateSwapMoveController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
@@ -22,42 +35,6 @@ public class InitiateSwapMoveController implements MouseInputListener {
 		if(l.hasSpecial(Level.SWAP)) {
 			lv.changeController((MouseInputListener)new MakeSwapMoveController(l, lv));
 		}
-	}
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
