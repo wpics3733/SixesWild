@@ -87,6 +87,7 @@ public class PastLevelPanel extends JPanel{
 		JPanel levelGrid = new JPanel(new GridLayout(4,4,4,4));
 		
 		int i;
+		levels.get(0).getLevelState().setUnlocked(true);
 		for(i = 0; i < levels.size(); i++) {
 			JButton levelButton;
 			if(levels.get(i).getLevelState().isUnlocked()) {
