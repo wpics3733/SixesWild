@@ -17,14 +17,17 @@ public class BucketTilePanel extends JPanel {
 	public BucketTilePanel(AbstractTileContainer tile) {
 		super();
 		this.tile = tile;
-		this.setBackground(Color.DARK_GRAY);
 		this.setPreferredSize(new Dimension(100,100));
+		this.setBackground(Color.DARK_GRAY);
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
-		if(!tile.empty()) {
-			this.add(new JLabel("6"));
+		super.paintComponent(g);
+		if(tile.empty()) {
+			this.setBackground(Color.DARK_GRAY);
+		} else {
+			this.setBackground(Color.LIGHT_GRAY);
 		}
-		
 	}
 } 
