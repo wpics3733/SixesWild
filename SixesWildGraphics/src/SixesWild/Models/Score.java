@@ -39,7 +39,7 @@ public class Score {
     /**
      * @return
      */
-    public int getScoreLevel() {
+    public int getNumStar() {
         // TODO implement here
         return 0;
     }

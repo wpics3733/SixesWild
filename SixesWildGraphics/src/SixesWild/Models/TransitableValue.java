@@ -1,39 +1,34 @@
 package SixesWild.Models;
 
+import SixesWild.Views.TransitableView;
+
 /**
  *
  */
 public class TransitableValue {
 
-    /**
-     *
-     */
     int currentValue;
-    /**
-     *
-     */
     int startValue;
-    /**
-     *
-     */
     int endValue;
-    /**
-     *
-     */
-    int speed;
+    long time;
+    long currentTime;
 
-    /**
-     *
-     */
-    public TransitableValue() {
+    TransitableView transitableView;
+
+    int animationOrder;
+
+    public TransitableValue(int startValue, int endValue, long time, TransitableView transitableView) {
+        this.startValue = startValue;
+        this.endValue = endValue;
+        this.transitableView = transitableView;
+        this.time = time;
+
+        currentValue = this.startValue;
+
     }
 
-    /**
-     * @return
-     */
-    public void setTime() {
-        // TODO implement here
-        return;
+    public int getGravitySpeed() {
+//        int
+        return 0;
     }
-
 }

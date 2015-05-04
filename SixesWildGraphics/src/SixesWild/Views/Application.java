@@ -1,5 +1,6 @@
 package SixesWild.Views;
 
+import SixesWild.Views.Animation.AnimationManager;
 import SixesWild.Views.Screens.AboutScreenPackage.AboutScreen;
 import SixesWild.Views.Screens.BadgeScreenPackage.BadgesScreen;
 import SixesWild.Views.Screens.GameScreenPackage.GameScreen;
@@ -52,36 +53,41 @@ public class Application extends JFrame {
     LevelsScreen levelsScreen;
     AboutScreen aboutScreen;
 
+    JLayeredPane layeredPane;
+
     //    Current screen
     Screen currentScreen;
 
     //    Animation manager
     AnimationManager animationManager;
 
-    /**
-     *
-     */
     public Application() {
         super(Application.APP_NAME);
         this.setSize(Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
         this.setUndecorated(true);
         this.setLocationRelativeTo(null);
 
-        JLayeredPane layeredPane = new JLayeredPane();
+        layeredPane = new JLayeredPane();
         layeredPane.setPreferredSize(new Dimension(Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT));
         this.setContentPane(layeredPane);
 
         this.setLayout(null);
 
-        getAboutScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
-
-//        this.add(aboutScreen);
         getMenuScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
         this.add(menuScreen);
+
+        currentScreen = menuScreen;
     }
 
-    public void goToMainMenuScreen() {
+    public void switchTo(Screen screen){
+        if (currentScreen != null && screen != null) {
+            currentScreen.setVisible(false);
+            screen.setVisible(true);
+            currentScreen = screen;
 
+            screen.repaint();
+            repaint();
+        }
     }
 
 //    Getters
@@ -97,6 +103,10 @@ public class Application extends JFrame {
     public GameScreen getGameScreen() {
         if (gameScreen == null) {
             gameScreen = new GameScreen(APPLICATION_TITLE, this);
+
+            getGameScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
+            this.add(gameScreen);
+            getGameScreen().setVisible(false);
         }
 
         return gameScreen;
@@ -105,6 +115,10 @@ public class Application extends JFrame {
     public BadgesScreen getBadgesScreen() {
         if (badgesScreen == null) {
             badgesScreen = new BadgesScreen(APPLICATION_TITLE, this, BADGE_SCREEN_TITLE);
+
+            getBadgesScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
+            this.add(badgesScreen);
+            getGameScreen().setVisible(false);
         }
 
         return badgesScreen;
@@ -113,6 +127,10 @@ public class Application extends JFrame {
     public LevelsScreen getLevelsScreen() {
         if (levelsScreen == null) {
             levelsScreen = new LevelsScreen(APPLICATION_TITLE, this, LEVELS_SCREEN_TITLE);
+
+            getLevelsScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
+            this.add(levelsScreen);
+            getLevelsScreen().setVisible(false);
         }
 
         return levelsScreen;
@@ -121,6 +139,10 @@ public class Application extends JFrame {
     public AboutScreen getAboutScreen() {
         if (aboutScreen == null) {
             aboutScreen = new AboutScreen(APPLICATION_TITLE, this, ABOUT_SCREEN_TITLE);
+
+            getAboutScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
+            this.add(aboutScreen);
+            getAboutScreen().setVisible(false);
         }
         return aboutScreen;
     }

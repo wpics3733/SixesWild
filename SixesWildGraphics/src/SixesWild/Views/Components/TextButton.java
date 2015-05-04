@@ -57,7 +57,8 @@ public class TextButton extends StyledButton {
         this.activedTextColor = activedTextColor;
         this.disabledTextColor = disabledTextColor;
 
-        normal();
+        this.currentTextColor = normalTextColor;
+
         setRegularFont();
     }
 
@@ -98,11 +99,11 @@ public class TextButton extends StyledButton {
     }
 
     @Override
-    protected void redrawState() {
+    public void redrawState() {
         super.redrawState();
 
-        int containerWidth = (int) getPreferredSize().getWidth();
-        int containerHeight = (int) getPreferredSize().getHeight();
+        int containerWidth = (int) getMinimumSize().getWidth();
+        int containerHeight = (int) getMinimumSize().getHeight();
 
         //  Setup font
         Font font;
@@ -182,5 +183,17 @@ public class TextButton extends StyledButton {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getCurrentFont() {
+        return currentFont;
+    }
+
+    public void setCurrentFont(String currentFont) {
+        this.currentFont = currentFont;
+    }
+
+    public Color getCurrentTextColor() {
+        return currentTextColor;
     }
 }

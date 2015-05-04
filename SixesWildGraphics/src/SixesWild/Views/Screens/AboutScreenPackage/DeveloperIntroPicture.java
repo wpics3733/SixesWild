@@ -14,6 +14,8 @@ import java.io.File;
 public class DeveloperIntroPicture extends Canvas {
 
     Image teamIntroductionImage;
+    Image bufferedImage;
+    Graphics2D graphics2D;
 
     public DeveloperIntroPicture() {
         try {
@@ -26,14 +28,43 @@ public class DeveloperIntroPicture extends Canvas {
     @Override
     public void paint(Graphics g) {
 
+        if (g == null) {
+            return;
+        }
+
+        Utilities.setHighQuality(g);
+        g.drawImage(bufferedImage, 0, 0,
+                (int) getPreferredSize().getWidth(),
+                (int) getPreferredSize().getHeight(), this);
+    }
+
+    void ensureImageAvaliable() {
+        if (bufferedImage == null) {
+            bufferedImage = this.createImage(
+                    (int) getPreferredSize().getWidth(),
+                    (int) getPreferredSize().getHeight()
+            );
+
+            graphics2D = (Graphics2D) bufferedImage.getGraphics();
+        }
+    }
+
+    void redrawState() {
+        ensureImageAvaliable();
         int imageWidth = teamIntroductionImage.getWidth(this);
         int imageHeight = teamIntroductionImage.getHeight(this);
 
         int padddingLeft = ((int) getPreferredSize().getWidth() - imageWidth) / 2;
         int padddingTop = ((int) getPreferredSize().getHeight() - imageHeight) / 2;
 
-        Utilities.setHighQuality(g);
+        Utilities.setHighQuality(graphics2D);
 
-        g.drawImage(teamIntroductionImage, padddingLeft, padddingTop, imageWidth, imageHeight, this);
+        graphics2D.drawImage(teamIntroductionImage, padddingLeft, padddingTop, imageWidth, imageHeight, this);
+    }
+
+    @Override
+    public void repaint() {
+        redrawState();
+        super.repaint();
     }
 }

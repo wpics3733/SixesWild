@@ -69,8 +69,10 @@ public class ImageButton extends StyledButton {
 
     @Override
     public void normal() {
-        currentImage = normalImage;
-        super.normal();
+        if(!super.isDisableState()) {
+            currentImage = normalImage;
+            super.normal();
+        }
     }
 
     @Override
@@ -87,12 +89,14 @@ public class ImageButton extends StyledButton {
 
     @Override
     public void hovered() {
-        currentImage = hoveredImage;
-        super.hovered();
+        if(!super.isDisableState()) {
+            currentImage = hoveredImage;
+            super.hovered();
+        }
     }
 
     @Override
-    protected void redrawState() {
+    public void redrawState() {
         super.redrawState();
 
         int containerWidth = (int) getPreferredSize().getWidth();
@@ -106,5 +110,4 @@ public class ImageButton extends StyledButton {
 
         graphics2D.drawImage(currentImage, imagePaddingLeft, imagePaddingTop, imageWidth, imageHeight, this);
     }
-
 }

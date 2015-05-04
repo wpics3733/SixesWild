@@ -91,25 +91,26 @@ public class MenuScreen extends Screen {
         add(bannerBar);
 
 //        Setup buttons
+
         getContinueButton().setBounds(CONTINUE_BUTTON_BOUNDS);
         getLevelsButton().setBounds(LEVEL_BUTTON_BOUNDS);
         getBadgeButton().setBounds(BADGE_BUTTON_BOUNDS);
         getAboutButton().setBounds(ABOUT_BUTTON_BOUNDS);
 
 //        Add controller to buttons
-        ContinueGameButtonController continueGameButtonController = new ContinueGameButtonController(continueButton);
+        ContinueGameButtonController continueGameButtonController = new ContinueGameButtonController(continueButton, app);
         getContinueButton().addMouseListener(continueGameButtonController);
         getContinueButton().addMouseMotionListener(continueGameButtonController);
 
-        ViewLevelsButtonController viewLevelsButtonController = new ViewLevelsButtonController(levelsButton);
+        ViewLevelsButtonController viewLevelsButtonController = new ViewLevelsButtonController(levelsButton,app);
         getLevelsButton().addMouseListener(viewLevelsButtonController);
         getLevelsButton().addMouseMotionListener(viewLevelsButtonController);
 
-        AchievementButtonController achievementButtonController = new AchievementButtonController(badgeButton);
+        AchievementButtonController achievementButtonController = new AchievementButtonController(badgeButton,app);
         getBadgeButton().addMouseListener(achievementButtonController);
         getBadgeButton().addMouseMotionListener(achievementButtonController);
 
-        AboutButtonController aboutButtonController = new AboutButtonController(aboutButton);
+        AboutButtonController aboutButtonController = new AboutButtonController(aboutButton,app);
         getAboutButton().addMouseListener(aboutButtonController);
         getAboutButton().addMouseMotionListener(aboutButtonController);
 
@@ -119,6 +120,10 @@ public class MenuScreen extends Screen {
         add(badgeButton);
         add(aboutButton);
 
+        getContinueButton().repaint();
+        getLevelsButton().repaint();
+        getBadgeButton().repaint();
+        getAboutButton().repaint();
     }
 
 //    Getters and setters
@@ -137,7 +142,10 @@ public class MenuScreen extends Screen {
                     BUTTON_BACK_COLOR,
                     BUTTON_BACK_COLOR
             );
+
             continueButton.setPreferredSize(BUTTON_SIZE);
+            continueButton.setMinimumSize(BUTTON_SIZE);
+            continueButton.setMaximumSize(BUTTON_SIZE);
         }
 
         return continueButton;
@@ -159,6 +167,8 @@ public class MenuScreen extends Screen {
             );
 
             levelsButton.setPreferredSize(BUTTON_SIZE);
+            levelsButton.setMinimumSize(BUTTON_SIZE);
+            levelsButton.setMaximumSize(BUTTON_SIZE);
         }
 
         return levelsButton;
@@ -180,6 +190,8 @@ public class MenuScreen extends Screen {
             );
 
             badgeButton.setPreferredSize(BUTTON_SIZE);
+            badgeButton.setMinimumSize(BUTTON_SIZE);
+            badgeButton.setMaximumSize(BUTTON_SIZE);
         }
 
         return badgeButton;
@@ -201,6 +213,8 @@ public class MenuScreen extends Screen {
             );
 
             aboutButton.setPreferredSize(BUTTON_SIZE);
+            aboutButton.setMinimumSize(BUTTON_SIZE);
+            aboutButton.setMaximumSize(BUTTON_SIZE);
         }
         return aboutButton;
     }
