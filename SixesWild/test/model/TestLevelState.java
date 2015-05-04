@@ -53,5 +53,6 @@ public class TestLevelState extends TestCase {
 		assertTrue(l.getLevelType().equals("Elimination"));
 		//System.out.println(l.isUnlocked());
 		l.loadState("testLevel.sav");
+		l.deleteState();
 	}
 }

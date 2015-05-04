@@ -39,8 +39,6 @@ public class PastLevelPanel extends JPanel{
 					LevelState tmp = new LevelState();
 					//System.out.println(child.getName());
 					tmp.loadState(child.getName());
-					//System.out.println(tmp.getLevelType());
-					//System.out.println(tmp.isUnlocked());
 					if(tmp.getLevelType() != null){
 						Level newLevel = null;
 						if(tmp.getLevelType().equals("Puzzle")){
@@ -53,9 +51,6 @@ public class PastLevelPanel extends JPanel{
 						else{
 							newLevel = new EliminationLevel(tmp);
 						}
-						//					else{
-						//						newLevel = new ReleaseLevel(tmp);
-						//					}
 						levels.add(newLevel);
 					}
 				}
@@ -94,7 +89,7 @@ public class PastLevelPanel extends JPanel{
 		for(i = 0; i < levels.size(); i++) {
 			JButton levelButton;
 			if(levels.get(i).getLevelState().isUnlocked()) {
-				levelButton = new JButton("<html><center>Level " + i + "<br>" + levels.get(i).typeString() + "</center></html>");
+				levelButton = new JButton("<html><center> " + levels.get(i).getLevelState().getLevelName() + "<br>" + levels.get(i).typeString() + "</center></html>");
 				levelButton.setBackground(Color.YELLOW);
 				Level nextLevel = (i <= levels.size() - 1) ? null : levels.get(i+1);
 				levelButton.addMouseListener(new PlayPastLevelController(parent, levels.get(i), nextLevel));

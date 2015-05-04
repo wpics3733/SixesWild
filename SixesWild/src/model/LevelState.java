@@ -87,6 +87,11 @@ public class LevelState {
 		boardVals = new int[width][height];
 		marks = new int[width][height];
 		multipliers = new int[width][height];
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0; j < 9; j++) {
+				multipliers[i][j] = 1;
+			}
+		}
 		blockedTiles = new boolean[width][height];
 		
 		levelType = "Puzzle";
@@ -457,5 +462,17 @@ public class LevelState {
 		catch(Exception exc){
 			exc.printStackTrace(); // If there was an error, print the info.
 		}
+	}
+	public void deleteState() {
+		File f;
+		try{
+			
+			f = new File("../LevelBuilder/Levels/" + levelName + ".sav");
+			f.delete();
+		}
+		catch(Exception exc){
+			exc.printStackTrace(); // If there was an error, print the info.
+		}
+		
 	}
 }
