@@ -23,6 +23,7 @@ public class LevelModel {
 	ArrayList<ModifyTileMove> moves;
 	int movePointer;
 	ModifyTileMove currentMove;
+	boolean isGeneratedByLevelModel;
 	
 	// constructor
 	/**
@@ -89,6 +90,9 @@ public class LevelModel {
 		// timeAllowed
 		this.timeAllowed = 100;
 		
+		// isLevelModel
+		this.isGeneratedByLevelModel = false;
+		
 	}
 	
 	
@@ -108,6 +112,7 @@ public class LevelModel {
 		this.tileProbabilities = l.getTileProbabilities();
 		this.levelName = l.getLevelName();
 		this.starMilestones = l.getStarScores();
+		this.isGeneratedByLevelModel = true;
 		
 		this.board = new Tile[9][9];
 		for(int row = 0; row < 9; row++){
@@ -427,5 +432,15 @@ public class LevelModel {
 	public String getName() {
 		return levelName;
 	}
+
+
+
+	public boolean isGeneratedByLevelModel() {
+		return isGeneratedByLevelModel;
+	}
+
+	
+	
+	
 
 }
