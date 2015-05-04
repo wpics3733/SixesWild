@@ -18,6 +18,10 @@ import entityPackage.LevelModel;
 import entityPackage.MultiplierModifier;
 import entityPackage.ValueModifier;
 
+/** Create the palate panel for level builder
+ * @author Dean & Dabai
+ *
+ */
 public class PalettePanel extends JPanel {
 
 	LevelEditorPanel lep;
@@ -57,6 +61,7 @@ public class PalettePanel extends JPanel {
 		JLabel label_RandomTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png")));
 		
 		JLabel label_BucketTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BucketTile.png")));
+		
 		
 		label_1Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(1),this));
 		label_2Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(2),this));

@@ -16,6 +16,10 @@ import controllerPackage.QuitButtonController;
 import controllerPackage.SplashScreenPanelController;
 import entityPackage.LevelModel;
 
+/** Create the splash screen for level builder
+ * @author Dabai
+ *
+ */
 class SplashScreenPanel extends JPanel {
 
 	private BufferedImage img; 

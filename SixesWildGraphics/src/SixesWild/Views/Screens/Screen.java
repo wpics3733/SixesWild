@@ -23,7 +23,7 @@ public class Screen extends TransitableView {
 
     //    Title of the screen
     String title;
-    Application app;
+    protected Application app;
 
     public Screen(String title, Application app) {
         this.title = title;

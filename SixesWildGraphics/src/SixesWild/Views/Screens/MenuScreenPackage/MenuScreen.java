@@ -1,5 +1,6 @@
 package SixesWild.Views.Screens.MenuScreenPackage;
 
+import SixesWild.Contracts.TipContract;
 import SixesWild.Controllers.MenuScreen.AboutButtonController;
 import SixesWild.Controllers.MenuScreen.AchievementButtonController;
 import SixesWild.Controllers.MenuScreen.ContinueGameButtonController;
@@ -101,18 +102,22 @@ public class MenuScreen extends Screen {
         ContinueGameButtonController continueGameButtonController = new ContinueGameButtonController(continueButton, app);
         getContinueButton().addMouseListener(continueGameButtonController);
         getContinueButton().addMouseMotionListener(continueGameButtonController);
+        getContinueButton().setToolTipText(TipContract.CONTINUE_GAME_BUTTON_TIP);
 
         ViewLevelsButtonController viewLevelsButtonController = new ViewLevelsButtonController(levelsButton,app);
         getLevelsButton().addMouseListener(viewLevelsButtonController);
         getLevelsButton().addMouseMotionListener(viewLevelsButtonController);
+        getLevelsButton().setToolTipText(TipContract.VIEW_PAST_LEVEL_BUTTON_TIP);
 
         AchievementButtonController achievementButtonController = new AchievementButtonController(badgeButton,app);
         getBadgeButton().addMouseListener(achievementButtonController);
         getBadgeButton().addMouseMotionListener(achievementButtonController);
+        getBadgeButton().setToolTipText(TipContract.VIEW_ACHIEVEMENT_BUTTON_TIP);
 
         AboutButtonController aboutButtonController = new AboutButtonController(aboutButton,app);
         getAboutButton().addMouseListener(aboutButtonController);
         getAboutButton().addMouseMotionListener(aboutButtonController);
+        getAboutButton().setToolTipText(TipContract.ABOUT_BUTTON_TIP);
 
 //        Add buttons into screen
         add(continueButton);
