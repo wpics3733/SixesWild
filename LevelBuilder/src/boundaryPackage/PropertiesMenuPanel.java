@@ -80,6 +80,7 @@ public class PropertiesMenuPanel extends JPanel {
 		String[] levelTypes = {"Puzzle","Lightning","Release", "Elimination"}; 
 		
 		comboBox = new JComboBox<String>(levelTypes);
+		comboBox.setSelectedItem(model.getMode());
 		
 		lblOfSpecial = new JLabel("# of Special Moves");
 		lblOfSpecial.setFont(new Font("Tahoma", Font.PLAIN, 16));
