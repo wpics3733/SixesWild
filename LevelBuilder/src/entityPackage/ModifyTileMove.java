@@ -1,8 +1,8 @@
 package entityPackage;
 
-/**
+/** Used to modify tiles.
  * @author XOM
- * Used to modify tiles.
+ * 
  */
 public class ModifyTileMove {
 	

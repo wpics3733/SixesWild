@@ -10,6 +10,10 @@ import boundaryPackage.BoardPanel;
 import boundaryPackage.LevelBuilderApplication;
 import entityPackage.LevelModel;
 
+/**
+ * @author Tom & Dabai
+ *
+ */
 public class TileController extends MouseAdapter {
 	LevelModel model;
 	//LevelBuilderApplication app;

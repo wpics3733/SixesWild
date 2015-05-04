@@ -1,8 +1,8 @@
 package entityPackage;
 
-/**
+/** Used to modify a tile's value
  * @author Dean Kiourtsis
- * Used to modify a tile's value
+ * 
  */
 public class ValueModifier implements ITileModifier {
 	int value;
