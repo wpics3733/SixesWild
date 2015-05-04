@@ -39,6 +39,12 @@ public class PlayPastLevelController implements MouseListener {
 		} else {
 			lv = new LevelView((LightningLevel)toPlay, next, parent);
 		}
+		if(parent == null) {
+			System.out.println("Parent was null");
+		}
+		if(lv == null) {
+			System.out.println("lv was null");
+		}
 		parent.changeView(lv);
 		
 	}
