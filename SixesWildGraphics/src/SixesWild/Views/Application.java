@@ -1,5 +1,6 @@
 package SixesWild.Views;
 
+import SixesWild.Utilities;
 import SixesWild.Views.Animation.AnimationManager;
 import SixesWild.Views.Screens.AboutScreenPackage.AboutScreen;
 import SixesWild.Views.Screens.BadgeScreenPackage.BadgesScreen;
@@ -63,6 +64,8 @@ public class Application extends JFrame {
 
     public Application() {
         super(Application.APP_NAME);
+        Utilities.loadFont();
+
         this.setSize(Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
         this.setUndecorated(true);
         this.setLocationRelativeTo(null);
@@ -82,11 +85,9 @@ public class Application extends JFrame {
     public void switchTo(Screen screen){
         if (currentScreen != null && screen != null) {
             currentScreen.setVisible(false);
+
             screen.setVisible(true);
             currentScreen = screen;
-
-            screen.repaint();
-            repaint();
         }
     }
 
@@ -105,7 +106,7 @@ public class Application extends JFrame {
             gameScreen = new GameScreen(APPLICATION_TITLE, this);
 
             getGameScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
-            this.add(gameScreen);
+            this.add(gameScreen, new Integer(0));
             getGameScreen().setVisible(false);
         }
 

@@ -33,7 +33,7 @@ public class LargeStarsView extends StarsView {
     @Override
     void redrawState() {
         ensureImageAvaliable();
-        Utilities.setHighQuality(graphics2D);
+//        Utilities.setHighQuality(graphics2D);
 
         graphics2D.setColor(DetailPanel.DETAIL_PANEL_BACK_COLOR);
 

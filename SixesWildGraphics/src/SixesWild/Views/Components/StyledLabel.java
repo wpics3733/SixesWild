@@ -42,20 +42,6 @@ public class StyledLabel extends JComponent {
         this.fontSize = fontSize;
         this.textColor = textColor;
         this.isLeftAlign = isLeftAlign;
-
-        setRegularFont();
-    }
-
-    public void setRegularFont() {
-        currentFont = Application.REGULAR_FONT_LOCATION;
-    }
-
-    public void setItalicFont() {
-        currentFont = Application.ITALIC_FONT_LOCATION;
-    }
-
-    public void setBoldFont() {
-        currentFont = Application.BOLD_FONT_LOCATION;
     }
 
     protected void ensureImageAvailable() {
@@ -71,26 +57,15 @@ public class StyledLabel extends JComponent {
         int containerWidth = (int) getPreferredSize().getWidth();
         int containerHeight = (int) getPreferredSize().getHeight();
 
-        //  Empty font
-        Font font;
-
-        try {
-
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty(Application.ROOT_PATH) + currentFont));
-            font = font.deriveFont(fontSize);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return;
-        }
+        Utilities.normalFont = Utilities.normalFont.deriveFont(fontSize);
 
         Utilities.setHighQuality(graphics2D);
 
-        FontMetrics metrics = graphics2D.getFontMetrics(font);
+        FontMetrics metrics = graphics2D.getFontMetrics(Utilities.normalFont);
         fontWidth = metrics.stringWidth(text);
 
         FontRenderContext renderContext = graphics2D.getFontRenderContext();
-        GlyphVector glyphVector = font.createGlyphVector(renderContext, text);
+        GlyphVector glyphVector = Utilities.normalFont.createGlyphVector(renderContext, text);
         Rectangle visualBounds = glyphVector.getVisualBounds().getBounds();
 
         int textPaddingTop = (containerHeight - visualBounds.y) / 2;
@@ -105,7 +80,7 @@ public class StyledLabel extends JComponent {
         graphics2D.fillRect(0, 0, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());
 
         graphics2D.setColor(textColor);
-        graphics2D.setFont(font);
+        graphics2D.setFont(Utilities.normalFont);
         graphics2D.drawString(text, textPaddingLeft, textPaddingTop);
     }
 
