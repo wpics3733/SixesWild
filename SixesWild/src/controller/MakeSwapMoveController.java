@@ -41,6 +41,11 @@ public class MakeSwapMoveController extends MouseAdapter {
 
 	}
 
+	/**
+	 * If the JPanel under the mouse is a TilePanel, add it to the SwapMove
+	 * If the SwapMove is valid (after two tiles), run the move
+	 * After every move, we check if the level is complete
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		Component c = bp.getComponentAt(arg0.getPoint());

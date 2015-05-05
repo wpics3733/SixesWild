@@ -20,6 +20,9 @@ public class ExitSplashScreen extends MouseAdapter {
 		this.a = a;
 	}
 
+	/**
+	 * Switch the View on the Application to a new MainMenuView
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		a.changeView(new MainMenuView(a));

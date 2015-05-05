@@ -19,7 +19,7 @@ public class InitiateClearMoveController extends MouseAdapter {
 	Level l;
 	LevelView lv;
 	
-	/**
+	/**javadoc
 	 * Make a new InitiateClearMoveController
 	 * @param l		the level we are playing
 	 * @param lv	the levelView associated with l
@@ -29,6 +29,10 @@ public class InitiateClearMoveController extends MouseAdapter {
 		this.lv = lv;
 	}
 
+	/**
+	 * Set the active controller on the board to a MakeClearMoveController
+	 * if the User has a clearmove to use
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.CLEAR)) {

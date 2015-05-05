@@ -36,6 +36,11 @@ public class PlayPastLevelController extends MouseAdapter {
 		this.next = next;
 	}
 
+	/**
+	 * Start the Level bound to this button. 
+	 * Depending on the type of level, a different LevelView constructor is called
+	 * The Application view will be changed to the new LevelView
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		LevelView lv;

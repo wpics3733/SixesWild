@@ -32,6 +32,9 @@ public class RestartLevelController extends MouseAdapter {
 		
 	}
 
+	/**
+	 * Restart the Level and refresh the GUI
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		l.restart();

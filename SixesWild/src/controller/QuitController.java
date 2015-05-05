@@ -19,7 +19,10 @@ public class QuitController extends MouseAdapter {
 	public QuitController(Application a) {
 		this.a = a;
 	}
-
+	
+	/**
+	 * Quit the game
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		a.setVisible(false);

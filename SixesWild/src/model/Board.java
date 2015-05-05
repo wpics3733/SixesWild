@@ -17,6 +17,13 @@ public class Board {
 	int multiplier_ratios[];
 	int multiplier_ratio_sum;
 
+	/**
+	 * Construct a new board based off of the given LevelState
+	 * the board gets all tile nums in the state
+	 * it also reads multiplier and tile probabilities
+	 * It then constructs the board appropriately
+	 * @param l
+	 */
 	public Board(LevelState l) {
 		this.h = l.getHeight();
 		this.w = l.getWidth();

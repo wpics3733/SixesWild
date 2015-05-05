@@ -24,6 +24,9 @@ public class ReturnToMenuController extends MouseAdapter {
 		
 	}
 
+	/**
+	 * Return to the main menu by changing the Application panel to a new MainMenuView
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		parent.changeView(new MainMenuView(parent));

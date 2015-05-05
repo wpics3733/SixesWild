@@ -42,6 +42,10 @@ public class MakeClearMoveController extends MouseAdapter {
 		
 	}
 
+	/**
+	 * Try to add the tilePanel under the mouse to a new clearMove. If the tile
+	 * added successfully, the move should be valid and run
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		Component c = bp.getComponentAt(arg0.getPoint());

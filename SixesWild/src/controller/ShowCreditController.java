@@ -26,6 +26,9 @@ public class ShowCreditController extends MouseAdapter {
 		this.app = app;
 	}
 
+	/**
+	 * Show the Credit screen (the splash panel)
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		this.app.changeView(new SplashPanel(app));

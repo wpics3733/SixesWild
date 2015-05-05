@@ -38,6 +38,12 @@ public class ResetProgressController extends MouseAdapter {
 		this.view = view;
 	}
 
+	/**
+	 * Reset all level progress and high scores
+	 * Lock all but the first level
+	 * Unbind controllers from the PastLevelButtons
+	 * Cannot be undone
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		for(Level l: levels) {

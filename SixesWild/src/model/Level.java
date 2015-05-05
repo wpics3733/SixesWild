@@ -1,6 +1,11 @@
 package model;
 
 
+/**
+ * 
+ * @author jesse
+ *
+ */
 public abstract class Level {
 	int score;
 	int tileRatios[];

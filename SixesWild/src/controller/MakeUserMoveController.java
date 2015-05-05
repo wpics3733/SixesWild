@@ -43,17 +43,19 @@ public class MakeUserMoveController extends MouseAdapter {
 		this.um = null;
 	}
 
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		this.mouseReleased(arg0);
-	}
-
+	/**
+	 * Initiate a new UserMove, and try to add the current tile
+	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		um = new UserMove();
 		this.mouseDragged(arg0);
 	}
 
+	/**
+	 * Check to see if the userMove we have created is valid, if so, run it
+	 * After every move, check to see if the level is complete
+	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		if(this.um == null) {
@@ -72,6 +74,13 @@ public class MakeUserMoveController extends MouseAdapter {
 		this.um = null;
 	}
 
+	/**
+	 * As the mouse is dragged, any tiles it drags over will be added to the move
+	 * if they are adjacent to any existing tiles, or they are the first tile
+	 * 
+	 * Note: We do not stop adding tiles after the sum reaches six, so invalid moves
+	 * are entirely possible, and subtract moves from the user
+	 */
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		if(this.um == null) {

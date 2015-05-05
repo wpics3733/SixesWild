@@ -25,10 +25,12 @@ public class PastLevelViewController extends MouseAdapter {
 		this.parent = parent;
 	}
 
+	/**
+	 * change the Application view to a PastLevelPanel
+	 * where the user can see all levels
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		parent.changeView(new PastLevelPanel(parent));
-		// TODO Auto-generated method stub
-		
 	}
 }
