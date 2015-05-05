@@ -18,9 +18,11 @@ import javax.swing.JButton;
 
 import entityPackage.LevelModel;
 
-//test
-//import com.jgoodies.forms.layout.FormSpecs;
-
+/**
+ * The main class for level builder
+ * @author Dabai & Dean
+ *
+ */
 public class LevelBuilderApplication extends JFrame {
 
 	private JPanel contentPane;

@@ -16,7 +16,11 @@ import java.awt.Point;
 import controllerPackage.TileController;
 import entityPackage.LevelModel;
 import entityPackage.Tile;
-
+/**
+ * Borad panel that shows the board for level builder
+ * @author Dabai & Dean & Tom
+ *
+ */
 public class BoardPanel extends JPanel {
 	LevelModel model;
 	JLabel tileLabels[][];

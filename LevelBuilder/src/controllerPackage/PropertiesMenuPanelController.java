@@ -8,6 +8,11 @@ import boundaryPackage.MenuPanel;
 import boundaryPackage.PropertiesMenuPanel;
 import entityPackage.LevelModel;
 
+/**
+ * Controller that link to the properties menu
+ * @author Tom & Dabai
+ *
+ */
 public class PropertiesMenuPanelController extends MouseAdapter {
 	LevelModel model;
 	LevelBuilderApplication app;
