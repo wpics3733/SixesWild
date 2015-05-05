@@ -6,7 +6,8 @@ import view.Application;
 import view.MainMenuView;
 
 /**
- * When activated, this controller 
+ * When activated, this controller returns the User to the main menu
+ * by changing the active panel in the application frame to a new menu
  * @author jesse
  *
  */
@@ -14,6 +15,10 @@ public class ReturnToMenuController extends MouseAdapter {
 	
 	private Application parent;
 	
+	/**
+	 * Construct a new ReturnToMenuController for the given Application
+	 * @param parent
+	 */
 	public ReturnToMenuController(Application parent) {
 		this.parent = parent;
 		
@@ -25,17 +30,5 @@ public class ReturnToMenuController extends MouseAdapter {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
 
 }
