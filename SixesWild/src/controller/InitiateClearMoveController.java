@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
@@ -13,11 +14,16 @@ import view.LevelView;
  * @author jesse
  *
  */
-public class InitiateClearMoveController implements MouseInputListener {
+public class InitiateClearMoveController extends MouseAdapter {
 	
 	Level l;
 	LevelView lv;
 	
+	/**
+	 * Make a new InitiateClearMoveController
+	 * @param l		the level we are playing
+	 * @param lv	the levelView associated with l
+	 */
 	public InitiateClearMoveController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
@@ -26,27 +32,8 @@ public class InitiateClearMoveController implements MouseInputListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.CLEAR)) {
-			lv.changeController((MouseInputListener)new MakeClearMoveController(l, lv));
+			lv.changeController(new MakeClearMoveController(l, lv));
 		}
 		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {}
-
 }

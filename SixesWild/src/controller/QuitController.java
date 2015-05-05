@@ -1,10 +1,7 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.event.MouseInputListener;
-
 import view.Application;
 
 /**
@@ -12,9 +9,13 @@ import view.Application;
  * @author jesse
  *
  */
-public class QuitController implements MouseListener {
+public class QuitController extends MouseAdapter {
 	Application a;
 	
+	/**
+	 * Construct a new QuitController to close the Application frame a
+	 * @param a	the application frame to close
+	 */
 	public QuitController(Application a) {
 		this.a = a;
 	}
@@ -22,21 +23,7 @@ public class QuitController implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		a.setVisible(false);
-		a.dispose();
-		// TODO Auto-generated method stub
-		
+		System.exit(0);
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
 
 }

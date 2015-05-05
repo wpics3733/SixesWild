@@ -38,6 +38,9 @@ public class ImageContract {
     public static final String BADGE_RESET_BUTTON_NORMAL_IMAGE = ASSETS_PATH + "/resetBadgeButton.png";
     public static final String BADGE_RESET_BUTTON_HOVERED_IMAGE = ASSETS_PATH + "/resetBadgeButtonHovered.png";
 
+//    Refresh button Image
+    public static final String RESET_BUTTON_IMAGE = ASSETS_PATH + "/refreshButton.png";
+
     //    Stars images
     public static final String STAR_SMALL_ACTIVE_IMAGE = ASSETS_PATH + "/starSmallActive.png";
     public static final String STAR_SMALL_INACTIVE_IMAGE = ASSETS_PATH + "/starSmallInactive.png";

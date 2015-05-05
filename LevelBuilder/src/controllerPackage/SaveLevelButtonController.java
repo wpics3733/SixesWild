@@ -1,6 +1,3 @@
-// Authors:  Dean K.
-
-
 package controllerPackage;
 
 import java.awt.event.ActionEvent;
@@ -24,7 +21,6 @@ public class SaveLevelButtonController implements ActionListener {
 		this.parent = parent;
 		this.model = model;
 	}
-
 
 
 	@Override

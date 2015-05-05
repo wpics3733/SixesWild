@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
@@ -24,12 +25,17 @@ import model.UserMove;
  * @author jesse
  *
  */
-public class MakeUserMoveController implements MouseInputListener {
+public class MakeUserMoveController extends MouseAdapter {
 	Level l;
 	LevelView lv;
 	BoardPanel bp;
 	UserMove um;
 
+	/**
+	 * Constructs a new MakeUserMoveController for the given Level and its associated LevelView
+	 * @param l		The level the user is playing
+	 * @param lv	The LevelView associated with l
+	 */
 	public MakeUserMoveController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
@@ -38,14 +44,8 @@ public class MakeUserMoveController implements MouseInputListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-	@Override
 	public void mouseExited(MouseEvent arg0) {
 		this.mouseReleased(arg0);
-
 	}
 
 	@Override
@@ -84,8 +84,5 @@ public class MakeUserMoveController implements MouseInputListener {
 			}
 		} 
 	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {}
 
 }

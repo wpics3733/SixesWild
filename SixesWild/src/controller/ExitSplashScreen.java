@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -13,7 +14,7 @@ import view.PastLevelPanel;
  * @author jesse
  *
  */
-public class ExitSplashScreen implements MouseListener {
+public class ExitSplashScreen extends MouseAdapter {
 	private Application a;
 	public ExitSplashScreen(Application a) {
 		this.a = a;
@@ -23,17 +24,4 @@ public class ExitSplashScreen implements MouseListener {
 	public void mouseClicked(MouseEvent arg0) {
 		a.changeView(new MainMenuView(a));
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
-
 }

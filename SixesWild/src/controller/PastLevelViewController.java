@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -12,10 +13,14 @@ import view.PastLevelPanel;
  * @author jesse
  *
  */
-public class PastLevelViewController implements MouseListener {
+public class PastLevelViewController extends MouseAdapter {
 	private Application parent;
 	
 
+	/**
+	 * Construct a new PastLevelView controller under the given ApplicationFrame
+	 * @param parent	The top level Application frame
+	 */
 	public PastLevelViewController(Application parent) {
 		this.parent = parent;
 	}
@@ -26,17 +31,4 @@ public class PastLevelViewController implements MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
-
 }

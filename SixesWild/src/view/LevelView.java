@@ -2,6 +2,7 @@
 package view;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -32,7 +33,7 @@ public class LevelView extends JPanel {
 	GameWestPanel westPanel;
 	JPanel topBar;
 	
-	MouseInputListener controller;
+	MouseAdapter controller;
 	
 	private LevelView(Level l, Level next, Application parent) {
 		super();
@@ -97,7 +98,7 @@ public class LevelView extends JPanel {
 		this.add(topBar, BorderLayout.NORTH);
 	}
 	
-	public void changeController(MouseInputListener controller) {
+	public void changeController(MouseAdapter controller) {
 		if(controller != null) {
 			this.bp.removeMouseListener(this.controller);
 			this.bp.removeMouseMotionListener(this.controller);

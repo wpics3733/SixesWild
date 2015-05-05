@@ -11,6 +11,10 @@ import entityPackage.LevelModel;
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.MenuPanel;
 
+/**
+ * @author Dabai
+ *
+ */
 public class DeleteLevelButtonController extends MouseAdapter {
 	String levelName;
 	boolean isGeneratedByLevelModel;

@@ -7,6 +7,10 @@ import entityPackage.LevelModel;
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.MenuPanel;
 
+/** Controller for the splash screen 
+ * @author Tom & Dabai
+ *
+ */
 public class SplashScreenPanelController extends MouseAdapter {
 
 	LevelBuilderApplication app;

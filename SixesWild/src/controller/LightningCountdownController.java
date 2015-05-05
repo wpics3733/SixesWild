@@ -15,15 +15,26 @@ public class LightningCountdownController {
 	LightningLevel l;
 	LevelView lv;
 	
+	/**
+	 * make a new LightningCountdownController
+	 * @param l		The lightningLevel the user is playing
+	 * @param lv	the levelView associated with l
+	 */
 	public LightningCountdownController(LightningLevel l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
 	}
 	
+	/**
+	 * Runs the controller
+	 * decrements the time remaining by one, if that was the last second,
+	 * stops the timer and ends the level
+	 */
 	public void run() {
 		l.setTimeRemaining(l.getTimeRemaining() - 1);
 		lv.repaint();
 		if(l.isFinished()) {
+			l.getTimer().cancel();
 			lv.endLevel();
 		}
 		

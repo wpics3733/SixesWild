@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import controller.ExitLightningLevelController;
 import controller.InitiateClearMoveController;
 import controller.InitiateSwapMoveController;
 import controller.RearrangeBoardController;
@@ -52,7 +53,7 @@ public class LightningTopBarPanel extends JPanel {
 		rearrange = new JButton("Rearrange");
 		
 		quit = new JButton("Quit");
-		quit.addMouseListener(new ReturnToMenuController(parent));
+		quit.addMouseListener(new ExitLightningLevelController(l, parent));
 		
 		timeLeft = new JLabel();
 		timeLeft.setFont(new Font("AvenyyirNext", Font.PLAIN, 20));

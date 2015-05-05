@@ -18,6 +18,10 @@ import javax.swing.JButton;
 import controllerPackage.PropertiesMenuPanelController;
 import entityPackage.LevelModel;
 
+/** Create the properties panel for the level builder
+ * @author Dean & Dabai
+ *
+ */
 public class PropertiesMenuPanel extends JPanel {
 	private JLabel lblLevelType;
 	private JComboBox<String> comboBox;

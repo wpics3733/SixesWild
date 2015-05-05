@@ -58,20 +58,6 @@ public class TextButton extends StyledButton {
         this.disabledTextColor = disabledTextColor;
 
         this.currentTextColor = normalTextColor;
-
-        setRegularFont();
-    }
-
-    public void setRegularFont() {
-        currentFont = Application.REGULAR_FONT_LOCATION;
-    }
-
-    public void setItalicFont() {
-        currentFont = Application.ITALIC_FONT_LOCATION;
-    }
-
-    public void setBoldFont() {
-        currentFont = Application.BOLD_FONT_LOCATION;
     }
 
     @Override
@@ -106,94 +92,23 @@ public class TextButton extends StyledButton {
         int containerHeight = (int) getMinimumSize().getHeight();
 
         //  Setup font
-        Font font;
 
-        try {
-
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(System.getProperty(Application.ROOT_PATH) + currentFont));
-            font = font.deriveFont(fontSize);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return;
-        }
+        Utilities.normalFont= Utilities.normalFont.deriveFont(fontSize);
 
         Utilities.setHighQuality(graphics2D);
 
-        FontMetrics metrics = graphics2D.getFontMetrics(font);
+        FontMetrics metrics = graphics2D.getFontMetrics(Utilities.normalFont);
         int fontWidth = metrics.stringWidth(text);
 
         FontRenderContext renderContext = graphics2D.getFontRenderContext();
-        GlyphVector glyphVector = font.createGlyphVector(renderContext, text);
+        GlyphVector glyphVector = Utilities.normalFont.createGlyphVector(renderContext, text);
         Rectangle visualBounds = glyphVector.getVisualBounds().getBounds();
 
         int textPaddingTop = (containerHeight - visualBounds.y) / 2;
         int textPaddingLeft = (containerWidth - fontWidth) / 2;
 
         graphics2D.setColor(currentTextColor);
-        graphics2D.setFont(font);
+        graphics2D.setFont(Utilities.normalFont);
         graphics2D.drawString(text, textPaddingLeft, textPaddingTop);
-    }
-
-//    Getters and setters
-
-    public Color getNormalTextColor() {
-        return normalTextColor;
-    }
-
-    public void setNormalTextColor(Color normalTextColor) {
-        this.normalTextColor = normalTextColor;
-    }
-
-    public Color getHoveredTextColor() {
-        return hoveredTextColor;
-    }
-
-    public void setHoveredTextColor(Color hoveredTextColor) {
-        this.hoveredTextColor = hoveredTextColor;
-    }
-
-    public Color getActivedTextColor() {
-        return activedTextColor;
-    }
-
-    public void setActivedTextColor(Color activedTextColor) {
-        this.activedTextColor = activedTextColor;
-    }
-
-    public Color getDisabledTextColor() {
-        return disabledTextColor;
-    }
-
-    public void setDisabledTextColor(Color disabledTextColor) {
-        this.disabledTextColor = disabledTextColor;
-    }
-
-    public float getFontSize() {
-        return fontSize;
-    }
-
-    public void setFontSize(int fontSize) {
-        this.fontSize = fontSize;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getCurrentFont() {
-        return currentFont;
-    }
-
-    public void setCurrentFont(String currentFont) {
-        this.currentFont = currentFont;
-    }
-
-    public Color getCurrentTextColor() {
-        return currentTextColor;
     }
 }

@@ -18,6 +18,10 @@ import entityPackage.LevelModel;
 import entityPackage.MultiplierModifier;
 import entityPackage.ValueModifier;
 
+/** Create the palate panel for level builder
+ * @author Dean & Dabai
+ *
+ */
 public class PalettePanel extends JPanel {
 
 	LevelEditorPanel lep;

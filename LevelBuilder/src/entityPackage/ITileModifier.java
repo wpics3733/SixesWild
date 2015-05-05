@@ -1,6 +1,6 @@
 package entityPackage;
 
-/**
+/** 
  * Used to modify tiles
  * @author Dean Kiourtsis
  * 
