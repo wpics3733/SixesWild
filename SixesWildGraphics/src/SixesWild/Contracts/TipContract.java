@@ -22,4 +22,10 @@ public class TipContract {
     public static final String LAST_PAGE_BUTTON_TIP= "Go to last page";
 
     public static final String NEXT_PAGE_BUTTON_TIP= "Go to next page";
+
+    public static final String SWAP_SQUARE_SPECIAL_MOVE_TIP= "Swap position of two tiles";
+
+    public static final String RESET_BOARD_SPECIAL_MOVE_TIP= "Randomly rearrange tiles on the board";
+
+    public static final String CLEAR_TILE_SPECIAL_MOVE_TIP= "Clear a selected tile from the board";
 }

@@ -30,7 +30,7 @@ public class LevelListPanel extends ListPanel {
 //            getViews().add(levelView);
 //        }
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 50; i++) {
 
             LevelView levelView = new LevelView(null, this,levelDetailPanel);
 

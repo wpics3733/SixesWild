@@ -24,13 +24,14 @@ public class LastPageButtonController extends FlipPageButtonController {
             flipPagePanel.lastPage();
 
             if(flipPagePanel.getListPanel().isAtListHead()){
-                if(!flipPagePanel.getListPanel().isAtListEnd()) {
-                    flipPagePanel.getNextPageButton().enabled();
-                }
                 button.disabled();
             } else {
                 button.enabled();
             }
+        }
+
+        if(!flipPagePanel.getListPanel().isAtListEnd()) {
+            flipPagePanel.getNextPageButton().enabled();
         }
     }
 }

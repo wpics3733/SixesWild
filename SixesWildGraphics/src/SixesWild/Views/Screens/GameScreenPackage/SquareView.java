@@ -1,43 +1,195 @@
 package SixesWild.Views.Screens.GameScreenPackage;
 
 import SixesWild.Models.Square;
-import SixesWild.Views.TransitableView;
+import SixesWild.Models.Tile;
+import SixesWild.Utilities;
+import SixesWild.Views.Components.StyledButton;
+import SixesWild.Views.Screens.Screen;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.util.Random;
 
 /**
  *
  */
-public class SquareView extends JPanel {
+public class SquareView extends StyledButton {
+
+    //    Tile view size
+    public static final Dimension TILE_VIEW_SIZE = new Dimension(50, 50);
+
+    //    Tile font size
+    final float FONT_SIZE = 24L;
+
+    //    Tile background color
+    final Color[] TILE_BACK_COLOR = {
+            new Color(236, 113, 113),
+            new Color(248, 160, 15),
+            new Color(208, 87, 166),
+            new Color(114, 174, 114),
+            new Color(62, 152, 199),
+            new Color(124, 62, 182)
+    };
+
+    //    Rounded arc x
+    final int ROUNDED_ARC_X = 10;
+    //    Rounded arc y
+    final int ROUNDED_ARC_Y = 10;
+
+    //    Multiplier font size
+    final float MULTIPLIER_FONT_SIZE = 12L;
+
+    //    Multiply sign
+    final String MULTIPLY_SIGN = "×";
+
+    //    Multiplier padding
+    final int MULTIPLIER_PADDING_RIGHT = 5;
+    final int MULTIPLIER_PADDING_BOTTOM = 5;
 
     //    Square size
     public static final Dimension SQUARE_VIEW_SIZE = new Dimension(70, 70);
 
-//    Square view background color
-    final Color SQUARE_VIEW_BACK_COLOR = new Color(245, 243, 243);
+    //    Six label of container
+    final String SIX = "6";
+
+    //    Font size of SIX
+    final float SIX_FONT_SIZE = 36L;
+
 
     Square square;
-    TileView tileView;
+    Tile tile;
+    int tileNum;
+    int multiplier;
 
-    public SquareView(Square square, TileView tileView) {
+    boolean isContainer;
+
+    public SquareView(Color normalBackColor, Color hoveredBackColor, Color activedBackColor, Color disabledBackColor, Square square, Tile tile) {
+        super(normalBackColor, hoveredBackColor, activedBackColor, disabledBackColor);
         this.square = square;
-        this.tileView = tileView;
+        this.tile = tile;
 
-        setPreferredSize(SQUARE_VIEW_SIZE);
-        setMaximumSize(SQUARE_VIEW_SIZE);
-        setMinimumSize(SQUARE_VIEW_SIZE);
+        if (tile != null) {
+            Random random = new Random();
+            tileNum = random.nextInt(6) + 1;
+            multiplier = random.nextInt(3) + 1;
+        }
+    }
 
-        setBackground(SQUARE_VIEW_BACK_COLOR);
-        setBorder(BorderFactory.createLineBorder(GridView.GRID_BORDER_COLOR));
+    public void redrawState() {
+        super.redrawState();
+
+        if (isContainer == true) {
+
+
+            int containerWidth = (int) getMinimumSize().getWidth();
+            int containerHeight = (int) getMinimumSize().getHeight();
+
+            //  Setup font
+
+            Utilities.normalFont = Utilities.normalFont.deriveFont(SIX_FONT_SIZE);
+
+            Utilities.setHighQuality(graphics2D);
+
+            FontMetrics metrics = graphics2D.getFontMetrics(Utilities.normalFont);
+            int fontWidth = metrics.stringWidth(SIX);
+
+            FontRenderContext renderContext = graphics2D.getFontRenderContext();
+            GlyphVector glyphVector = Utilities.normalFont.createGlyphVector(renderContext, SIX);
+            Rectangle visualBounds = glyphVector.getVisualBounds().getBounds();
+
+            int textPaddingTop = (containerHeight - visualBounds.y) / 2;
+            int textPaddingLeft = (containerWidth - fontWidth) / 2;
+
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.setFont(Utilities.normalFont);
+            graphics2D.drawString(SIX, textPaddingLeft, textPaddingTop);
+
+        }
+
+        if (tile != null) {
+
+            graphics2D.setColor(TILE_BACK_COLOR[tileNum - 1]);
+
+            graphics2D.fillRoundRect(
+                    (int) ((SQUARE_VIEW_SIZE.getWidth() - TILE_VIEW_SIZE.getWidth()) / 2),
+                    (int) ((SQUARE_VIEW_SIZE.getHeight() - TILE_VIEW_SIZE.getHeight()) / 2),
+                    (int) TILE_VIEW_SIZE.getWidth(),
+                    (int) TILE_VIEW_SIZE.getHeight(),
+                    ROUNDED_ARC_X,
+                    ROUNDED_ARC_Y);
+
+//        Setup font
+            Utilities.normalFont = Utilities.normalFont.deriveFont(FONT_SIZE);
+
+            int containerWidth = (int) getMinimumSize().getWidth();
+            int containerHeight = (int) getMinimumSize().getHeight();
+            String text = new Integer(tileNum).toString();
+
+            FontMetrics metrics = graphics2D.getFontMetrics(Utilities.normalFont);
+            int fontWidth = metrics.stringWidth(text);
+
+            FontRenderContext renderContext = graphics2D.getFontRenderContext();
+            GlyphVector glyphVector = Utilities.normalFont.createGlyphVector(renderContext, text);
+            Rectangle visualBounds = glyphVector.getVisualBounds().getBounds();
+
+            int textPaddingTop = (containerHeight - visualBounds.y) / 2;
+            int textPaddingLeft = (containerWidth - fontWidth) / 2;
+
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.setFont(Utilities.normalFont);
+            graphics2D.drawString(text, textPaddingLeft, textPaddingTop);
+
+
+//        Draw multiplier
+            text = MULTIPLY_SIGN + new Integer(multiplier).toString();
+            Utilities.normalFont = Utilities.normalFont.deriveFont(MULTIPLIER_FONT_SIZE);
+            metrics = graphics2D.getFontMetrics(Utilities.normalFont);
+            fontWidth = metrics.stringWidth(text);
+
+            renderContext = graphics2D.getFontRenderContext();
+            glyphVector = Utilities.normalFont.createGlyphVector(renderContext, text);
+            visualBounds = glyphVector.getVisualBounds().getBounds();
+
+            textPaddingTop = containerHeight
+                    - visualBounds.y
+                    - visualBounds.height
+                    - MULTIPLIER_PADDING_BOTTOM
+                    - (int) SQUARE_VIEW_SIZE.getHeight() / 2
+                    + (int) TILE_VIEW_SIZE.getHeight() / 2;
+            textPaddingLeft = containerWidth
+                    - fontWidth
+                    - MULTIPLIER_PADDING_RIGHT
+                    - (int) SQUARE_VIEW_SIZE.getWidth() / 2
+                    + (int) TILE_VIEW_SIZE.getWidth() / 2;
+
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.setFont(Utilities.normalFont);
+            graphics2D.drawString(text, textPaddingLeft, textPaddingTop);
+        }
+
+        if(!isActiveState()) {
+            graphics2D.setColor(Screen.BORDER_COLOR);
+            graphics2D.drawRect(PADDING_LEFT, PADDING_TOP, (int) SQUARE_VIEW_SIZE.getWidth() - 1, (int) SQUARE_VIEW_SIZE.getHeight() - 1);
+        }
+    }
+
+    public void container() {
+        isContainer = true;
+        currentBackColor = disabledBackColor;
+    }
+
+    public void notContainer() {
+        isContainer = false;
     }
 
     @Override
-    public void repaint() {
-        if (tileView != null) {
-            tileView.repaint();
+    public void normal() {
+        if (isContainer) {
+            currentBackColor = disabledBackColor;
+            super.repaint();
+        } else {
+            super.normal();
         }
-        super.repaint();
     }
-
 }

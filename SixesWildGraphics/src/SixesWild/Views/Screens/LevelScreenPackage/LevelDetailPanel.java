@@ -45,7 +45,7 @@ public class LevelDetailPanel extends DetailPanel {
     final Dimension STAR_VIEW_SIZE = new Dimension(96, 28);
 
     //    Star view bounds
-    final Rectangle STAR_VIEW_BOUNDS = new Rectangle(893, 37, 96, 28);
+    final Rectangle STAR_VIEW_BOUNDS = new Rectangle(893, 30, 96, 28);
 
 
     JLabel levelNameLabel;
@@ -130,9 +130,8 @@ public class LevelDetailPanel extends DetailPanel {
 
         largeStars.setBounds(STAR_VIEW_BOUNDS);
 
-        largeStars.repaint();
-
         add(largeStars);
+        largeStars.repaint();
     }
 
     public void setRegularFont(float fontSize) {

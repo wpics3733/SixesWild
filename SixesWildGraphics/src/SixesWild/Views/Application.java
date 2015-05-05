@@ -20,6 +20,11 @@ public class Application extends JFrame {
     //    Application name
     public static final String APP_NAME = "SixesWild";
 
+    //    window padding top
+    public static final int WINDOW_PADDING_TOP = 0;
+    //    window padding left
+    public static final int WINDOW_PADDING_LEFT = 0;
+
     //    window width
     public static final int WINDOW_WIDTH = 1024;
     //    windows height
@@ -82,11 +87,13 @@ public class Application extends JFrame {
         currentScreen = menuScreen;
     }
 
-    public void switchTo(Screen screen){
+    public void switchTo(Screen screen) {
         if (currentScreen != null && screen != null) {
+            getGraphics().clearRect(0,0,Application.WINDOW_WIDTH,Application.WINDOW_HEIGHT);
             currentScreen.setVisible(false);
 
             screen.setVisible(true);
+            repaint();
             currentScreen = screen;
         }
     }
@@ -106,7 +113,7 @@ public class Application extends JFrame {
             gameScreen = new GameScreen(APPLICATION_TITLE, this);
 
             getGameScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
-            this.add(gameScreen, new Integer(0));
+            this.add(gameScreen);
             getGameScreen().setVisible(false);
         }
 

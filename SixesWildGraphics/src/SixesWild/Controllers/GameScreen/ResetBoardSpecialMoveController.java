@@ -1,14 +1,11 @@
 package SixesWild.Controllers.GameScreen;
 
-/**
- *
- */
-public class ResetBoardSpecialMoveController {
+import SixesWild.Views.Components.StyledButton;
+import SixesWild.Views.Components.SpecialMoveNavigationBar;
 
-    /**
-     *
-     */
-    public ResetBoardSpecialMoveController() {
+public class ResetBoardSpecialMoveController extends SpecialMoveButtonController {
+
+    public ResetBoardSpecialMoveController(StyledButton button, SpecialMoveNavigationBar specialMoveNavigationBar) {
+        super(button, specialMoveNavigationBar);
     }
-
 }

@@ -6,7 +6,7 @@ import SixesWild.Views.Screens.Screen;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public abstract class StarsView extends Canvas {
+public abstract class StarsView extends BufferedCanvas {
 
     //    Star view paddings
     final int PADDING_TOP = 0;
@@ -19,10 +19,6 @@ public abstract class StarsView extends Canvas {
 
     //    Number of stars
     int star;
-    //    Buffer image
-    BufferedImage bufferedImage;
-    //    Graphics2D object
-    Graphics2D graphics2D;
     //    Gap between stars
     int gapBetweenStars;
 
@@ -30,21 +26,18 @@ public abstract class StarsView extends Canvas {
         this.star = star;
     }
 
-    void ensureImageAvaliable() {
-        if (bufferedImage == null) {
-            bufferedImage = new BufferedImage(
-                    (int) getMinimumSize().getWidth(),
-                    (int) getMinimumSize().getHeight(),
-                    BufferedImage.TYPE_4BYTE_ABGR
-            );
+    protected void redrawState() {
+        super.redrawState();
 
-            graphics2D = (Graphics2D) bufferedImage.getGraphics();
-        }
-    }
+        graphics2D.setColor(getParent().getBackground());
 
-    void redrawState() {
-        ensureImageAvaliable();
-        Utilities.setHighQuality(graphics2D);
+        graphics2D.fillRect(
+                PADDING_LEFT,
+                PADDING_TOP,
+                (int) getPreferredSize().getWidth(),
+                (int) getPreferredSize().getHeight()
+        );
+
         switch (star) {
             case 1:
                 drawOneStar();
@@ -56,17 +49,6 @@ public abstract class StarsView extends Canvas {
                 drawThreeStars();
                 break;
         }
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        if (g == null) {
-            return;
-        }
-
-        Utilities.setHighQuality(g);
-
-        g.drawImage(bufferedImage, PADDING_TOP, PADDING_LEFT, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight(), this);
     }
 
     void drawOneStar() {
@@ -187,28 +169,5 @@ public abstract class StarsView extends Canvas {
                 starActiveImage.getWidth(this),
                 starActiveImage.getHeight(this),
                 this);
-    }
-
-    //    Getters and setters
-    public int getStar() {
-        return star;
-    }
-
-    public void setStar(int star) {
-        this.star = star;
-    }
-
-    public Image getBufferedImage() {
-        return bufferedImage;
-    }
-
-    public void setBufferedImage(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
-    }
-
-    @Override
-    public void repaint() {
-        redrawState();
-        super.repaint();
     }
 }

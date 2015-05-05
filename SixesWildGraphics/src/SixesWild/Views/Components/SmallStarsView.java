@@ -34,21 +34,4 @@ public class SmallStarsView extends StarsView {
             ex.printStackTrace();
         }
     }
-
-    @Override
-    void redrawState() {
-        ensureImageAvaliable();
-        Utilities.setHighQuality(graphics2D);
-
-        graphics2D.setColor(Screen.SCREEN_BACK_COLOR);
-
-        graphics2D.fillRect(
-                PADDING_LEFT,
-                PADDING_TOP,
-                (int) getPreferredSize().getWidth(),
-                (int) getPreferredSize().getHeight()
-        );
-
-        super.redrawState();
-    }
 }

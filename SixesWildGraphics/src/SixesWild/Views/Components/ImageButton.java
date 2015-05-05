@@ -17,15 +17,15 @@ import java.io.File;
 public class ImageButton extends StyledButton {
 
     //    Button normal image
-    Image normalImage;
+    protected Image normalImage;
     //    Mouse enter image
-    Image hoveredImage;
+    protected Image hoveredImage;
     //    Mouse pressed image
-    Image activedImage;
+    protected Image activedImage;
     //    Disabled image
-    Image disabledImage;
+    protected Image disabledImage;
     //    Current image
-    Image currentImage;
+    protected Image currentImage;
 
 
     /**
@@ -99,8 +99,8 @@ public class ImageButton extends StyledButton {
     public void redrawState() {
         super.redrawState();
 
-        int containerWidth = (int) getPreferredSize().getWidth();
-        int containerHeight = (int) getPreferredSize().getHeight();
+        int containerWidth = (int) getMinimumSize().getWidth();
+        int containerHeight = (int) getMinimumSize().getHeight();
         int imageWidth = currentImage.getWidth(this);
         int imageHeight = currentImage.getHeight(this);
 

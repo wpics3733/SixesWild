@@ -7,6 +7,7 @@ import SixesWild.Models.Levels.Level;
 import SixesWild.Views.Application;
 import SixesWild.Views.Components.ImageButton;
 import SixesWild.Views.Components.PopupBox;
+import SixesWild.Views.Components.ScoreSpecialMoveNavigationBar;
 import SixesWild.Views.Screens.NavigableScreen;
 
 import java.awt.*;
@@ -19,10 +20,16 @@ public class GameScreen extends NavigableScreen {
     //    Grid view bounds
     public static final Rectangle GRID_VIEW_BOUNDS = new Rectangle(192, NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT + 20, 640, 640);
 
+//    Score progress view bounds
+    public static final Rectangle SCORE_PROGRESS_VIEW_BOUNDS = new Rectangle(50,NAV_BAR_HEIGHT + STATUS_BAR_HEIGHT + 20, 126, 562);
+
+//    Score progress view size
+    public static final Dimension SCORE_PROGRESS_VIEW_SIZE = new Dimension(126, 562);
+
     //    Reset button size
     final Dimension RESET_BUTTON_SIZE = new Dimension(78, 78);
     //    Reset button bounds
-    final Rectangle RESET_BUTTON_BOUNDS = new Rectangle(98, Application.WINDOW_HEIGHT - 21 - 78, 640, 640);
+    final Rectangle RESET_BUTTON_BOUNDS = new Rectangle(98, Application.WINDOW_HEIGHT - 21 - 78, 78, 78);
 
     //    Background color of reset button
     final Color RESET_BUTTON_BACK_COLOR = new Color(112, 147, 113);
@@ -31,7 +38,7 @@ public class GameScreen extends NavigableScreen {
 
     Level level;
     SquareView[] activeSquareViews;
-    ScoreLevelView scoreLevelView;
+    ScoreProgressView scoreProgressView;
     PopupBox popupBox;
     ImageButton refreshButton;
     GridView gridView;
@@ -47,6 +54,20 @@ public class GameScreen extends NavigableScreen {
 
         setLayout(null);
 
+        remove(getNavigationBar());
+
+        ScoreSpecialMoveNavigationBar scoreSpecialMoveNavigationBar = new ScoreSpecialMoveNavigationBar(app, 5,5,5);
+
+        setNavigationBar(scoreSpecialMoveNavigationBar);
+
+        scoreSpecialMoveNavigationBar.setBounds(NAV_BAR_BOUNDS);
+
+        add(scoreSpecialMoveNavigationBar);
+
+//        Setup score progress view
+        add(getScoreProgressView());
+        getScoreProgressView().initialize();
+//        Setup grid view
         getGridView().setBounds(GRID_VIEW_BOUNDS);
         add(getGridView());
 
@@ -60,6 +81,7 @@ public class GameScreen extends NavigableScreen {
         add(getRefreshButton());
 
         getRefreshButton().repaint();
+
     }
 
     public GridView getGridView() {
@@ -88,5 +110,13 @@ public class GameScreen extends NavigableScreen {
             refreshButton.setMinimumSize(RESET_BUTTON_SIZE);
         }
         return refreshButton;
+    }
+
+    public ScoreProgressView getScoreProgressView() {
+        if(scoreProgressView == null ) {
+            scoreProgressView = new ScoreProgressView(70,50,100,200);
+            scoreProgressView.setBounds(SCORE_PROGRESS_VIEW_BOUNDS);
+        }
+        return scoreProgressView;
     }
 }

@@ -39,8 +39,6 @@ public class NavigationBar extends JPanel {
     //    Application reference
     Application app;
 
-    //    Title on navigation bar
-    String navTitle;
     //    Navigation bar title label
     StyledLabel navTitleLabel;
 
@@ -81,9 +79,15 @@ public class NavigationBar extends JPanel {
 
         if (navTitleLabel == null) {
             navTitleLabel = new StyledLabel(navTitle, TITLE_FONT_SIZE, Color.WHITE, NAV_LABEL_LEFT_ALIGN);
+
             navTitleLabel.setPreferredSize(NAV_LABEL_SIZE);
+            navTitleLabel.setMaximumSize(NAV_LABEL_SIZE);
+            navTitleLabel.setMinimumSize(NAV_LABEL_SIZE);
+
             navTitleLabel.setBounds(NAV_LABEL_BOUNDS);
             add(navTitleLabel);
+
+            navTitleLabel.repaint();
 
         } else {
             navTitleLabel.setText(navTitle);

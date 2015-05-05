@@ -2,6 +2,7 @@ package SixesWild.Views.Screens.GameScreenPackage;
 
 import SixesWild.Models.Tile;
 import SixesWild.Utilities;
+import SixesWild.Views.Components.BufferedCanvas;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -12,7 +13,7 @@ import java.util.Random;
 /**
  *
  */
-public class TileView extends Canvas {
+public class TileView extends BufferedCanvas {
     //    Tile view size
     public static final Dimension TILE_VIEW_SIZE = new Dimension(56, 56);
 
@@ -34,10 +35,6 @@ public class TileView extends Canvas {
     //    Rounded arc y
     final int ROUNDED_ARC_Y = 10;
 
-    //    Paddings
-    final int PADDING_TOP = 0;
-    final int PADDING_LEFT = 0;
-
     //    Multiplier font size
     final float MULTIPLIER_FONT_SIZE = 12L;
 
@@ -49,8 +46,6 @@ public class TileView extends Canvas {
     final int MULTIPLIER_PADDING_BOTTOM = 5;
 
     Tile tile;
-    BufferedImage bufferedImage;
-    Graphics2D graphics2D;
 
     int tileNum;
     int multiplier;
@@ -62,28 +57,14 @@ public class TileView extends Canvas {
         setMaximumSize(TILE_VIEW_SIZE);
         setMinimumSize(TILE_VIEW_SIZE);
 
-        setBackground(Color.WHITE);
-
         Random random = new Random();
         tileNum = random.nextInt(6) + 1;
         multiplier = random.nextInt(3) + 1;
     }
 
-    void ensureImageAvailable() {
-        if (bufferedImage == null) {
-            bufferedImage = new BufferedImage(
-                    (int) TILE_VIEW_SIZE.getWidth(),
-                    (int) TILE_VIEW_SIZE.getHeight(),
-                    BufferedImage.TYPE_4BYTE_ABGR
-            );
-
-            graphics2D = (Graphics2D) bufferedImage.getGraphics();
-        }
-    }
-
-    public void redrawState() {
-        ensureImageAvailable();
-
+    protected void redrawState() {
+        setBackground(getParent().getBackground());
+        super.redrawState();
         graphics2D.setColor(TILE_BACK_COLOR[tileNum - 1]);
 
         graphics2D.fillRoundRect(
@@ -93,8 +74,6 @@ public class TileView extends Canvas {
                 (int) TILE_VIEW_SIZE.getHeight(),
                 ROUNDED_ARC_X,
                 ROUNDED_ARC_Y);
-
-        Utilities.setHighQuality(graphics2D);
 
 //        Setup font
         Utilities.normalFont = Utilities.normalFont.deriveFont(FONT_SIZE);
@@ -134,28 +113,5 @@ public class TileView extends Canvas {
         graphics2D.setColor(Color.WHITE);
         graphics2D.setFont(Utilities.normalFont);
         graphics2D.drawString(text, textPaddingLeft, textPaddingTop);
-    }
-
-    @Override
-    public void paint(Graphics g) {
-        if (g == null) {
-            return;
-        }
-
-        if (bufferedImage == null) {
-            redrawState();
-        }
-
-        g.setColor(Color.WHITE);
-        g.fillRect(PADDING_LEFT, PADDING_TOP, bufferedImage.getWidth(),bufferedImage.getHeight());
-
-//        Utilities.setHighQuality(g);
-        g.drawImage(bufferedImage, PADDING_LEFT,PADDING_TOP, bufferedImage.getWidth(), bufferedImage.getHeight(), this);
-    }
-
-    @Override
-    public void repaint() {
-        redrawState();
-        super.repaint();
     }
 }
