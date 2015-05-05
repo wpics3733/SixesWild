@@ -10,11 +10,21 @@ import javax.swing.JPanel;
 
 import controller.ExitSplashScreen;
 
+/**
+ * This splash panel is shown on startup, and also doubles as the credits screen
+ * It loads up the Splash screen image in the Images folder
+ * @author jesse
+ *
+ */
 public class SplashPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	Image splashImage;
 	Dimension size;
 
+	/**
+	 * Construct a new SplashPanel for the given Application
+	 * @param a		The top level Application frame
+	 */
 	public SplashPanel(Application a) {
 		try {
 			URL imageUrl = new URL(getClass().getProtectionDomain()
@@ -30,26 +40,14 @@ public class SplashPanel extends JPanel {
 
 	}
 
+	/**
+	 * Paint the image
+	 */
 	@Override
 	public void paint(Graphics g) {
 		if(g!=null) {
 			g.drawImage(this.splashImage, 0, 0, (int)size.getWidth(),(int)size.getHeight(), this);
 		}
-	}
-
-	@Override
-	public Dimension getPreferredSize() {
-		return size;
-	}
-
-	@Override
-	public Dimension getMaximumSize() {
-		return size;
-	}
-
-	@Override
-	public Dimension getMinimumSize() {
-		return size;
 	}
 
 }

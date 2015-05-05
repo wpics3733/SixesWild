@@ -17,6 +17,15 @@ import controller.PastLevelViewController;
 import controller.ShowCreditController;
 import controller.QuitController;
 
+/**
+ * The view the player sees when they are at the main menu
+ * There are four buttons
+ * 1) A button to take them to a PastLevelsView
+ * 2) A button to take them to an AchievementsView
+ * 3) A button toshow the credits
+ * @author jesse
+ *
+ */
 public class MainMenuView extends JPanel {
 	
 	static final long serialVersionUID = 1;
@@ -25,7 +34,11 @@ public class MainMenuView extends JPanel {
 	JButton achievementsButton;
 	JButton creditsButton;
 	JButton quit;
-	
+
+	/**
+	 * Construct a new MainMenuView in the given Application frame
+	 * @param a		The active Application frame
+	 */
 	public MainMenuView(Application a) {
 		super();
 		

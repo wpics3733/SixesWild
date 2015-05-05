@@ -39,6 +39,10 @@ public class PastLevelPanel extends JPanel{
 	ArrayList<PastLevelButton> pastLevels;
 	Application parent;
 
+	/**
+	 * Construct an new PastLevelPanel in the given Application frame
+	 * @param parent
+	 */
 	public PastLevelPanel(Application parent) {
 		super(new BorderLayout(0,0));
 		this.parent = parent;
@@ -92,14 +96,6 @@ public class PastLevelPanel extends JPanel{
 			pastLevels.add(levelButton);
 			levelGrid.add(levelButton);
 		}
-
-		for( i = i; i < 16; i++) {
-			JButton levelButton = new JButton("");
-			levelButton.setPreferredSize(new Dimension(180, 120));
-			levelButton.setEnabled(false);
-			levelGrid.add(levelButton);
-		}
-
 
 		//		Menubar
 		JPanel menuBar= new JPanel(new FlowLayout(FlowLayout.LEFT,23,12));

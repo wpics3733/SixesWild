@@ -44,6 +44,13 @@ public class LightningTopBarPanel extends JPanel {
 	
 	private LightningTimer timer;
 	
+	/**
+	 * Construct a new LightningTopBarPanel for the given LightningLevel, its associated view, and the Application frame
+	 * containing it
+	 * @param l		 the level
+	 * @param lv	 the view for l
+	 * @param parent the Application frame
+	 */
 	public LightningTopBarPanel(LightningLevel l, LevelView lv, Application parent) {
 		
 		timer = l.getTimer();

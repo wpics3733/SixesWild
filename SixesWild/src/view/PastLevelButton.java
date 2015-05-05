@@ -32,7 +32,7 @@ public class PastLevelButton extends JButton {
 	StarPanel stars;
 	PlayPastLevelController controller;
 	
-	public PastLevelButton(int num) {
+	private PastLevelButton(int num) {
 		this.setPreferredSize(new Dimension(180, 120));
 		this.setLayout(new BorderLayout());
 		name = new JLabel(Integer.toString(num));
@@ -50,6 +50,12 @@ public class PastLevelButton extends JButton {
 		
 	}
 
+	/**
+	 * construct a new PastLevelButton for the given level.
+	 * the number is the number of the level, and is displayed on the tile
+	 * @param l		The level	
+	 * @param num	The levelnumber of l
+	 */
 	public PastLevelButton(Level l, int num) {
 		this(num);
 		this.l = l;
@@ -57,6 +63,7 @@ public class PastLevelButton extends JButton {
 	
 	/**
 	 * Set the PlayPastLevelController associated with this button
+	 * @param controller	the controller to bind
 	 */
 	public void setController(PlayPastLevelController controller) {
 		this.controller = controller;
@@ -72,6 +79,11 @@ public class PastLevelButton extends JButton {
 		return controller;
 	}
 	
+	/**
+	 * The drawing changes depending on whether the level is locked, unlocked
+	 * and the number of stars changes depending on the user's score for that level
+	 */
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(l == null) {

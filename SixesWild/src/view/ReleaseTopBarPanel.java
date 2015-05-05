@@ -20,6 +20,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
 
+/**
+ * Each Level type needs to display different information in the top bar
+ * Release levels need to show the moves left
+ * @author jesse
+ *
+ */
 public class ReleaseTopBarPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
@@ -34,6 +40,12 @@ public class ReleaseTopBarPanel extends JPanel {
 	private JLabel score;
 	private JLabel movesLeft;
 	
+	/**
+	 * Construct a new ReleaseTopBarPanel for the given ReleaseLevel, its view, and the top Level Application frame
+	 * @param l			the level
+	 * @param lv		the view associated with l
+	 * @param parent	the top level frame
+	 */
 	public ReleaseTopBarPanel(ReleaseLevel l, LevelView lv, Application parent) {
 		
 		this.l = l;
@@ -91,6 +103,10 @@ public class ReleaseTopBarPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Whenever the bar repaints, it needs to update the number of special moves remaining (possibly disabling the buttons)
+	 * and update how many moves the user has left
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

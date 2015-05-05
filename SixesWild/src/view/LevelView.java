@@ -8,19 +8,24 @@ import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.event.MouseInputListener;
-
 import controller.EndLevelController;
-import controller.InitiateClearMoveController;
-import controller.InitiateSwapMoveController;
 import controller.MakeUserMoveController;
-import controller.RearrangeBoardController;
 import model.EliminationLevel;
 import model.Level;
 import model.LightningLevel;
 import model.PuzzleLevel;
 import model.ReleaseLevel;
 
+/**
+ * This is the View the player sees whaen playing the game
+ * It contains a top bar that is different depending on the level type
+ * It contains the board, with an active controller bound to it that is used to make moves
+ * 
+ * It also contains a GameWestPanel with the progress bar, score milestones, and a restart button
+ * 
+ * @author jesse
+ *
+ */
 public class LevelView extends JPanel {
 
 	static final long serialVersionUID = 1;

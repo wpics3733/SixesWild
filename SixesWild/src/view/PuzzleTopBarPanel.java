@@ -19,6 +19,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
 
+/**
+ * Each Level type needs to display different information in the top bar
+ * Puzzle levels need to show the movess left
+ * @author jesse
+ *
+ */
 public class PuzzleTopBarPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
@@ -33,6 +39,12 @@ public class PuzzleTopBarPanel extends JPanel {
 	private JLabel score;
 	private JLabel movesLeft;
 	
+	/**
+	 * Construct a new PuzzleTopBarPanel for the given PuzzleLevel, its view, and the top Level Application frame
+	 * @param l			the level
+	 * @param lv		the view associated with l
+	 * @param parent	the top level frame
+	 */
 	public PuzzleTopBarPanel(PuzzleLevel l, LevelView lv, Application parent) {
 		
 		this.l = l;
@@ -90,6 +102,10 @@ public class PuzzleTopBarPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Whenever the bar repaints, it needs to update the number of special moves remaining (possibly disabling the buttons)
+	 * and update how many moves the user has left
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
