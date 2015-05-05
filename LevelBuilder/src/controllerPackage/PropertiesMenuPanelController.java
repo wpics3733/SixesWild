@@ -9,15 +9,32 @@ import boundaryPackage.PropertiesMenuPanel;
 import entityPackage.LevelModel;
 
 /**
- * Controller that link to the properties menu
+ * Controller that updates the model for changes made by the user in the properties panel.
+ * 
+ * The controller is initiated when the user clicks the "Apply" button at the bottom of the properties panel.
+ * 
  * @author Tom & Dabai
  *
  */
 public class PropertiesMenuPanelController extends MouseAdapter {
+	
+	/** A reference to the model */
 	LevelModel model;
+	
+	/** A reference to the application */
 	LevelBuilderApplication app;
+	
+	/** A reference to the properties panel, which is where this controller is initiated from. */
 	PropertiesMenuPanel panel;
 	
+	/**
+	 * Constructor for the properties menu panel controller
+	 * @param model a reference to the model.
+	 * @param app a reference to the application.
+	 * @param panel a reference to the properties menu panel, which is where the mouse event for this controller is bound to.
+	 * 
+	 * @author Tom
+	 */
 	public PropertiesMenuPanelController(LevelModel model, LevelBuilderApplication app, PropertiesMenuPanel panel) {
 		this.model = model;
 		this.app = app;
@@ -25,13 +42,16 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	}
 	
 	/**
-	 * Whenever mouse is pressed (left button), set the current view to the MenuPanel.
-	 * This is a GUI controller.
+	 * Whenever mouse is pressed (left button), validate the user input from the
+	 * properties menu panel, then if successful, update the model with the new data.
+	 * 
+	 * @param me the mouse event, a left click.
+	 * 
+	 * @author Tom
 	 */
 	@Override
 	public void mousePressed(MouseEvent me) {
-		
-		
+				
 		// Validate the user input first, and return if something is invalid
 		if (!validate()) {
 			return;
@@ -73,7 +93,7 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	 * Validates all of the user input for the PropertiesMenuPanel.
 	 * 
 	 * @author Tom Finelli
-	 * @return
+	 * @return true if all the data was valid, false otherwise.
 	 */
 	public boolean validate() {
 		

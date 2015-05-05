@@ -18,17 +18,23 @@ import entityPackage.LevelModel;
 import entityPackage.MultiplierModifier;
 import entityPackage.ValueModifier;
 
-/** Create the palate panel for level builder
+/** 
+ * Create the palette panel for level builder
+ * 
  * @author Dean & Dabai
- *
  */
 public class PalettePanel extends JPanel {
 
+	/** A reference to the parent panel*/
 	LevelEditorPanel lep;
+	
+	/** A reference to the application's model */
 	LevelModel lm;
 	
 	/**
-	 * Create the panel.
+	 * Constructor for a PalettePanel.
+	 * @param lep a reference to the level editor panel, which is the parent panel
+	 * @param lm a reference to the application's model
 	 */
 	public PalettePanel(LevelEditorPanel lep, LevelModel lm) {
 		this.lep = lep;
@@ -39,27 +45,16 @@ public class PalettePanel extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel label_1Tile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
-		
 		JLabel label_2Tile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Number2.png")));
-		
 		JLabel label_3Tile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Number3.png")));
-		
 		JLabel label_4Tile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Number4.png")));
-		
 		JLabel label_5Tile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Number5.png")));
-		
 		JLabel label_6Tile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Number6.png")));
-		
 		JLabel label_1Mult = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Mult1.png")));
-		
 		JLabel label_2Mult = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Mult2.png")));
-		
 		JLabel label_3Mult = new JLabel(new ImageIcon(this.getClass().getResource("/Images/Mult3.png")));
-		
 		JLabel label_BlockedTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BlockedTile.png")));
-		
 		JLabel label_RandomTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png")));
-		
 		JLabel label_BucketTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BucketTile.png")));
 		
 		label_1Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(1),this));
