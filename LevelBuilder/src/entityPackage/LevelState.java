@@ -9,8 +9,9 @@ import java.io.ObjectOutputStream;
 
 
 /**
- * @author Dean Kiourtsis
  * Contains all level information
+ * @author Dean Kiourtsis
+ * 
  */
 public class LevelState {
 	protected String levelName;

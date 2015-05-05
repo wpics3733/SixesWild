@@ -1,8 +1,9 @@
 package entityPackage;
 
 /**
- * @author Dean Kiourtsis
  * Used to modify tiles
+ * @author Dean Kiourtsis
+ * 
  */
 public interface ITileModifier {
 

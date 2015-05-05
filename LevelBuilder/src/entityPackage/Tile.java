@@ -1,8 +1,8 @@
 package entityPackage;
 
 /**
- * @author Dean Kiourtsis, Tom Finelli
  * Contains logic and information for board tiles.
+ * @author Dean Kiourtsis, Tom Finelli
  */
 public class Tile {
 	

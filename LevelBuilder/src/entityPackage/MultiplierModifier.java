@@ -1,8 +1,8 @@
 package entityPackage;
 
 /**
- * @author Dean Kiourtsis
  * Used to modify a tile's multiplier
+ * @author Dean Kiourtsis
  */
 public class MultiplierModifier implements ITileModifier {
 	

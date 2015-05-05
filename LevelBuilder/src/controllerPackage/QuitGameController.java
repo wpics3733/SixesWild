@@ -7,6 +7,11 @@ import boundaryPackage.LevelBuilderApplication;
 import entityPackage.LevelModel;
 
 
+/**
+ * Changes the application view to a MenuPanel on mouse press.
+ * @author 
+ *
+ */
 public class QuitGameController extends MouseAdapter {
 	LevelBuilderApplication app;
 	

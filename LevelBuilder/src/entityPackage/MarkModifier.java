@@ -1,8 +1,8 @@
 package entityPackage;
 
 /**
- * @author Dean Kiourtsis
  * Used to modify a tile's mark
+ * @author Dean Kiourtsis
  */
 public class MarkModifier implements ITileModifier {
 
