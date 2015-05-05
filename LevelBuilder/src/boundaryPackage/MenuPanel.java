@@ -17,51 +17,43 @@ import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//test
+/**
+ * The main menu for the application.
+ * 
+ * @author Tom, Dean
+ */
 
 public class MenuPanel extends JPanel {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	//JFrame menuFrame;
-	
-	JButton previousButton;
-	JButton nextButton;
+	/** Button which allows the user to create a new level. */
 	JButton newLevelButton;
+	
+	/** Button which allows the user to exit the application. */
 	JButton quitButton;
+	
+	/** A reference to the application */
 	protected LevelBuilderApplication parentApplication;
+	
+	/** A reference to the application's model. */
 	LevelModel model;
+	//JButton previousButton;
+	//JButton nextButton;
 	
-	//LevelItems levelItems				don't need for GUI demo?
-	//JButton quitButton				don't need?  can just exit app via "X" (upper right corner)
-	//LevelItemPanel levelItemsView		don't need for GUI demo?
 	
-	public LevelBuilderApplication getParentApplication() {
-		return parentApplication;
-	}
-
-
-	// TODO WARNING model should not be final!!!!!
-	public MenuPanel(LevelBuilderApplication parent, final LevelModel model) { // The constructor should also take in a "LevelModel" object as an argument, but omitted for GUI demo
-		// menuFrame - This is only here so that I could run the MenuPanel on its own.
-		// It should really go into the LevelEditorApplicationPanel class (see the UML diagram).
-		/*
-		menuFrame = new JFrame("Menu");
-		menuFrame.setSize(1024, 768);
-		menuFrame.setLocation(300,200);
-		menuFrame.getContentPane().setLayout(null);
-		*/
-		
-		
-		parentApplication = parent;
+	/** 
+	 * Constructor for a MenuPanel.  Maintains a reference to the application and the model.
+	 * 
+	 * @param parent a reference to the application, which is the parent to this panel
+	 * @param model a reference to the model
+	 * 
+	 * @author Tom, Dean
+	 */
+	public MenuPanel(LevelBuilderApplication parent, LevelModel model) {
+		this.parentApplication = parent;
 		this.model = model;
-
-		 
-		// menuPanel
-		this.setSize(1024, 768);
-		//menuFrame.getContentPane().add(menuPanel);
+		
+		this.setSize(1024, 768);;
 		this.setLayout(new BorderLayout());
 		
 		JPanel topButtonPanel = new JPanel();
@@ -72,6 +64,7 @@ public class MenuPanel extends JPanel {
 		newLevelButton.addMouseListener(new NewLevelButtonController(parent, model));
 		topButtonPanel.add(newLevelButton);
 		
+		// quitButton
 		quitButton = new JButton("Quit");
 		quitButton.addMouseListener(new QuitGameController(parent));
 		topButtonPanel.add(quitButton);
@@ -88,28 +81,27 @@ public class MenuPanel extends JPanel {
 		scrollPane.setViewportView(levelsView);
 		
 		this.repaint();
-
 	}
 	
 	
-	// This getter method is not needed for the GUI demo, but should be implemented in the future
-	/*
-	LevelItemPanel getLevelItemsView() {
-		return levelItemsView;
-	}
-	*/
-	
+	/**
+	 * Required for Java Swing functionality.
+	 * @param g
+	 */
 	public void PaintComponent(Graphics g){
 		super.paintComponent(g);
-		
 	}
 
+	
+	// Getters
 
 	public JButton getNewLevelButton() {
 		return newLevelButton;
 	}
 
-	
+	public LevelBuilderApplication getParentApplication() {
+		return parentApplication;
+	}
 	
 	
 	
