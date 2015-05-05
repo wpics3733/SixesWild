@@ -30,21 +30,29 @@ import java.awt.event.ActionEvent;
  * @author Dean Kiourtsis
  *
  */
-public class LevelEditorPanel extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+public class LevelEditorPanel extends JPanel {	
+	/** A reference to the application. */
 	private LevelBuilderApplication parentApplication;
+	
+	/** A reference to the model. */
 	LevelModel model;
+	
+	/** A reference to the board panel. */
 	BoardPanel boardPanel;
+	
+	/** A reference to the palette panel. */
 	PalettePanel palettePanel;
+	
+	/** A reference to the properties menu panel. */
 	PropertiesMenuPanel propertiesMenuPanel;
 	
-	public LevelBuilderApplication getParentApplication() {
-		return parentApplication;
-	}
 
+	/**
+	 * Constructor for a LevelEditorPanel.
+	 * The level editor panel contains all the main subpanels which make up the level builder core.
+	 * @param parent a reference to the parent.
+	 * @param model a reference to the model.
+	 */
 	public LevelEditorPanel(LevelBuilderApplication parent, LevelModel model) {
 		this.parentApplication = parent;
 		this.model = model;
@@ -65,19 +73,8 @@ public class LevelEditorPanel extends JPanel {
 		
 		JPanel palettePanel = new PalettePanel(this, model);
 		palettePanel.setBackground(Color.WHITE);
-		//JButton btnQuit = new JButton(new ImageIcon(this.getClass().getResource("/Images/Number1.png")));
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.addMouseListener(new QuitButtonController(model, parent));
-		
-		/*
-		 * REMOVING OLD BUTTON MECHANISM
-		btnQuit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				LevelEditorPanel panel = (LevelEditorPanel) (((JButton) (e.getSource())).getParent());
-				parentApplication.setCurrentView(new MenuPanel(panel.getParentApplication(), model), panel);
-			}
-		});
-		*/
 		
 		JButton btnDeleteLevel = new JButton("Delete Level");
 		btnDeleteLevel.addMouseListener(new DeleteLevelButtonController(model.getName(), model.isGeneratedByLevelModel(), parent));
@@ -151,11 +148,18 @@ public class LevelEditorPanel extends JPanel {
 		this.propertiesMenuPanel = (PropertiesMenuPanel) propertiesMenuPanel;
 	}
 
+	/**
+	 * Required for Java swing functionality.
+	 * @param g
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
 	}
 
+	
+	// Getters
+	
 	/**
 	 * @return BoardPanel
 	 */
@@ -175,6 +179,10 @@ public class LevelEditorPanel extends JPanel {
 	 */
 	public PropertiesMenuPanel getPropertiesMenuPanel() {
 		return propertiesMenuPanel;
+	}
+	
+	public LevelBuilderApplication getParentApplication() {
+		return parentApplication;
 	}
 	
 	

@@ -9,50 +9,81 @@ import java.io.ObjectOutputStream;
 
 
 /**
- * Contains all level information
+ * Contains all level information.
+ * 
+ * This is the class that is shared between the game and the level builder.
+ * It allows us to save the Object as a file, and then load it into either the game or the level builder.
+ * 
  * @author Dean Kiourtsis
  * 
  */
 public class LevelState {
+	/** The name of a level. */
 	protected String levelName;
 	
+	/** The board tile's values. */
 	protected int boardVals[][];
+	
+	/** Indicates whether the tiles are marked. */
 	protected int marks[][];
+	
+	/** Multiplier values for each of the tiles. */
 	protected int multipliers[][];
+	
+	/** Indicates which of the tiles are blocked. */
 	protected boolean blockedTiles[][];
+	
+	/** The number of tiles along the width of the board. */
 	protected int width;
+	
+	/** The number of tiles along the height of the board. */
 	protected int height;
 	
+	/** The type of level (e.g. Puzzle, Lightning, etc.). */	
 	protected String levelType;
+	
+	/** The star milestones. */
 	protected int starScores[];
+	
+	/** The number of special moves allowed. */
 	protected int specialMoves[];
+	
+	/** The maximum time limit allowed. */
 	protected int timeLimit;
+	
+	/** The maximum number of moves allowed. */
 	protected int moveLimit;
 	
+	/** The multiplier probabilities for the tiles. */
 	protected int multiplierProbabilities[];
+	
+	/** The probabilities for the tile numbers. */
 	protected int tileProbabilities[];
 	
+	/** Indicates whether a level is unlocked. */
 	protected boolean isUnlocked;
+	
+	/** The highest score attained for a level. */
 	protected int highScore;
 	
 	/**
 	 * Creates a LevelState object with the given parameters
-	 * @param levelName
-	 * @param boardVals
-	 * @param marks
-	 * @param multipliers
-	 * @param blockedTiles
-	 * @param width
-	 * @param height
-	 * @param levelType
-	 * @param starScores
-	 * @param specialMoves
-	 * @param timeLimit
-	 * @param moveLimit
-	 * @param multiplierProbabilities
-	 * @param tileProbabilities
-	 * @param isUnlocked
-	 * @param highScore
+	 * @param levelName the name of a level.
+	 * @param boardVals the tile values.
+	 * @param marks indicates whether the tile is marked.
+	 * @param multipliers the multiplier probabilities.
+	 * @param blockedTiles indicates whether a tile is blocked.
+	 * @param width the width of the board, in terms of number of tiles.
+	 * @param height the height of the board, in terms of the number of tiles.
+	 * @param levelType the level type (e.g. Puzzle, Lightning, etc.).
+	 * @param starScores the star milestone scores.
+	 * @param specialMoves the number of special moves allowed.
+	 * @param timeLimit the time limit permitted.
+	 * @param moveLimit the number of moves allowed.
+	 * @param multiplierProbabilities the probabilities for the multipliers.
+	 * @param tileProbabilities the probabilities for the tile numbers.
+	 * @param isUnlocked indicates whether the level is unlocked.
+	 * @param highScore the highest score attained for a level.
 	 */
 	public LevelState(String levelName, int[][] boardVals, int[][] marks,
 			int[][] multipliers, boolean[][] blockedTiles, int width,
@@ -105,7 +136,7 @@ public class LevelState {
 	
 	/**
 	 * Creates a LevelState using the name of an existing LevelState save file
-	 * @param fileName
+	 * @param fileName the name of the file which is to be loaded by the LevelState
 	 */
 	public LevelState(String fileName) {
 		this.loadState(fileName);
@@ -113,7 +144,7 @@ public class LevelState {
 
 	/**
 	 * Returns the name of the level
-	 * @return String
+	 * @return String 
 	 */
 	public String getLevelName() {
 		return levelName;
@@ -370,6 +401,8 @@ public class LevelState {
 	
 	/**
 	 * Saves the level to the level directory with the name [levelname].sav
+	 * 
+	 * @author Dean
 	 */
 	public void saveState(){
 		File f;
@@ -417,7 +450,9 @@ public class LevelState {
 	
 	/**
 	 * Loads a LevelState object from [fileName].sav in the levels directory
-	 * @param fileName
+	 * @param fileName the name of the file in which to load a level state
+	 * 
+	 * @author Dean
 	 */
 	public void loadState(String fileName){
 		File f;

@@ -9,26 +9,59 @@ import java.util.ArrayList;
  *
  */
 public class LevelModel {
+	/** The board of tiles. */
 	Tile board[][];
+	
+	/** The game type (e.g. Release, Lightning, etc.). */
 	String mode;
+	
+	/** The star milestone point requirements. Array indices mapping is directly proportional to the star number.*/
 	int starMilestones[]; // size 3
+	
+	/** The number of moves allowed in a level. */
 	int movesAllowed;
+	
+	/** The number of special moves allowed. Array indices mapping: [0]->rearrange, [1]->swap, [2]->clear,  */
 	int specialMovesAllowed[]; // size 3
+	
+	/** The maximum time allowed for completing a level. */
 	int timeAllowed; // size 0..1
+	
+	/** An array of the multiplier probabilities.  Array indices mapping is directly proportional to the multiplier number.*/
 	int multiplierProbabilities[]; // size 3
+	
+	/** An array of the tile number probabilities.  Array indices mapping is directly proportional to the tile number.*/
 	int tileProbabilities[]; // size 6
+	
+	/** The name of a level. */
 	String levelName;
+	
+	/** The level number. */
 	int levelNumber;
+	
+	/** The current tile modifier. */
 	ITileModifier selectedModifier;
+	
+	/** The current selected tile. */
 	Tile selectedTile;
+	
+	/** A list of all of the moves completed. */
 	ArrayList<ModifyTileMove> moves;
+	
+	/** A pointer which is used to traverse the list of moves completed. */
 	int movePointer;
+	
+	/** The current move. */
 	ModifyTileMove currentMove;
+	
+	/** Indicates whether the level was generated from a level state (i.e. a save file). */
 	boolean isGeneratedByLevelModel;
 	
-	// constructor
 	/**
-	 * Constructs a default LevelModel
+	 * Constructs a default LevelModel.
+	 * Initializes the default values for all attributes.
+	 * 
+	 * @author Tom, Dean
 	 */
 	public LevelModel() {
 		moves = new ArrayList<ModifyTileMove>();
@@ -100,7 +133,9 @@ public class LevelModel {
 
 	/**
 	 * Constructs a LevelModel using a LevelState object
-	 * @param l
+	 * @param l a level state object, which is extracted from a save file
+	 * 
+	 * @author Dean
 	 */
 	public LevelModel(LevelState l) {
 		moves = new ArrayList<ModifyTileMove>();
@@ -124,7 +159,9 @@ public class LevelModel {
 	}
 	
 	/**
-	 * Saves the LevelModel to a file using a LevelState object
+	 * Saves the LevelModel to a file using a LevelState object.
+	 * 
+	 * @author Dean
 	 */
 	public void saveLevel() {
 		int boardNumbers[][] = new int[9][9];
@@ -146,7 +183,10 @@ public class LevelModel {
 	/**
 	 * Adds current ModifyTileMove to the stack of moves, and then does the move.
 	 * Removes all moves after movePointer from moves array.
-	 * @param move
+	 * @param col the tile column to perform the move on
+	 * @param row the tile row to perform the move on
+	 * 
+	 * @author Dean
 	 */
 	public void addMove(int col, int row){
 		
@@ -169,6 +209,8 @@ public class LevelModel {
 	/**
 	 * Does the move at movePointer +1.
 	 * Does nothing if there are no more moves.
+	 * 
+	 * @author Dean
 	 */
 	public void doMove(){
 		if(moves.size() > movePointer+1){
@@ -180,6 +222,8 @@ public class LevelModel {
 	/**
 	 * Un-does the move at movePointer.
 	 * Does nothing if there are no more moves to undo.
+	 * 
+	 * @author Dean
 	 */
 	public void undoMove(){
 		if(movePointer>=0){
@@ -191,8 +235,15 @@ public class LevelModel {
 	/**
 	 * Sets a selected tile from the board.
 	 * Used to show which tile is being modified.
-	 * @param x
-	 * @param y
+	 * 
+	 * Note that the coordinate system's origin is the top left of the board.
+	 * Positive x-axis is to the right of the origin.
+	 * Positive y-axis is below the origin.
+	 * 
+	 * @param x the x coordinate of the tile to set as the selected tile.
+	 * @param y the y coordinate of the tile to set as the selected tile.
+	 * 
+	 * @author Tom
 	 */
 	public void setSelectedTile(int x, int y) {
 		this.selectedTile = board[x][y];
