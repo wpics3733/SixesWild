@@ -1,13 +1,16 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import view.Application;
 import view.MainMenuView;
-import view.PastLevelPanel;
 
-public class ReturnToMenuController implements MouseListener {
+/**
+ * When activated, this controller 
+ * @author jesse
+ *
+ */
+public class ReturnToMenuController extends MouseAdapter {
 	
 	private Application parent;
 	

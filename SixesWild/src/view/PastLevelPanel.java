@@ -115,7 +115,7 @@ public class PastLevelPanel extends JPanel{
 
 
 		JButton reset = new JButton("Reset Progress");
-		reset.addMouseListener(new ResetProgressController(parent, levels, this, pastLevels));
+		reset.addMouseListener(new ResetProgressController(levels, this, pastLevels));
 
 		menuBar.add(quit);
 		menuBar.add(reset);
