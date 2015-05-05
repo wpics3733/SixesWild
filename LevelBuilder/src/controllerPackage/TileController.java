@@ -10,22 +10,42 @@ import boundaryPackage.BoardPanel;
 import boundaryPackage.LevelBuilderApplication;
 import entityPackage.LevelModel;
 
+/**
+ * Controller that handles clicks on the board's tiles.
+ * 
+ * @author Tom & Dabai
+ */
 public class TileController extends MouseAdapter {
+	/** A reference to the model. */
 	LevelModel model;
-	//LevelBuilderApplication app;
+	
+	/** A reference to the parent panel. */
 	BoardPanel panel;
+	
+	/** A reference to the tile label that was clicked on.  The tiles are represented as JLabels. */
 	JLabel label;
 	
+	/**
+	 * Constructor for a tile controllers.  Manages mouse clicks on a tile, which is represented as a JLabel.
+	 * 
+	 * @param model a reference to the model.
+	 * @param panel a reference to the parent panel.
+	 * @param label a reference to the JLabel that was clicked on.  Tiles are represented as JLabels.
+	 */
 	public TileController(LevelModel model, BoardPanel panel, JLabel label) { 		//, LevelBuilderApplication app) {
 		this.model = model;
 		this.panel = panel;
 		this.label = label;
-		//this.app = app;
 	}
+	
 	/**
-	* Whenever mouse is pressed (left button) on a Tile (which is located on the BoardPanel),
+	* Whenever mouse is pressed (left button) on a Tile (represented by a JLabel which is located on the BoardPanel),
 	* set the currently selected tile (via model.setSelectedTile() )
 	* and make any necessary modifications to the tile (via model.modifyTile() )
+	* 
+	* @param me the mouse event, a left click
+	* 
+	* @author Tom
 	*/
 	@Override
 	public void mousePressed(MouseEvent me) {

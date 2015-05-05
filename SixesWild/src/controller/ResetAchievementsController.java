@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -11,7 +12,7 @@ import view.Application;
 import view.MainMenuView;
 import model.Achievement;
 
-public class ResetAchievementsController implements MouseListener {
+public class ResetAchievementsController extends MouseAdapter {
 	Application parent;
 	
 	public ResetAchievementsController(Application parent) {
@@ -29,17 +30,4 @@ public class ResetAchievementsController implements MouseListener {
 			parent.changeView(new MainMenuView(parent));
 		}
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
-
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
@@ -24,12 +25,17 @@ import model.UserMove;
  * @author jesse
  *
  */
-public class MakeUserMoveController implements MouseInputListener {
+public class MakeUserMoveController extends MouseAdapter {
 	Level l;
 	LevelView lv;
 	BoardPanel bp;
 	UserMove um;
 
+	/**
+	 * Constructs a new MakeUserMoveController for the given Level and its associated LevelView
+	 * @param l		The level the user is playing
+	 * @param lv	The LevelView associated with l
+	 */
 	public MakeUserMoveController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
@@ -37,23 +43,19 @@ public class MakeUserMoveController implements MouseInputListener {
 		this.um = null;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		this.mouseReleased(arg0);
-
-	}
-
+	/**
+	 * Initiate a new UserMove, and try to add the current tile
+	 */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		um = new UserMove();
 		this.mouseDragged(arg0);
 	}
 
+	/**
+	 * Check to see if the userMove we have created is valid, if so, run it
+	 * After every move, check to see if the level is complete
+	 */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		if(this.um == null) {
@@ -63,7 +65,7 @@ public class MakeUserMoveController implements MouseInputListener {
 			um.pushMove(l);
 		}
 		l.react(um);
-		um.finishMove(l);
+		um.finishMove();
 		if(l.isFinished()) {
 			lv.endLevel();
 			return;
@@ -72,6 +74,13 @@ public class MakeUserMoveController implements MouseInputListener {
 		this.um = null;
 	}
 
+	/**
+	 * As the mouse is dragged, any tiles it drags over will be added to the move
+	 * if they are adjacent to any existing tiles, or they are the first tile
+	 * 
+	 * Note: We do not stop adding tiles after the sum reaches six, so invalid moves
+	 * are entirely possible, and subtract moves from the user
+	 */
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		if(this.um == null) {
@@ -84,8 +93,5 @@ public class MakeUserMoveController implements MouseInputListener {
 			}
 		} 
 	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {}
 
 }

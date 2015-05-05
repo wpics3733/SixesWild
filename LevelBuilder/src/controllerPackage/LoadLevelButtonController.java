@@ -8,6 +8,11 @@ import boundaryPackage.LevelEditorPanel;
 import entityPackage.LevelModel;
 import entityPackage.LevelState;
 
+/**
+ * Used to load a level into memory, and change the view to a LevelEditorPanel.
+ * @author Dean Kiourtsis
+ *
+ */
 public class LoadLevelButtonController implements ActionListener {
 	protected LevelBuilderApplication app;
 	protected LevelState model;

@@ -17,9 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-/**
- * @author XOM
- * LevelPanels contains buttons used to select levels to edit
+/** LevelPanels contains buttons used to select levels to edit
+ * @author Dean Kiourtsis
+ * 
  */
 public class LevelsPanel extends JPanel {
 	protected MenuPanel parent;

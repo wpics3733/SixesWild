@@ -27,7 +27,7 @@ public class TestEliminationLevel extends TestCase {
 		int[] mileStones = {20,30,40};
 		state.setStarScores(mileStones);
 		l = new EliminationLevel(state);
-		l.setMovesRemaining(1);
+		l.movesRemaining = 1;
 		this.b = l.getBoard();
 	}
 	

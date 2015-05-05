@@ -47,7 +47,7 @@ public class TilePanel extends JPanel {
 		if(tile.used()) {
 			this.setBackground(Color.YELLOW);
 		} else if (tile.marked()) {
-			this.setBackground(new Color(130, 170, 130));
+			this.setBackground(new Color(142, 177, 143));
 		} else {
 			this.setBackground(new Color(112,147,113));
 		}

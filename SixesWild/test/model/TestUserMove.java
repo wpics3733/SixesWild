@@ -54,7 +54,7 @@ public class TestUserMove extends TestCase {
 
 		Tile willDrop = tiles[0][0].getTile();
 		move.pushMove(l);
-		move.finishMove(l);
+		move.finishMove();
 		l.react(move);
 		assertFalse(tiles[0][1].used());
 		assertTrue(tiles[0][1].marked());

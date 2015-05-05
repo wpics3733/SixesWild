@@ -18,13 +18,20 @@ import javax.swing.JButton;
 
 import entityPackage.LevelModel;
 
-//test
-//import com.jgoodies.forms.layout.FormSpecs;
-
+/**
+ * The main class for level builder
+ * @author Dabai, Dean, Tom
+ *
+ */
 public class LevelBuilderApplication extends JFrame {
 
+	/** The main panel for the application. */
 	private JPanel contentPane;
+	
+	/** The current set view for the application. */
 	private JPanel currentView;
+	
+	/** The model for the application. */
 	LevelModel model;
 	
 	/**
@@ -44,7 +51,9 @@ public class LevelBuilderApplication extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the root frame for the application.  Initializes the model and sets the view to the SplashScreen.
+	 * 
+	 * @author Dean, Tom
 	 */
 	public LevelBuilderApplication() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -69,17 +78,9 @@ public class LevelBuilderApplication extends JFrame {
 		this.pack();
 	}
 	
-	public void setCurrentView(JPanel newPanel, JPanel oldPanel){
-		this.getContentPane().remove(oldPanel);
-		newPanel.setBounds(0, 0, 1024, 768);
-		//currentView.setVisible(true);
-		this.getContentPane().add(newPanel);
-		this.pack();
-		this.repaint();
-	}
 	
 	/**
-	 * Set the current view
+	 * Set the current view.
 	 * @param newPanel the panel which the view should be changed to
 	 * 
 	 * @author Tom
@@ -93,6 +94,23 @@ public class LevelBuilderApplication extends JFrame {
 		//this.pack();									// not needed if all panel sizes are explicitly set
 		this.repaint();
 		
+	}
+	
+	/**
+	 * Alternate way to set the view.
+	 * 
+	 * @param newPanel the panel which the view should be changed to
+	 * @param oldPanel the panel which is currently set
+	 * 
+	 * @author Dean
+	 */
+	public void setCurrentView(JPanel newPanel, JPanel oldPanel){
+		this.getContentPane().remove(oldPanel);
+		newPanel.setBounds(0, 0, 1024, 768);
+		//currentView.setVisible(true);
+		this.getContentPane().add(newPanel);
+		this.pack();
+		this.repaint();
 	}
 	
 	/**

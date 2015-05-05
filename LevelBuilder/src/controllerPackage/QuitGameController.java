@@ -7,6 +7,11 @@ import boundaryPackage.LevelBuilderApplication;
 import entityPackage.LevelModel;
 
 
+/**
+ * Quits the level builder when the button is clicked.
+ * @author Tom Finelli
+ *
+ */
 public class QuitGameController extends MouseAdapter {
 	LevelBuilderApplication app;
 	

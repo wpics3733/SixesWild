@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
@@ -16,39 +17,28 @@ import model.Level;
  * @author jesse
  *
  */
-public class RestartLevelController implements MouseInputListener {
+public class RestartLevelController extends MouseAdapter {
 	Level l;
 	LevelView lv;
 
+	/**
+	 * Construct a new RestartLevelController for the given Level and its associated view
+	 * @param l		The level that the user is playing
+	 * @param lv	The view for l
+	 */
 	public RestartLevelController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
 		
 	}
 
+	/**
+	 * Restart the Level and refresh the GUI
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		l.restart();
 		lv.restart(l);
 		lv.repaint();
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {}
-
 }

@@ -16,7 +16,11 @@ import java.awt.Point;
 import controllerPackage.TileController;
 import entityPackage.LevelModel;
 import entityPackage.Tile;
-
+/**
+ * Board panel that shows the board preview for level builder
+ * @author Dabai & Dean & Tom
+ *
+ */
 public class BoardPanel extends JPanel {
 	LevelModel model;
 	JLabel tileLabels[][];
@@ -134,6 +138,7 @@ public class BoardPanel extends JPanel {
 	 * Returns the x and y coordinates of the specified JLabel as a Point.
 	 * If the specified JLabel is not found in the tileLabels array, then it returns null.
 	 * 
+	 * @return Point
 	 * @author Tom
 	 */
 	public Point contains(JLabel label) {

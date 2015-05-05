@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -16,17 +17,22 @@ import model.SwapMove;
 /**
  * This is the controller bound to the board during a clear move.
  * Whenever a tile is clicked, it clears the number, settles the board,
- * then switches the controller back to the standard usermove controller
+ * then switches the controller back to the standard UserMove controller
  * @author jesse
  *
  */
-public class MakeClearMoveController implements MouseInputListener {
+public class MakeClearMoveController extends MouseAdapter {
 	Level l;
 	LevelView lv;
 	BoardPanel bp;
 	ClearMove move;
 	int tiles_selected;
 	
+	/**
+	 * Make a new MakeClearMoveController
+	 * @param l		The level the user is playing
+	 * @param lv	The LevelView associated with l
+	 */
 	public MakeClearMoveController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
@@ -36,6 +42,10 @@ public class MakeClearMoveController implements MouseInputListener {
 		
 	}
 
+	/**
+	 * Try to add the tilePanel under the mouse to a new clearMove. If the tile
+	 * added successfully, the move should be valid and run
+	 */
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		Component c = bp.getComponentAt(arg0.getPoint());
@@ -49,26 +59,8 @@ public class MakeClearMoveController implements MouseInputListener {
 				return;
 			}
 			lv.repaint();
-			lv.changeController((MouseInputListener)(new MakeUserMoveController(l, lv)));
+			lv.changeController(new MakeUserMoveController(l, lv));
 		} 
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {}
 
 }

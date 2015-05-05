@@ -25,6 +25,11 @@ import entityPackage.LevelModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * LevelEditorPanel contains all the boundary objects used when editing a level.
+ * @author Dean Kiourtsis
+ *
+ */
 public class LevelEditorPanel extends JPanel {
 
 	/**
@@ -151,14 +156,23 @@ public class LevelEditorPanel extends JPanel {
 		
 	}
 
+	/**
+	 * @return BoardPanel
+	 */
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
 	}
 
+	/**
+	 * @return PalettePanel
+	 */
 	public PalettePanel getPalettePanel() {
 		return palettePanel;
 	}
 
+	/**
+	 * @return PropertiesMenuPanel
+	 */
 	public PropertiesMenuPanel getPropertiesMenuPanel() {
 		return propertiesMenuPanel;
 	}

@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -13,15 +14,24 @@ import model.RearrangeMove;
  * @author jesse
  *
  */
-public class RearrangeBoardController implements MouseListener {
+public class RearrangeBoardController extends MouseAdapter {
 	Level l;
 	LevelView lv;
 	
+	/**
+	 * Construct a new RearrangeBoardController for the given Level
+	 * and its associated LevelView
+	 * @param l		The level the user is playing
+	 * @param lv	The View associated with that level
+	 */
 	public RearrangeBoardController(Level l, LevelView lv) {
 		this.l = l;
 		this.lv = lv;
 	}
 
+	/**
+	 * Rearrange the board, sixes do not change position
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.REARRANGE)) {
@@ -35,17 +45,4 @@ public class RearrangeBoardController implements MouseListener {
 		}
 		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-
 }

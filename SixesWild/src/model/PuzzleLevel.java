@@ -9,11 +9,6 @@ public class PuzzleLevel extends Level {
 		movesRemaining = state.getMoveLimit();
 	}
 	
-	public PuzzleLevel() {
-		super();
-		movesRemaining = 10;
-	}
-	
 	@Override
 	public boolean isFinished() {
 		return this.movesRemaining == 0;

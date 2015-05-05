@@ -6,6 +6,11 @@ import java.awt.event.ActionListener;
 import boundaryPackage.LevelEditorPanel;
 import entityPackage.LevelModel;
 
+/**
+ * Makes the level model re-do the last undone move when the button is clicked.
+ * @author Dean Kiourtsis
+ *
+ */
 public class RedoButtonController implements ActionListener {
 	LevelModel model;
 	LevelEditorPanel parent;

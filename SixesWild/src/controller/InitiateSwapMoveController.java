@@ -30,10 +30,14 @@ public class InitiateSwapMoveController extends MouseAdapter {
 		this.lv = lv;
 	}
 
+	/**
+	 * Set the active controller on the board to a MakeSwapMoveController
+	 * do this only if the User has a SwapMove to use
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(l.hasSpecial(Level.SWAP)) {
-			lv.changeController((MouseInputListener)new MakeSwapMoveController(l, lv));
+			lv.changeController(new MakeSwapMoveController(l, lv));
 		}
 
 	}

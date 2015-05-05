@@ -18,56 +18,152 @@ import javax.swing.JButton;
 import controllerPackage.PropertiesMenuPanelController;
 import entityPackage.LevelModel;
 
+/**
+ * Create the properties panel for the level builder
+ * 
+ * @author Dean, Tom, Dabai
+ */
 public class PropertiesMenuPanel extends JPanel {
+	
+	/** Header label for the level types. */
 	private JLabel lblLevelType;
+	
+	/** Drop down box for the available level types. */
 	private JComboBox<String> comboBox;
+	
+	/** Header label for special moves. */
 	private JLabel lblOfSpecial;
+	
+	/** Header label for the rearrange special move. */
 	private JLabel rearrangeSpecialLabel;
+	
+	/** Header label for the swap special move. */
 	private JLabel swapSpecialLabel;
+	
+	/** Header label for the clear special move. */
 	private JLabel clearSpeicalLabel;
+	
+	/** Text field for the rearrange special move. */
 	private JTextField rearrangeSpecialTextField;
+	
+	/** Text field for the swap special move. */
 	private JTextField swapSpecialTextField;
+	
+	/** Text field for the clear special move. */
 	private JTextField clearSpecialTextField;
+	
+	/** Header label for the tile appearance probabilities. */
 	private JLabel lblTileAppearenceProbabilities;
+	
+	/** Header label for the 1 tile probability appearance. */ 
 	private JLabel label;
+	
+	/** Text field for the 1 tile probability appearance. */ 
 	private JTextField tileProbabilityTextField1;
+	
+	/** Header label for the 2 tile probability appearance. */ 
 	private JLabel label_1;
+	
+	/** Text field for the 2 tile probability appearance. */ 
 	private JTextField tileProbabilityTextField2;
+	
+	/** Header label for the 3 tile probability appearance. */ 
 	private JLabel label_2;
+	
+	/** Text field for the 3 tile probability appearance. */ 
 	private JTextField tileProbabilityTextField3;
+	
+	/** Header label for the 4 tile probability appearance. */ 
 	private JLabel label_3;
+	
+	/** Text field for the 4 tile probability appearance. */ 
 	private JTextField tileProbabilityTextField4;
+	
+	/** Header label for the 5 tile probability appearance. */ 
 	private JLabel label_4;
+	
+	/** Text field for the 5 tile probability appearance. */ 
 	private JTextField tileProbabilityTextField5;
+	
+	/** Header label for the 6 tile probability appearance. */ 
 	private JLabel label_5;
+	
+	/** Text field for the 6 tile probability appearance. */ 
 	private JTextField tileProbabilityTextField6;
+	
+	/** Header label for the tile multiplier probabilities. */
 	private JLabel lblMultiplierAppearenceProbabilities;
+	
+	/** Header label for the 1 tile multiplier appearance. */ 
 	private JLabel label_6;
+	
+	/** Text field for the 1 tile multiplier probability. */
 	private JTextField multiplierProbability1;
+	
+	/** Header label for the 2 tile multiplier appearance. */ 
 	private JLabel label_7;
+	
+	/** Text field for the 2 tile multiplier probability. */
 	private JTextField multiplierProbability2;
+	
+	/** Header label for the 3 tile multiplier appearance. */ 
 	private JLabel label_8;
+	
+	/** Text field for the 3 tile multiplier probability. */
 	private JTextField multiplierProbability3;
+	
+	/** Header label for the number of moves allowed. */
 	private JLabel lblMoveLimit;
+	
+	/** Text field for the number of moves allowed. */
 	private JTextField moveLimitTextField;
+	
+	/** Header label for the time allowed for a given level. */
 	private JLabel lblTimeLimit;
+	
+	/** Text field for for the time allowed for a given level. */
 	private JTextField timeLimitTextField;
+	
+	/** Header label for the star milestones. */
 	private JLabel lblStarLevels;
+	
+	/** Header label for the 1 star milestone. */
 	private JLabel lblOneStar;
+	
+	/** Text field for the 1 star milestone. */
 	private JTextField starLevelTextField1;
+	
+	/** Header label for the 2 star milestone. */
 	private JLabel lblTwoStars;
+	
+	/** Text field for the 2 star milestone. */
 	private JTextField starLevelTextField2;
+	
+	/** Header label for the 3 star milestone. */
 	private JLabel lblThreeStars;
+	
+	/** Text field for the 3 star milestone. */
 	private JTextField starLevelTextField3;
+	
+	/** Header label for the level name. */
 	private JLabel levelNameLabel;
+	
+	/** Text field for the level name. */
 	private JTextField levelNameText;
+	
+	/** A button to apply the changes made within the properties panel. */
 	private JButton btnApply;
 
+	/** A reference to the application. */
 	LevelBuilderApplication app;
+	
+	/** A reference to the application's model. */
 	LevelModel model;
 	
 	/**
-	 * Create the panel.
+	 * Constructor for the PropertiesMenuPanel.  Create the panel and initializes text fields with data from the model.
+	 * 
+	 * @author Tom, Dean, Dabai
 	 */
 	public PropertiesMenuPanel(LevelModel model, LevelBuilderApplication app) {
 		this.model = model;
@@ -384,6 +480,8 @@ public class PropertiesMenuPanel extends JPanel {
 
 	}
 	
+	// Getters
+	
 	public JComboBox<String> getComboBox(){
 		return comboBox;
 	}
@@ -468,8 +566,14 @@ public class PropertiesMenuPanel extends JPanel {
 		return btnApply;
 	}
 
-	public void PaintComponent(Graphics g){
+	
+	/**
+	 * Required for Java Swing functionality.
+	 * 
+	 * @param g
+	 */
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
 	}
+	
 }

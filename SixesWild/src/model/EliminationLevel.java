@@ -1,23 +1,42 @@
 package model;
 
+/**
+ * The goal of an elimination level is to use every tile once in a UserMove
+ * (Special moves do not count)
+ * You have a certain number of moves to try to accomplish this, and if you do not
+ * mark all tiles before you run out of moves, you lose
+ * 
+ * 
+ * @author jesse
+ *
+ */
 public class EliminationLevel extends Level {
 	int movesRemaining;
 	
+	/**
+	 * Create a new EliminationLevel based off the given state
+	 * Sets the number of moves remaining to the move limit of the state
+	 * in addition to creating the board, etc
+	 * @param state
+	 */
 	public EliminationLevel(LevelState state) {
 		super(state);
 		this.movesRemaining = state.getMoveLimit();
 	}
 	
-	public EliminationLevel() {
-		super();
-		this.movesRemaining = 10;
-	}
-
+	/**
+	 * A level is finished if all tiles have been marked
+	 * it is also finished when the User has run out of moves
+	 */
 	@Override
 	public boolean isFinished() {
 		return allTilesMarked() || movesRemaining <= 0;
 	}
 	
+	/**
+	 * A user only passes a level if all tiles are marked and they 
+	 * have earned at least one star
+	 */
 	@Override
 	public boolean hasPassed() {
 		return allTilesMarked() && oneStar();
@@ -43,6 +62,10 @@ public class EliminationLevel extends Level {
 		
 	}
 	
+	/**
+	 * UserMoves and RearrangeMoves use up one move
+	 * If the move is a valid UserMove, it also markes all tiles in that move
+	 */
 	@Override
 	public void react(IMove move) {
 		if(move instanceof UserMove || move instanceof RearrangeMove) {
@@ -56,19 +79,26 @@ public class EliminationLevel extends Level {
 		super.react(move);
 	}
 
+	/**
+	 * Level type is "Elimination"
+	 */
 	@Override
 	public String typeString() {
 		return "Elimination";
 	}
 	
+	/**
+	 * Get the number of moves remaining
+	 * @return	the number of moves remaining
+	 */
 	public int getMovesRemaining() {
 		return movesRemaining;
 	}
 	
-	public void setMovesRemaining(int moves) {
-		this.movesRemaining = moves;
-	}
-	
+	/**
+	 * restart the level by setting score to 0,
+	 * restore all used moves and specials
+	 */
 	public void restart() {
 		super.restart();
 		this.movesRemaining = state.getMoveLimit();
