@@ -7,7 +7,11 @@ import java.awt.event.MouseEvent;
 import entityPackage.LevelModel;
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.LevelEditorPanel;
-
+/**
+ * Controller that direct to the level editor panel from main
+ * @author Tom & Dabai 
+ *
+ */
 public class NewLevelButtonController extends MouseAdapter {
 	LevelBuilderApplication app;
 	LevelModel model;

@@ -8,8 +8,9 @@ import entityPackage.ITileModifier;
 import entityPackage.LevelModel;
 import entityPackage.ModifyTileMove;
 
-/** The tile modifier controller
- * @author Dabai
+/**
+ * Used to set the board model's current tile modifier.
+ * @author Dean Kiourtsis, Dabai
  *
  */
 public class TileModifierController extends MouseAdapter{

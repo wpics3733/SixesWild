@@ -6,8 +6,9 @@ import java.awt.event.ActionListener;
 import boundaryPackage.LevelEditorPanel;
 import entityPackage.LevelModel;
 
-/** Controller for Save Level Button
- * @author Dean K.
+/**
+ * Used to save the levelModel to a file when the button is clicked.
+ * @author Dean Kiourtsis
  *
  */
 public class SaveLevelButtonController implements ActionListener {

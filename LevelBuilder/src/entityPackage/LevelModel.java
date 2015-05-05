@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 /**
+ * Contains all information and behavior for building levels.
  * @author Dean Kiourtsis, Tom Finelli
  *
  */
@@ -143,7 +144,7 @@ public class LevelModel {
 	}
 	
 	/**
-	 * Adds a ModifyTileMove to the stack of moves, and then does the move.
+	 * Adds current ModifyTileMove to the stack of moves, and then does the move.
 	 * Removes all moves after movePointer from moves array.
 	 * @param move
 	 */
@@ -200,7 +201,7 @@ public class LevelModel {
 
 	/**
 	 * Returns the currently selected tile
-	 * @return
+	 * @return Tile
 	 */
 	public Tile getSelectedTile() {
 		return this.selectedTile;
@@ -211,7 +212,7 @@ public class LevelModel {
 	// Getters for the model's attributes	
 	/**
 	 * Returns the point milestones for the stars
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getStarMilestones() {
 		return starMilestones;
@@ -219,7 +220,7 @@ public class LevelModel {
 
 	/**
 	 * Returns the number of moves allowed in the game
-	 * @return
+	 * @return int
 	 */
 	public int getMovesAllowed() {
 		return movesAllowed;
@@ -227,7 +228,7 @@ public class LevelModel {
 
 	/**
 	 * Returns the number of special moves allowed in the game
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getSpecialMovesAllowed() {
 		return specialMovesAllowed;
@@ -236,7 +237,7 @@ public class LevelModel {
 	/**
 	 * Returns the amount of time allowed in the game.
 	 * Only affects lightning levels.
-	 * @return
+	 * @return int
 	 */
 	public int getTimeAllowed() {
 		return timeAllowed;
@@ -245,7 +246,7 @@ public class LevelModel {
 	/**
 	 * Returns the probabilities of the X1, X2, and X3 multipliers.
 	 * This affects the appearance rate of multipliers in the game.
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getMultiplierProbabilities() {
 		return multiplierProbabilities;
@@ -254,7 +255,7 @@ public class LevelModel {
 	/**
 	 * Returns the probabilities of the tiles.
 	 * This affects the appearance rate of each tile in the game.
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getTileProbabilities() {
 		return tileProbabilities;
@@ -262,7 +263,7 @@ public class LevelModel {
 	
 	/**
 	 * Returns the game mode
-	 * @return
+	 * @return String
 	 */
 	public String getMode() {
 		return mode;
@@ -270,7 +271,7 @@ public class LevelModel {
 
 	/**
 	 * Returns the tiles in the board
-	 * @return
+	 * @return Tile[][]
 	 */
 	public Tile[][] getBoard() {
 		return board;
@@ -299,9 +300,10 @@ public class LevelModel {
 		this.movesAllowed = movesAllowed;
 	}
 	
+	
 	/**
-	 * Returns the number of moves allowed in the game
-	 * @return
+	 * Sets the active ModifyTileMove
+	 * @param move
 	 */
 	public void setCurrentMove(ModifyTileMove move) {
 		this.currentMove = move;
@@ -391,7 +393,7 @@ public class LevelModel {
 	 * Returns a tile at the given location on the board
 	 * @param col
 	 * @param row
-	 * @return
+	 * @return Tile
 	 */
 	public Tile getTile(int col, int row){
 		if(col < 0 || col > board.length || row < 0 || row > board[0].length){ // Check bounds
@@ -404,7 +406,7 @@ public class LevelModel {
 	 * Sets the tile at the given location on the board
 	 * @param col
 	 * @param row
-	 * @return
+	 * 
 	 */
 	public void setTile(int col, int row, Tile t){
 		if(col < 0 || col > board.length || row < 0 || row > board[0].length){ // Check bounds
@@ -427,7 +429,7 @@ public class LevelModel {
 
 	/**
 	 * Returns the name of the level
-	 * @return
+	 * @return String
 	 */
 	public String getName() {
 		return levelName;

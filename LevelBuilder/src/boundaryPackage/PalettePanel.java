@@ -62,7 +62,6 @@ public class PalettePanel extends JPanel {
 		
 		JLabel label_BucketTile = new JLabel(new ImageIcon(this.getClass().getResource("/Images/BucketTile.png")));
 		
-		
 		label_1Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(1),this));
 		label_2Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(2),this));
 		label_3Tile.addMouseListener(new TileModifierController(lm,new ValueModifier(3),this));

@@ -1,8 +1,8 @@
 package entityPackage;
 
-/** Contains logic and information for board tiles.
+/**
+ * Contains logic and information for board tiles.
  * @author Dean Kiourtsis, Tom Finelli
- * 
  */
 public class Tile {
 	
@@ -32,7 +32,6 @@ public class Tile {
 		this.y = y;
 		this.value = 0;
 		this.valueIsSet = false;
-		// TODO
 	}
 
 	/**
@@ -60,7 +59,7 @@ public class Tile {
 
 	/**
 	 * Returns a tile's x position
-	 * @return
+	 * @return int
 	 */
 	public int getX() {
 		return this.x;
@@ -68,7 +67,7 @@ public class Tile {
 	
 	/**
 	 * Returns a tile's y position
-	 * @return
+	 * @return int
 	 */
 	public int getY() {
 		return this.y;
@@ -123,7 +122,7 @@ public class Tile {
 
 	/**
 	 * Returns a tile's value
-	 * @return
+	 * @return int
 	 */
 	public int getValue() {
 		return value;
@@ -131,7 +130,7 @@ public class Tile {
 
 	/**
 	 * Returns a tile's multiplier
-	 * @return
+	 * @return int
 	 */
 	public int getMultiplier() {
 		return multiplier;
@@ -139,7 +138,7 @@ public class Tile {
 	
 	/**
 	 * Return a tile's coordinates in the form "(y, x)"
-	 * @return
+	 * @return String
 	 */
 	public String getCoordinate() {
 		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";

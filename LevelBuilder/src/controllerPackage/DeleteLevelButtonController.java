@@ -11,8 +11,8 @@ import entityPackage.LevelModel;
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.MenuPanel;
 
-/**
- * @author Dabai
+/** Controller that links to the delete button
+ * @author Dean & Dabai
  *
  */
 public class DeleteLevelButtonController extends MouseAdapter {
@@ -25,7 +25,10 @@ public class DeleteLevelButtonController extends MouseAdapter {
 		this.isGeneratedByLevelModel = isGeneratedByLevelModel;
 		this.app = app;
 	}
-	
+	/**
+	 * If pressed, will prompt the conform window and 
+	 * if pressed YES, will delete the level
+	 */
 	@Override
 	public void mousePressed(MouseEvent me) {
 		if (!isGeneratedByLevelModel) {
