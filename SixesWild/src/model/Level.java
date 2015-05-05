@@ -86,6 +86,20 @@ public abstract class Level {
 		this.finished = false;
 		this.score = 0;
 	}
+	
+	public int starsEarned(int score) {
+		int[] milestones = state.getStarScores();
+		if(score < milestones[0]) {
+			return 0;
+		} else if (score < milestones[1]) {
+			return 1;
+		} else if (score < milestones[2]) {
+			return 2;
+		} else {
+			return 3;
+		}
+		
+	}
 
 	public abstract boolean isFinished();
 	public abstract boolean hasPassed();
