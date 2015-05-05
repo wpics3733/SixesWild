@@ -13,29 +13,22 @@ import java.io.File;
  */
 public class TextButton extends StyledButton {
 
-    //    Background padding left
-    final int BACK_PADDING_LEFT = 0;
-    //    Background padding top
-    final int BACK_PADDING_TOP = 0;
-
     //    Text displayed on button
-    String text;
+    protected String text;
 
     //    Background color of button in normal state
-    Color normalTextColor;
+    protected Color normalTextColor;
     //    Background color of button in hovered state
-    Color hoveredTextColor;
+    protected Color hoveredTextColor;
     //    Background color of button in actived state
-    Color activedTextColor;
+    protected Color activedTextColor;
     //    Background color of button in disabled state
-    Color disabledTextColor;
+    protected Color disabledTextColor;
     //    Current text color
-    Color currentTextColor;
-    //    Current font of Text
-    String currentFont;
+    protected Color currentTextColor;
 
     //    Font size of text
-    float fontSize;
+    protected float fontSize;
 
     public TextButton(
             String text,

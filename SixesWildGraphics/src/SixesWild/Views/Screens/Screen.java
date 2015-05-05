@@ -11,7 +11,8 @@ import java.awt.*;
  * Created by harryliu on 5/2/15.
  */
 public class Screen extends TransitableView {
-
+    //    Grid border color
+    public static final Color BORDER_COLOR = new Color(229, 229, 229);
     //    Status bar height
     public static final int STATUS_BAR_HEIGHT = 30;
     //    Status bar padding top

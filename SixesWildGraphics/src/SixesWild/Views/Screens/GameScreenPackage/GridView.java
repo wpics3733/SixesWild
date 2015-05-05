@@ -1,20 +1,20 @@
 package SixesWild.Views.Screens.GameScreenPackage;
 
+import SixesWild.Controllers.GameScreen.SquareButtonController;
 import SixesWild.Models.Square;
+import SixesWild.Models.Tile;
 import SixesWild.Views.Application;
+import SixesWild.Views.Screens.Screen;
 import SixesWild.Views.TransitableView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
  */
 public class GridView extends TransitableView {
-    //    Grid border color
-    public static final Color GRID_BORDER_COLOR = new Color(229, 229, 229);
 
     //    Grid view size
     final Dimension GRID_VIEW_SIZE = new Dimension(654, 654);
@@ -22,11 +22,12 @@ public class GridView extends TransitableView {
     final int GRID_VIEW_PADDING_LEFT = 9;
     final int GRID_VIEW_PADDING_TOP = 9;
 
-    Color backColor;
+    final Color SQUARE_NORMAL_BACK_COLOR = new Color(245, 243, 243);
+    final Color SQUARE_HOVERED_BACK_COLOR = new Color(250, 212, 0);
+    final Color SQUARE_DISABLED_BACK_COLOR = new Color(165, 165, 165);
 
     ArrayList<Square> squares;
     ArrayList<SquareView> squareViews;
-    ArrayList<TileView> tileViews;
     ArrayList<SquareView> activeSquareViews;
     Application app;
 
@@ -39,43 +40,62 @@ public class GridView extends TransitableView {
         setMinimumSize(GRID_VIEW_SIZE);
 
         setBackground(Color.WHITE);
-        setBorder(BorderFactory.createLineBorder(GRID_BORDER_COLOR));
+        setBorder(BorderFactory.createLineBorder(Screen.BORDER_COLOR));
 
-        initilize();
+        initialize();
     }
 
-    public void initilize() {
+    public void initialize() {
         setLayout(null);
 
         squareViews = new ArrayList<SquareView>();
-        tileViews = new ArrayList<TileView>();
+        activeSquareViews = new ArrayList<SquareView>();
 
         for (int row = 0; row < 9; row++) {
             for (int column = 0; column < 9; column++) {
-                TileView tileView = new TileView(null);
 
-                int paddingLeft = (int) (SquareView.SQUARE_VIEW_SIZE.getWidth() - TileView.TILE_VIEW_SIZE.getWidth()) / 2 + (int) GameScreen.GRID_VIEW_BOUNDS.getX();
-                int paddingTop = (int) (SquareView.SQUARE_VIEW_SIZE.getHeight() - TileView.TILE_VIEW_SIZE.getHeight()) / 2 + (int) GameScreen.GRID_VIEW_BOUNDS.getY();
+                SquareView squareView;
+                if (row == column) {
+                    squareView = new SquareView(
+                            SQUARE_NORMAL_BACK_COLOR,
+                            SQUARE_HOVERED_BACK_COLOR,
+                            SQUARE_HOVERED_BACK_COLOR,
+                            SQUARE_DISABLED_BACK_COLOR,
+                            null,
+                            null
+                    );
+                    squareView.container();
+                } else {
+                    squareView = new SquareView(
+                            SQUARE_NORMAL_BACK_COLOR,
+                            SQUARE_HOVERED_BACK_COLOR,
+                            SQUARE_HOVERED_BACK_COLOR,
+                            SQUARE_DISABLED_BACK_COLOR,
+                            null,
+                            new Tile()
+                    );
+                }
 
-                tileView.setBounds(
-                        paddingLeft + GRID_VIEW_PADDING_LEFT + row * ((int) SquareView.SQUARE_VIEW_SIZE.getWidth() - 1),
-                        paddingTop + GRID_VIEW_PADDING_TOP + column * ((int) SquareView.SQUARE_VIEW_SIZE.getHeight() - 1),
-                        (int) TileView.TILE_VIEW_SIZE.getWidth(),
-                        (int) TileView.TILE_VIEW_SIZE.getHeight()
-                );
 
-                SquareView squareView = new SquareView(null, tileView);
+                squareView.setPreferredSize(SquareView.SQUARE_VIEW_SIZE);
+                squareView.setMaximumSize(SquareView.SQUARE_VIEW_SIZE);
+                squareView.setMinimumSize(SquareView.SQUARE_VIEW_SIZE);
+
                 squareView.setBounds(
-                        GRID_VIEW_PADDING_LEFT + row * ((int) SquareView.SQUARE_VIEW_SIZE.getWidth() - 1),
-                        GRID_VIEW_PADDING_TOP + column * ((int) SquareView.SQUARE_VIEW_SIZE.getHeight() - 1),
+                        GRID_VIEW_PADDING_LEFT + column * ((int) SquareView.SQUARE_VIEW_SIZE.getWidth() - 1),
+                        GRID_VIEW_PADDING_TOP + row * ((int) SquareView.SQUARE_VIEW_SIZE.getHeight() - 1),
                         (int) SquareView.SQUARE_VIEW_SIZE.getWidth(),
                         (int) SquareView.SQUARE_VIEW_SIZE.getHeight()
                 );
 
-                squareView.add(tileView);
                 add(squareView);
+
+                SquareButtonController squareButtonController = new SquareButtonController(squareView);
+                squareView.addMouseListener(squareButtonController);
+                squareView.addMouseMotionListener(squareButtonController);
+
+                squareView.repaint();
             }
         }
     }
-
 }

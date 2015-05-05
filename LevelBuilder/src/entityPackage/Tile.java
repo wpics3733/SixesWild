@@ -6,16 +6,34 @@ package entityPackage;
  */
 public class Tile {
 	
+	/** A bucket tile.  Used for release levels. */ 
 	public static final int BUCKET_TILE = -2;
+	
+	/** A blocked tile.  Indicates that the tile has no value. */
 	public static final int BLOCKED_TILE = -1;
+	
+	/** A random tile.  Indicates that the tile is random. */
 	public static final int RANDOM_TILE = 0;
 	
+	/** The x coordinate of a tile. */
 	int x;
+	
+	/** The y coordinate of a tile. */
 	int y;
+	
+	/** Indicates whether a tile is marked. */
 	int mark;
+	
+	/** The numerical value of a tile. */
 	int value;
+	
+	/** The multiplier number of a tile. */
 	int multiplier;
+	
+	/** Indicates whether a value is set for a tile. */
 	boolean valueIsSet;
+	
+	/** Indicates whether the tile is blocked. */
 	boolean isBlocked;
 
 	/**
@@ -36,12 +54,12 @@ public class Tile {
 
 	/**
 	 * Constructs a tile with the given values
-	 * @param col
-	 * @param row
-	 * @param mark
-	 * @param value
-	 * @param multiplier
-	 * @param isBlocked
+	 * @param col the x coordinate or column number of a tile.
+	 * @param row the y coordinate or row number of a tile.
+	 * @param mark indicates whether the tile is marked.
+	 * @param value the numerical value for the tile.
+	 * @param multiplier the multiplier number for the tile.
+	 * @param isBlocked indicates whether the tile is a blocked tile.
 	 */
 	public Tile(int col, int row, int mark, int value, int multiplier, boolean isBlocked) {
 		super();
@@ -138,12 +156,16 @@ public class Tile {
 	
 	/**
 	 * Return a tile's coordinates in the form "(y, x)"
-	 * @return String
+	 * @return String the tile's coordinates in the form "(y, x)".
 	 */
 	public String getCoordinate() {
 		return "(" + ((Integer) this.y).toString() + ", " + ((Integer) this.x).toString() + ")";
 	}
 
+	/**
+	 * Generates a copy of a tile.
+	 * @return the tile copy.
+	 */
 	public Tile getCopy() {
 		Tile tmp = new Tile(this.x, this.y, this.mark, this.value, this.multiplier, isBlocked);
 		return tmp;

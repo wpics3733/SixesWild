@@ -17,18 +17,28 @@ import controllerPackage.TileController;
 import entityPackage.LevelModel;
 import entityPackage.Tile;
 /**
- * Board panel that shows the board preview for level builder
+ * Board panel that shows the board preview for level builder.
+ * 
  * @author Dabai & Dean & Tom
  *
  */
 public class BoardPanel extends JPanel {
+	/** A reference to the model. */
 	LevelModel model;
+	
+	/** The JLabels that are displayed on the board, which represent the Tile entities. */
 	JLabel tileLabels[][];
+	
+	/** The icons to be displayed in the tileLabels. */
 	Icon tileIcons[];
+	
+	/** The JLabels that represent the multiplier for a given tileLabel.  They are displayed on top of the tileLabels. */
 	JLabel multiplierLabels[][];
 	
 	/**
-	 * Create the panel.
+	 * Constructor for a board panel.
+	 * Initializes the board (i.e. the tiles' values, multipliers, etc.) based upon data in the model.
+	 * @param model a reference to the model.
 	 */
 	public BoardPanel(LevelModel model) {
 		this.model = model;
@@ -44,13 +54,9 @@ public class BoardPanel extends JPanel {
 		tileIcons[7] = new ImageIcon(this.getClass().getResource("/Images/Number5.png"));
 		tileIcons[8] = new ImageIcon(this.getClass().getResource("/Images/Number6.png"));
 		
-		
 		setBackground(Color.LIGHT_GRAY);
 		setLayout(new GridLayout(9, 9, 0, 0));
 		ImageIcon myIcon = new ImageIcon(this.getClass().getResource("/Images/UnmodifiedTile.png"));
-		//JButton btnNewButton_1 = new JButton("New button");
-		//btnNewButton_1.setIcon(myIcon);
-		//add(btnNewButton_1);
 		
 		tileLabels = new JLabel[9][9];
 		multiplierLabels = new JLabel[9][9];
@@ -61,10 +67,6 @@ public class BoardPanel extends JPanel {
 				label_1Tile.setName( "(" + ((Integer) j).toString() + ", " + ((Integer) i).toString() + ")");
 				label_1Tile.addMouseListener(new TileController(model, this, label_1Tile));
 				tileLabels[i][j] = label_1Tile;
-				//label_1Tile.setBorder(BorderFactory.createLineBorder(Color.black));   // test the labels
-				//JButton btnNewButton = new JButton(myIcon);
-				//btnNewButton.setIcon(myIcon);
-				//add(btnNewButton);
 				add(label_1Tile);
 				JLabel multiplierLabel = new JLabel();
 				multiplierLabel.setForeground(Color.DARK_GRAY);
@@ -73,20 +75,24 @@ public class BoardPanel extends JPanel {
 				multiplierLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 				multiplierLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 			    multiplierLabel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-				//test.set
-				//test.set
 				label_1Tile.add(multiplierLabel);
-				//tileButtons[i][j] = btnNewButton;
 				multiplierLabels[i][j] = multiplierLabel;
 			}
 		}
-		
-
-		
-				
-
 	}
 
+	/**
+	 * Update the board with the following items: 
+	 * the correct image (i.e. the tile's number value), 
+	 * clear all tile's borders,
+	 * set the border for the currently selected tile only, and
+	 * display the correct/current multiplier for a tile. 
+	 * 
+	 * Required for Java Swing functionality.
+	 * @parame g
+	 * 
+	 * @author Tom, Dean
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
@@ -101,7 +107,7 @@ public class BoardPanel extends JPanel {
 			}
 		}
 		
-		// Clear the border for all tiles
+		// Clear the border for all tiles, then highlight the current selected tile with a border
 		if (selectedTile != null) {
 			for (int i = 0; i < 9; i++) {
 				for (int j = 0; j< 9; j++) {
@@ -109,7 +115,6 @@ public class BoardPanel extends JPanel {
 					multiplierLabels[i][j].setText(((Integer) model.getBoard()[i][j].getMultiplier()).toString());
 				}
 			}
-			
 			
 			// Get the x and y position of the new selectedTile
 			int x = selectedTile.getX();
@@ -119,7 +124,7 @@ public class BoardPanel extends JPanel {
 			tileLabels[x][y].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 4));
 		}
 		
-		
+		// Set the multipliers for all of the tiles
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int currentMultiplier = model.getBoard()[i][j].getMultiplier();

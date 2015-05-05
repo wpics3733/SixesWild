@@ -5,29 +5,25 @@ package SixesWild.Models;
  */
 public class Value {
 
-    /**
-     *
-     */
     int value;
 
-    /**
-     *
-     */
-    public Value() {
+    public Value(int value) {
+        this.value = value;
     }
 
-    /**
-     * @param int amount
-     */
     public void increase(int amount) {
-        // TODO implement here
+        value += amount;
     }
 
-    /**
-     * @param int amount
-     */
     public void decrease(int amount) {
-        // TODO implement here
+        value -= amount;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }

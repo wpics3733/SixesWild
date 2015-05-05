@@ -46,9 +46,12 @@ public class MenuScreenBanner extends JPanel {
 
         StyledLabel bannerTitleLabel = new StyledLabel(title, TITLE_FONT_SIZE, Color.WHITE, TITLE_TEXT_ALIGNMENT);
         bannerTitleLabel.setPreferredSize(TITLE_TEXT_SIZE);
+        bannerTitleLabel.setMaximumSize(TITLE_TEXT_SIZE);
+        bannerTitleLabel.setMinimumSize(TITLE_TEXT_SIZE);
 
         bannerTitleLabel.setBounds(TITLE_TEXT_PADDING_LEFT, TITLE_TEXT_PADDING_TOP, (int) TITLE_TEXT_SIZE.getWidth(), (int) TITLE_TEXT_SIZE.getHeight());
 
         add(bannerTitleLabel);
+        bannerTitleLabel.repaint();
     }
 }

@@ -31,18 +31,46 @@ public class LargeStarsView extends StarsView {
     }
 
     @Override
-    void redrawState() {
-        ensureImageAvaliable();
-//        Utilities.setHighQuality(graphics2D);
+    void drawOneStar() {
 
-        graphics2D.setColor(DetailPanel.DETAIL_PANEL_BACK_COLOR);
+//        1rd star
+        int smallStarPaddingLeft = ((int) getPreferredSize().getWidth()
+                + starActiveImage.getWidth(this)) / 2
+                +gapBetweenStars;
+        graphics2D.drawImage(
+                starActiveImage,
+                smallStarPaddingLeft,
+                STAR_PADDING_TOP,
+                starActiveImage.getWidth(this),
+                starActiveImage.getHeight(this),
+                this);
+    }
 
-        graphics2D.fillRect(
-                PADDING_LEFT,
-                PADDING_TOP,
-                (int) getPreferredSize().getWidth(),
-                (int) getPreferredSize().getHeight()
-        );
-        super.redrawState();
+    @Override
+    void drawTwoStars() {
+
+        //        1nd star
+        int smallStarPaddingLeft = ((int) getPreferredSize().getWidth()
+                - starActiveImage.getWidth(this)) / 2;
+
+        graphics2D.drawImage(
+                starActiveImage,
+                smallStarPaddingLeft,
+                STAR_PADDING_TOP,
+                starActiveImage.getWidth(this),
+                starActiveImage.getHeight(this),
+                this);
+
+        //        2rd star
+        smallStarPaddingLeft = ((int) getPreferredSize().getWidth()
+                + starActiveImage.getWidth(this)) / 2
+                +gapBetweenStars;
+        graphics2D.drawImage(
+                starActiveImage,
+                smallStarPaddingLeft,
+                STAR_PADDING_TOP,
+                starActiveImage.getWidth(this),
+                starActiveImage.getHeight(this),
+                this);
     }
 }

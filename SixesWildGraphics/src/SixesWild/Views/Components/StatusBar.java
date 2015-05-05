@@ -53,9 +53,12 @@ public class StatusBar extends JPanel {
 
 //        Title label settings
         titleLabel = new StyledLabel(this.title, TITLE_FONT_SIZE, Color.WHITE, TITLE_LABEL_LEFT_ALIGN);
+
+        titleLabel.setMaximumSize(TITLE_LABEL_DIMENSION);
+        titleLabel.setMinimumSize(TITLE_LABEL_DIMENSION);
         titleLabel.setPreferredSize(TITLE_LABEL_DIMENSION);
+
         titleLabel.setBounds(TITLE_LABEL_BOUNDS);
-        titleLabel.setOpaque(false);
 
 //        Close button settings
         closeButton = new ImageButton(
@@ -83,6 +86,7 @@ public class StatusBar extends JPanel {
         setBackground(BACK_COLOR);
 
         add(titleLabel);
+        titleLabel.repaint();
 
         add(closeButton);
 

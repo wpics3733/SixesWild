@@ -1,14 +1,11 @@
 package SixesWild.Controllers.GameScreen;
 
-/**
- *
- */
-public class SwapSquareSpecialMoveController {
+import SixesWild.Views.Components.StyledButton;
+import SixesWild.Views.Components.SpecialMoveNavigationBar;
 
-    /**
-     *
-     */
-    public SwapSquareSpecialMoveController() {
+public class SwapSquareSpecialMoveController extends SpecialMoveButtonController{
+
+    public SwapSquareSpecialMoveController(StyledButton button, SpecialMoveNavigationBar specialMoveNavigationBar) {
+        super(button, specialMoveNavigationBar);
     }
-
 }

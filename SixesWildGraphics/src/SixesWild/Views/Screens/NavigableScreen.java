@@ -13,7 +13,7 @@ public class NavigableScreen extends Screen {
     //    Navigation bar height
     public static final int NAV_BAR_HEIGHT = 58;
     //    Navigation bar bounds
-    final Rectangle NAV_BAR_BOUNDS = new Rectangle(0, 30, Application.WINDOW_WIDTH, NAV_BAR_HEIGHT);
+    public static final Rectangle NAV_BAR_BOUNDS = new Rectangle(0, 30, Application.WINDOW_WIDTH, NAV_BAR_HEIGHT);
 
     NavigationBar navigationBar;
 
@@ -28,5 +28,9 @@ public class NavigableScreen extends Screen {
 
     public NavigationBar getNavigationBar() {
         return navigationBar;
+    }
+
+    public void setNavigationBar(NavigationBar navigationBar) {
+        this.navigationBar = navigationBar;
     }
 }

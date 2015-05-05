@@ -194,10 +194,6 @@ public class FlipPagePanel extends JPanel {
         repaint();
     }
 
-    public void setPageIndicator(PageIndicator pageIndicator) {
-        this.pageIndicator = pageIndicator;
-    }
-
     public ListPanel getListPanel() {
         return listPanel;
     }

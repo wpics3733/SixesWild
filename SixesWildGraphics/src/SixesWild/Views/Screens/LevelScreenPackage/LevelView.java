@@ -7,6 +7,7 @@ import SixesWild.Views.Components.ListPanel;
 import SixesWild.Views.Components.LockableButton;
 import SixesWild.Views.Components.LockableButtonView;
 import SixesWild.Views.Components.SmallStarsView;
+import SixesWild.Views.Screens.Screen;
 
 import java.awt.*;
 
@@ -72,7 +73,7 @@ public class LevelView extends LockableButtonView {
         setMaximumSize(ListPanel.VIEW_SIZE);
 
         setLayout(null);
-        setOpaque(false);
+        setBackground(Screen.SCREEN_BACK_COLOR);
 
 //        Setup level button
 
