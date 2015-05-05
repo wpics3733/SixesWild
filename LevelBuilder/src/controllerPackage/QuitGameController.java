@@ -8,8 +8,8 @@ import entityPackage.LevelModel;
 
 
 /**
- * Changes the application view to a MenuPanel on mouse press.
- * @author 
+ * Quits the level builder when the button is clicked.
+ * @author Tom Finelli
  *
  */
 public class QuitGameController extends MouseAdapter {

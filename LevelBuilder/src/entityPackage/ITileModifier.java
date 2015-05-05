@@ -2,7 +2,7 @@ package entityPackage;
 
 /** 
  * Used to modify tiles
- * @author Dean Kiourtsis
+ * @author Dabai
  * 
  */
 public interface ITileModifier {

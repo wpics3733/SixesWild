@@ -113,7 +113,7 @@ public class LevelState {
 
 	/**
 	 * Returns the name of the level
-	 * @return
+	 * @return String
 	 */
 	public String getLevelName() {
 		return levelName;
@@ -129,7 +129,7 @@ public class LevelState {
 
 	/**
 	 * Returns the level type
-	 * @return
+	 * @return String
 	 */
 	public String getLevelType() {
 		return levelType;
@@ -145,7 +145,7 @@ public class LevelState {
 
 	/**
 	 * Returns the milestones for star scores
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getStarScores() {
 		return starScores;
@@ -161,7 +161,7 @@ public class LevelState {
 
 	/**
 	 * Returns the number of each special move
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getSpecialMoves() {
 		return specialMoves;
@@ -177,7 +177,7 @@ public class LevelState {
 
 	/**
 	 * Returns the level time limit
-	 * @return
+	 * @return int
 	 */
 	public int getTimeLimit() {
 		return timeLimit;
@@ -193,7 +193,7 @@ public class LevelState {
 
 	/**
 	 * Returns the level move limit
-	 * @return
+	 * @return int
 	 */
 	public int getMoveLimit() {
 		return moveLimit;
@@ -209,7 +209,7 @@ public class LevelState {
 
 	/**
 	 * Returns the multiplier probablilities
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getMultiplierProbabilities() {
 		return multiplierProbabilities;
@@ -225,7 +225,7 @@ public class LevelState {
 
 	/**
 	 * Returns the tile probabilities
-	 * @return
+	 * @return int[]
 	 */
 	public int[] getTileProbabilities() {
 		return tileProbabilities;
@@ -241,7 +241,7 @@ public class LevelState {
 
 	/**
 	 * Returns the board values
-	 * @return
+	 * @return int[][]
 	 */
 	public int[][] getBoardVals() {
 		return boardVals;
@@ -257,7 +257,7 @@ public class LevelState {
 
 	/**
 	 * Returns the marks on the board
-	 * @return
+	 * @return int[][]
 	 */
 	public int[][] getMarks() {
 		return marks;
@@ -273,7 +273,7 @@ public class LevelState {
 
 	/**
 	 * Returns the multipliers on the board
-	 * @return
+	 * @return int[][]
 	 */
 	public int[][] getMultipliers() {
 		return multipliers;
@@ -289,7 +289,7 @@ public class LevelState {
 
 	/**
 	 * Returns the blocked board tiles
-	 * @return
+	 * @return boolean[][]
 	 */
 	public boolean[][] getBlockedTiles() {
 		return blockedTiles;
@@ -305,7 +305,7 @@ public class LevelState {
 
 	/**
 	 * Returns the board width
-	 * @return
+	 * @return int
 	 */
 	public int getWidth() {
 		return width;
@@ -321,7 +321,7 @@ public class LevelState {
 
 	/**
 	 * Returns the height of the board
-	 * @return
+	 * @return int
 	 */
 	public int getHeight() {
 		return height;
@@ -337,7 +337,7 @@ public class LevelState {
 	
 	/**
 	 * Returns the level's unlocked status
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isUnlocked() {
 		return isUnlocked;
@@ -353,7 +353,7 @@ public class LevelState {
 
 	/**
 	 * Returns the level's highscore
-	 * @return
+	 * @return int
 	 */
 	public int getHighScore() {
 		return highScore;

@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 /** LevelPanels contains buttons used to select levels to edit
- * @author XOM
+ * @author Dean Kiourtsis
  * 
  */
 public class LevelsPanel extends JPanel {
