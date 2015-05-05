@@ -65,7 +65,7 @@ public class MakeUserMoveController extends MouseAdapter {
 			um.pushMove(l);
 		}
 		l.react(um);
-		um.finishMove(l);
+		um.finishMove();
 		if(l.isFinished()) {
 			lv.endLevel();
 			return;

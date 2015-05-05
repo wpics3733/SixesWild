@@ -1,19 +1,29 @@
 package model;
 
+/**
+ * Release levels have a number of buckets. The goal is to drop a "6" tile into each bucket
+ * When every bucket is filled, the level is complete
+ * 
+ * The player has a certain number of moves to do this, if they run out of moves, they lose
+ * @author jesse
+ *
+ */
 public class ReleaseLevel extends Level {
 	int movesRemaining;
 	
-	
-	public ReleaseLevel() {
-		this(new LevelState());
-		this.movesRemaining = 10;
-	}
-	
+	/**
+	 * Construct a new ReleaseLevel from the given state
+	 * @param state	a loaded levelState, should be of type release
+	 */
 	public ReleaseLevel(LevelState state) {
 		super(state);
 		this.movesRemaining = state.getMoveLimit();
 	}
 
+	/**
+	 * ReleaseLevels are only finished when the user runs out of moves or
+	 * all buckets are full
+	 */
 	@Override
 	public boolean isFinished() {
 		if(movesRemaining <= 0 || allBucketsFull()) {
@@ -22,6 +32,10 @@ public class ReleaseLevel extends Level {
 		return false;
 	}
 
+	/**
+	 * The player cannot win if there is an empty bucket. 
+	 * They also need to have achieved at least one star
+	 */
 	@Override
 	public boolean hasPassed() {
 		return allBucketsFull() && getScore() > getMilestones()[0];
@@ -41,19 +55,25 @@ public class ReleaseLevel extends Level {
 		return true;
 	}
 
+	/**
+	 * This level is of type "Release"
+	 */
 	@Override
 	public String typeString() {
 		return "Release";
 	}
 	
+	/**
+	 * get how many moves the user has left
+	 * @return	the number of remaining moves
+	 */
 	public int getMovesRemaining() {
 		return this.movesRemaining;
 	}
 	
-	public void setMovesRemaining(int moves) {
-		this.movesRemaining = moves;
-	}
-	
+	/**
+	 * UserMoves and RearrangeMoves us up one moveRemaining, that is the only effect on the level
+	 */
 	@Override
 	public void react(IMove move) {
 		super.react(move);
@@ -62,6 +82,9 @@ public class ReleaseLevel extends Level {
 		}
 	}
 	
+	/**
+	 * Restart the level
+	 */
 	public void restart() {
 		super.restart();
 		this.movesRemaining = state.getMoveLimit();

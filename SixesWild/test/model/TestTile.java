@@ -11,8 +11,6 @@ public class TestTile extends TestCase {
 	public void test() {
 		Tile t = new Tile(3, 3);
 		assertEquals(t.getNum(), 3);
-		t.setNum(2);
-		assertEquals(t.getNum(), 2);
 		assertEquals(t.getMultiplier(), 3);
 	}
 
