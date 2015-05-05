@@ -2,10 +2,6 @@ package controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.event.MouseInputListener;
-
 import view.Application;
 
 /**
@@ -27,7 +23,7 @@ public class QuitController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		a.setVisible(false);
-		a.dispose();
+		System.exit(0);
 	}
 
 }
