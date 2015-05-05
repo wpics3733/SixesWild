@@ -19,6 +19,13 @@ import javax.swing.GroupLayout.Alignment;
 
 import model.Level;
 
+/**
+ * The panel displayed when the player finishes a level
+ * It contains a message declaring whether the player has won or lost,
+ * showing the number of stars they earned, and asking if the want to retry or quit to the main menu
+ * @author jesse
+ *
+ */
 public class EndLevelPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -27,6 +34,13 @@ public class EndLevelPanel extends JPanel {
 	JLabel score_label;
 	StarPanel stars;
 
+	/**
+	 * Construct a new endLevelPanel for the given Level
+	 * If the user chooses to restart, it will replay that level
+	 * @param l			The level
+	 * @param lv		The view associated with l
+	 * @param parent	The top level Application frame
+	 */
 	public EndLevelPanel(Level l, LevelView lv, Application parent) {
 		if(l.hasPassed()) {
 			winMessage = new JLabel("You Win");

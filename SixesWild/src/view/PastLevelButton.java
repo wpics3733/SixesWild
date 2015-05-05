@@ -26,6 +26,7 @@ import model.Level;
  */
 public class PastLevelButton extends JButton {
 	private static final long serialVersionUID = 1L;
+	
 	Level l;
 	JLabel name;
 	StarPanel stars;

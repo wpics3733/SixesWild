@@ -15,6 +15,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import controller.RestartLevelController;
 import model.Level;
 
+/**
+ * This panel goes on the left side of the game screen.
+ * It contains the Progress bar, scaled for milestones
+ * It also contains the restart button
+ * @author jesse
+ *
+ */
 public class GameWestPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
@@ -27,6 +34,11 @@ public class GameWestPanel extends JPanel {
 	
 	Level l;
 	
+	/**
+	 * Construct a new GameWestPanel for the given Level
+	 * @param l		The level
+	 * @param lv	the LevelView for l
+	 */
 	public GameWestPanel(Level l, LevelView parent) {
 		this.l = l;
 
@@ -104,6 +116,9 @@ public class GameWestPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Bar values are updated based on current score
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

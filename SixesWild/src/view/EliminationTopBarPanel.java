@@ -19,6 +19,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
 
+/**
+ * Each Level type needs to display different information in the top bar
+ * Elimination levels need to show how many moves are left
+ * @author jesse
+ *
+ */
 public class EliminationTopBarPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
@@ -33,6 +39,12 @@ public class EliminationTopBarPanel extends JPanel {
 	private JLabel score;
 	private JLabel movesLeft;
 	
+	/**
+	 * Create a new EliminationTopBapPanel for the given level and its associated levelView
+	 * @param l			The current level
+	 * @param lv		The view associated with l
+	 * @param parent	The top level application frame
+	 */
 	public EliminationTopBarPanel(EliminationLevel l, LevelView lv, Application parent) {
 		
 		this.l = l;
@@ -90,26 +102,18 @@ public class EliminationTopBarPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Whenever the bar repaints, it needs to update the number of special moves remaining (possibly disabling the buttons)
+	 * and update how many moves the user has left
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		int swapMoves = l.getNumSpecial(Level.SWAP);
-		int clearMoves = l.getNumSpecial(Level.CLEAR);
-		int rearrangeMoves = l.getNumSpecial(Level.REARRANGE);
-		if(swapMoves <= 0) {
-			swap.setEnabled(false);
-		}
-		if(rearrangeMoves <= 0) {
-			rearrange.setEnabled(false);
-		}
 
-		if(clearMoves <= 0) {
-			clear.setEnabled(false);
-		}
 		movesLeft.setText("Moves Left: " + l.getMovesRemaining());
 		score.setText("Score: " + l.getScore());
-		swap.setText("Swap (" + swapMoves + ")");
-		rearrange.setText("Rearrange (" + rearrangeMoves + ")");
-		clear.setText("Clear (" + clearMoves + ")");
+		swap.setText("Swap (" + l.getNumSpecial(Level.SWAP) + ")");
+		rearrange.setText("Rearrange (" + l.getNumSpecial(Level.REARRANGE) + ")");
+		clear.setText("Clear (" + l.getNumSpecial(Level.CLEAR) + ")");
 	}
 }

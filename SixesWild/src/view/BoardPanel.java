@@ -8,6 +8,12 @@ import java.awt.*;
 import model.*;
 import controller.*;
 
+/**
+ * The Panel that the 9x9 board is displayed on
+ * it uses a GroupLayout so that tile positions can be adjusted more accurately
+ * @author jesse
+ *
+ */
 public class BoardPanel extends JPanel {
 	static final long serialVersionUID = 1;
 	Board b;

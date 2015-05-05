@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 
 import model.Achievement;
 
+/**
+ * The top level JFrame for the SixesWild game
+ * Every other Full screen panel in the game is displayed by adding itself to this JFrame
+ * @author jesse
+ *
+ */
 public class Application extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
@@ -15,6 +21,10 @@ public class Application extends JFrame{
 
 	private JPanel current_view;
 
+	/**
+	 * Make a new Application
+	 * It will default to showing the Splash Screen
+	 */
 	public Application() {
 		super("SixesWild");
 		pane = this.getContentPane();
@@ -47,6 +57,11 @@ public class Application extends JFrame{
 		pane.repaint();
 	}
 	
+	/**
+	 * Returns the current view of the Application
+	 * Used for testing
+	 * @return	the current view
+	 */
 	public JPanel getCurrentView() {
 		return current_view;
 	}

@@ -93,23 +93,11 @@ public class PuzzleTopBarPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		int swapMoves = l.getNumSpecial(Level.SWAP);
-		int clearMoves = l.getNumSpecial(Level.CLEAR);
-		int rearrangeMoves = l.getNumSpecial(Level.REARRANGE);
-		if(swapMoves <= 0) {
-			swap.setEnabled(false);
-		}
-		if(rearrangeMoves <= 0) {
-			rearrange.setEnabled(false);
-		}
 
-		if(clearMoves <= 0) {
-			clear.setEnabled(false);
-		}
 		movesLeft.setText("Moves Left: " + l.getMovesRemaining());
 		score.setText("Score: " + l.getScore());
-		swap.setText("Swap (" + swapMoves + ")");
-		rearrange.setText("Rearrange (" + rearrangeMoves + ")");
-		clear.setText("Clear (" + clearMoves + ")");
+		swap.setText("Swap (" + l.getNumSpecial(Level.SWAP) + ")");
+		rearrange.setText("Rearrange (" + l.getNumSpecial(Level.REARRANGE) + ")");
+		clear.setText("Clear (" + l.getNumSpecial(Level.CLEAR) + ")");
 	}
 }

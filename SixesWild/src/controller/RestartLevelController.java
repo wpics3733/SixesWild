@@ -38,7 +38,7 @@ public class RestartLevelController extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		l.restart();
-		lv.restart(l);
+		lv.restart();
 		lv.repaint();
 	}
 }

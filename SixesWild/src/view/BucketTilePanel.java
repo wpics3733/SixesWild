@@ -32,6 +32,9 @@ public class BucketTilePanel extends JPanel {
 		this.setBackground(Color.DARK_GRAY);
 	}
 	
+	/**
+	 * If the bucket is empty, it is dark grey, if it is full, it is painted the same color as null tiles
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

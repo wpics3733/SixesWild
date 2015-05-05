@@ -22,6 +22,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Font;
 
+/**
+ * Each Level type needs to display different information in the top bar
+ * Lightning levels need to show the time left and count down each second
+ * @author jesse
+ *
+ */
 public class LightningTopBarPanel extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
@@ -99,26 +105,22 @@ public class LightningTopBarPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Whenever the bar repaints, it needs to update the number of special moves remaining (possibly disabling the buttons)
+	 * and update how many seconds the user has left
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		int swapMoves = l.getNumSpecial(Level.SWAP);
-		int clearMoves = l.getNumSpecial(Level.CLEAR);
-		int rearrangeMoves = l.getNumSpecial(Level.REARRANGE);
-		if(swapMoves <= 0) {
-			swap.setEnabled(false);
-		}
-		if(rearrangeMoves <= 0) {
-			rearrange.setEnabled(false);
-		}
 
-		if(clearMoves <= 0) {
-			clear.setEnabled(false);
-		}
+		if(l.getNumSpecial(Level.SWAP) <= 0) swap.setEnabled(false);
+		if(l.getNumSpecial(Level.REARRANGE) <= 0)	rearrange.setEnabled(false);
+		if(l.getNumSpecial(Level.CLEAR) <= 0) clear.setEnabled(false);
+
 		timeLeft.setText("Time Left: " + l.getTimeRemaining());
 		score.setText("Score: " + l.getScore());
-		swap.setText("Swap (" + swapMoves + ")");
-		rearrange.setText("Rearrange (" + rearrangeMoves + ")");
-		clear.setText("Clear (" + clearMoves + ")");
+		swap.setText("Swap (" + l.getNumSpecial(Level.SWAP) + ")");
+		rearrange.setText("Rearrange (" + l.getNumSpecial(Level.REARRANGE) + ")");
+		clear.setText("Clear (" + l.getNumSpecial(Level.CLEAR) + ")");
 	}
 }

@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class StarPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	static Image full_star;
 	static Image empty_star;
 	Image scaled_full;
@@ -42,8 +42,8 @@ public class StarPanel extends JPanel {
 			}
 		}
 
-		scaled_full = full_star.getScaledInstance(scale, scale, Image.SCALE_DEFAULT);
-		scaled_empty = empty_star.getScaledInstance(scale, scale, Image.SCALE_DEFAULT);
+		scaled_full = full_star.getScaledInstance(scale, scale, Image.SCALE_FAST);
+		scaled_empty = empty_star.getScaledInstance(scale, scale, Image.SCALE_FAST);
 
 		stars = new JLabel[3];
 		for(int i = 0; i < 3; i++) {
