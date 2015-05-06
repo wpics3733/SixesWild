@@ -23,15 +23,18 @@ public class FillerViewTest extends TestCase {
 		level_view = new LevelView(new PuzzleLevel(new LevelState()), new EliminationLevel(new LevelState()), a);
 		a.changeView(level_view);
 		level_view.repaint();
+		level_view.restart();
 		level_view = new LevelView(new EliminationLevel(new LevelState()), new EliminationLevel(new LevelState()), a);
 		a.changeView(level_view);
 		level_view.repaint();
+		level_view.restart();
 		level_view = new LevelView(new LightningLevel(new LevelState()), new EliminationLevel(new LevelState()), a);
 		a.changeView(level_view);
 		level_view.repaint();
 		level_view = new LevelView(new ReleaseLevel(new LevelState()), new EliminationLevel(new LevelState()), a);
 		a.changeView(level_view);
 		level_view.repaint();
+		level_view.restart();
 		level_view.endLevel();
 		a.changeView(new PastLevelPanel(a));
 		assertTrue(true);

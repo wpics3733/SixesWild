@@ -103,11 +103,18 @@ public abstract class Achievement {
 		list = new HashSet<Achievement>();
 		secretList = new HashSet<Achievement>();
 		LoadedAchievement la = new LoadedAchievement();
-		OverachieverMoveAchievement oa = new OverachieverMoveAchievement();
+		OverachieverMoveAchievement oama = new OverachieverMoveAchievement();
 		SixTilesMoveAchievement sta = new SixTilesMoveAchievement();
-		TwoBadMovesAchievement tbma = new TwoBadMovesAchievement();
+		UnderachieverMoveAchievement uama = new UnderachieverMoveAchievement();
 		BeatALevelAchievement bala = new BeatALevelAchievement();
 		ThreeStarsLevelAchievement tsla = new ThreeStarsLevelAchievement();
+		MultiplierMultiplierMoveAchievement mma = new MultiplierMultiplierMoveAchievement();
+		MultiplierHeavenAchievement mha = new MultiplierHeavenAchievement();
+		TileSwapMoveAchievement twma = new TileSwapMoveAchievement();
+		HotStreakLevelAchievement hsla = new HotStreakLevelAchievement();
+		OverpopulatedMoveAchievement oma = new OverpopulatedMoveAchievement();
+		TestLevelAchievement tla = new TestLevelAchievement();
+		AchievementHunterAchievement aha = new AchievementHunterAchievement();
 		AchievementFileController.loadSave();
 	}
 }

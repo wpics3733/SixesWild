@@ -56,6 +56,9 @@ public class SwapMove implements IMove {
 		tc_1.setUsed(false);
 		tc_2.setUsed(false);
 		l.react(this);
+		
+		// Check the swap achievement
+		TileSwapMoveAchievement.check(this);
 	}
 
 	/**
