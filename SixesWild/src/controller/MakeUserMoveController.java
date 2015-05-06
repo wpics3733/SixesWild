@@ -92,6 +92,10 @@ public class MakeUserMoveController extends MouseAdapter {
 				((TilePanel)c).repaint();
 			}
 		} 
+		else {
+			System.out.println("Not a tilePanel");
+			System.out.println(c.getClass());
+		}
 	}
 
 }

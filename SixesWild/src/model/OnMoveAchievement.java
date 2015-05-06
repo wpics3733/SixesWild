@@ -3,6 +3,9 @@ package model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  * Acheivements that are calculated after each move is made.
  * @author justin
@@ -27,7 +30,10 @@ public abstract class OnMoveAchievement extends Achievement {
 	public static void checkAll(UserMove move) {
 		for (OnMoveAchievement a : list) {
 			if (!a.isUnlocked()) {
-				if (a.unlocked(move)) { a.unlocked = true; }
+				if (a.unlocked(move)) {
+					a.unlocked = true;
+					JOptionPane.showMessageDialog(new JFrame(), "Achievement Unlocked: " + a.getName());
+				}
 			}
 		}
 	}
