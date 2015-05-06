@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.Achievement;
+import model.AchievementHunterAchievement;
 import controller.ResetAchievementsController;
 import controller.ReturnToMenuController;
 
@@ -23,6 +24,9 @@ import controller.ReturnToMenuController;
  */
 public class AchievementPanel extends JPanel {
 	private static final long serialVersionUID = 1;
+	
+	public JButton back;
+	public JButton reset;
 
 	public AchievementPanel(Application parent) {
 		super(new BorderLayout(0, 0));
@@ -31,15 +35,17 @@ public class AchievementPanel extends JPanel {
 		
 		// Panel for the left side
 		JPanel left = new JPanel(new FlowLayout(FlowLayout.LEFT,23,12));
-		JButton back= new JButton("Back");
+		back= new JButton("Back");
 		back.addMouseListener(new ReturnToMenuController(parent));
 		left.add(back);
 		
 		// Panel for the right side
 		JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 23, 12));
-		JButton reset = new JButton("Reset Achievements");
+		reset = new JButton("Reset Achievements");
 		reset.addMouseListener(new ResetAchievementsController(parent));
 		right.add(reset);
+		
+		AchievementHunterAchievement.check();
 		
 		// Grid for the achievements
 		JPanel grid = new JPanel(new GridLayout(5,5,5,5));

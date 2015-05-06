@@ -30,10 +30,10 @@ public class MainMenuView extends JPanel {
 	
 	static final long serialVersionUID = 1;
 	JLabel titleText;
-	JButton levelsButton;
-	JButton achievementsButton;
-	JButton creditsButton;
-	JButton quit;
+	public JButton levelsButton;
+	public JButton achievementsButton;
+	public JButton creditsButton;
+	public JButton quit;
 
 	/**
 	 * Construct a new MainMenuView in the given Application frame

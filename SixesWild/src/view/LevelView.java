@@ -17,7 +17,7 @@ import model.PuzzleLevel;
 import model.ReleaseLevel;
 
 /**
- * This is the View the player sees whaen playing the game
+ * This is the View the player sees when playing the game
  * It contains a top bar that is different depending on the level type
  * It contains the board, with an active controller bound to it that is used to make moves
  * 

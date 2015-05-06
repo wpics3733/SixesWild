@@ -70,4 +70,13 @@ public class BoardPanel extends JPanel {
 		
 		this.setLayout(layout);
 	}
+	
+	/**
+	 * Get all tile panel on the board
+	 * Used for testing
+	 * @return	all tiles
+	 */
+	public JPanel[][] getTiles() {
+		return tiles;
+	}
 }
