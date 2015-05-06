@@ -1,4 +1,4 @@
-========== LEVEL BUILDER ==========
+**LEVEL BUILDER**
 [[ Launching ]]
 To start the level builder, navigate to the following path: LevelBuilder >> src >> boundaryPackage >> LevelBuilderApplication.java
 Right click on LevelBuilderApplication.java and select "Run As" >> "Java Application".
@@ -16,7 +16,14 @@ same name as a pre-existing file.
 
 
 
-========== SIXES WILD GAME ==========
+**SIXES WILD GAME**
 [[ Launching ]]
 To start the game, navigate to the following path: SixesWild >> src >> (default package) >> Main.java
 Right click on Main.java and select "Run As" >> "Java Application".
+
+**SIXES WILD GRAPHICS**
+Harry was working on a version of the game with improved graphics.
+It can be found in SixesWildGraphics/src/SixesWild
+Run Main.java to get started
+
+
