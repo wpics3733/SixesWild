@@ -83,7 +83,6 @@ public class LevelEditorPanel extends JPanel {
 		}
 		
 		JButton btnNewButton = new JButton("Save Level");
-		btnNewButton.addActionListener(new SaveLevelButtonController(this, model));
 		
 		JButton btnRedo = new JButton("Redo");
 		btnRedo.addActionListener(new RedoButtonController(this, model));
@@ -146,6 +145,9 @@ public class LevelEditorPanel extends JPanel {
 		this.boardPanel = (BoardPanel) boardPanel;
 		this.palettePanel = (PalettePanel) palettePanel;
 		this.propertiesMenuPanel = (PropertiesMenuPanel) propertiesMenuPanel;
+		
+		btnNewButton.addActionListener(new SaveLevelButtonController(this, model, parentApplication, this.propertiesMenuPanel));
+
 	}
 
 	/**

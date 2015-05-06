@@ -3,6 +3,8 @@ package controllerPackage;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
+
 import boundaryPackage.LevelBuilderApplication;
 import boundaryPackage.MenuPanel;
 import boundaryPackage.PropertiesMenuPanel;
@@ -146,6 +148,10 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 		}
 		
 		System.out.println("PropertiesMenuPanelController::Validation passed.");
+		/*
+		JOptionPane.showMessageDialog(app, "Your changes have been applied.\n\n NOTE: The level will "
+				+ "not be saved until the 'Save Level' button at the top is clicked.");
+		*/				
 		return true;
 	}
 	
@@ -180,7 +186,7 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 
 		}
 		catch(NumberFormatException e) { 
-			System.err.println("Invalid input. Please make sure that all text fields have an integer value.");
+			displayErrorPopup("Invalid input. Please make sure that all text fields have an integer value.");
 			return false;	
 		}
 		return true;
@@ -194,7 +200,7 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	 */
 	private boolean validateMode() {
 		if (! (mode.equals("Puzzle") || mode.equals("Lightning") || mode.equals("Release") || mode.equals("Elimination")) ) {
-			System.err.println("Invalid mode.");
+			displayErrorPopup("Invalid mode.");
 			return false;
 		}
 		return true;
@@ -208,7 +214,7 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	 */
 	private boolean validateMoveLimit() {
 		if (moveLimit <= 0) {
-			System.err.println("The number of moves must be greater than 0.");
+			displayErrorPopup("The number of moves must be greater than 0.");
 			return false;
 		}
 		return true; 
@@ -223,13 +229,13 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	private boolean validateMultiplierProbability() {
 		int multiplierProbabilitySum = multiplierProbability1 + multiplierProbability2 + multiplierProbability3;
 		if (multiplierProbabilitySum != 100) {
-			System.err.println("Multiplier probabilities must sum to 100.  Current sum is " + multiplierProbabilitySum + 
+			displayErrorPopup("Multiplier probabilities must sum to 100.  Current sum is " + multiplierProbabilitySum + 
 					", and " + (100 - multiplierProbabilitySum) + " more units are needed to equal 100.");
 			return false;
 		}
 		
 		if ((multiplierProbability1 < 0) || (multiplierProbability2 < 0) || (multiplierProbability1 < 0)) {
-			System.err.println("Multiplier probabilities must be positive values.");
+			displayErrorPopup("Multiplier probabilities must be positive values.");
 			return false;
 		}
 		
@@ -245,7 +251,7 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	 */
 	private boolean validateSpecial() {
 		if (rearrangeSpecial < 0 && swapSpecial < 0 && clearSpecial < 0) {
-			System.err.println("Special move counts must be greater than zero.");
+			displayErrorPopup("Special move counts must be greater than zero.");
 			return false;
 		}
 		return true;
@@ -260,12 +266,12 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 	 */
 	private boolean validateStarMilestones() {
 		if ( !(starLevel3 > starLevel2 && starLevel2 > starLevel1) ) {
-			System.err.println("Star milestone requirements must be increasing.");
+			displayErrorPopup("Star milestone requirements must be increasing.");
 			return false;
 		}
 		
 		if ( starLevel1 <= 0 || starLevel2 <= 0 || starLevel3 <= 0) {
-			System.err.println("Star milestone requirements must be positive values.");
+			displayErrorPopup("Star milestone requirements must be positive values.");
 			return false;
 		}
 		
@@ -282,18 +288,27 @@ public class PropertiesMenuPanelController extends MouseAdapter {
 		int tileProbabilitySum = tileProbability1 + tileProbability2 + tileProbability3 + tileProbability4 + tileProbability5 + tileProbability6;
 		
 		if (tileProbabilitySum != 100) {
-			System.err.println("Tile probabilities must sum to 100.  Current sum is " + tileProbabilitySum + 
+			displayErrorPopup("Tile probabilities must sum to 100.  Current sum is " + tileProbabilitySum + 
 					", and " + (100 - tileProbabilitySum) + " more units are needed to equal 100.");
 			return false;
 		}
 		
 		if ( tileProbability1 < 0 || tileProbability2 < 0 || tileProbability3 < 0 || tileProbability3 < 0 ||
 				tileProbability4 < 0 || tileProbability5 < 0 || tileProbability6 < 0) {
-			System.err.println("Tile probabilities must be positive values.");
+			displayErrorPopup("Tile probabilities must be positive values.");
 			return false;
 		}
 		
 		return true;
+	}
+	
+	
+	/**
+	 * Displays a popup error message with the specified String.
+	 * @param s the string to be included in the error window popup.
+	 */
+	public void displayErrorPopup(String s) {
+		JOptionPane.showMessageDialog(app, s + "\n\nYour changes have not been applied.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 
 }
