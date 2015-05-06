@@ -14,6 +14,7 @@ public class TestControllers extends TestCase {
 		AchievementPanelController ach = new AchievementPanelController(app);
 		ShowCreditController scc = new ShowCreditController(app);
 		ExitSplashScreen exit = new ExitSplashScreen(app);
+		ResetAchievementsController reset = new ResetAchievementsController(app);
 		ReturnToMenuController menuReturn = new ReturnToMenuController(app);
 		QuitController quit = new QuitController(app);
 		MainMenuView main = new MainMenuView(app);
@@ -37,6 +38,14 @@ public class TestControllers extends TestCase {
 				main.achievementsButton.getX(), main.achievementsButton.getY(), 0, false);
 		
 		ach.mouseClicked(me);
+		
+		me = new MouseEvent(app.getCurrentView(), MouseEvent.MOUSE_CLICKED, 
+				System.currentTimeMillis(), 0, 
+				achievement.reset.getX(), achievement.reset.getY(), 0, false);
+		
+		reset.mouseClicked(me);
+		
+		reset.mouseClicked(me);
 		
 		me = new MouseEvent(app.getCurrentView(), MouseEvent.MOUSE_CLICKED, 
 				System.currentTimeMillis(), 0, 

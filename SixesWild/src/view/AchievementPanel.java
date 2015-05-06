@@ -26,6 +26,7 @@ public class AchievementPanel extends JPanel {
 	private static final long serialVersionUID = 1;
 	
 	public JButton back;
+	public JButton reset;
 
 	public AchievementPanel(Application parent) {
 		super(new BorderLayout(0, 0));
@@ -40,7 +41,7 @@ public class AchievementPanel extends JPanel {
 		
 		// Panel for the right side
 		JPanel right = new JPanel(new FlowLayout(FlowLayout.RIGHT, 23, 12));
-		JButton reset = new JButton("Reset Achievements");
+		reset = new JButton("Reset Achievements");
 		reset.addMouseListener(new ResetAchievementsController(parent));
 		right.add(reset);
 		
