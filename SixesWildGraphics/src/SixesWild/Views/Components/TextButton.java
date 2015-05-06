@@ -40,9 +40,10 @@ public class TextButton extends StyledButton {
             Color normalBackColor,
             Color hoverBackColor,
             Color activeBackColor,
-            Color disableBackColor) {
+            Color disableBackColor,
+            int roundRadius) {
 
-        super(normalBackColor, hoverBackColor, activeBackColor, disableBackColor);
+        super(normalBackColor, hoverBackColor, activeBackColor, disableBackColor,roundRadius);
         this.text = text;
         this.fontSize = fontSize;
         this.normalTextColor = normalTextColor;

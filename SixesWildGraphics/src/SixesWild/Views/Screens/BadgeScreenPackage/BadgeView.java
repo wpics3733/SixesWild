@@ -6,6 +6,7 @@ import SixesWild.Models.Badge;
 import SixesWild.Views.Components.ListPanel;
 import SixesWild.Views.Components.LockableButton;
 import SixesWild.Views.Components.LockableButtonView;
+import SixesWild.Views.Screens.MenuScreenPackage.MenuScreen;
 import SixesWild.Views.Screens.Screen;
 
 import java.awt.*;
@@ -84,7 +85,8 @@ public class BadgeView extends LockableButtonView {
                             BADGE_BUTTON_ACTIVED_BACK_COLOR,
                             BADGE_BUTTON_LOCKED_BACK_COLOR,
                             ImageContract.BADGE_BUTTON_LOCKED_IMAGE,
-                            DEFAULT_LOCK_STATE
+                            DEFAULT_LOCK_STATE,
+                            MenuScreen.LEVEL_BUTTON_ROUND
                     ));
 
             getButton().setPreferredSize(BADGE_BUTTON_SIZE);

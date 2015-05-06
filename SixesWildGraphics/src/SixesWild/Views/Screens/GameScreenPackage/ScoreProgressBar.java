@@ -1,6 +1,8 @@
 package SixesWild.Views.Screens.GameScreenPackage;
 
+import SixesWild.Models.Value;
 import SixesWild.Views.Components.BufferedCanvas;
+import SixesWild.Views.IModelUpdated;
 import SixesWild.Views.Screens.Screen;
 
 import java.awt.*;
@@ -8,7 +10,7 @@ import java.awt.*;
 /**
  * Created by harryliu on 5/4/15.
  */
-public class ScoreProgressBar extends BufferedCanvas {
+public class ScoreProgressBar extends BufferedCanvas implements IModelUpdated{
 
     //    Score progress bar size
     public static final Dimension SCORE_PROGRESS_BAR_SIZE = new Dimension(15, 526);
@@ -19,21 +21,17 @@ public class ScoreProgressBar extends BufferedCanvas {
     //    Milestone label bar height
     public static final int MILESTONE_LABEL_HEIGHT = 4;
 
-    int current;
+    Value current;
 
-    int oneStarScore;
-    int twoStarScore;
-    int threeStarScore;
+    Value oneStarScore;
+    Value twoStarScore;
+    Value threeStarScore;
 
-    public ScoreProgressBar(int current, int oneStarScore, int twoStarScore, int threeStarScore) {
+    public ScoreProgressBar(Value current, Value oneStarScore, Value twoStarScore, Value threeStarScore) {
         this.current = current;
         this.oneStarScore = oneStarScore;
         this.twoStarScore = twoStarScore;
         this.threeStarScore = threeStarScore;
-
-        setPreferredSize(SCORE_PROGRESS_BAR_SIZE);
-        setMinimumSize(SCORE_PROGRESS_BAR_SIZE);
-        setMaximumSize(SCORE_PROGRESS_BAR_SIZE);
     }
 
     @Override
@@ -43,17 +41,17 @@ public class ScoreProgressBar extends BufferedCanvas {
         graphics2D.fillRect(PADDING_LEFT, PADDING_TOP, (int) SCORE_PROGRESS_BAR_SIZE.getWidth(), (int) SCORE_PROGRESS_BAR_SIZE.getHeight());
 
 //        Draw progress bar
-        double marginTop = getMinimumSize().getHeight() * (1.0 - ((double) current / (double) threeStarScore));
+        double marginTop = getMinimumSize().getHeight() * (1.0 - ((double) current.getValue() / (double) threeStarScore.getValue()));
         graphics2D.setColor(PROGRESS_RED);
         graphics2D.fillRect(PADDING_LEFT, (int) marginTop, (int) getMinimumSize().getWidth(), (int) (getMinimumSize().getHeight() - marginTop));
 
 //        Draw first milestone label
-        marginTop = getMinimumSize().getHeight() * (1.0 - ((double) oneStarScore / (double) threeStarScore));
+        marginTop = getMinimumSize().getHeight() * (1.0 - ((double) oneStarScore.getValue() / (double) threeStarScore.getValue()));
         graphics2D.setColor(TRANSPARENT_DARK);
         graphics2D.fillRect(PADDING_LEFT, (int) marginTop, (int) SCORE_PROGRESS_BAR_SIZE.getWidth(), MILESTONE_LABEL_HEIGHT);
 
 //        Draw second milestone label
-        marginTop = getMinimumSize().getHeight() * (1.0 - ((double) twoStarScore / (double) threeStarScore));
+        marginTop = getMinimumSize().getHeight() * (1.0 - ((double) twoStarScore.getValue() / (double) threeStarScore.getValue()));
         graphics2D.setColor(TRANSPARENT_DARK);
         graphics2D.fillRect(PADDING_LEFT, (int) marginTop, (int) SCORE_PROGRESS_BAR_SIZE.getWidth(), MILESTONE_LABEL_HEIGHT);
 
@@ -63,7 +61,8 @@ public class ScoreProgressBar extends BufferedCanvas {
 
     }
 
-    public void updateScore(int score) {
-        current += score;
+    @Override
+    public void modelChanged() {
+        repaint();
     }
 }

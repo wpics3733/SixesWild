@@ -5,36 +5,28 @@ package SixesWild.Models;
  */
 public class Tile {
 
-    /**
-     *
-     */
+
     Value number;
-    /**
-     *
-     */
     BonusMultiplier mutiplier;
 
-    /**
-     *
-     */
-    public Tile() {
+    public Tile(Value number, BonusMultiplier mutiplier) {
+        this.number = number;
+        this.mutiplier = mutiplier;
     }
 
-    /**
-     * @param int number
-     */
-    public void Tile(int number) {
-        // TODO implement here
+    public Value getNumber() {
+        return number;
     }
 
-    /**
-     * @param int number
-     * @param int multiplier
-     */
-    public void Tile(int number, int multiplier) {
-        // TODO implement here
+    public void setNumber(Value number) {
+        this.number = number;
     }
 
+    public BonusMultiplier getMutiplier() {
+        return mutiplier;
+    }
 
-
+    public void setMutiplier(BonusMultiplier mutiplier) {
+        this.mutiplier = mutiplier;
+    }
 }

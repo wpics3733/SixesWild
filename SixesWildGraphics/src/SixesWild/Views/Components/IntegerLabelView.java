@@ -1,9 +1,12 @@
 package SixesWild.Views.Components;
 
+import SixesWild.Models.Value;
+import SixesWild.Views.IModelUpdated;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class IntegerLabelView extends JPanel {
+public class IntegerLabelView extends JPanel implements IModelUpdated{
 
 //    Center align
     final boolean CENTER_ALIGN = false;
@@ -15,7 +18,7 @@ public class IntegerLabelView extends JPanel {
     final int PADDING_LEFT = 0;
 
     String text;
-    int value;
+    Value value;
     int thickness;
     float fontSize;
     Color textColor;
@@ -27,7 +30,7 @@ public class IntegerLabelView extends JPanel {
 
     public IntegerLabelView(
             String text,
-            int value,
+            Value value,
             int thickness,
             float fontSize,
             Color textColor,
@@ -63,11 +66,8 @@ public class IntegerLabelView extends JPanel {
         integerView.repaint();
     }
 
-    public void increase(int amount) {
-        integerView.increase(amount);
-    }
-
-    public void decrease(int amount) {
-        integerView.decrease(amount);
+    @Override
+    public void modelChanged() {
+        integerView.modelChanged();
     }
 }

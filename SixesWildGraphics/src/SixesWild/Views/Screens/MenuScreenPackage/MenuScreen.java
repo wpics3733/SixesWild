@@ -6,6 +6,7 @@ import SixesWild.Controllers.MenuScreen.AchievementButtonController;
 import SixesWild.Controllers.MenuScreen.ContinueGameButtonController;
 import SixesWild.Controllers.MenuScreen.ViewLevelsButtonController;
 import SixesWild.Views.Application;
+import SixesWild.Views.Components.NavigationBar;
 import SixesWild.Views.Components.TextButton;
 import SixesWild.Views.Screens.Screen;
 
@@ -15,6 +16,9 @@ import java.awt.*;
  *
  */
 public class MenuScreen extends Screen {
+
+//    Level button rounds
+    public static final int LEVEL_BUTTON_ROUND = 12;
 
     //    Menu screen banner background color
     final Color BANNER_BACK_COLOR = new Color(112, 147, 113);
@@ -145,7 +149,8 @@ public class MenuScreen extends Screen {
                     BUTTON_BACK_COLOR,
                     BUTTON_HOVERED_COLOR,
                     BUTTON_BACK_COLOR,
-                    BUTTON_BACK_COLOR
+                    BUTTON_BACK_COLOR,
+                    NavigationBar.NO_ROUND
             );
 
             continueButton.setPreferredSize(BUTTON_SIZE);
@@ -168,7 +173,8 @@ public class MenuScreen extends Screen {
                     BUTTON_BACK_COLOR,
                     BUTTON_HOVERED_COLOR,
                     BUTTON_BACK_COLOR,
-                    BUTTON_BACK_COLOR
+                    BUTTON_BACK_COLOR,
+                    NavigationBar.NO_ROUND
             );
 
             levelsButton.setPreferredSize(BUTTON_SIZE);
@@ -191,7 +197,8 @@ public class MenuScreen extends Screen {
                     BUTTON_BACK_COLOR,
                     BUTTON_HOVERED_COLOR,
                     BUTTON_BACK_COLOR,
-                    BUTTON_BACK_COLOR
+                    BUTTON_BACK_COLOR,
+                    NavigationBar.NO_ROUND
             );
 
             badgeButton.setPreferredSize(BUTTON_SIZE);
@@ -214,7 +221,8 @@ public class MenuScreen extends Screen {
                     BUTTON_BACK_COLOR,
                     BUTTON_HOVERED_COLOR,
                     BUTTON_BACK_COLOR,
-                    BUTTON_BACK_COLOR
+                    BUTTON_BACK_COLOR,
+                    NavigationBar.NO_ROUND
             );
 
             aboutButton.setPreferredSize(BUTTON_SIZE);

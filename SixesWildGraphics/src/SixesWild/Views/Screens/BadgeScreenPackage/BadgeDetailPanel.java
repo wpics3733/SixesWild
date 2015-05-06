@@ -5,6 +5,7 @@ import SixesWild.Controllers.ViewBadgeScreen.ResetBadgeButtonController;
 import SixesWild.Views.Application;
 import SixesWild.Views.Components.DetailPanel;
 import SixesWild.Views.Components.ImageButton;
+import SixesWild.Views.Components.NavigationBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -97,7 +98,8 @@ public class BadgeDetailPanel extends DetailPanel {
                 DetailPanel.DETAIL_PANEL_BACK_COLOR,
                 DetailPanel.DETAIL_PANEL_BACK_COLOR,
                 DetailPanel.DETAIL_PANEL_BACK_COLOR,
-                DetailPanel.DETAIL_PANEL_BACK_COLOR
+                DetailPanel.DETAIL_PANEL_BACK_COLOR,
+                NavigationBar.NO_ROUND
         );
 
         resetBadgeButton.setPreferredSize(BADGE_RESET_BUTTON_SIZE);

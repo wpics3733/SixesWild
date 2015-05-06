@@ -13,6 +13,9 @@ import java.awt.*;
  */
 public class NavigationBar extends JPanel {
 
+//    No round
+    public static final int NO_ROUND = 0;
+
     //    Back button
     ImageButton backButton;
 
@@ -59,7 +62,8 @@ public class NavigationBar extends JPanel {
                 BUTTON_BACK_COLOR,
                 BUTTON_ACTIVE_COLOR,
                 BUTTON_BACK_COLOR,
-                BUTTON_BACK_COLOR);
+                BUTTON_BACK_COLOR,
+                NO_ROUND);
 
         backButton.setPreferredSize(BACK_BUTTON_SIZE);
         backButton.setMaximumSize(BACK_BUTTON_SIZE);

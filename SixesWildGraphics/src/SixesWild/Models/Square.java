@@ -1,40 +1,48 @@
 package SixesWild.Models;
 
-/**
- *
- */
 public class Square {
 
-    /**
-     *
-     */
     Location location;
-    /**
-     *
-     */
     Tile tile;
 
-    /**
-     *
-     */
     public Square() {
+
     }
 
-    /**
-     * @param int row
-     * @param int column
-     */
-    public void Square(int row, int column) {
-        // TODO implement here
+    public Square(Location location, Tile tile) {
+        this.location = location;
+        this.tile = tile;
     }
 
-    /**
-     * @param int  row
-     * @param int  column
-     * @param Tile tile
-     */
-    public void Square(int row, int column, Tile tile) {
-        // TODO implement here
+    public boolean isAdjacent(Square square) {
+        return location.isAdjacent(square.getLocation());
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Tile getTile() {
+        return tile;
+    }
+
+    public void setTile(Tile tile) {
+        this.tile = tile;
+    }
+
+    public boolean isEmpty() {
+        if(tile == null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isContainer() {
+        return false;
+    }
 }

@@ -1,5 +1,9 @@
 package SixesWild.Views;
 
+import SixesWild.Models.*;
+import SixesWild.Models.Levels.Probabilities;
+import SixesWild.Models.Levels.PuzzleLevel;
+import SixesWild.Moves.ISpecialMove;
 import SixesWild.Utilities;
 import SixesWild.Views.Animation.AnimationManager;
 import SixesWild.Views.Screens.AboutScreenPackage.AboutScreen;
@@ -11,6 +15,7 @@ import SixesWild.Views.Screens.Screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Stack;
 
 /**
  *
@@ -89,12 +94,11 @@ public class Application extends JFrame {
 
     public void switchTo(Screen screen) {
         if (currentScreen != null && screen != null) {
-            getGraphics().clearRect(0,0,Application.WINDOW_WIDTH,Application.WINDOW_HEIGHT);
-            currentScreen.setVisible(false);
-
+            getGraphics().clearRect(0, 0, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
             screen.setVisible(true);
-            repaint();
+            currentScreen.setVisible(false);
             currentScreen = screen;
+            repaint();
         }
     }
 
@@ -110,7 +114,7 @@ public class Application extends JFrame {
 
     public GameScreen getGameScreen() {
         if (gameScreen == null) {
-            gameScreen = new GameScreen(APPLICATION_TITLE, this);
+            gameScreen = new GameScreen(APPLICATION_TITLE, this, generateDummyPuzzleLevel());
 
             getGameScreen().setBounds(DEFAULT_SCREEN_PADDING_LEFT, DEFAULT_SCREEN_PADDING_TOP, Application.WINDOW_WIDTH, Application.WINDOW_HEIGHT);
             this.add(gameScreen);
@@ -161,5 +165,65 @@ public class Application extends JFrame {
         }
 
         return animationManager;
+    }
+
+    PuzzleLevel generateDummyPuzzleLevel() {
+        boolean unlockState=false;
+        Value id = new Value(1);
+        Score score = new Score(
+                new Value(2000),
+                new Value(7000),
+                new Value(10000)
+        );
+
+        Probabilities probabilities = new Probabilities(
+                new Value(10),
+                new Value(20),
+                new Value(50),
+                new Value(70),
+                new Value(100),
+                new Value(10),
+                new Value(30),
+                new Value(100)
+        );
+
+
+        Grid grid = new Grid(probabilities);
+
+        for (int row = 0; row < 9; row++) {
+            for (int column = 0; column < 9; column++) {
+                Location location = new Location(new Value(row),new Value(column));
+                Square square = new Square(location, null);
+
+                grid.addSquare(square);
+            }
+        }
+
+        grid.removeSquare(0,0);
+        grid.removeSquare(5,7);
+        grid.removeSquare(8,4);
+        grid.removeSquare(8,3);
+
+        grid.generateTiles();
+
+        SpecialMoveLeft specialMoveLeft = new SpecialMoveLeft(
+                new Value(5),
+                new Value(6),
+                new Value(7)
+        );
+
+        Value swapNeighborMoveLeft = new Value(20);
+
+        PuzzleLevel puzzleLevel = new PuzzleLevel(
+                unlockState,
+                id,
+                score,
+                grid,
+                specialMoveLeft,
+                probabilities,
+                swapNeighborMoveLeft
+        );
+
+        return puzzleLevel;
     }
 }

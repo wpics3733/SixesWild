@@ -69,7 +69,9 @@ public class StatusBar extends JPanel {
                 BACK_COLOR,
                 CLOSE_WINDOWS_BUTTON_ACTIVE_COLOR,
                 BACK_COLOR,
-                BACK_COLOR);
+                BACK_COLOR,
+                NavigationBar.NO_ROUND
+        );
 
         closeButton.setPreferredSize(CLOSE_WINDOW_BUTTON_DIMENSION);
         closeButton.setMinimumSize(CLOSE_WINDOW_BUTTON_DIMENSION);

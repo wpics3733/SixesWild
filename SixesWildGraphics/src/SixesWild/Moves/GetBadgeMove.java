@@ -1,45 +1,27 @@
 package SixesWild.Moves;
 
 import SixesWild.Models.Levels.Level;
+import SixesWild.Views.Application;
 
 /**
  *
  */
 public class GetBadgeMove implements IMove {
 
-    /**
-     *
-     */
+
     Level level;
 
-    /**
-     *
-     */
-    public GetBadgeMove() {
+    public GetBadgeMove(Level level) {
+        this.level = level;
     }
 
-    /**
-     * @return
-     */
+    @Override
     public boolean isValid() {
-        // TODO implement here
         return false;
     }
 
-    /**
-     * @return
-     */
-    public boolean doMove() {
-        // TODO implement here
+    @Override
+    public boolean doMove(Application app) {
         return false;
     }
-
-    /**
-     * @return
-     */
-    public boolean undo() {
-        // TODO implement here
-        return false;
-    }
-
 }

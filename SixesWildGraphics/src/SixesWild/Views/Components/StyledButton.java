@@ -26,19 +26,22 @@ public class StyledButton extends BufferedComponent {
 
     boolean disableState;
 
+    int roundRadius;
+
     /**
      * @param normalBackColor   Normal background color
      * @param hoveredBackColor  Mouse enter background color
      * @param activedBackColor  Mouse pressed background color
      * @param disabledBackColor Disabled background color
      */
-    public StyledButton(Color normalBackColor, Color hoveredBackColor, Color activedBackColor, Color disabledBackColor) {
+    public StyledButton(Color normalBackColor, Color hoveredBackColor, Color activedBackColor, Color disabledBackColor,int roundRadius) {
         this.normalBackColor = normalBackColor;
         this.hoveredBackColor = hoveredBackColor;
         this.activedBackColor = activedBackColor;
         this.disabledBackColor = disabledBackColor;
         this.activeState = false;
         this.disableState = false;
+        this.roundRadius = roundRadius;
 
         currentBackColor = normalBackColor;
     }
@@ -104,7 +107,14 @@ public class StyledButton extends BufferedComponent {
         super.redrawState();
 
         graphics2D.setColor(currentBackColor);
-        graphics2D.fillRect(PADDING_TOP, PADDING_LEFT, (int) getMinimumSize().getWidth(), (int) getMinimumSize().getHeight());
+        graphics2D.fillRoundRect(
+                PADDING_TOP,
+                PADDING_LEFT,
+                (int) getMinimumSize().getWidth(),
+                (int) getMinimumSize().getHeight(),
+                roundRadius,
+                roundRadius
+        );
 
     }
 

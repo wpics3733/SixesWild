@@ -1,6 +1,7 @@
 package SixesWild.Views.Components;
 
 import SixesWild.Utilities;
+import SixesWild.Views.IModelUpdated;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -10,7 +11,7 @@ import java.awt.font.GlyphVector;
 /**
  * Created by harryliu on 5/2/15.
  */
-public class StyledLabel extends BufferedComponent {
+public class StyledLabel extends BufferedComponent implements IModelUpdated {
 
     //    Color of text
     protected Color textColor;
@@ -69,5 +70,10 @@ public class StyledLabel extends BufferedComponent {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public void modelChanged() {
+        repaint();
     }
 }

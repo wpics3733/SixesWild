@@ -1,6 +1,8 @@
 package SixesWild.Views.Components;
 
+import SixesWild.Models.Value;
 import SixesWild.Utilities;
+import SixesWild.Views.IModelUpdated;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
@@ -9,10 +11,13 @@ import java.awt.font.GlyphVector;
 /**
  * Created by harryliu on 5/5/15.
  */
-public class SpecialMoveButton extends ImageButton {
+public class SpecialMoveButton extends ImageButton implements IModelUpdated{
 
     //    Special move button size
     public static final Dimension SPECIAL_MOVE_BUTTON_SIZE = new Dimension(42, 42);
+
+    //    Special move button round
+    final int BUTTON_ROUND = 10;
 
     //    Move left number size
     final int MOVE_LEFT_NUMBER_WIDTH = 16;
@@ -21,7 +26,7 @@ public class SpecialMoveButton extends ImageButton {
     //    Move left number font size
     final float MOVE_LEFT_NUMBER_FONT_SIZE = 12L;
 
-    int moveLeft;
+    Value moveLeft;
 
     public SpecialMoveButton(
             String normalImage,
@@ -32,8 +37,8 @@ public class SpecialMoveButton extends ImageButton {
             Color hoverBackColor,
             Color activeBackColor,
             Color disableBackColor,
-            int moveLeft) {
-        super(normalImage, hoveredImage, activedImage, disabledImage, normalBackColor, hoverBackColor, activeBackColor, disableBackColor);
+            Value moveLeft) {
+        super(normalImage, hoveredImage, activedImage, disabledImage, normalBackColor, hoverBackColor, activeBackColor, disableBackColor,NavigationBar.NO_ROUND);
 
         this.moveLeft = moveLeft;
 
@@ -45,12 +50,16 @@ public class SpecialMoveButton extends ImageButton {
     @Override
     public void redrawState() {
         ensureImageAvailable();
+
+        Utilities.setHighQuality(graphics2D);
         graphics2D.setColor(currentBackColor);
-        graphics2D.fillRect(
+        graphics2D.fillRoundRect(
                 PADDING_LEFT,
                 PADDING_TOP + MOVE_LEFT_NUMBER_HEIGHT / 2,
                 (int) getMinimumSize().getWidth() - MOVE_LEFT_NUMBER_WIDTH / 2,
-                (int) getMinimumSize().getHeight() - MOVE_LEFT_NUMBER_HEIGHT / 2
+                (int) getMinimumSize().getHeight() - MOVE_LEFT_NUMBER_HEIGHT / 2,
+                BUTTON_ROUND,
+                BUTTON_ROUND
         );
 
         int containerWidth = (int) getMinimumSize().getWidth();
@@ -60,7 +69,6 @@ public class SpecialMoveButton extends ImageButton {
 
         int imagePaddingTop = (containerHeight - imageHeight) / 2;
         int imagePaddingLeft = (containerWidth - imageWidth) / 2;
-        Utilities.setHighQuality(graphics2D);
 
         graphics2D.drawImage(
                 currentImage,
@@ -74,7 +82,8 @@ public class SpecialMoveButton extends ImageButton {
 //        Special move left number
 
         graphics2D.setColor(Color.WHITE);
-        graphics2D.fillRect(
+
+        graphics2D.fillOval(
                 (int) getMinimumSize().getWidth() - MOVE_LEFT_NUMBER_WIDTH,
                 PADDING_TOP,
                 MOVE_LEFT_NUMBER_WIDTH,
@@ -86,7 +95,7 @@ public class SpecialMoveButton extends ImageButton {
         containerWidth = MOVE_LEFT_NUMBER_WIDTH;
         containerHeight = MOVE_LEFT_NUMBER_HEIGHT;
 
-        String text = new Integer(moveLeft).toString();
+        String text = moveLeft.toString();
 
 
         Utilities.normalFont = Utilities.normalFont.deriveFont(MOVE_LEFT_NUMBER_FONT_SIZE);
@@ -110,5 +119,10 @@ public class SpecialMoveButton extends ImageButton {
                 (int) getMinimumSize().getWidth() - MOVE_LEFT_NUMBER_WIDTH + textPaddingLeft,
                 PADDING_TOP + textPaddingTop
         );
+    }
+
+    @Override
+    public void modelChanged() {
+        repaint();
     }
 }

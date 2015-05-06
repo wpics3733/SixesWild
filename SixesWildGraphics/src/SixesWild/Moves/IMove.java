@@ -1,23 +1,13 @@
 package SixesWild.Moves;
 
+import SixesWild.Views.Application;
+
 /**
  *
  */
 public interface IMove {
 
-    /**
-     * @return
-     */
     public boolean isValid();
-
-    /**
-     * @return
-     */
-    public boolean doMove();
-
-    /**
-     * @return
-     */
-    public boolean undo();
+    public boolean doMove(Application app);
 
 }

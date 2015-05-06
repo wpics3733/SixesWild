@@ -5,22 +5,17 @@ package SixesWild.Models;
  */
 public class BonusMultiplier {
 
-    /**
-     *
-     */
     Value multiplier;
 
-    /**
-     *
-     */
-    public BonusMultiplier() {
+    public BonusMultiplier(Value multiplier) {
+        this.multiplier = multiplier;
     }
 
-    /**
-     * @param int multiplier
-     */
-    public void BonusMultiplier(int multiplier) {
-        // TODO implement here
+    public Value getMultiplier() {
+        return multiplier;
     }
 
+    public void setMultiplier(Value multiplier) {
+        this.multiplier = multiplier;
+    }
 }

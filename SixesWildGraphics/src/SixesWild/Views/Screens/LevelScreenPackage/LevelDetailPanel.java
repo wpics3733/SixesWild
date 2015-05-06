@@ -6,6 +6,7 @@ import SixesWild.Views.Application;
 import SixesWild.Views.Components.DetailPanel;
 import SixesWild.Views.Components.ImageButton;
 import SixesWild.Views.Components.LargeStarsView;
+import SixesWild.Views.Components.NavigationBar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -103,7 +104,8 @@ public class LevelDetailPanel extends DetailPanel {
                 DETAIL_PANEL_BACK_COLOR,
                 DETAIL_PANEL_BACK_COLOR,
                 DETAIL_PANEL_BACK_COLOR,
-                DETAIL_PANEL_BACK_COLOR
+                DETAIL_PANEL_BACK_COLOR,
+                NavigationBar.NO_ROUND
         );
 
         startLevelButton.setPreferredSize(START_LEVEL_BUTTON_SIZE);

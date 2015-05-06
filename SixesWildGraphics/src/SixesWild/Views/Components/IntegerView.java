@@ -2,22 +2,23 @@ package SixesWild.Views.Components;
 
 import SixesWild.Models.Value;
 import SixesWild.Utilities;
+import SixesWild.Views.IModelUpdated;
 
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 
-public class IntegerView extends StyledLabel {
+public class IntegerView extends StyledLabel implements IModelUpdated{
     //    Space between integer and line
     final int GAP_INTEGER_LINE = 4;
 
     Value value;
     int thickness;
 
-    public IntegerView(int value, float fontSize, Color textColor, boolean isLeftAlign, int thickness) {
-        super(new Integer(value).toString(), fontSize, textColor, isLeftAlign);
+    public IntegerView(Value value, float fontSize, Color textColor, boolean isLeftAlign, int thickness) {
+        super(value.toString(), fontSize, textColor, isLeftAlign);
 
-        this.value = new Value(value);
+        this.value = value;
         this.thickness = thickness;
     }
 
@@ -38,16 +39,20 @@ public class IntegerView extends StyledLabel {
         int textPaddingTop = (containerHeight + visualBounds.y) / 2 + visualBounds.height + GAP_INTEGER_LINE;
 
         graphics2D.setColor(textColor);
-        graphics2D.fillRect(PADDING_LEFT, (int) textPaddingTop, (int) getMinimumSize().getWidth(), thickness);
+        graphics2D.fillRect(PADDING_LEFT, textPaddingTop, (int) getMinimumSize().getWidth(), thickness);
     }
 
-    public void increase(int amount) {
-        value.increase(amount);
-        repaint();
+    public Value getValue() {
+        return value;
     }
 
-    public void decrease(int amount) {
-        value.decrease(amount);
-        repaint();
+    public void setValue(Value value) {
+        this.value = value;
+    }
+
+    @Override
+    public void modelChanged() {
+        setText(value.toString());
+        super.modelChanged();
     }
 }

@@ -136,7 +136,8 @@ public class FlipPagePanel extends JPanel {
                     PANEL_BACK_COLOR,
                     PANEL_BACK_COLOR,
                     PANEL_BACK_COLOR,
-                    PANEL_BACK_COLOR
+                    PANEL_BACK_COLOR,
+                    NavigationBar.NO_ROUND
             );
         }
 
@@ -154,7 +155,8 @@ public class FlipPagePanel extends JPanel {
                     PANEL_BACK_COLOR,
                     PANEL_BACK_COLOR,
                     PANEL_BACK_COLOR,
-                    PANEL_BACK_COLOR
+                    PANEL_BACK_COLOR,
+                    NavigationBar.NO_ROUND
             );
         }
 

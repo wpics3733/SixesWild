@@ -1,7 +1,10 @@
 package SixesWild.Views.Screens.GameScreenPackage;
 
+import SixesWild.Models.Score;
+import SixesWild.Models.Value;
 import SixesWild.Utilities;
 import SixesWild.Views.Components.LargeStarsView;
+import SixesWild.Views.IModelUpdated;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,8 +12,10 @@ import java.awt.*;
 /**
  * Created by harryliu on 5/4/15.
  */
-public class ScoreProgressView extends JPanel {
+public class ScoreProgressView extends JPanel implements IModelUpdated {
 
+    //    Star label font size
+    protected final float STAR_LABEL_FONT_SIZE = 14l;
     //    Padding top
     protected final int PADDING_TOP = 0;
     //    Padding left
@@ -31,22 +36,33 @@ public class ScoreProgressView extends JPanel {
     //    Star view size
     final Dimension STAR_VIEW_SIZE = new Dimension(96, 28);
 
+    //    Star label size
+    protected final Dimension STAR_LABEL_VIEW_SIZE = new Dimension(
+            (int) (STAR_VIEW_SIZE.getWidth()
+                    - ScoreProgressBar.SCORE_PROGRESS_BAR_SIZE.getWidth()),
+            30
+    );
+
     ScoreProgressBar scoreProgressBar;
     LargeStarsView largeStarsViewThreeStar;
     LargeStarsView largeStarsViewTwoStar;
     LargeStarsView largeStarsViewOneStar;
 
-    int current;
+    JLabel threeStarLabel;
+    JLabel twoStarLabel;
+    JLabel oneStarLabel;
 
-    int oneStarScore;
-    int twoStarScore;
-    int threeStarScore;
+    Value current;
 
-    public ScoreProgressView(int current, int oneStarScore, int twoStarScore, int threeStarScore) {
-        this.current = current;
-        this.oneStarScore = oneStarScore;
-        this.twoStarScore = twoStarScore;
-        this.threeStarScore = threeStarScore;
+    Value oneStarScore;
+    Value twoStarScore;
+    Value threeStarScore;
+
+    public ScoreProgressView(Score score) {
+        this.current = score.getCurrentScore();
+        this.oneStarScore = score.getOneStarScore();
+        this.twoStarScore = score.getTwoStarScore();
+        this.threeStarScore = score.getThreeStarScore();
 
         setPreferredSize(GameScreen.SCORE_PROGRESS_VIEW_SIZE);
         setMaximumSize(GameScreen.SCORE_PROGRESS_VIEW_SIZE);
@@ -58,75 +74,68 @@ public class ScoreProgressView extends JPanel {
         setLayout(null);
         setBackground(getParent().getBackground());
 
+        Utilities.normalFont = Utilities.normalFont.deriveFont(STAR_LABEL_FONT_SIZE);
+
         //        Setup three stars view
-        getLargeStarsViewThreeStar().setBounds(PADDING_LEFT, PADDING_TOP, (int) STAR_VIEW_SIZE.getWidth(), (int) STAR_VIEW_SIZE.getHeight());
+
         add(getLargeStarsViewThreeStar());
         getLargeStarsViewThreeStar().repaint();
 
-        JLabel threeStarLabel = new JLabel(
-                new Integer(threeStarScore).toString(),
+        threeStarLabel = new JLabel(
+                threeStarScore.toString(),
                 SwingConstants.RIGHT
         );
+
         threeStarLabel.setForeground(STAR_SCORE_LABEL_FONT_COLOR);
         threeStarLabel.setOpaque(false);
         threeStarLabel.setFont(Utilities.normalFont);
 
+        threeStarLabel.setPreferredSize(STAR_LABEL_VIEW_SIZE);
+        threeStarLabel.setMaximumSize(STAR_LABEL_VIEW_SIZE);
+        threeStarLabel.setMinimumSize(STAR_LABEL_VIEW_SIZE);
+
+
         add(threeStarLabel);
 
-        threeStarLabel.setBounds(
-                (int) (STAR_VIEW_SIZE.getWidth() - threeStarLabel.getMaximumSize().getWidth()),
-        PADDING_TOP + (int) STAR_VIEW_SIZE.getHeight() + GAP_SCORE_STAR_VIEWS,
-                (int) STAR_VIEW_SIZE.getWidth(),
-                (int) STAR_VIEW_SIZE.getHeight()
-        );
-
         //        Setup two stars view
-        double marginTop = getMinimumSize().getHeight()
-                - getMinimumSize().getHeight() * ((double) twoStarScore / (double) threeStarScore)
-                - (int) STAR_VIEW_SIZE.getHeight() / 2
-                - ScoreProgressBar.MILESTONE_LABEL_HEIGHT / 2;
 
-        getLargeStarsViewTwoStar().setBounds(PADDING_LEFT, (int) marginTop, (int) STAR_VIEW_SIZE.getWidth(), (int) STAR_VIEW_SIZE.getHeight());
+
         add(getLargeStarsViewTwoStar());
         getLargeStarsViewTwoStar().repaint();
 
-        JLabel twoStarLabel = new JLabel(
-                new Integer(twoStarScore).toString(),
+        twoStarLabel = new JLabel(
+                twoStarScore.toString(),
                 SwingConstants.RIGHT
         );
+
         twoStarLabel.setForeground(STAR_SCORE_LABEL_FONT_COLOR);
         twoStarLabel.setOpaque(false);
+
         twoStarLabel.setFont(Utilities.normalFont);
-        twoStarLabel.setBounds(
-                PADDING_LEFT,
-                (int) marginTop + (int) STAR_VIEW_SIZE.getHeight() + GAP_SCORE_STAR_VIEWS,
-                (int) STAR_VIEW_SIZE.getWidth(),
-                (int) STAR_VIEW_SIZE.getHeight()
-        );
+
+        twoStarLabel.setPreferredSize(STAR_LABEL_VIEW_SIZE);
+        twoStarLabel.setMaximumSize(STAR_LABEL_VIEW_SIZE);
+        twoStarLabel.setMinimumSize(STAR_LABEL_VIEW_SIZE);
+
         add(twoStarLabel);
 
         //        Setup one stars view
-        marginTop = getMinimumSize().getHeight()
-                * (1.0 - ((double) oneStarScore / (double) threeStarScore))
-                - (int) STAR_VIEW_SIZE.getHeight() + ScoreProgressBar.MILESTONE_LABEL_HEIGHT / 2;
 
-        getLargeStarsViewOneStar().setBounds(PADDING_LEFT, (int) marginTop, (int) STAR_VIEW_SIZE.getWidth(), (int) STAR_VIEW_SIZE.getHeight());
         add(getLargeStarsViewOneStar());
         getLargeStarsViewOneStar().repaint();
 
-        JLabel oneStarLabel = new JLabel(
-                new Integer(oneStarScore).toString(),
+        oneStarLabel = new JLabel(
+                oneStarScore.toString(),
                 SwingConstants.RIGHT
         );
         oneStarLabel.setForeground(STAR_SCORE_LABEL_FONT_COLOR);
         oneStarLabel.setOpaque(false);
         oneStarLabel.setFont(Utilities.normalFont);
-        oneStarLabel.setBounds(
-                PADDING_LEFT,
-                (int) marginTop + (int) STAR_VIEW_SIZE.getHeight() + GAP_SCORE_STAR_VIEWS,
-                (int) STAR_VIEW_SIZE.getWidth(),
-                (int) STAR_VIEW_SIZE.getHeight()
-        );
+
+        oneStarLabel.setPreferredSize(STAR_LABEL_VIEW_SIZE);
+        oneStarLabel.setMaximumSize(STAR_LABEL_VIEW_SIZE);
+        oneStarLabel.setMinimumSize(STAR_LABEL_VIEW_SIZE);
+
         add(oneStarLabel);
 
         //        Setup progress bar
@@ -136,7 +145,43 @@ public class ScoreProgressView extends JPanel {
                 (int) ScoreProgressBar.SCORE_PROGRESS_BAR_SIZE.getWidth(),
                 (int) ScoreProgressBar.SCORE_PROGRESS_BAR_SIZE.getHeight());
         add(getScoreProgressBar());
-        getScoreProgressBar().repaint();
+
+        getLargeStarsViewThreeStar().setBounds(PADDING_LEFT, PADDING_TOP, (int) STAR_VIEW_SIZE.getWidth(), (int) STAR_VIEW_SIZE.getHeight());
+        threeStarLabel.setBounds(
+                (int) (STAR_VIEW_SIZE.getWidth()
+                        - threeStarLabel.getMaximumSize().getWidth()
+                        - ScoreProgressBar.SCORE_PROGRESS_BAR_SIZE.getWidth()),
+                PADDING_TOP + (int) STAR_VIEW_SIZE.getHeight() + GAP_SCORE_STAR_VIEWS,
+                (int) STAR_VIEW_SIZE.getWidth(),
+                (int) STAR_VIEW_SIZE.getHeight()
+        );
+
+        double marginTop = getScoreProgressBar().getMinimumSize().getHeight()
+                * (1.0 - ((double) twoStarScore.getValue() / (double) threeStarScore.getValue()));
+        getLargeStarsViewTwoStar().setBounds(PADDING_LEFT, (int) marginTop, (int) STAR_VIEW_SIZE.getWidth(), (int) STAR_VIEW_SIZE.getHeight());
+        twoStarLabel.setBounds(
+                (int) (STAR_VIEW_SIZE.getWidth()
+                        - threeStarLabel.getMaximumSize().getWidth()
+                        - ScoreProgressBar.SCORE_PROGRESS_BAR_SIZE.getWidth()),
+                (int) marginTop + (int) STAR_VIEW_SIZE.getHeight() + GAP_SCORE_STAR_VIEWS,
+                (int) STAR_VIEW_SIZE.getWidth(),
+                (int) STAR_VIEW_SIZE.getHeight()
+        );
+
+        marginTop = getScoreProgressBar().getMinimumSize().getHeight()
+                * (1.0 - ((double) oneStarScore.getValue() / (double) threeStarScore.getValue()));
+
+        getLargeStarsViewOneStar().setBounds(PADDING_LEFT, (int) marginTop, (int) STAR_VIEW_SIZE.getWidth(), (int) STAR_VIEW_SIZE.getHeight());
+        oneStarLabel.setBounds(
+                (int) (STAR_VIEW_SIZE.getWidth()
+                        - threeStarLabel.getMaximumSize().getWidth()
+                        - ScoreProgressBar.SCORE_PROGRESS_BAR_SIZE.getWidth()),
+                (int) marginTop + (int) STAR_VIEW_SIZE.getHeight() + GAP_SCORE_STAR_VIEWS,
+                (int) STAR_VIEW_SIZE.getWidth(),
+                (int) STAR_VIEW_SIZE.getHeight()
+        );
+
+        getScoreProgressBar().modelChanged();
     }
 
     public ScoreProgressBar getScoreProgressBar() {
@@ -184,8 +229,9 @@ public class ScoreProgressView extends JPanel {
         return largeStarsViewOneStar;
     }
 
-    public void updateScore(int score) {
-        this.current += score;
-        getScoreProgressBar().updateScore(score);
+    @Override
+    public void modelChanged() {
+
+        getScoreProgressBar().modelChanged();
     }
 }

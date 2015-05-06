@@ -5,14 +5,16 @@ import SixesWild.Contracts.TipContract;
 import SixesWild.Controllers.GameScreen.ClearTileSpecialMoveController;
 import SixesWild.Controllers.GameScreen.ResetBoardSpecialMoveController;
 import SixesWild.Controllers.GameScreen.SwapSquareSpecialMoveController;
+import SixesWild.Models.SpecialMoveLeft;
 import SixesWild.Views.Application;
 import SixesWild.Views.Components.IntegerLabelView;
 import SixesWild.Views.Components.NavigationBar;
 import SixesWild.Views.Components.SpecialMoveButton;
+import SixesWild.Views.IModelUpdated;
 
 import java.awt.*;
 
-public class SpecialMoveNavigationBar extends NavigationBar {
+public class SpecialMoveNavigationBar extends NavigationBar implements IModelUpdated{
 
     //    Special move button colors
     final Color SPECIAL_MOVE_DISABLED_BACK_COLOR = new Color(162, 162, 162);
@@ -54,15 +56,12 @@ public class SpecialMoveNavigationBar extends NavigationBar {
     SpecialMoveButton resetBoardSpecialMoveView;
     SpecialMoveButton clearSquareSpecialMoveView;
 
-    int swapSquareSpecialMoveLeft;
-    int resetBoardSpecialMoveLeft;
-    int removeTileSpecialMoveLeft;
+    SpecialMoveLeft specialMoveLeft;
 
-    public SpecialMoveNavigationBar(Application app, int swapSquareSpecialMoveLeft, int resetBoardSpecialMoveLeft, int removeTileSpecialMoveLeft) {
+    public SpecialMoveNavigationBar(Application app, SpecialMoveLeft specialMoveLeft) {
         super(app);
-        this.swapSquareSpecialMoveLeft = swapSquareSpecialMoveLeft;
-        this.resetBoardSpecialMoveLeft = resetBoardSpecialMoveLeft;
-        this.removeTileSpecialMoveLeft = removeTileSpecialMoveLeft;
+
+        this.specialMoveLeft = specialMoveLeft;
 
         setUpSpecialMoveButtons();
     }
@@ -72,7 +71,7 @@ public class SpecialMoveNavigationBar extends NavigationBar {
 //        Swap square special move button
         getSwapSquareSpecialMoveView().setBounds(SWAP_SQUARE_SPECIAL_MOVE_BOUNDS);
 
-        SwapSquareSpecialMoveController swapSquareSpecialMoveController = new SwapSquareSpecialMoveController(getSwapSquareSpecialMoveView(), this);
+        SwapSquareSpecialMoveController swapSquareSpecialMoveController = new SwapSquareSpecialMoveController(getSwapSquareSpecialMoveView(), this,app);
         getSwapSquareSpecialMoveView().addMouseListener(swapSquareSpecialMoveController);
         getSwapSquareSpecialMoveView().addMouseMotionListener(swapSquareSpecialMoveController);
 
@@ -84,7 +83,7 @@ public class SpecialMoveNavigationBar extends NavigationBar {
 //        Reset board special move button
         getResetBoardSpecialMoveView().setBounds(RESET_BOARD_SPECIAL_MOVE_BOUNDS);
 
-        ResetBoardSpecialMoveController resetBadgeButtonController = new ResetBoardSpecialMoveController(getResetBoardSpecialMoveView(), this);
+        ResetBoardSpecialMoveController resetBadgeButtonController = new ResetBoardSpecialMoveController(getResetBoardSpecialMoveView(), this, app);
         getResetBoardSpecialMoveView().addMouseListener(resetBadgeButtonController);
         getResetBoardSpecialMoveView().addMouseMotionListener(resetBadgeButtonController);
 
@@ -96,7 +95,7 @@ public class SpecialMoveNavigationBar extends NavigationBar {
 //        Clear tile special move button
         getClearSquareSpecialMoveView().setBounds(REMOVE_TILE_SPECIAL_MOVE_BOUNDS);
 
-        ClearTileSpecialMoveController clearTileSpecialMoveController = new ClearTileSpecialMoveController(getClearSquareSpecialMoveView(), this);
+        ClearTileSpecialMoveController clearTileSpecialMoveController = new ClearTileSpecialMoveController(getClearSquareSpecialMoveView(), this,app);
         getClearSquareSpecialMoveView().addMouseListener(clearTileSpecialMoveController);
         getClearSquareSpecialMoveView().addMouseMotionListener(clearTileSpecialMoveController);
 
@@ -117,7 +116,7 @@ public class SpecialMoveNavigationBar extends NavigationBar {
                     SWAP_SQUARE_SPECIAL_MOVE_HOVERED_BACK_COLOR,
                     SWAP_SQUARE_SPECIAL_MOVE_ACTIVED_BACK_COLOR,
                     SPECIAL_MOVE_DISABLED_BACK_COLOR,
-                    swapSquareSpecialMoveLeft
+                    specialMoveLeft.getSwapTileSpecialMove()
             );
         }
         return swapSquareSpecialMoveView;
@@ -134,7 +133,7 @@ public class SpecialMoveNavigationBar extends NavigationBar {
                     RESET_BOARD_SPECIAL_MOVE_HOVERED_BACK_COLOR,
                     RESET_BOARD_SPECIAL_MOVE_ACTIVED_BACK_COLOR,
                     SPECIAL_MOVE_DISABLED_BACK_COLOR,
-                    resetBoardSpecialMoveLeft
+                    specialMoveLeft.getResetBoardSpecialMoveLetf()
             );
         }
         return resetBoardSpecialMoveView;
@@ -151,7 +150,7 @@ public class SpecialMoveNavigationBar extends NavigationBar {
                     REMOVE_TILE_SPECIAL_MOVE_HOVERED_BACK_COLOR,
                     REMOVE_TILE_SPECIAL_MOVE_ACTIVED_BACK_COLOR,
                     SPECIAL_MOVE_DISABLED_BACK_COLOR,
-                    removeTileSpecialMoveLeft
+                    specialMoveLeft.getRemoveTileSpecialMove()
             );
         }
         return clearSquareSpecialMoveView;
@@ -161,5 +160,12 @@ public class SpecialMoveNavigationBar extends NavigationBar {
         getSwapSquareSpecialMoveView().inactive();
         getResetBoardSpecialMoveView().inactive();
         getClearSquareSpecialMoveView().inactive();
+    }
+
+    @Override
+    public void modelChanged() {
+        getSwapSquareSpecialMoveView().modelChanged();
+        getResetBoardSpecialMoveView().modelChanged();
+        getClearSquareSpecialMoveView().modelChanged();
     }
 }

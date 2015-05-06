@@ -17,12 +17,14 @@ public class LockableButton extends StyledButton {
             Color hoverBackColor,
             Color activeBackColor,
             Color disableBackColor,
-            boolean lockStatus) {
+            boolean lockStatus,
+            int roundRadius) {
         super(
                 normalBackColor,
                 hoverBackColor,
                 activeBackColor,
-                disableBackColor
+                disableBackColor,
+                roundRadius
         );
         this.lockStatus = lockStatus;
     }

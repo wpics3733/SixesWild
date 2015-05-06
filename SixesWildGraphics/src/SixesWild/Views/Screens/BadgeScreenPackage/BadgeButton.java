@@ -38,13 +38,15 @@ public class BadgeButton extends LockableButton {
             Color activeBackColor,
             Color disableBackColor,
             String lockedImage,
-            boolean isLocked) {
+            boolean isLocked,
+            int roundRadius) {
         super(
                 normalBackColor,
                 hoverBackColor,
                 activeBackColor,
                 disableBackColor,
-                isLocked
+                isLocked,
+                roundRadius
         );
 
         this.badgeCode = badgeCode;

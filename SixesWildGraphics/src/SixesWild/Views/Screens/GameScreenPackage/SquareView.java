@@ -2,6 +2,7 @@ package SixesWild.Views.Screens.GameScreenPackage;
 
 import SixesWild.Models.Square;
 import SixesWild.Models.Tile;
+import SixesWild.Models.Value;
 import SixesWild.Utilities;
 import SixesWild.Views.Components.StyledButton;
 import SixesWild.Views.Screens.Screen;
@@ -58,29 +59,16 @@ public class SquareView extends StyledButton {
 
 
     Square square;
-    Tile tile;
-    int tileNum;
-    int multiplier;
 
-    boolean isContainer;
-
-    public SquareView(Color normalBackColor, Color hoveredBackColor, Color activedBackColor, Color disabledBackColor, Square square, Tile tile) {
-        super(normalBackColor, hoveredBackColor, activedBackColor, disabledBackColor);
+    public SquareView(Color normalBackColor, Color hoveredBackColor, Color activedBackColor, Color disabledBackColor, Square square,int roundRadius) {
+        super(normalBackColor, hoveredBackColor, activedBackColor, disabledBackColor, roundRadius);
         this.square = square;
-        this.tile = tile;
-
-        if (tile != null) {
-            Random random = new Random();
-            tileNum = random.nextInt(6) + 1;
-            multiplier = random.nextInt(3) + 1;
-        }
     }
 
     public void redrawState() {
         super.redrawState();
 
-        if (isContainer == true) {
-
+        if (square.isContainer()) {
 
             int containerWidth = (int) getMinimumSize().getWidth();
             int containerHeight = (int) getMinimumSize().getHeight();
@@ -107,9 +95,11 @@ public class SquareView extends StyledButton {
 
         }
 
-        if (tile != null) {
+        if (square.getTile() != null) {
 
-            graphics2D.setColor(TILE_BACK_COLOR[tileNum - 1]);
+            Value tileNumber = square.getTile().getNumber();
+
+            graphics2D.setColor(TILE_BACK_COLOR[(int)tileNumber.getValue() - 1]);
 
             graphics2D.fillRoundRect(
                     (int) ((SQUARE_VIEW_SIZE.getWidth() - TILE_VIEW_SIZE.getWidth()) / 2),
@@ -124,7 +114,7 @@ public class SquareView extends StyledButton {
 
             int containerWidth = (int) getMinimumSize().getWidth();
             int containerHeight = (int) getMinimumSize().getHeight();
-            String text = new Integer(tileNum).toString();
+            String text = tileNumber.toString();
 
             FontMetrics metrics = graphics2D.getFontMetrics(Utilities.normalFont);
             int fontWidth = metrics.stringWidth(text);
@@ -142,7 +132,7 @@ public class SquareView extends StyledButton {
 
 
 //        Draw multiplier
-            text = MULTIPLY_SIGN + new Integer(multiplier).toString();
+            text = MULTIPLY_SIGN + square.getTile().getMutiplier().getMultiplier().toString();
             Utilities.normalFont = Utilities.normalFont.deriveFont(MULTIPLIER_FONT_SIZE);
             metrics = graphics2D.getFontMetrics(Utilities.normalFont);
             fontWidth = metrics.stringWidth(text);
@@ -174,22 +164,21 @@ public class SquareView extends StyledButton {
         }
     }
 
-    public void container() {
-        isContainer = true;
-        currentBackColor = disabledBackColor;
-    }
-
-    public void notContainer() {
-        isContainer = false;
-    }
-
     @Override
     public void normal() {
-        if (isContainer) {
+        if (square.isContainer()) {
             currentBackColor = disabledBackColor;
             super.repaint();
         } else {
             super.normal();
         }
+    }
+
+    public Square getSquare() {
+        return square;
+    }
+
+    public void setSquare(Square square) {
+        this.square = square;
     }
 }

@@ -47,8 +47,9 @@ public class ImageButton extends StyledButton {
                        Color normalBackColor,
                        Color hoverBackColor,
                        Color activeBackColor,
-                       Color disableBackColor) {
-        super(normalBackColor, hoverBackColor, activeBackColor, disableBackColor);
+                       Color disableBackColor,
+                       int roundRadius) {
+        super(normalBackColor, hoverBackColor, activeBackColor, disableBackColor,roundRadius);
 
         try {
 
